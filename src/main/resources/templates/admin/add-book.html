@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add New Book | BookNest Admin</title>
+
+    <link rel="stylesheet" th:href="@{/css/admin-add-book.css}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <div>
+                <h2>BookNest</h2>
+                <span>ADMIN PANEL</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/admin/dashboard">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="/admin/books" class="active">
+                <i class="fa-solid fa-book"></i>
+                <span>Books</span>
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Categories</span>
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Orders</span>
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Payments</span>
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>Inventory</span>
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/">
+                <i class="fa-solid fa-store"></i>
+                <span>View Store</span>
+            </a>
+
+            <a href="/admin/login" class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- ================= TOPBAR ================= -->
+
+        <header class="topbar">
+
+            <div class="mobile-menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </div>
+
+
+            <div class="topbar-title">
+
+                <span>BOOK MANAGEMENT</span>
+
+                <h1>Add New Book</h1>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="notification">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span>3</span>
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong>Admin</strong>
+
+                        <small>Administrator</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= PAGE CONTENT ================= -->
+
+        <section class="page-section">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <a href="/admin/books" class="back-link">
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Back to Books
+
+                    </a>
+
+
+                    <h2>Add New Book</h2>
+
+                    <p>
+                        Add a new book to your BookNest collection.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= BOOK FORM ================= -->
+
+            <form class="book-form"
+                  th:action="@{/admin/books/add}"
+                  th:object="${book}"
+                  method="post">
+
+
+                <!-- ================= BOOK INFORMATION ================= -->
+
+                <div class="form-card">
+
+
+                    <div class="card-header">
+
+                        <div class="header-icon">
+
+                            <i class="fa-solid fa-book"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>Book Information</h3>
+
+                            <p>
+                                Enter the basic details of the book.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-grid">
+
+
+                        <!-- BOOK TITLE -->
+
+                        <div class="form-group full-width">
+
+                            <label for="title">
+
+                                Book Title
+
+                                <span>*</span>
+
+                            </label>
+
+
+                            <input
+                                    type="text"
+                                    id="title"
+                                    th:field="*{title}"
+                                    placeholder="Enter book title"
+                                    required>
+
+                        </div>
+
+
+
+                        <!-- AUTHOR -->
+
+                        <div class="form-group">
+
+                            <label for="author">
+
+                                Author
+
+                                <span>*</span>
+
+                            </label>
+
+
+                            <input
+                                    type="text"
+                                    id="author"
+                                    th:field="*{author}"
+                                    placeholder="Enter author name"
+                                    required>
+
+                        </div>
+
+
+
+                        <!-- ISBN -->
+
+                        <div class="form-group">
+
+                            <label for="isbn">
+
+                                ISBN
+
+                            </label>
+
+
+                            <input
+                                    type="text"
+                                    id="isbn"
+                                    th:field="*{isbn}"
+                                    placeholder="Enter ISBN number">
+
+                        </div>
+
+
+
+                        <!-- CATEGORY -->
+
+                        <div class="form-group">
+
+                            <label for="category">
+
+                                Category
+
+                                <span>*</span>
+
+                            </label>
+
+
+                            <select
+                                    id="category"
+                                    th:field="*{category}"
+                                    required>
+
+                                <option value="">
+                                    Select category
+                                </option>
+
+                                <option value="Fiction">
+                                    Fiction
+                                </option>
+
+                                <option value="Romance">
+                                    Romance
+                                </option>
+
+                                <option value="Mystery">
+                                    Mystery
+                                </option>
+
+                                <option value="Self Help">
+                                    Self Help
+                                </option>
+
+                                <option value="Business">
+                                    Business
+                                </option>
+
+                                <option value="Productivity">
+                                    Productivity
+                                </option>
+
+                                <option value="Classics">
+                                    Classics
+                                </option>
+
+                                <option value="Science">
+                                    Science
+                                </option>
+
+                                <option value="Fantasy">
+                                    Fantasy
+                                </option>
+
+                                <option value="History">
+                                    History
+                                </option>
+
+                                <option value="Technology">
+                                    Technology
+                                </option>
+
+                                <option value="Psychology">
+                                    Psychology
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- LANGUAGE -->
+
+                        <div class="form-group">
+
+                            <label for="language">
+
+                                Language
+
+                            </label>
+
+
+                            <select
+                                    id="language"
+                                    th:field="*{language}">
+
+                                <option value="English">
+                                    English
+                                </option>
+
+                                <option value="Hindi">
+                                    Hindi
+                                </option>
+
+                                <option value="Kannada">
+                                    Kannada
+                                </option>
+
+                                <option value="Tamil">
+                                    Tamil
+                                </option>
+
+                                <option value="Telugu">
+                                    Telugu
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="form-group full-width">
+
+                            <label for="description">
+
+                                Description
+
+                            </label>
+
+
+                            <textarea
+                                    id="description"
+                                    th:field="*{description}"
+                                    rows="6"
+                                    placeholder="Write a short description of the book..."></textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= PRICE & INVENTORY ================= -->
+
+                <div class="form-card">
+
+
+                    <div class="card-header">
+
+                        <div class="header-icon">
+
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>Price & Inventory</h3>
+
+                            <p>
+                                Set the price and available stock.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-grid">
+
+
+                        <!-- PRICE -->
+
+                        <div class="form-group">
+
+                            <label for="price">
+
+                                Price
+
+                                <span>*</span>
+
+                            </label>
+
+
+                            <div class="input-prefix">
+
+                                <span>₹</span>
+
+
+                                <input
+                                        type="number"
+                                        id="price"
+                                        th:field="*{price}"
+                                        placeholder="0.00"
+                                        min="0"
+                                        step="0.01"
+                                        required>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- STOCK -->
+
+                        <div class="form-group">
+
+                            <label for="stock">
+
+                                Stock Quantity
+
+                                <span>*</span>
+
+                            </label>
+
+
+                            <input
+                                    type="number"
+                                    id="stock"
+                                    th:field="*{stock}"
+                                    placeholder="Enter quantity"
+                                    min="0"
+                                    required>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= BOOK COVER ================= -->
+
+                <div class="form-card">
+
+
+                    <div class="card-header">
+
+                        <div class="header-icon">
+
+                            <i class="fa-solid fa-image"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>Book Cover</h3>
+
+                            <p>
+                                Add the cover image for this book.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="upload-area">
+
+
+                        <div class="upload-icon">
+
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Upload Book Cover
+                        </h4>
+
+
+                        <p>
+                            PNG, JPG or JPEG
+                        </p>
+
+
+                        <label
+                                for="coverImage"
+                                class="upload-btn">
+
+                            <i class="fa-solid fa-upload"></i>
+
+                            Choose Image
+
+                        </label>
+
+
+                        <input
+                                type="file"
+                                id="coverImage"
+                                name="coverImage"
+                                accept="image/png,image/jpeg"
+                                hidden>
+
+
+                        <div id="fileName"></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= ACTION BUTTONS ================= -->
+
+                <div class="form-actions">
+
+
+                    <a
+                            href="/admin/books"
+                            class="cancel-btn">
+
+                        Cancel
+
+                    </a>
+
+
+                    <button
+                            type="submit"
+                            class="save-btn">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add Book
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    // ============================================
+    // BOOK COVER FILE NAME
+    // ============================================
+
+    const coverImage =
+        document.getElementById("coverImage");
+
+    const fileName =
+        document.getElementById("fileName");
+
+
+    coverImage.addEventListener("change", function () {
+
+        if (this.files.length > 0) {
+
+            fileName.textContent =
+                this.files[0].name;
+
+        } else {
+
+            fileName.textContent = "";
+
+        }
+
+    });
+
+
+
+    // ============================================
+    // MOBILE SIDEBAR
+    // ============================================
+
+    const menuButton =
+        document.querySelector(".mobile-menu");
+
+    const sidebar =
+        document.querySelector(".sidebar");
+
+
+    menuButton.addEventListener("click", function () {
+
+        sidebar.classList.toggle("show");
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

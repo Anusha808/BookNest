@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Categories | BookNest Admin</title>
+
+    <link rel="stylesheet" th:href="@{/css/admin-categories.css}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <div>
+                <h2>BookNest</h2>
+                <span>ADMIN PANEL</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/admin/dashboard">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="/admin/books">
+
+                <i class="fa-solid fa-book"></i>
+
+                <span>Books</span>
+
+            </a>
+
+
+            <a href="/admin/categories" class="active">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <span>Categories</span>
+
+            </a>
+
+
+            <a href="/admin/users">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>Users</span>
+
+            </a>
+
+
+            <a href="/admin/orders">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span>Orders</span>
+
+            </a>
+
+
+            <a href="/admin/payments">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+                <span>Payments</span>
+
+            </a>
+
+
+            <a href="/admin/inventory">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <span>Inventory</span>
+
+            </a>
+
+
+            <a href="/admin/notifications">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>Notifications</span>
+
+            </a>
+
+
+            <a href="/admin/settings">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/">
+
+                <i class="fa-solid fa-store"></i>
+
+                <span>View Store</span>
+
+            </a>
+
+
+            <a href="/admin/login" class="logout">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- ================= TOPBAR ================= -->
+
+        <header class="topbar">
+
+
+            <div class="mobile-menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </div>
+
+
+            <div class="topbar-title">
+
+                <span>BOOK MANAGEMENT</span>
+
+                <h1>Categories</h1>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+
+                <div class="notification">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span>3</span>
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <div class="profile-avatar">
+
+                        A
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>Admin</strong>
+
+                        <small>Administrator</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= PAGE SECTION ================= -->
+
+        <section class="page-section">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+
+                <div>
+
+                    <span class="page-label">
+                        BOOK ORGANIZATION
+                    </span>
+
+                    <h2>Categories</h2>
+
+                    <p>
+                        Organize your books into categories for easy discovery.
+                    </p>
+
+                </div>
+
+
+                <button class="add-category-btn"
+                        onclick="openAddCategory()">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Category
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================= STATS ================= -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Total Categories</span>
+
+                        <h3>12</h3>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+
+                        <i class="fa-solid fa-book"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Total Books</span>
+
+                        <h3>1,248</h3>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+
+                        <i class="fa-solid fa-chart-simple"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Most Popular</span>
+
+                        <h3>Fiction</h3>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Growing Category</span>
+
+                        <h3>Technology</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= SEARCH ================= -->
+
+            <div class="toolbar">
+
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                            type="text"
+                            id="categorySearch"
+                            placeholder="Search categories...">
+
+                </div>
+
+
+                <select id="sortCategory">
+
+                    <option value="name">
+                        Sort by Name
+                    </option>
+
+                    <option value="books">
+                        Sort by Books
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- ================= CATEGORY GRID ================= -->
+
+            <div class="category-grid" id="categoryGrid">
+
+
+                <!-- TECHNOLOGY -->
+
+                <div class="category-card"
+                     data-name="Technology"
+                     data-books="1240">
+
+                    <div class="category-top">
+
+                        <div class="category-icon technology">
+
+                            <i class="fa-solid fa-laptop-code"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Technology')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Technology')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Technology</h3>
+
+                    <p>
+                        Programming, software, computers and modern technology.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            1,240 Books
+                        </span>
+
+                        <a href="/categories/technology">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ROMANCE -->
+
+                <div class="category-card"
+                     data-name="Romance"
+                     data-books="980">
+
+                    <div class="category-top">
+
+                        <div class="category-icon romance">
+
+                            <i class="fa-solid fa-heart"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Romance')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Romance')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Romance</h3>
+
+                    <p>
+                        Heartwarming stories, relationships and unforgettable love.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            980 Books
+                        </span>
+
+                        <a href="/categories/romance">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MYSTERY -->
+
+                <div class="category-card"
+                     data-name="Mystery"
+                     data-books="760">
+
+                    <div class="category-top">
+
+                        <div class="category-icon mystery">
+
+                            <i class="fa-solid fa-user-secret"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Mystery')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Mystery')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Mystery</h3>
+
+                    <p>
+                        Suspenseful mysteries, investigations and thrilling secrets.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            760 Books
+                        </span>
+
+                        <a href="/categories/mystery">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SELF HELP -->
+
+                <div class="category-card"
+                     data-name="Self Help"
+                     data-books="630">
+
+                    <div class="category-top">
+
+                        <div class="category-icon self-help">
+
+                            <i class="fa-solid fa-seedling"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Self Help')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Self Help')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Self Help</h3>
+
+                    <p>
+                        Personal growth, confidence, habits and better living.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            630 Books
+                        </span>
+
+                        <a href="/categories/self-help">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BUSINESS -->
+
+                <div class="category-card"
+                     data-name="Business"
+                     data-books="870">
+
+                    <div class="category-top">
+
+                        <div class="category-icon business">
+
+                            <i class="fa-solid fa-briefcase"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Business')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Business')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Business</h3>
+
+                    <p>
+                        Entrepreneurship, finance, leadership and management.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            870 Books
+                        </span>
+
+                        <a href="/categories/business">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PRODUCTIVITY -->
+
+                <div class="category-card"
+                     data-name="Productivity"
+                     data-books="740">
+
+                    <div class="category-top">
+
+                        <div class="category-icon productivity">
+
+                            <i class="fa-solid fa-bolt"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Productivity')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Productivity')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Productivity</h3>
+
+                    <p>
+                        Time management, focus, planning and getting things done.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            740 Books
+                        </span>
+
+                        <a href="/categories/productivity">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CLASSICS -->
+
+                <div class="category-card"
+                     data-name="Classics"
+                     data-books="610">
+
+                    <div class="category-top">
+
+                        <div class="category-icon classics">
+
+                            <i class="fa-solid fa-landmark"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Classics')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Classics')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Classics</h3>
+
+                    <p>
+                        Timeless literature and stories that shaped generations.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            610 Books
+                        </span>
+
+                        <a href="/categories/classics">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SCIENCE -->
+
+                <div class="category-card"
+                     data-name="Science"
+                     data-books="520">
+
+                    <div class="category-top">
+
+                        <div class="category-icon science">
+
+                            <i class="fa-solid fa-flask"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Science')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Science')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Science</h3>
+
+                    <p>
+                        Discover science, nature, experiments and the universe.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            520 Books
+                        </span>
+
+                        <a href="/categories/science">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FANTASY -->
+
+                <div class="category-card"
+                     data-name="Fantasy"
+                     data-books="690">
+
+                    <div class="category-top">
+
+                        <div class="category-icon fantasy">
+
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Fantasy')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Fantasy')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Fantasy</h3>
+
+                    <p>
+                        Magical worlds, adventures, mythical creatures and heroes.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            690 Books
+                        </span>
+
+                        <a href="/categories/fantasy">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HISTORY -->
+
+                <div class="category-card"
+                     data-name="History"
+                     data-books="480">
+
+                    <div class="category-top">
+
+                        <div class="category-icon history">
+
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('History')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('History')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>History</h3>
+
+                    <p>
+                        Explore civilizations, historical events and the past.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            480 Books
+                        </span>
+
+                        <a href="/categories/history">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PSYCHOLOGY -->
+
+                <div class="category-card"
+                     data-name="Psychology"
+                     data-books="550">
+
+                    <div class="category-top">
+
+                        <div class="category-icon psychology">
+
+                            <i class="fa-solid fa-brain"></i>
+
+                        </div>
+
+
+                        <div class="category-actions">
+
+                            <button
+                                    onclick="editCategory('Psychology')"
+                                    title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+
+                            <button
+                                    onclick="deleteCategory('Psychology')"
+                                    title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>Psychology</h3>
+
+                    <p>
+                        Human behavior, thoughts, emotions and the mind.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span>
+                            <i class="fa-solid fa-book"></i>
+                            550 Books
+                        </span>
+
+                        <a href="/categories/psychology">
+
+                            View
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- NO RESULTS -->
+
+            <div class="no-results" id="noResults">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <h3>No categories found</h3>
+
+                <p>
+                    Try searching with a different category name.
+                </p>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ================= ADD CATEGORY MODAL ================= -->
+
+<div class="modal-overlay" id="categoryModal">
+
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span>BOOK MANAGEMENT</span>
+
+                <h2>Add Category</h2>
+
+            </div>
+
+
+            <button
+                    class="close-modal"
+                    onclick="closeAddCategory()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+
+            <div class="form-group">
+
+                <label for="categoryName">
+
+                    Category Name
+
+                    <span>*</span>
+
+                </label>
+
+
+                <input
+                        type="text"
+                        id="categoryName"
+                        placeholder="Enter category name">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="categoryDescription">
+
+                    Description
+
+                </label>
+
+
+                <textarea
+                        id="categoryDescription"
+                        rows="4"
+                        placeholder="Enter category description"></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                    class="cancel-modal"
+                    onclick="closeAddCategory()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                    class="save-category"
+                    onclick="saveCategory()">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add Category
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+
+    // ============================================
+    // SEARCH CATEGORIES
+    // ============================================
+
+    const searchInput =
+        document.getElementById("categorySearch");
+
+    const categoryCards =
+        document.querySelectorAll(".category-card");
+
+    const noResults =
+        document.getElementById("noResults");
+
+
+    searchInput.addEventListener("input", function () {
+
+        const searchValue =
+            this.value.toLowerCase().trim();
+
+        let visibleCount = 0;
+
+
+        categoryCards.forEach(function (card) {
+
+            const categoryName =
+                card.dataset.name.toLowerCase();
+
+
+            if (categoryName.includes(searchValue)) {
+
+                card.style.display = "block";
+
+                visibleCount++;
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+
+        if (visibleCount === 0) {
+
+            noResults.style.display = "block";
+
+        } else {
+
+            noResults.style.display = "none";
+
+        }
+
+    });
+
+
+
+    // ============================================
+    // SORT CATEGORIES
+    // ============================================
+
+    const sortSelect =
+        document.getElementById("sortCategory");
+
+    const categoryGrid =
+        document.getElementById("categoryGrid");
+
+
+    sortSelect.addEventListener("change", function () {
+
+        const cards =
+            Array.from(categoryGrid.querySelectorAll(".category-card"));
+
+
+        cards.sort(function (a, b) {
+
+            if (sortSelect.value === "books") {
+
+                return Number(b.dataset.books)
+                     - Number(a.dataset.books);
+
+            }
+
+            return a.dataset.name.localeCompare(
+                b.dataset.name
+            );
+
+        });
+
+
+        cards.forEach(function (card) {
+
+            categoryGrid.appendChild(card);
+
+        });
+
+    });
+
+
+
+    // ============================================
+    // ADD CATEGORY MODAL
+    // ============================================
+
+    const categoryModal =
+        document.getElementById("categoryModal");
+
+
+    function openAddCategory() {
+
+        categoryModal.classList.add("show");
+
+        document
+            .getElementById("categoryName")
+            .focus();
+
+    }
+
+
+    function closeAddCategory() {
+
+        categoryModal.classList.remove("show");
+
+        document
+            .getElementById("categoryName")
+            .value = "";
+
+        document
+            .getElementById("categoryDescription")
+            .value = "";
+
+    }
+
+
+    function saveCategory() {
+
+        const name =
+            document
+                .getElementById("categoryName")
+                .value
+                .trim();
+
+
+        if (name === "") {
+
+            alert("Please enter a category name.");
+
+            return;
+
+        }
+
+
+        alert(
+            "Category '" +
+            name +
+            "' added successfully!"
+        );
+
+
+        closeAddCategory();
+
+    }
+
+
+
+    // ============================================
+    // EDIT CATEGORY
+    // ============================================
+
+    function editCategory(categoryName) {
+
+        alert(
+            "Edit category: " +
+            categoryName +
+            "\n\nDatabase editing will be connected later."
+        );
+
+    }
+
+
+
+    // ============================================
+    // DELETE CATEGORY
+    // ============================================
+
+    function deleteCategory(categoryName) {
+
+        const confirmation =
+            confirm(
+                "Are you sure you want to delete the '" +
+                categoryName +
+                "' category?"
+            );
+
+
+        if (confirmation) {
+
+            alert(
+                categoryName +
+                " category deleted successfully!"
+            );
+
+        }
+
+    }
+
+
+
+    // ============================================
+    // MOBILE SIDEBAR
+    // ============================================
+
+    const menuButton =
+        document.querySelector(".mobile-menu");
+
+    const sidebar =
+        document.querySelector(".sidebar");
+
+
+    menuButton.addEventListener("click", function () {
+
+        sidebar.classList.toggle("show");
+
+    });
+
+
+
+    // ============================================
+    // CLOSE MODAL WHEN CLICKING OUTSIDE
+    // ============================================
+
+    categoryModal.addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === categoryModal) {
+
+                closeAddCategory();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

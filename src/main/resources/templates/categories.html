@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Categories</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- Categories CSS -->
+
+    <link
+        rel="stylesheet"
+        th:href="@{/css/categories.css}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+
+        <!-- LOGO -->
+
+        <a href="/" class="logo">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>
+                Book<span class="logo-highlight">Nest</span>
+            </span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/categories"
+               class="active">
+                Categories
+            </a>
+
+            <a href="/books">
+                Books
+            </a>
+
+            <a href="/#featured">
+                Featured
+            </a>
+
+            <a href="/#about">
+                About
+            </a>
+
+        </nav>
+
+
+        <!-- ACTIONS -->
+
+        <div class="nav-actions">
+
+
+            <a href="/books"
+               class="search-btn"
+               aria-label="Search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </a>
+
+
+            <a href="/login"
+               class="signin-btn">
+
+                Sign In
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CATEGORY CONTENT
+===================================================== -->
+
+<main>
+
+
+<section class="category-section">
+
+
+    <!-- ================= SECTION HEADER ================= -->
+
+    <div class="section-heading reveal">
+
+
+        <div>
+
+            <span class="section-label">
+                BOOKNEST COLLECTION
+            </span>
+
+
+            <h1>
+                Browse by category
+            </h1>
+
+
+            <p>
+                Find books that match your interests and imagination.
+            </p>
+
+        </div>
+
+
+        <!-- CATEGORY COUNT -->
+
+        <div class="category-count">
+
+            <strong>
+                12+
+            </strong>
+
+            <span>
+                Categories
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         CATEGORY GRID
+    ================================================== -->
+
+    <div class="category-grid">
+
+
+        <!-- =================================================
+             TECHNOLOGY
+        ================================================== -->
+
+        <a href="/categories/technology"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                01
+            </div>
+
+
+            <div class="category-icon technology">
+
+                <i class="fa-solid fa-laptop-code"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Technology
+                </h3>
+
+
+                <p>
+                    Programming, AI, software and innovation.
+                </p>
+
+
+                <span class="book-count">
+                    1,240 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             ROMANCE
+        ================================================== -->
+
+        <a href="/categories/romance"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                02
+            </div>
+
+
+            <div class="category-icon romance">
+
+                <i class="fa-solid fa-heart"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Romance
+                </h3>
+
+
+                <p>
+                    Stories of love, relationships and emotions.
+                </p>
+
+
+                <span class="book-count">
+                    980 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             MYSTERY
+        ================================================== -->
+
+        <a href="/categories/mystery"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                03
+            </div>
+
+
+            <div class="category-icon mystery">
+
+                <i class="fa-solid fa-user-secret"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Mystery
+                </h3>
+
+
+                <p>
+                    Suspense, crime and unforgettable mysteries.
+                </p>
+
+
+                <span class="book-count">
+                    760 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             SELF GROWTH
+        ================================================== -->
+
+        <a href="/categories/self-help"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                04
+            </div>
+
+
+            <div class="category-icon self-growth">
+
+                <i class="fa-solid fa-brain"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Self Growth
+                </h3>
+
+
+                <p>
+                    Personal development, habits and success.
+                </p>
+
+
+                <span class="book-count">
+                    630 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             SCIENCE
+        ================================================== -->
+
+        <a href="/categories/science"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                05
+            </div>
+
+
+            <div class="category-icon science">
+
+                <i class="fa-solid fa-flask"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Science
+                </h3>
+
+
+                <p>
+                    Discover science, nature and the universe.
+                </p>
+
+
+                <span class="book-count">
+                    520 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             FICTION
+        ================================================== -->
+
+        <a href="/categories/fiction"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                06
+            </div>
+
+
+            <div class="category-icon fiction">
+
+                <i class="fa-solid fa-feather-pointed"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Fiction
+                </h3>
+
+
+                <p>
+                    Imaginative stories and unforgettable characters.
+                </p>
+
+
+                <span class="book-count">
+                    1,520 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             BUSINESS
+        ================================================== -->
+
+        <a href="/categories/business"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                07
+            </div>
+
+
+            <div class="category-icon business">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Business
+                </h3>
+
+
+                <p>
+                    Leadership, finance and entrepreneurship.
+                </p>
+
+
+                <span class="book-count">
+                    870 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             PRODUCTIVITY
+        ================================================== -->
+
+        <a href="/categories/productivity"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                08
+            </div>
+
+
+            <div class="category-icon productivity">
+
+                <i class="fa-solid fa-bullseye"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Productivity
+                </h3>
+
+
+                <p>
+                    Focus, efficiency and achieving your goals.
+                </p>
+
+
+                <span class="book-count">
+                    740 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             CLASSICS
+        ================================================== -->
+
+        <a href="/categories/classics"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                09
+            </div>
+
+
+            <div class="category-icon classics">
+
+                <i class="fa-solid fa-landmark"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Classics
+                </h3>
+
+
+                <p>
+                    Timeless literature that shaped generations.
+                </p>
+
+
+                <span class="book-count">
+                    610 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             FANTASY
+        ================================================== -->
+
+        <a href="/categories/fantasy"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                10
+            </div>
+
+
+            <div class="category-icon fantasy">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Fantasy
+                </h3>
+
+
+                <p>
+                    Magical worlds, adventures and imagination.
+                </p>
+
+
+                <span class="book-count">
+                    690 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             HISTORY
+        ================================================== -->
+
+        <a href="/categories/history"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                11
+            </div>
+
+
+            <div class="category-icon history">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    History
+                </h3>
+
+
+                <p>
+                    Explore civilizations, events and the past.
+                </p>
+
+
+                <span class="book-count">
+                    480 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+
+        <!-- =================================================
+             PSYCHOLOGY
+        ================================================== -->
+
+        <a href="/categories/psychology"
+           class="category-card reveal">
+
+
+            <div class="card-number">
+                12
+            </div>
+
+
+            <div class="category-icon psychology">
+
+                <i class="fa-solid fa-head-side-virus"></i>
+
+            </div>
+
+
+            <div class="category-content">
+
+                <h3>
+                    Psychology
+                </h3>
+
+
+                <p>
+                    Understand the mind, behavior and emotions.
+                </p>
+
+
+                <span class="book-count">
+                    550 Books
+                </span>
+
+            </div>
+
+
+            <div class="card-arrow">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="category-cta reveal">
+
+
+    <div class="cta-icon">
+
+        <i class="fa-solid fa-book-open-reader"></i>
+
+    </div>
+
+
+    <div class="cta-content">
+
+        <span>
+            CAN'T DECIDE?
+        </span>
+
+
+        <h2>
+            Explore all our books
+        </h2>
+
+
+        <p>
+            Browse the complete BookNest collection
+            and discover your next favorite read.
+        </p>
+
+    </div>
+
+
+    <a href="/books"
+       class="cta-button">
+
+        Explore Books
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+    </a>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+
+    <div class="footer-container">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+
+            <a href="/" class="footer-logo">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                BookNest
+
+            </a>
+
+
+            <p>
+
+                Your cozy corner for discovering,
+                exploring and enjoying great books.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- EXPLORE -->
+
+        <div class="footer-links">
+
+            <h4>
+                Explore
+            </h4>
+
+
+            <a href="/">
+                Home
+            </a>
+
+
+            <a href="/categories">
+                Categories
+            </a>
+
+
+            <a href="/books">
+                Books
+            </a>
+
+
+        </div>
+
+
+
+        <!-- CATEGORIES -->
+
+        <div class="footer-links">
+
+            <h4>
+                Categories
+            </h4>
+
+
+            <a href="/categories/fiction">
+                Fiction
+            </a>
+
+
+            <a href="/categories/self-help">
+                Self Growth
+            </a>
+
+
+            <a href="/categories/business">
+                Business
+            </a>
+
+
+            <a href="/categories/technology">
+                Technology
+            </a>
+
+        </div>
+
+
+
+        <!-- ACCOUNT -->
+
+        <div class="footer-links">
+
+            <h4>
+                Account
+            </h4>
+
+
+            <a href="/login">
+                Sign In
+            </a>
+
+
+            <a href="/register">
+                Create Account
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 BookNest. All rights reserved.
+        </p>
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+    new IntersectionObserver(
+
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
+});
+
+
+
+/* =====================================================
+   NAVBAR SCROLL EFFECT
+===================================================== */
+
+window.addEventListener("scroll", () => {
+
+    const navbar =
+        document.querySelector(".navbar");
+
+
+    if (window.scrollY > 20) {
+
+        navbar.classList.add("scrolled");
+
+    } else {
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>

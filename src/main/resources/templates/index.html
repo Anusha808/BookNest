@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Discover Your Next Favorite Book</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<header class="navbar">
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <span>
+            Book<span class="logo-highlight">Nest</span>
+        </span>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="nav-links">
+
+        <a href="/" class="active">
+            Home
+        </a>
+
+        <a href="/categories">
+            Categories
+        </a>
+
+        <a href="#featured">
+            Featured
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+    </nav>
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="navbar-actions">
+
+        <!-- SEARCH -->
+
+        <a href="/books"
+           class="search-btn"
+           aria-label="Search books">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+        </a>
+
+
+        <!-- LOGIN -->
+
+        <a href="/login"
+           class="login-btn">
+
+            <i class="fa-regular fa-user"></i>
+
+            <span>
+                Login
+            </span>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     NAVBAR / HERO SEPARATOR
+     ===================================================== -->
+
+<div class="navbar-separator"></div>
+
+
+<!-- =====================================================
+     HERO SECTION
+     ===================================================== -->
+
+<section class="hero">
+
+    <!-- HERO LEFT CONTENT -->
+
+    <div class="hero-content">
+
+        <span class="hero-label">
+            WELCOME TO BOOKNEST
+        </span>
+
+
+        <h1>
+
+            Discover Your
+
+            <span>
+                Next Favorite Book.
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Explore thousands of books, discover new ideas,
+            and find stories that stay with you forever.
+
+        </p>
+
+
+        <!-- HERO BUTTONS -->
+
+        <div class="hero-buttons">
+
+            <a href="/books"
+               class="primary-btn">
+
+                Explore Books
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+            <a href="/categories"
+               class="secondary-btn">
+
+                Browse Categories
+
+            </a>
+
+        </div>
+
+
+        <!-- HERO STATS -->
+
+        <div class="hero-stats">
+
+            <div class="stat">
+
+                <strong>
+                    10K+
+                </strong>
+
+                <span>
+                    Books
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    5K+
+                </strong>
+
+                <span>
+                    Readers
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    4.8
+                </strong>
+
+                <span>
+                    Rating
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO RIGHT VISUAL -->
+
+    <div class="hero-visual">
+
+        <!-- BACK BOOK -->
+
+        <div class="book-back"></div>
+
+
+        <!-- MAIN BOOK -->
+
+        <div class="book-main">
+
+            <div class="book-main-inner">
+
+                <span>
+                    BOOK
+                </span>
+
+                <h3>
+                    Discover<br>
+                    Stories
+                </h3>
+
+                <small>
+                    BOOKNEST
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- FLOATING BEST SELLER -->
+
+        <div class="floating-card">
+
+            <i class="fa-solid fa-star"></i>
+
+            <div>
+
+                <strong>
+                    Best Seller
+                </strong>
+
+                <span>
+                    This month
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CATEGORIES SECTION
+     ===================================================== -->
+
+<section class="categories section"
+         id="categories">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                EXPLORE
+            </span>
+
+            <h2>
+                Browse by category
+            </h2>
+
+            <p>
+                Find books that match your interests and imagination.
+            </p>
+
+        </div>
+
+
+        <a href="/categories"
+           class="view-link">
+
+            View all
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+
+    <!-- CATEGORY GRID -->
+
+    <div class="category-grid">
+
+        <!-- TECHNOLOGY -->
+
+        <a href="/categories/technology"
+           class="category-card category-reveal category-tech">
+
+            <div class="category-icon">
+
+                <i class="fa-solid fa-laptop-code"></i>
+
+            </div>
+
+
+            <div class="category-info">
+
+                <h3>
+                    Technology
+                </h3>
+
+                <span>
+                    Explore technology books
+                </span>
+
+            </div>
+
+
+            <i class="fa-solid fa-arrow-right category-arrow"></i>
+
+        </a>
+
+
+        <!-- ROMANCE -->
+
+        <a href="/categories/romance"
+           class="category-card category-reveal category-romance">
+
+            <div class="category-icon">
+
+                <i class="fa-solid fa-heart"></i>
+
+            </div>
+
+
+            <div class="category-info">
+
+                <h3>
+                    Romance
+                </h3>
+
+                <span>
+                    Love stories &amp; relationships
+                </span>
+
+            </div>
+
+
+            <i class="fa-solid fa-arrow-right category-arrow"></i>
+
+        </a>
+
+
+        <!-- MYSTERY -->
+
+        <a href="/categories/mystery"
+           class="category-card category-reveal category-mystery">
+
+            <div class="category-icon">
+
+                <i class="fa-solid fa-user-secret"></i>
+
+            </div>
+
+
+            <div class="category-info">
+
+                <h3>
+                    Mystery
+                </h3>
+
+                <span>
+                    Thrilling mysteries &amp; suspense
+                </span>
+
+            </div>
+
+
+            <i class="fa-solid fa-arrow-right category-arrow"></i>
+
+        </a>
+
+
+        <!-- SELF GROWTH -->
+
+        <a href="/categories/self-help"
+           class="category-card category-reveal category-growth">
+
+            <div class="category-icon">
+
+                <i class="fa-solid fa-seedling"></i>
+
+            </div>
+
+
+            <div class="category-info">
+
+                <h3>
+                    Self Growth
+                </h3>
+
+                <span>
+                    Improve yourself every day
+                </span>
+
+            </div>
+
+
+            <i class="fa-solid fa-arrow-right category-arrow"></i>
+
+        </a>
+
+
+        <!-- SCIENCE -->
+
+        <a href="/categories/science"
+           class="category-card category-reveal category-science">
+
+            <div class="category-icon">
+
+                <i class="fa-solid fa-flask"></i>
+
+            </div>
+
+
+            <div class="category-info">
+
+                <h3>
+                    Science
+                </h3>
+
+                <span>
+                    Discover science &amp; knowledge
+                </span>
+
+            </div>
+
+
+            <i class="fa-solid fa-arrow-right category-arrow"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED BOOKS
+     ===================================================== -->
+
+<section class="featured section"
+         id="featured">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                HANDPICKED
+            </span>
+
+            <h2>
+                Featured books
+            </h2>
+
+            <p>
+                Popular reads our readers are loving right now.
+            </p>
+
+        </div>
+
+
+        <a href="/books"
+           class="view-link">
+
+            Explore all
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+
+    <div class="book-grid">
+
+
+        <!-- THE ALCHEMIST -->
+
+        <article class="book-item featured-reveal">
+
+            <div class="book-cover">
+
+                <img
+                    src="https://covers.openlibrary.org/b/isbn/9780062315007-L.jpg"
+                    alt="The Alchemist">
+
+            </div>
+
+
+            <div class="book-details">
+
+                <span class="book-category">
+                    FICTION
+                </span>
+
+
+                <h3>
+                    The Alchemist
+                </h3>
+
+
+                <p>
+                    Paulo Coelho
+                </p>
+
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <span>
+                            4.8
+                        </span>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        ₹399
+
+                        <del>
+                            ₹499
+                        </del>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ATOMIC HABITS -->
+
+        <article class="book-item featured-reveal">
+
+            <div class="book-cover">
+
+                <img
+                    src="https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg"
+                    alt="Atomic Habits">
+
+            </div>
+
+
+            <div class="book-details">
+
+                <span class="book-category">
+                    SELF HELP
+                </span>
+
+
+                <h3>
+                    Atomic Habits
+                </h3>
+
+
+                <p>
+                    James Clear
+                </p>
+
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <span>
+                            4.9
+                        </span>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        ₹499
+
+                        <del>
+                            ₹599
+                        </del>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- THE GREAT GATSBY -->
+
+        <article class="book-item featured-reveal">
+
+            <div class="book-cover">
+
+                <img
+                    src="https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg"
+                    alt="The Great Gatsby">
+
+            </div>
+
+
+            <div class="book-details">
+
+                <span class="book-category">
+                    CLASSICS
+                </span>
+
+
+                <h3>
+                    The Great Gatsby
+                </h3>
+
+
+                <p>
+                    F. Scott Fitzgerald
+                </p>
+
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <span>
+                            4.7
+                        </span>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        ₹299
+
+                        <del>
+                            ₹399
+                        </del>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- DEEP WORK -->
+
+        <article class="book-item featured-reveal">
+
+            <div class="book-cover">
+
+                <img
+                    src="https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg"
+                    alt="Deep Work">
+
+            </div>
+
+
+            <div class="book-details">
+
+                <span class="book-category">
+                    PRODUCTIVITY
+                </span>
+
+
+                <h3>
+                    Deep Work
+                </h3>
+
+
+                <p>
+                    Cal Newport
+                </p>
+
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <span>
+                            4.8
+                        </span>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        ₹449
+
+                        <del>
+                            ₹549
+                        </del>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+     ===================================================== -->
+
+<section class="about section"
+         id="about">
+
+    <div class="about-content">
+
+        <span class="section-label">
+            ABOUT BOOKNEST
+        </span>
+
+
+        <h2>
+            A better way to discover books.
+        </h2>
+
+
+        <p>
+
+            BookNest is designed to make discovering and
+            exploring books simple, enjoyable and inspiring.
+            Whether you're looking for personal growth,
+            thrilling fiction or technical knowledge,
+            there's something here for everyone.
+
+        </p>
+
+
+        <!-- START EXPLORING NOW GOES TO LOGIN -->
+
+        <a href="/login"
+           class="primary-btn">
+
+            Start Exploring
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-main">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>
+                    Book<span class="logo-highlight">Nest</span>
+                </span>
+
+            </div>
+
+
+            <p>
+
+                Discover books.
+                Discover ideas.
+                Discover yourself.
+
+            </p>
+
+
+            <div class="socials">
+
+                <a href="#"
+                   aria-label="Instagram">
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+
+
+                <a href="#"
+                   aria-label="Twitter">
+
+                    <i class="fa-brands fa-x-twitter"></i>
+
+                </a>
+
+
+                <a href="#"
+                   aria-label="LinkedIn">
+
+                    <i class="fa-brands fa-linkedin-in"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- EXPLORE -->
+
+        <div class="footer-column">
+
+            <h4>
+                Explore
+            </h4>
+
+
+            <a href="/books">
+                Books
+            </a>
+
+
+            <a href="/categories">
+                Categories
+            </a>
+
+
+            <a href="#featured">
+                Featured
+            </a>
+
+        </div>
+
+
+        <!-- COMPANY -->
+
+        <div class="footer-column">
+
+            <h4>
+                Company
+            </h4>
+
+
+            <a href="#about">
+                About
+            </a>
+
+
+            <a href="#">
+                Contact
+            </a>
+
+
+            <a href="#">
+                Privacy Policy
+            </a>
+
+        </div>
+
+
+        <!-- HELP -->
+
+        <div class="footer-column">
+
+            <h4>
+                Help
+            </h4>
+
+
+            
+
+
+            <!-- ADMIN LOGIN -->
+
+            <a href="/admin/login">
+                Admin Login
+            </a>
+<br>
+
+            <a href="#">
+                Terms &amp; Conditions
+            </a>
+
+
+
+            <a href="#">
+                Support
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 BookNest. All rights reserved.
+        </p>
+
+
+        <p>
+
+            Made with
+
+            <i class="fa-solid fa-heart"></i>
+
+            for book lovers.
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   SMOOTH SCROLL
+   ===================================================== */
+
+document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+
+    link.addEventListener("click", function(event) {
+
+        const targetId =
+            this.getAttribute("href");
+
+        if (targetId === "#") {
+            return;
+        }
+
+        const target =
+            document.querySelector(targetId);
+
+        if (target) {
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   NAVBAR SHADOW
+   ===================================================== */
+
+window.addEventListener("scroll", function() {
+
+    const navbar =
+        document.querySelector(".navbar");
+
+    if (window.scrollY > 20) {
+
+        navbar.classList.add("scrolled");
+
+    } else {
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* =====================================================
+   CATEGORY REVEAL
+   ===================================================== */
+
+const categoryCards =
+    document.querySelectorAll(".category-reveal");
+
+
+const categoryObserver =
+    new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(function(entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "card-visible"
+                    );
+
+                    categoryObserver.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.15
+        }
+
+    );
+
+
+categoryCards.forEach(function(card) {
+
+    categoryObserver.observe(card);
+
+});
+
+
+/* =====================================================
+   FEATURED BOOK REVEAL
+   ===================================================== */
+
+const featuredBooks =
+    document.querySelectorAll(".featured-reveal");
+
+
+const featuredObserver =
+    new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(function(entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "card-visible"
+                    );
+
+                    featuredObserver.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+featuredBooks.forEach(function(book) {
+
+    featuredObserver.observe(book);
+
+});
+
+
+/* =====================================================
+   ABOUT REVEAL
+   ===================================================== */
+
+const aboutSection =
+    document.querySelector(".about");
+
+
+const aboutObserver =
+    new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(function(entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "about-visible"
+                    );
+
+                    aboutObserver.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.15
+        }
+
+    );
+
+
+if (aboutSection) {
+
+    aboutObserver.observe(
+        aboutSection
+    );
+
+}
+
+
+/* =====================================================
+   VIEW LINK ARROW
+   ===================================================== */
+
+document.querySelectorAll(".view-link").forEach(function(link) {
+
+    link.addEventListener("mouseenter", function() {
+
+        const arrow =
+            this.querySelector("i");
+
+        if (arrow) {
+
+            arrow.style.transform =
+                "translateX(5px)";
+
+        }
+
+    });
+
+
+    link.addEventListener("mouseleave", function() {
+
+        const arrow =
+            this.querySelector("i");
+
+        if (arrow) {
+
+            arrow.style.transform =
+                "translateX(0)";
+
+        }
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>

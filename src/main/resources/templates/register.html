@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | BookNest</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+
+<body>
+
+<div class="register-page">
+
+    <!-- LEFT SIDE -->
+    <div class="register-left">
+
+        <div class="brand">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Book<span>Nest</span></span>
+        </div>
+
+        <div class="left-content">
+
+            <span class="welcome-label">JOIN BOOKNEST</span>
+
+            <h1>
+                Start Your
+                <span>Reading Journey.</span>
+            </h1>
+
+            <p>
+                Create your BookNest account and discover thousands
+                of books, new ideas, and stories waiting for you.
+            </p>
+
+            <div class="benefits">
+
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <div>
+                        <strong>Explore Thousands of Books</strong>
+                        <span>Find books across different categories.</span>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+
+                    <div>
+                        <strong>Easy Shopping</strong>
+                        <span>Add your favorite books to your cart.</span>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+
+                    <div>
+                        <strong>Quick Checkout</strong>
+                        <span>Enjoy a simple and secure checkout.</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Decorative Books -->
+        <div class="decorative-books">
+            <div class="decor-book book-one"></div>
+            <div class="decor-book book-two"></div>
+            <div class="decor-book book-three"></div>
+        </div>
+
+        <div class="circle circle-one"></div>
+        <div class="circle circle-two"></div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="register-right">
+
+        <div class="register-box">
+
+            <div class="form-heading">
+
+                <span class="mobile-brand">
+                    <i class="fa-solid fa-book-open"></i>
+                    Book<span>Nest</span>
+                </span>
+
+                <h2>Create Account</h2>
+
+                <p>
+                    Join BookNest and start exploring your next favorite book.
+                </p>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+            <div class="message"
+                 th:if="${message}"
+                 th:text="${message}">
+            </div>
+
+
+            <!-- REGISTER FORM -->
+            <form id="registerForm"
+                  th:action="@{/register}"
+                  method="post">
+
+                <!-- FULL NAME -->
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            minlength="6"
+                            required>
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword('password', this)">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Confirm your password"
+                            minlength="6"
+                            required>
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword('confirmPassword', this)">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TERMS -->
+                <div class="terms">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            name="terms"
+                            required>
+
+                        <span>
+                            I agree to the
+                            <a href="#">Terms &amp; Conditions</a>
+                            and
+                            <a href="#">Privacy Policy</a>.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- REGISTER BUTTON -->
+                <button type="submit" class="register-btn">
+
+                    Create Account
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN LINK -->
+            <div class="login-link">
+
+                Already have an account?
+
+                <a href="/login">
+                    Login
+                </a>
+
+            </div>
+
+
+            <!-- BACK HOME -->
+            <a href="/" class="back-home">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Home
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function togglePassword(inputId, button) {
+
+        const input = document.getElementById(inputId);
+        const icon = button.querySelector("i");
+
+        if (input.type === "password") {
+
+            input.type = "text";
+
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+
+        } else {
+
+            input.type = "password";
+
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+
+        }
+    }
+
+</script>
+
+</body>
+
+</html>

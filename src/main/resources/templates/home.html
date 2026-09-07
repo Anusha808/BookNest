@@ -1,0 +1,3768 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Online Bookstore</title>
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- =====================================================
+         BOOKNEST CSS
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          th:href="@{/css/home.css}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar" id="navbar">
+
+
+    <!-- =================================================
+         LOGO
+    ================================================== -->
+
+    <a href="/" class="logo">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <span>
+            Book<span class="logo-highlight">Nest</span>
+        </span>
+
+    </a>
+
+        
+
+    <!-- =================================================
+         NAVBAR ACTIONS
+    ================================================== -->
+
+    <div class="navbar-actions">
+
+
+        <!-- =============================================
+             SEARCH
+        ============================================== -->
+
+        <div class="search-container">
+
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+
+            <input
+                    type="text"
+                    id="bookSearch"
+                    class="book-search"
+                    placeholder="Search books, authors..."
+                    autocomplete="off">
+
+
+            <button
+                    type="button"
+                    id="clearSearch"
+                    class="clear-search"
+                    title="Clear search"
+                    aria-label="Clear search">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =============================================
+             CART
+        ============================================== -->
+
+        <button
+                type="button"
+                class="header-cart"
+                id="headerCart"
+                title="Shopping Cart"
+                aria-label="Shopping Cart">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+
+            <span
+                    class="cart-badge"
+                    id="cartBadge">
+
+                0
+
+            </span>
+
+
+            <div class="cart-summary">
+
+                <span class="cart-label">
+                    Cart
+                </span>
+
+                <strong id="cartTotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </button>
+
+        <!-- =============================================
+     LOGOUT
+================================================ -->
+
+<button
+        type="button"
+        class="header-logout"
+        id="logoutButton"
+        title="Logout">
+
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Logout</span>
+
+</button>
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="hero">
+
+    <div class="offer-slider" id="offerSlider">
+
+
+        <!-- =================================================
+             SLIDE 1
+        ================================================== -->
+
+        <div class="offer-slide offer-slide-active">
+
+
+            <div class="offer-content">
+
+
+                <div class="offer-label">
+
+                    <i class="fa-solid fa-fire"></i>
+
+                    LIMITED TIME OFFER
+
+                </div>
+
+
+                <h1>
+
+                    Discover Your
+                    <span>Next Great Read.</span>
+
+                </h1>
+
+
+                <p>
+
+                    Explore thousands of books across technology,
+                    fiction, self-growth, science and more.
+                    Find stories and knowledge that stay with you.
+
+                </p>
+
+
+                <div class="offer-details">
+
+
+                    <div class="offer-item">
+
+                        <i class="fa-solid fa-tag"></i>
+
+                        Up to 50% OFF
+
+                    </div>
+
+
+                    <div class="offer-item">
+
+                        <i class="fa-solid fa-truck-fast"></i>
+
+                        Fast Delivery
+
+                    </div>
+
+
+                    <div class="offer-item">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        Secure Payment
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="offer-visual">
+
+
+                <div class="offer-circle">
+
+                    <strong>50%</strong>
+
+                    <span>OFF</span>
+
+                </div>
+
+
+                <div class="offer-book book-one">
+
+                    <span>BEST</span>
+
+                    <strong>SELLERS</strong>
+
+                    <small>BOOKNEST</small>
+
+                </div>
+
+
+                <div class="offer-book book-two">
+
+                    <span>NEW</span>
+
+                    <strong>ARRIVALS</strong>
+
+                    <small>2026</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SLIDE 2
+        ================================================== -->
+
+        <div class="offer-slide">
+
+
+            <div class="offer-content">
+
+
+                <div class="offer-label">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    WEEKEND SPECIAL
+
+                </div>
+
+
+                <h1>
+
+                    Books That
+                    <span>Inspire You.</span>
+
+                </h1>
+
+
+                <p>
+
+                    Build better habits, improve your skills,
+                    and discover powerful ideas with our
+                    hand-picked collection.
+
+                </p>
+
+
+                <div class="offer-details">
+
+
+                    <div class="offer-item">
+
+                        <i class="fa-solid fa-percent"></i>
+
+                        Extra 20% OFF
+
+                    </div>
+
+
+                    <div class="offer-item">
+
+                        <i class="fa-solid fa-book"></i>
+
+                        10,000+ Books
+
+                    </div>
+
+
+                    <div class="offer-item">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Limited Time
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="offer-visual">
+
+
+                <div class="offer-circle">
+
+                    <strong>20%</strong>
+
+                    <span>EXTRA</span>
+
+                </div>
+
+
+                <div class="offer-book book-three">
+
+                    <span>READ</span>
+
+                    <strong>LEARN</strong>
+
+                    <small>GROW</small>
+
+                </div>
+
+
+                <div class="offer-book book-four">
+
+                    <span>BOOK</span>
+
+                    <strong>LOVERS</strong>
+
+                    <small>CHOICE</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SLIDE 3
+        ================================================== -->
+
+        <div class="offer-slide">
+
+
+            <div class="offer-content">
+
+
+                <div class="offer-label">
+
+                    <i class="fa-solid fa-gift"></i>
+
+                    BOOKNEST SPECIAL
+
+                </div>
+
+
+                <h1>
+
+                    A Book Is
+                    <span>A New Journey.</span>
+
+                </h1>
+
+
+                <p>
+
+                    From timeless classics to modern bestsellers,
+                    find something perfect for yourself or someone
+                    special.
+
+                </p>
+
+
+                <div class="offer-details">
+
+
+                    <div class="offer-item">
+
+                        <i class="fa-solid fa-gift"></i>
+
+                        Perfect Gifts
+
+                    </div>
+
+
+                    <div class="offer-item">
+
+                        <i class="fa-solid fa-heart"></i>
+
+                        Loved by Readers
+
+                    </div>
+
+
+                    <div class="offer-item">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        Top Rated
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="offer-visual">
+
+
+                <div class="offer-circle">
+
+                    <strong>30%</strong>
+
+                    <span>OFF</span>
+
+                </div>
+
+
+                <div class="offer-book book-five">
+
+                    <span>GREAT</span>
+
+                    <strong>STORIES</strong>
+
+                    <small>FOREVER</small>
+
+                </div>
+
+
+                <div class="offer-book book-six">
+
+                    <span>YOUR</span>
+
+                    <strong>JOURNEY</strong>
+
+                    <small>STARTS</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PREVIOUS ARROW
+        ================================================== -->
+
+        <button
+                type="button"
+                class="offer-arrow offer-prev"
+                id="offerPrev"
+                aria-label="Previous offer">
+
+            <i class="fa-solid fa-chevron-left"></i>
+
+        </button>
+
+
+        <!-- =================================================
+             NEXT ARROW
+        ================================================== -->
+
+        <button
+                type="button"
+                class="offer-arrow offer-next"
+                id="offerNext"
+                aria-label="Next offer">
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+
+        <!-- =================================================
+             SLIDER DOTS
+        ================================================== -->
+
+        <div class="offer-dots">
+
+
+            <button
+                    type="button"
+                    class="offer-dot active"
+                    data-slide="0">
+            </button>
+
+
+            <button
+                    type="button"
+                    class="offer-dot"
+                    data-slide="1">
+            </button>
+
+
+            <button
+                    type="button"
+                    class="offer-dot"
+                    data-slide="2">
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section class="features">
+
+    <div class="features-container">
+
+
+        <div class="feature">
+
+            <i class="fa-solid fa-truck-fast"></i>
+
+            <div>
+
+                <strong>
+                    Fast Delivery
+                </strong>
+
+                <span>
+                    Quick delivery to your doorstep
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <div>
+
+                <strong>
+                    Secure Payments
+                </strong>
+
+                <span>
+                    100% secure checkout
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <i class="fa-solid fa-rotate-left"></i>
+
+            <div>
+
+                <strong>
+                    Easy Returns
+                </strong>
+
+                <span>
+                    Hassle-free returns
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <i class="fa-solid fa-headset"></i>
+
+            <div>
+
+                <strong>
+                    24/7 Support
+                </strong>
+
+                <span>
+                    We're always here to help
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURED BOOKS
+===================================================== -->
+
+<section class="section" id="featured">
+
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                BOOKNEST COLLECTION
+            </span>
+
+
+            <h2>
+                Featured Books
+            </h2>
+
+
+            <p>
+                Popular books selected especially for you.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         BOOK GRID
+    ================================================== -->
+
+    <div
+            class="book-grid"
+            id="bookGrid">
+    </div>
+
+
+    <!-- =================================================
+         SEARCH RESULT MESSAGE
+    ================================================== -->
+
+    <div
+            class="search-result-message"
+            id="searchResultMessage">
+    </div>
+
+
+    <!-- =================================================
+         LOADER
+    ================================================== -->
+
+    <div
+            class="books-loader"
+            id="booksLoader">
+
+
+        <div class="loader-spinner"></div>
+
+
+        <p>
+            Loading more books...
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         END MESSAGE
+    ================================================== -->
+
+    <div
+            class="books-end"
+            id="booksEnd">
+
+
+        <i class="fa-solid fa-check-circle"></i>
+
+
+        <p>
+            You've reached the end of our featured collection.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+
+    <div class="footer-main">
+
+
+        <!-- =================================================
+             FOOTER BRAND
+        ================================================== -->
+
+        <div class="footer-brand">
+
+
+            <a href="/" class="logo">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>
+                    Book<span class="logo-highlight">Nest</span>
+                </span>
+
+            </a>
+
+
+            <p>
+
+                Your trusted online bookstore for discovering
+                amazing books, great stories and powerful ideas.
+
+            </p>
+
+
+            <div class="socials">
+
+
+                <a href="#" aria-label="Instagram">
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+
+
+                <a href="#" aria-label="Facebook">
+
+                    <i class="fa-brands fa-facebook-f"></i>
+
+                </a>
+
+
+                <a href="#" aria-label="Twitter">
+
+                    <i class="fa-brands fa-x-twitter"></i>
+
+                </a>
+
+
+                <a href="#" aria-label="LinkedIn">
+
+                    <i class="fa-brands fa-linkedin-in"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             EXPLORE
+        ================================================== -->
+
+        <div class="footer-column">
+
+
+            <h4>
+                Explore
+            </h4>
+
+
+            <a href="#featured">
+                Featured Books
+            </a>
+
+
+            <a href="#featured">
+                Best Sellers
+            </a>
+
+
+            <a href="#featured">
+                New Arrivals
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             COMPANY
+        ================================================== -->
+
+        <div class="footer-column">
+
+
+            <h4>
+                Company
+            </h4>
+
+
+            <a href="#">
+                About BookNest
+            </a>
+
+
+            <a href="#">
+                Careers
+            </a>
+
+
+            <a href="#">
+                Contact
+            </a>
+
+
+            <a href="#">
+                Privacy Policy
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             HELP
+        ================================================== -->
+
+        <div class="footer-column">
+
+
+            <h4>
+                Help
+            </h4>
+
+
+            <a href="#">
+                Customer Support
+            </a>
+
+
+            <a href="#">
+                Shipping
+            </a>
+
+
+            <a href="#">
+                Returns
+            </a>
+
+
+            <a href="#">
+                FAQs
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         FOOTER BOTTOM
+    ================================================== -->
+
+    <div class="footer-bottom">
+
+
+        <p>
+            © 2026 BookNest. All rights reserved.
+        </p>
+
+
+        <p>
+
+            Made with
+
+            <i class="fa-solid fa-heart"></i>
+
+            for book lovers.
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =====================================================
+       BOOK DATA
+    ===================================================== */
+
+    const books = [
+
+
+        {
+            title: "The Alchemist",
+            author: "Paulo Coelho",
+            category: "FICTION",
+            price: 299,
+            originalPrice: 499,
+            rating: 4.7,
+            ratingCount: "12.4K ratings",
+            publisher: "HarperOne",
+            pages: 208,
+            language: "English",
+            published: "1993",
+            isbn: "9780062315007",
+            image: "https://covers.openlibrary.org/isbn/9780062315007-L.jpg",
+            description: "A timeless story about following your dreams, discovering your purpose and listening to your heart."
+        },
+
+
+        {
+            title: "Atomic Habits",
+            author: "James Clear",
+            category: "SELF GROWTH",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.8,
+            ratingCount: "25.7K ratings",
+            publisher: "Avery",
+            pages: 320,
+            language: "English",
+            published: "2018",
+            isbn: "9780735211292",
+            image: "https://covers.openlibrary.org/isbn/9780735211292-L.jpg",
+            description: "A practical guide to building good habits, breaking bad ones and becoming better every day."
+        },
+
+
+        {
+            title: "The Great Gatsby",
+            author: "F. Scott Fitzgerald",
+            category: "FICTION",
+            price: 249,
+            originalPrice: 399,
+            rating: 4.5,
+            ratingCount: "9.8K ratings",
+            publisher: "Scribner",
+            pages: 180,
+            language: "English",
+            published: "1925",
+            isbn: "9780743273565",
+            image: "https://covers.openlibrary.org/isbn/9780743273565-L.jpg",
+            description: "An enduring classic exploring wealth, love, ambition and the American Dream."
+        },
+
+
+        {
+            title: "Deep Work",
+            author: "Cal Newport",
+            category: "SELF GROWTH",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.6,
+            ratingCount: "8.7K ratings",
+            publisher: "Grand Central Publishing",
+            pages: 304,
+            language: "English",
+            published: "2016",
+            isbn: "9781455586691",
+            image: "https://covers.openlibrary.org/isbn/9781455586691-L.jpg",
+            description: "Learn how focused work can help you achieve better results in a distracted world."
+        },
+
+
+        {
+            title: "Rich Dad Poor Dad",
+            author: "Robert T. Kiyosaki",
+            category: "FINANCE",
+            price: 299,
+            originalPrice: 499,
+            rating: 4.7,
+            ratingCount: "18.2K ratings",
+            publisher: "Plata Publishing",
+            pages: 336,
+            language: "English",
+            published: "1997",
+            isbn: "9781612680194",
+            image: "https://covers.openlibrary.org/isbn/9781612680194-L.jpg",
+            description: "A personal finance classic about money, investing and developing financial intelligence."
+        },
+
+
+        {
+            title: "Ikigai",
+            author: "Héctor García",
+            category: "SELF GROWTH",
+            price: 279,
+            originalPrice: 399,
+            rating: 4.6,
+            ratingCount: "14.5K ratings",
+            publisher: "Penguin Life",
+            pages: 208,
+            language: "English",
+            published: "2016",
+            isbn: "9780143130727",
+            image: "https://covers.openlibrary.org/isbn/9780143130727-L.jpg",
+            description: "Discover the Japanese philosophy of finding purpose, happiness and meaning in everyday life."
+        },
+
+
+        {
+            title: "Think and Grow Rich",
+            author: "Napoleon Hill",
+            category: "SELF GROWTH",
+            price: 229,
+            originalPrice: 349,
+            rating: 4.6,
+            ratingCount: "10.3K ratings",
+            publisher: "Fingerprint Publishing",
+            pages: 320,
+            language: "English",
+            published: "1937",
+            isbn: "9788175993257",
+            image: "https://covers.openlibrary.org/isbn/9788175993257-L.jpg",
+            description: "Classic principles for developing a success-oriented mindset and achieving your goals."
+        },
+
+
+        {
+            title: "The Psychology of Money",
+            author: "Morgan Housel",
+            category: "FINANCE",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.8,
+            ratingCount: "21.1K ratings",
+            publisher: "Harriman House",
+            pages: 256,
+            language: "English",
+            published: "2020",
+            isbn: "9780857197689",
+            image: "https://covers.openlibrary.org/isbn/9780857197689-L.jpg",
+            description: "Timeless lessons about wealth, greed, happiness and how people think about money."
+        },
+
+
+        {
+            title: "The Power of Now",
+            author: "Eckhart Tolle",
+            category: "SELF GROWTH",
+            price: 299,
+            originalPrice: 449,
+            rating: 4.6,
+            ratingCount: "11.2K ratings",
+            publisher: "New World Library",
+            pages: 236,
+            language: "English",
+            published: "1997",
+            isbn: "9781577314806",
+            image: "https://covers.openlibrary.org/isbn/9781577314806-L.jpg",
+            description: "A guide to spiritual enlightenment and learning to live fully in the present moment."
+        },
+
+
+        {
+            title: "The 7 Habits of Highly Effective People",
+            author: "Stephen R. Covey",
+            category: "SELF GROWTH",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.7,
+            ratingCount: "16.8K ratings",
+            publisher: "Free Press",
+            pages: 464,
+            language: "English",
+            published: "1989",
+            isbn: "9781982137274",
+            image: "https://covers.openlibrary.org/isbn/9781982137274-L.jpg",
+            description: "A powerful framework for personal effectiveness, leadership and meaningful success."
+        },
+
+
+        {
+            title: "The Silent Patient",
+            author: "Alex Michaelides",
+            category: "MYSTERY",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.5,
+            ratingCount: "17.9K ratings",
+            publisher: "Celadon Books",
+            pages: 336,
+            language: "English",
+            published: "2019",
+            isbn: "9781250301697",
+            image: "https://covers.openlibrary.org/isbn/9781250301697-L.jpg",
+            description: "A psychological thriller about a woman who refuses to speak after a shocking crime."
+        },
+
+
+        {
+            title: "The Kite Runner",
+            author: "Khaled Hosseini",
+            category: "FICTION",
+            price: 329,
+            originalPrice: 499,
+            rating: 4.8,
+            ratingCount: "20.4K ratings",
+            publisher: "Riverhead Books",
+            pages: 371,
+            language: "English",
+            published: "2003",
+            isbn: "9781594631931",
+            image: "https://covers.openlibrary.org/isbn/9781594631931-L.jpg",
+            description: "A deeply moving story of friendship, family, guilt, redemption and sacrifice."
+        },
+
+
+        {
+            title: "1984",
+            author: "George Orwell",
+            category: "FICTION",
+            price: 249,
+            originalPrice: 399,
+            rating: 4.7,
+            ratingCount: "22.8K ratings",
+            publisher: "Penguin Classics",
+            pages: 328,
+            language: "English",
+            published: "1949",
+            isbn: "9780141036144",
+            image: "https://covers.openlibrary.org/isbn/9780141036144-L.jpg",
+            description: "A powerful dystopian novel exploring surveillance, truth, freedom and totalitarianism."
+        },
+
+
+        {
+            title: "To Kill a Mockingbird",
+            author: "Harper Lee",
+            category: "FICTION",
+            price: 279,
+            originalPrice: 399,
+            rating: 4.8,
+            ratingCount: "24.6K ratings",
+            publisher: "Harper Perennial",
+            pages: 336,
+            language: "English",
+            published: "1960",
+            isbn: "9780061120084",
+            image: "https://covers.openlibrary.org/isbn/9780061120084-L.jpg",
+            description: "A classic novel about justice, compassion, racism and childhood in the American South."
+        },
+
+
+        {
+            title: "Pride and Prejudice",
+            author: "Jane Austen",
+            category: "ROMANCE",
+            price: 199,
+            originalPrice: 299,
+            rating: 4.7,
+            ratingCount: "19.3K ratings",
+            publisher: "Penguin Classics",
+            pages: 432,
+            language: "English",
+            published: "1813",
+            isbn: "9780141439518",
+            image: "https://covers.openlibrary.org/isbn/9780141439518-L.jpg",
+            description: "Jane Austen's beloved romantic classic about love, manners, family and social expectations."
+        },
+
+
+        {
+            title: "The Hobbit",
+            author: "J.R.R. Tolkien",
+            category: "FANTASY",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.8,
+            ratingCount: "23.1K ratings",
+            publisher: "HarperCollins",
+            pages: 310,
+            language: "English",
+            published: "1937",
+            isbn: "9780547928227",
+            image: "https://covers.openlibrary.org/isbn/9780547928227-L.jpg",
+            description: "Join Bilbo Baggins on an unforgettable adventure through Middle-earth."
+        },
+
+
+        {
+            title: "Harry Potter and the Philosopher's Stone",
+            author: "J.K. Rowling",
+            category: "FANTASY",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.9,
+            ratingCount: "31.4K ratings",
+            publisher: "Bloomsbury",
+            pages: 352,
+            language: "English",
+            published: "1997",
+            isbn: "9780747532699",
+            image: "https://covers.openlibrary.org/isbn/9780747532699-L.jpg",
+            description: "Harry Potter discovers a magical world and begins his extraordinary journey at Hogwarts."
+        },
+
+
+        {
+            title: "Sapiens",
+            author: "Yuval Noah Harari",
+            category: "SCIENCE",
+            price: 449,
+            originalPrice: 699,
+            rating: 4.7,
+            ratingCount: "28.3K ratings",
+            publisher: "Harper",
+            pages: 464,
+            language: "English",
+            published: "2015",
+            isbn: "9780062316097",
+            image: "https://covers.openlibrary.org/isbn/9780062316097-L.jpg",
+            description: "A fascinating exploration of human history, culture and the development of civilization."
+        },
+
+
+        {
+            title: "Educated",
+            author: "Tara Westover",
+            category: "BIOGRAPHY",
+            price: 379,
+            originalPrice: 549,
+            rating: 4.7,
+            ratingCount: "15.7K ratings",
+            publisher: "Random House",
+            pages: 352,
+            language: "English",
+            published: "2018",
+            isbn: "9780399590504",
+            image: "https://covers.openlibrary.org/isbn/9780399590504-L.jpg",
+            description: "A powerful memoir about education, family and the struggle to create a new life."
+        },
+
+
+        {
+            title: "The Midnight Library",
+            author: "Matt Haig",
+            category: "FICTION",
+            price: 329,
+            originalPrice: 499,
+            rating: 4.6,
+            ratingCount: "18.4K ratings",
+            publisher: "Viking",
+            pages: 304,
+            language: "English",
+            published: "2020",
+            isbn: "9780525559474",
+            image: "https://covers.openlibrary.org/isbn/9780525559474-L.jpg",
+            description: "A magical story about choices, regrets and the infinite possibilities of life."
+        },
+
+
+        {
+            title: "The Subtle Art of Not Giving a F*ck",
+            author: "Mark Manson",
+            category: "SELF GROWTH",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.5,
+            ratingCount: "20.7K ratings",
+            publisher: "Harper",
+            pages: 224,
+            language: "English",
+            published: "2016",
+            isbn: "9780062457714",
+            image: "https://covers.openlibrary.org/isbn/9780062457714-L.jpg",
+            description: "A refreshing approach to living a better life by focusing on what truly matters."
+        },
+
+
+        {
+            title: "Do Epic Shit",
+            author: "Ankur Warikoo",
+            category: "SELF GROWTH",
+            price: 299,
+            originalPrice: 399,
+            rating: 4.5,
+            ratingCount: "12.1K ratings",
+            publisher: "Juggernaut",
+            pages: 224,
+            language: "English",
+            published: "2021",
+            isbn: "9789391165482",
+            image: "https://covers.openlibrary.org/isbn/9789391165482-L.jpg",
+            description: "Short and practical lessons about life, work, money, relationships and success."
+        },
+
+
+        {
+            title: "Wings of Fire",
+            author: "A.P.J. Abdul Kalam",
+            category: "BIOGRAPHY",
+            price: 249,
+            originalPrice: 350,
+            rating: 4.8,
+            ratingCount: "27.5K ratings",
+            publisher: "Universities Press",
+            pages: 180,
+            language: "English",
+            published: "1999",
+            isbn: "9788173711466",
+            image: "https://covers.openlibrary.org/isbn/9788173711466-L.jpg",
+            description: "The inspiring autobiography of Dr. A.P.J. Abdul Kalam and his journey from childhood to leadership."
+        },
+
+
+        {
+            title: "The Monk Who Sold His Ferrari",
+            author: "Robin Sharma",
+            category: "SELF GROWTH",
+            price: 279,
+            originalPrice: 399,
+            rating: 4.6,
+            ratingCount: "14.8K ratings",
+            publisher: "HarperCollins",
+            pages: 198,
+            language: "English",
+            published: "1997",
+            isbn: "9780062515674",
+            image: "https://covers.openlibrary.org/isbn/9780062515674-L.jpg",
+            description: "An inspiring fable about finding balance, purpose, discipline and happiness."
+        },
+
+
+        {
+            title: "It Ends with Us",
+            author: "Colleen Hoover",
+            category: "ROMANCE",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.6,
+            ratingCount: "30.2K ratings",
+            publisher: "Atria Books",
+            pages: 384,
+            language: "English",
+            published: "2016",
+            isbn: "9781501110368",
+            image: "https://covers.openlibrary.org/isbn/9781501110368-L.jpg",
+            description: "An emotional story about love, difficult choices and finding the courage to change."
+        },
+
+
+        {
+            title: "Verity",
+            author: "Colleen Hoover",
+            category: "MYSTERY",
+            price: 379,
+            originalPrice: 549,
+            rating: 4.5,
+            ratingCount: "24.9K ratings",
+            publisher: "Grand Central Publishing",
+            pages: 336,
+            language: "English",
+            published: "2018",
+            isbn: "9781538724736",
+            image: "https://covers.openlibrary.org/isbn/9781538724736-L.jpg",
+            description: "A dark psychological thriller filled with secrets, suspense and unexpected twists."
+        },
+
+
+        {
+            title: "The Book Thief",
+            author: "Markus Zusak",
+            category: "FICTION",
+            price: 329,
+            originalPrice: 499,
+            rating: 4.8,
+            ratingCount: "19.7K ratings",
+            publisher: "Knopf",
+            pages: 552,
+            language: "English",
+            published: "2005",
+            isbn: "9780375842207",
+            image: "https://covers.openlibrary.org/isbn/9780375842207-L.jpg",
+            description: "A beautifully written story of courage, friendship and the power of words during wartime."
+        },
+
+
+        {
+            title: "A Man Called Ove",
+            author: "Fredrik Backman",
+            category: "FICTION",
+            price: 319,
+            originalPrice: 449,
+            rating: 4.7,
+            ratingCount: "16.5K ratings",
+            publisher: "Atria Books",
+            pages: 337,
+            language: "English",
+            published: "2012",
+            isbn: "9781476738024",
+            image: "https://covers.openlibrary.org/isbn/9781476738024-L.jpg",
+            description: "A heartwarming story about an unlikely friendship and the unexpected beauty of life."
+        },
+
+
+        {
+            title: "The Power of Habit",
+            author: "Charles Duhigg",
+            category: "SELF GROWTH",
+            price: 329,
+            originalPrice: 499,
+            rating: 4.6,
+            ratingCount: "13.4K ratings",
+            publisher: "Random House",
+            pages: 371,
+            language: "English",
+            published: "2012",
+            isbn: "9780812981605",
+            image: "https://covers.openlibrary.org/isbn/9780812981605-L.jpg",
+            description: "Understand how habits work and how changing them can transform your life and work."
+        },
+
+
+        {
+            title: "Zero to One",
+            author: "Peter Thiel",
+            category: "BUSINESS",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.5,
+            ratingCount: "10.6K ratings",
+            publisher: "Crown Business",
+            pages: 224,
+            language: "English",
+            published: "2014",
+            isbn: "9780804139298",
+            image: "https://covers.openlibrary.org/isbn/9780804139298-L.jpg",
+            description: "Insights into startups, innovation and building something genuinely new."
+        },
+
+
+        {
+            title: "The Intelligent Investor",
+            author: "Benjamin Graham",
+            category: "FINANCE",
+            price: 499,
+            originalPrice: 799,
+            rating: 4.7,
+            ratingCount: "11.8K ratings",
+            publisher: "HarperBusiness",
+            pages: 640,
+            language: "English",
+            published: "1949",
+            isbn: "9780060555665",
+            image: "https://covers.openlibrary.org/isbn/9780060555665-L.jpg",
+            description: "A classic guide to value investing, risk management and long-term financial thinking."
+        },
+
+
+        {
+            title: "The 5 AM Club",
+            author: "Robin Sharma",
+            category: "SELF GROWTH",
+            price: 329,
+            originalPrice: 499,
+            rating: 4.5,
+            ratingCount: "15.3K ratings",
+            publisher: "HarperCollins",
+            pages: 336,
+            language: "English",
+            published: "2018",
+            isbn: "9781443456623",
+            image: "https://covers.openlibrary.org/isbn/9781443456623-L.jpg",
+            description: "A motivational guide to mastering mornings and building a productive, meaningful life."
+        },
+
+
+        {
+            title: "The Lean Startup",
+            author: "Eric Ries",
+            category: "BUSINESS",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.5,
+            ratingCount: "9.8K ratings",
+            publisher: "Crown Business",
+            pages: 336,
+            language: "English",
+            published: "2011",
+            isbn: "9780307887894",
+            image: "https://covers.openlibrary.org/isbn/9780307887894-L.jpg",
+            description: "A practical approach to building successful businesses through experimentation, learning and innovation."
+        },
+
+
+        {
+            title: "The 48 Laws of Power",
+            author: "Robert Greene",
+            category: "SELF GROWTH",
+            price: 449,
+            originalPrice: 699,
+            rating: 4.6,
+            ratingCount: "18.7K ratings",
+            publisher: "Penguin Books",
+            pages: 452,
+            language: "English",
+            published: "1998",
+            isbn: "9780140280197",
+            image: "https://covers.openlibrary.org/isbn/9780140280197-L.jpg",
+            description: "A fascinating examination of power, strategy and human behavior."
+        },
+
+
+        {
+            title: "The Courage to Be Disliked",
+            author: "Ichiro Kishimi",
+            category: "SELF GROWTH",
+            price: 329,
+            originalPrice: 499,
+            rating: 4.6,
+            ratingCount: "13.2K ratings",
+            publisher: "Allen & Unwin",
+            pages: 288,
+            language: "English",
+            published: "2013",
+            isbn: "9781501197277",
+            image: "https://covers.openlibrary.org/isbn/9781501197277-L.jpg",
+            description: "A philosophical dialogue about happiness, freedom and living according to your own values."
+        },
+
+
+        {
+            title: "Man's Search for Meaning",
+            author: "Viktor E. Frankl",
+            category: "SELF GROWTH",
+            price: 279,
+            originalPrice: 399,
+            rating: 4.8,
+            ratingCount: "22.1K ratings",
+            publisher: "Beacon Press",
+            pages: 184,
+            language: "English",
+            published: "1946",
+            isbn: "9780807014295",
+            image: "https://covers.openlibrary.org/isbn/9780807014295-L.jpg",
+            description: "A profound exploration of purpose, resilience and finding meaning even in difficult circumstances."
+        },
+
+
+        {
+            title: "Can't Hurt Me",
+            author: "David Goggins",
+            category: "SELF GROWTH",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.7,
+            ratingCount: "19.5K ratings",
+            publisher: "Lioncrest Publishing",
+            pages: 364,
+            language: "English",
+            published: "2018",
+            isbn: "9781544512280",
+            image: "https://covers.openlibrary.org/isbn/9781544512280-L.jpg",
+            description: "A powerful memoir about overcoming limitations and developing mental toughness."
+        },
+
+
+        {
+            title: "The Four Agreements",
+            author: "Don Miguel Ruiz",
+            category: "SELF GROWTH",
+            price: 249,
+            originalPrice: 399,
+            rating: 4.7,
+            ratingCount: "14.6K ratings",
+            publisher: "Amber-Allen Publishing",
+            pages: 160,
+            language: "English",
+            published: "1997",
+            isbn: "9781878424310",
+            image: "https://covers.openlibrary.org/isbn/9781878424310-L.jpg",
+            description: "Four simple principles that can help transform your relationships and your approach to life."
+        },
+
+
+        {
+            title: "The Art of Thinking Clearly",
+            author: "Rolf Dobelli",
+            category: "PSYCHOLOGY",
+            price: 299,
+            originalPrice: 449,
+            rating: 4.4,
+            ratingCount: "8.9K ratings",
+            publisher: "Harper",
+            pages: 384,
+            language: "English",
+            published: "2013",
+            isbn: "9780062219695",
+            image: "https://covers.openlibrary.org/isbn/9780062219695-L.jpg",
+            description: "An accessible guide to common thinking errors and how to make better decisions."
+        },
+
+
+        {
+            title: "Thinking, Fast and Slow",
+            author: "Daniel Kahneman",
+            category: "PSYCHOLOGY",
+            price: 429,
+            originalPrice: 699,
+            rating: 4.6,
+            ratingCount: "17.4K ratings",
+            publisher: "Farrar, Straus and Giroux",
+            pages: 512,
+            language: "English",
+            published: "2011",
+            isbn: "9780374533557",
+            image: "https://covers.openlibrary.org/isbn/9780374533557-L.jpg",
+            description: "An exploration of the two systems that shape human judgment, decisions and behavior."
+        },
+
+
+        {
+            title: "The Power of Your Subconscious Mind",
+            author: "Joseph Murphy",
+            category: "SELF GROWTH",
+            price: 229,
+            originalPrice: 349,
+            rating: 4.5,
+            ratingCount: "16.2K ratings",
+            publisher: "TarcherPerigee",
+            pages: 320,
+            language: "English",
+            published: "1963",
+            isbn: "9780735202094",
+            image: "https://covers.openlibrary.org/isbn/9780735202094-L.jpg",
+            description: "A classic guide exploring the influence of subconscious beliefs and positive thinking."
+        },
+
+
+        {
+            title: "How to Win Friends and Influence People",
+            author: "Dale Carnegie",
+            category: "SELF GROWTH",
+            price: 299,
+            originalPrice: 449,
+            rating: 4.7,
+            ratingCount: "24.8K ratings",
+            publisher: "Simon & Schuster",
+            pages: 288,
+            language: "English",
+            published: "1936",
+            isbn: "9780671027032",
+            image: "https://covers.openlibrary.org/isbn/9780671027032-L.jpg",
+            description: "Timeless advice for communicating effectively, building relationships and influencing others."
+        },
+
+
+        {
+            title: "The Richest Man in Babylon",
+            author: "George S. Clason",
+            category: "FINANCE",
+            price: 249,
+            originalPrice: 399,
+            rating: 4.6,
+            ratingCount: "12.7K ratings",
+            publisher: "Plume",
+            pages: 194,
+            language: "English",
+            published: "1926",
+            isbn: "9780451205360",
+            image: "https://covers.openlibrary.org/isbn/9780451205360-L.jpg",
+            description: "Financial wisdom presented through timeless stories about saving, investing and building wealth."
+        },
+
+
+        {
+            title: "The Millionaire Fastlane",
+            author: "MJ DeMarco",
+            category: "FINANCE",
+            price: 449,
+            originalPrice: 699,
+            rating: 4.5,
+            ratingCount: "8.4K ratings",
+            publisher: "Viperion Publishing",
+            pages: 336,
+            language: "English",
+            published: "2011",
+            isbn: "9780984358101",
+            image: "https://covers.openlibrary.org/isbn/9780984358101-L.jpg",
+            description: "A different perspective on entrepreneurship, wealth creation and financial independence."
+        },
+
+
+        {
+            title: "The Little Book of Common Sense Investing",
+            author: "John C. Bogle",
+            category: "FINANCE",
+            price: 379,
+            originalPrice: 599,
+            rating: 4.7,
+            ratingCount: "7.8K ratings",
+            publisher: "Wiley",
+            pages: 304,
+            language: "English",
+            published: "2007",
+            isbn: "9781119404507",
+            image: "https://covers.openlibrary.org/isbn/9781119404507-L.jpg",
+            description: "A straightforward introduction to long-term index investing and building wealth."
+        },
+
+
+        {
+            title: "The Personal MBA",
+            author: "Josh Kaufman",
+            category: "BUSINESS",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.5,
+            ratingCount: "9.3K ratings",
+            publisher: "Portfolio",
+            pages: 496,
+            language: "English",
+            published: "2010",
+            isbn: "9781591845577",
+            image: "https://covers.openlibrary.org/isbn/9781591845577-L.jpg",
+            description: "Essential business concepts explained without requiring a traditional MBA."
+        },
+
+
+        {
+            title: "Good to Great",
+            author: "Jim Collins",
+            category: "BUSINESS",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.6,
+            ratingCount: "10.5K ratings",
+            publisher: "HarperBusiness",
+            pages: 320,
+            language: "English",
+            published: "2001",
+            isbn: "9780066620992",
+            image: "https://covers.openlibrary.org/isbn/9780066620992-L.jpg",
+            description: "Research-driven lessons about how companies can move from average performance to exceptional results."
+        },
+
+
+        {
+            title: "Start With Why",
+            author: "Simon Sinek",
+            category: "BUSINESS",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.6,
+            ratingCount: "14.3K ratings",
+            publisher: "Portfolio",
+            pages: 256,
+            language: "English",
+            published: "2009",
+            isbn: "9781591846444",
+            image: "https://covers.openlibrary.org/isbn/9781591846444-L.jpg",
+            description: "Discover why inspiring organizations begin with purpose rather than simply products."
+        },
+
+
+        {
+            title: "Rework",
+            author: "Jason Fried",
+            category: "BUSINESS",
+            price: 299,
+            originalPrice: 449,
+            rating: 4.5,
+            ratingCount: "8.6K ratings",
+            publisher: "Crown Business",
+            pages: 288,
+            language: "English",
+            published: "2010",
+            isbn: "9780307463746",
+            image: "https://covers.openlibrary.org/isbn/9780307463746-L.jpg",
+            description: "A practical and unconventional guide to starting and growing a business."
+        },
+
+
+        {
+            title: "The Fellowship of the Ring",
+            author: "J.R.R. Tolkien",
+            category: "FANTASY",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.9,
+            ratingCount: "21.7K ratings",
+            publisher: "Mariner Books",
+            pages: 432,
+            language: "English",
+            published: "1954",
+            isbn: "9780544003415",
+            image: "https://covers.openlibrary.org/isbn/9780544003415-L.jpg",
+            description: "The first part of Tolkien's epic journey through Middle-earth."
+        },
+
+
+        {
+            title: "The Two Towers",
+            author: "J.R.R. Tolkien",
+            category: "FANTASY",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.9,
+            ratingCount: "20.3K ratings",
+            publisher: "Mariner Books",
+            pages: 352,
+            language: "English",
+            published: "1954",
+            isbn: "9780544003428",
+            image: "https://covers.openlibrary.org/isbn/9780544003428-L.jpg",
+            description: "The Fellowship continues its dangerous journey across Middle-earth."
+        },
+
+
+        {
+            title: "The Return of the King",
+            author: "J.R.R. Tolkien",
+            category: "FANTASY",
+            price: 429,
+            originalPrice: 649,
+            rating: 4.9,
+            ratingCount: "22.4K ratings",
+            publisher: "Mariner Books",
+            pages: 416,
+            language: "English",
+            published: "1955",
+            isbn: "9780544003415",
+            image: "https://covers.openlibrary.org/isbn/9780544003415-L.jpg",
+            description: "The epic conclusion to Tolkien's legendary Lord of the Rings trilogy."
+        },
+
+
+        {
+            title: "The Catcher in the Rye",
+            author: "J.D. Salinger",
+            category: "FICTION",
+            price: 249,
+            originalPrice: 399,
+            rating: 4.4,
+            ratingCount: "14.9K ratings",
+            publisher: "Little, Brown",
+            pages: 234,
+            language: "English",
+            published: "1951",
+            isbn: "9780316769488",
+            image: "https://covers.openlibrary.org/isbn/9780316769488-L.jpg",
+            description: "A classic coming-of-age novel following Holden Caulfield through New York City."
+        },
+
+
+        {
+            title: "Little Women",
+            author: "Louisa May Alcott",
+            category: "FICTION",
+            price: 229,
+            originalPrice: 349,
+            rating: 4.7,
+            ratingCount: "13.6K ratings",
+            publisher: "Penguin Classics",
+            pages: 528,
+            language: "English",
+            published: "1868",
+            isbn: "9780147514011",
+            image: "https://covers.openlibrary.org/isbn/9780147514011-L.jpg",
+            description: "The beloved story of the four March sisters growing up, discovering themselves and supporting each other."
+        },
+
+
+        {
+            title: "The Fault in Our Stars",
+            author: "John Green",
+            category: "ROMANCE",
+            price: 299,
+            originalPrice: 449,
+            rating: 4.6,
+            ratingCount: "25.1K ratings",
+            publisher: "Dutton Books",
+            pages: 336,
+            language: "English",
+            published: "2012",
+            isbn: "9780525478812",
+            image: "https://covers.openlibrary.org/isbn/9780525478812-L.jpg",
+            description: "A moving story about love, friendship and finding meaning in unexpected circumstances."
+        },
+
+
+        {
+            title: "Me Before You",
+            author: "Jojo Moyes",
+            category: "ROMANCE",
+            price: 299,
+            originalPrice: 449,
+            rating: 4.6,
+            ratingCount: "21.8K ratings",
+            publisher: "Pamela Dorman Books",
+            pages: 400,
+            language: "English",
+            published: "2012",
+            isbn: "9780143124542",
+            image: "https://covers.openlibrary.org/isbn/9780143124542-L.jpg",
+            description: "An emotional story of unexpected friendship, love and life-changing choices."
+        },
+
+
+        {
+            title: "The Notebook",
+            author: "Nicholas Sparks",
+            category: "ROMANCE",
+            price: 279,
+            originalPrice: 399,
+            rating: 4.5,
+            ratingCount: "15.4K ratings",
+            publisher: "Grand Central Publishing",
+            pages: 224,
+            language: "English",
+            published: "1996",
+            isbn: "9780446605236",
+            image: "https://covers.openlibrary.org/isbn/9780446605236-L.jpg",
+            description: "A timeless romantic story about enduring love and unforgettable memories."
+        },
+
+
+        {
+            title: "Gone Girl",
+            author: "Gillian Flynn",
+            category: "MYSTERY",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.5,
+            ratingCount: "23.7K ratings",
+            publisher: "Crown Publishing",
+            pages: 432,
+            language: "English",
+            published: "2012",
+            isbn: "9780553418362",
+            image: "https://covers.openlibrary.org/isbn/9780553418362-L.jpg",
+            description: "A gripping psychological thriller filled with secrets, deception and shocking twists."
+        },
+
+
+        {
+            title: "The Girl on the Train",
+            author: "Paula Hawkins",
+            category: "MYSTERY",
+            price: 329,
+            originalPrice: 499,
+            rating: 4.4,
+            ratingCount: "19.6K ratings",
+            publisher: "Riverhead Books",
+            pages: 336,
+            language: "English",
+            published: "2015",
+            isbn: "9781594634024",
+            image: "https://covers.openlibrary.org/isbn/9781594634024-L.jpg",
+            description: "A psychological mystery seen through the eyes of a woman who witnesses something disturbing."
+        },
+
+
+        {
+            title: "And Then There Were None",
+            author: "Agatha Christie",
+            category: "MYSTERY",
+            price: 249,
+            originalPrice: 399,
+            rating: 4.7,
+            ratingCount: "18.1K ratings",
+            publisher: "HarperCollins",
+            pages: 272,
+            language: "English",
+            published: "1939",
+            isbn: "9780062073488",
+            image: "https://covers.openlibrary.org/isbn/9780062073488-L.jpg",
+            description: "One of Agatha Christie's most famous mysteries, where ten strangers face an impossible situation."
+        },
+
+
+        {
+            title: "Murder on the Orient Express",
+            author: "Agatha Christie",
+            category: "MYSTERY",
+            price: 249,
+            originalPrice: 399,
+            rating: 4.7,
+            ratingCount: "16.9K ratings",
+            publisher: "HarperCollins",
+            pages: 288,
+            language: "English",
+            published: "1934",
+            isbn: "9780062693662",
+            image: "https://covers.openlibrary.org/isbn/9780062693662-L.jpg",
+            description: "Detective Hercule Poirot investigates a murder aboard a luxurious train."
+        },
+
+
+        {
+            title: "The Da Vinci Code",
+            author: "Dan Brown",
+            category: "MYSTERY",
+            price: 329,
+            originalPrice: 499,
+            rating: 4.5,
+            ratingCount: "28.4K ratings",
+            publisher: "Doubleday",
+            pages: 489,
+            language: "English",
+            published: "2003",
+            isbn: "9780307474278",
+            image: "https://covers.openlibrary.org/isbn/9780307474278-L.jpg",
+            description: "A fast-paced mystery combining ancient secrets, puzzles, art and conspiracy."
+        },
+
+
+        {
+            title: "A Brief History of Time",
+            author: "Stephen Hawking",
+            category: "SCIENCE",
+            price: 329,
+            originalPrice: 499,
+            rating: 4.6,
+            ratingCount: "17.3K ratings",
+            publisher: "Bantam",
+            pages: 212,
+            language: "English",
+            published: "1988",
+            isbn: "9780553380163",
+            image: "https://covers.openlibrary.org/isbn/9780553380163-L.jpg",
+            description: "An accessible exploration of the universe, black holes, time and modern physics."
+        },
+
+
+        {
+            title: "Cosmos",
+            author: "Carl Sagan",
+            category: "SCIENCE",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.8,
+            ratingCount: "15.2K ratings",
+            publisher: "Random House",
+            pages: 384,
+            language: "English",
+            published: "1980",
+            isbn: "9780349107035",
+            image: "https://covers.openlibrary.org/isbn/9780349107035-L.jpg",
+            description: "A beautifully written journey through science, the universe and humanity's place within it."
+        },
+
+
+        {
+            title: "Astrophysics for People in a Hurry",
+            author: "Neil deGrasse Tyson",
+            category: "SCIENCE",
+            price: 299,
+            originalPrice: 449,
+            rating: 4.6,
+            ratingCount: "12.8K ratings",
+            publisher: "W. W. Norton",
+            pages: 224,
+            language: "English",
+            published: "2017",
+            isbn: "9780393609394",
+            image: "https://covers.openlibrary.org/isbn/9780393609394-L.jpg",
+            description: "A concise introduction to the biggest ideas in astrophysics and our universe."
+        },
+
+
+        {
+            title: "The Selfish Gene",
+            author: "Richard Dawkins",
+            category: "SCIENCE",
+            price: 349,
+            originalPrice: 499,
+            rating: 4.5,
+            ratingCount: "9.7K ratings",
+            publisher: "Oxford University Press",
+            pages: 384,
+            language: "English",
+            published: "1976",
+            isbn: "9780199291151",
+            image: "https://covers.openlibrary.org/isbn/9780199291151-L.jpg",
+            description: "A landmark work explaining evolution and natural selection from the perspective of genes."
+        },
+
+
+        {
+            title: "Steve Jobs",
+            author: "Walter Isaacson",
+            category: "BIOGRAPHY",
+            price: 449,
+            originalPrice: 699,
+            rating: 4.7,
+            ratingCount: "18.6K ratings",
+            publisher: "Simon & Schuster",
+            pages: 656,
+            language: "English",
+            published: "2011",
+            isbn: "9781451648539",
+            image: "https://covers.openlibrary.org/isbn/9781451648539-L.jpg",
+            description: "The definitive biography of Apple's co-founder and one of technology's most influential figures."
+        },
+
+
+        {
+            title: "Becoming",
+            author: "Michelle Obama",
+            category: "BIOGRAPHY",
+            price: 449,
+            originalPrice: 699,
+            rating: 4.8,
+            ratingCount: "26.2K ratings",
+            publisher: "Crown",
+            pages: 448,
+            language: "English",
+            published: "2018",
+            isbn: "9781524763138",
+            image: "https://covers.openlibrary.org/isbn/9781524763138-L.jpg",
+            description: "A deeply personal memoir about Michelle Obama's journey, family and experiences."
+        },
+
+
+        {
+            title: "Long Walk to Freedom",
+            author: "Nelson Mandela",
+            category: "BIOGRAPHY",
+            price: 399,
+            originalPrice: 599,
+            rating: 4.8,
+            ratingCount: "13.9K ratings",
+            publisher: "Little, Brown",
+            pages: 656,
+            language: "English",
+            published: "1994",
+            isbn: "9780316548182",
+            image: "https://covers.openlibrary.org/isbn/9780316548182-L.jpg",
+            description: "Nelson Mandela's remarkable autobiography chronicling his life and fight against apartheid."
+        },
+
+
+        {
+            title: "The Diary of a Young Girl",
+            author: "Anne Frank",
+            category: "BIOGRAPHY",
+            price: 229,
+            originalPrice: 349,
+            rating: 4.8,
+            ratingCount: "29.3K ratings",
+            publisher: "Penguin Books",
+            pages: 352,
+            language: "English",
+            published: "1947",
+            isbn: "9780141324380",
+            image: "https://covers.openlibrary.org/isbn/9780141324380-L.jpg",
+            description: "The unforgettable diary of Anne Frank during the Second World War."
+        },
+
+
+        {
+            title: "The Design of Everyday Things",
+            author: "Don Norman",
+            category: "TECHNOLOGY",
+            price: 379,
+            originalPrice: 599,
+            rating: 4.6,
+            ratingCount: "8.2K ratings",
+            publisher: "Basic Books",
+            pages: 368,
+            language: "English",
+            published: "1988",
+            isbn: "9780465050659",
+            image: "https://covers.openlibrary.org/isbn/9780465050659-L.jpg",
+            description: "A classic introduction to human-centered design and creating products that are easier to use."
+        },
+
+
+        {
+            title: "Clean Code",
+            author: "Robert C. Martin",
+            category: "TECHNOLOGY",
+            price: 549,
+            originalPrice: 799,
+            rating: 4.7,
+            ratingCount: "14.1K ratings",
+            publisher: "Prentice Hall",
+            pages: 464,
+            language: "English",
+            published: "2008",
+            isbn: "9780132350884",
+            image: "https://covers.openlibrary.org/isbn/9780132350884-L.jpg",
+            description: "A practical guide to writing readable, maintainable and professional software."
+        },
+
+
+        {
+            title: "The Pragmatic Programmer",
+            author: "David Thomas",
+            category: "TECHNOLOGY",
+            price: 499,
+            originalPrice: 749,
+            rating: 4.8,
+            ratingCount: "12.5K ratings",
+            publisher: "Addison-Wesley",
+            pages: 352,
+            language: "English",
+            published: "1999",
+            isbn: "9780135957059",
+            image: "https://covers.openlibrary.org/isbn/9780135957059-L.jpg",
+            description: "Timeless software development advice for becoming a better and more effective programmer."
+        },
+
+
+        {
+            title: "Design Patterns",
+            author: "Erich Gamma",
+            category: "TECHNOLOGY",
+            price: 599,
+            originalPrice: 899,
+            rating: 4.6,
+            ratingCount: "7.9K ratings",
+            publisher: "Addison-Wesley",
+            pages: 395,
+            language: "English",
+            published: "1994",
+            isbn: "9780201633610",
+            image: "https://covers.openlibrary.org/isbn/9780201633610-L.jpg",
+            description: "A foundational reference for reusable object-oriented software design patterns."
+        },
+
+
+        {
+            title: "Introduction to Algorithms",
+            author: "Thomas H. Cormen",
+            category: "TECHNOLOGY",
+            price: 799,
+            originalPrice: 1199,
+            rating: 4.7,
+            ratingCount: "9.1K ratings",
+            publisher: "MIT Press",
+            pages: 1312,
+            language: "English",
+            published: "2009",
+            isbn: "9780262033848",
+            image: "https://covers.openlibrary.org/isbn/9780262033848-L.jpg",
+            description: "A comprehensive introduction to algorithms and fundamental concepts in computer science."
+        },
+
+
+        {
+            title: "The Creative Act",
+            author: "Rick Rubin",
+            category: "SELF GROWTH",
+            price: 449,
+            originalPrice: 699,
+            rating: 4.7,
+            ratingCount: "7.6K ratings",
+            publisher: "Penguin Press",
+            pages: 432,
+            language: "English",
+            published: "2023",
+            isbn: "9780593652886",
+            image: "https://covers.openlibrary.org/isbn/9780593652886-L.jpg",
+            description: "A thoughtful exploration of creativity and the process of making meaningful work."
+        }
+
+    ];
+
+
+
+    /* =====================================================
+       INITIALIZE QUANTITY
+    ===================================================== */
+
+    books.forEach(function (book) {
+
+        book.quantity = 0;
+
+    });
+
+
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const bookGrid =
+        document.getElementById("bookGrid");
+
+
+    const booksLoader =
+        document.getElementById("booksLoader");
+
+
+    const booksEnd =
+        document.getElementById("booksEnd");
+
+
+    const bookSearch =
+        document.getElementById("bookSearch");
+
+
+    const clearSearch =
+        document.getElementById("clearSearch");
+
+
+    const searchResultMessage =
+        document.getElementById("searchResultMessage");
+
+
+    const cartBadge =
+        document.getElementById("cartBadge");
+
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+
+    const headerCart =
+        document.getElementById("headerCart");
+
+
+
+    /* =====================================================
+       LOCALSTORAGE FUNCTIONS
+    ===================================================== */
+
+    // Load cart data from localStorage
+    function loadCartFromStorage() {
+
+        const savedCart =
+            localStorage.getItem('booknestCart');
+
+        if (savedCart) {
+
+            try {
+
+                const cartItems =
+                    JSON.parse(savedCart);
+
+                cartItems.forEach(function (cartItem) {
+
+                    const book =
+                        books.find(function (b) {
+                            return b.isbn === cartItem.isbn;
+                        });
+
+                    if (book) {
+                        book.quantity = cartItem.quantity;
+                    }
+
+                });
+
+            } catch (e) {
+                console.error('Error loading cart:', e);
+            }
+
+        }
+
+        updateCartSummary();
+
+    }
+
+
+    // Save book to localStorage
+    function saveToStorage(book) {
+
+        let cart =
+            JSON.parse(
+                localStorage.getItem('booknestCart') ||
+                '[]'
+            );
+
+        const index =
+            cart.findIndex(function (item) {
+                return item.isbn === book.isbn;
+            });
+
+        if (book.quantity > 0) {
+
+            if (index !== -1) {
+
+                cart[index].quantity =
+                    book.quantity;
+
+            } else {
+
+                cart.push({
+                    isbn: book.isbn,
+                    title: book.title,
+                    author: book.author,
+                    price: book.price,
+                    originalPrice: book.originalPrice,
+                    image: book.image,
+                    quantity: book.quantity
+                });
+
+            }
+
+        } else {
+
+            if (index !== -1) {
+
+                cart.splice(index, 1);
+
+            }
+
+        }
+
+        localStorage.setItem(
+            'booknestCart',
+            JSON.stringify(cart)
+        );
+
+        updateCartSummary();
+
+    }
+
+
+    // Sync all books to localStorage (used when loading from storage)
+    function syncAllToStorage() {
+
+        books.forEach(function (book) {
+
+            if (book.quantity > 0) {
+
+                saveToStorage(book);
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       DISCOUNT
+    ===================================================== */
+
+    function calculateDiscount(price, originalPrice) {
+
+        return Math.round(
+            ((originalPrice - price) / originalPrice) * 100
+        );
+
+    }
+
+
+
+    /* =====================================================
+       CART CALCULATION
+    ===================================================== */
+
+    function calculateCart() {
+
+        let totalItems = 0;
+
+        let totalAmount = 0;
+
+
+        books.forEach(function (book) {
+
+            const quantity =
+                Number(book.quantity) || 0;
+
+
+            totalItems += quantity;
+
+
+            totalAmount +=
+                book.price * quantity;
+
+        });
+
+
+        return {
+
+            totalItems: totalItems,
+
+            totalAmount: totalAmount
+
+        };
+
+    }
+
+
+
+    /* =====================================================
+       UPDATE HEADER CART
+    ===================================================== */
+
+    function updateCartSummary() {
+
+        const cart =
+            calculateCart();
+
+
+        cartBadge.textContent =
+            cart.totalItems;
+
+
+        cartTotal.textContent =
+            "₹" +
+            cart.totalAmount.toLocaleString("en-IN");
+
+
+        cartBadge.classList.remove(
+            "cart-bump"
+        );
+
+
+        void cartBadge.offsetWidth;
+
+
+        cartBadge.classList.add(
+            "cart-bump"
+        );
+
+    }
+
+
+
+    /* =====================================================
+       OPEN BOOK DETAILS PAGE
+    ===================================================== */
+
+    function openBookDetails(book) {
+
+        /*
+         * We use the ISBN as the unique
+         * identifier for the book.
+         */
+
+        const url =
+            "/book-details?isbn=" +
+            encodeURIComponent(book.isbn);
+
+
+        window.location.href =
+            url;
+
+    }
+
+
+
+    /* =====================================================
+       CREATE BOOK CARD
+    ===================================================== */
+
+    function createBookCard(book) {
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "book-item featured-reveal";
+
+
+        const discount =
+            calculateDiscount(
+                book.price,
+                book.originalPrice
+            );
+
+
+        card.innerHTML = `
+
+            <div class="book-cover">
+
+                <img
+                    src="${book.image}"
+                    alt="${book.title}"
+                    loading="lazy">
+
+                <div class="book-cover-fallback">
+
+                    <i class="fa-solid fa-book"></i>
+
+                    <strong>
+                        ${book.title}
+                    </strong>
+
+                    <span>
+                        ${book.author}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="book-details">
+
+                <span class="book-category">
+
+                    ${book.category}
+
+                </span>
+
+
+                <h3 title="${book.title}">
+
+                    ${book.title}
+
+                </h3>
+
+
+                <p>
+
+                    ${book.author}
+
+                </p>
+
+
+                <div class="book-bottom">
+
+
+                    <div class="rating">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        ${book.rating}
+
+                    </div>
+
+
+                    <div class="price">
+
+                        ₹${book.price}
+
+                        <del>
+
+                            ₹${book.originalPrice}
+
+                        </del>
+
+                    </div>
+
+                </div>
+
+
+                <div class="book-discount">
+
+                    ${discount}% OFF
+
+                </div>
+
+
+                <div class="quantity-control">
+
+
+                    <button
+                            type="button"
+                            class="quantity-minus">
+
+                        −
+
+                    </button>
+
+
+                    <span class="quantity-value">
+
+                        ${book.quantity}
+
+                    </span>
+
+
+                    <button
+                            type="button"
+                            class="quantity-plus">
+
+                        +
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+
+        /* =================================================
+           IMAGE FALLBACK
+        ================================================== */
+
+        const image =
+            card.querySelector(
+                ".book-cover img"
+            );
+
+
+        const fallback =
+            card.querySelector(
+                ".book-cover-fallback"
+            );
+
+
+        image.addEventListener(
+            "error",
+            function () {
+
+                image.style.display =
+                    "none";
+
+
+                fallback.style.display =
+                    "flex";
+
+            }
+        );
+
+
+
+        /* =================================================
+           CLICK BOOK → DETAILS PAGE
+        ================================================== */
+
+        card.addEventListener(
+            "click",
+            function () {
+
+                openBookDetails(book);
+
+            }
+        );
+
+
+
+        /* =================================================
+           PLUS BUTTON
+        ================================================== */
+
+        const plus =
+            card.querySelector(
+                ".quantity-plus"
+            );
+
+
+        plus.addEventListener(
+            "click",
+            function (event) {
+
+                /*
+                 * Prevent the card click
+                 * from opening details page.
+                 */
+
+                event.stopPropagation();
+
+
+                book.quantity++;
+
+
+                updateCardQuantity(
+                    card,
+                    book
+                );
+
+                // Save to localStorage
+                saveToStorage(book);
+
+            }
+        );
+
+
+
+        /* =================================================
+           MINUS BUTTON
+        ================================================== */
+
+        const minus =
+            card.querySelector(
+                ".quantity-minus"
+            );
+
+
+        minus.addEventListener(
+            "click",
+            function (event) {
+
+                /*
+                 * Prevent the card click
+                 * from opening details page.
+                 */
+
+                event.stopPropagation();
+
+
+                if (
+                    book.quantity > 0
+                ) {
+
+                    book.quantity--;
+
+                }
+
+
+                updateCardQuantity(
+                    card,
+                    book
+                );
+
+                // Save to localStorage
+                saveToStorage(book);
+
+            }
+        );
+
+
+        return card;
+
+    }
+
+
+
+    /* =====================================================
+       UPDATE CARD QUANTITY
+    ===================================================== */
+
+    function updateCardQuantity(card, book) {
+
+
+        const quantity =
+            card.querySelector(
+                ".quantity-value"
+            );
+
+
+        if (quantity) {
+
+            quantity.textContent =
+                book.quantity;
+
+        }
+
+
+        updateCartSummary();
+
+    }
+
+
+
+    /* =====================================================
+       LAZY LOADING
+    ===================================================== */
+
+    let booksLoaded = 0;
+
+
+    const booksPerLoad = 8;
+
+
+    let loading = false;
+
+
+
+    function loadMoreBooks() {
+
+
+        if (loading) {
+
+            return;
+
+        }
+
+
+        if (
+            booksLoaded >=
+            books.length
+        ) {
+
+
+            booksLoader.style.display =
+                "none";
+
+
+            booksEnd.style.display =
+                "block";
+
+
+            return;
+
+        }
+
+
+        loading = true;
+
+
+        booksLoader.style.display =
+            "block";
+
+
+        setTimeout(function () {
+
+
+            const nextBooks =
+                books.slice(
+                    booksLoaded,
+                    booksLoaded + booksPerLoad
+                );
+
+
+            nextBooks.forEach(
+                function (book) {
+
+
+                    const card =
+                        createBookCard(book);
+
+
+                    bookGrid.appendChild(
+                        card
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            card.classList.add(
+                                "card-visible"
+                            );
+
+                        },
+                        50
+                    );
+
+                }
+            );
+
+
+            booksLoaded +=
+                nextBooks.length;
+
+
+            loading = false;
+
+
+            if (
+                booksLoaded >=
+                books.length
+            ) {
+
+
+                booksLoader.style.display =
+                    "none";
+
+
+                booksEnd.style.display =
+                    "block";
+
+            }
+
+
+        }, 500);
+
+    }
+
+
+
+    /* =====================================================
+       FIRST LOAD
+    ===================================================== */
+
+    // Load cart from localStorage first
+    loadCartFromStorage();
+
+    // Then load books
+    loadMoreBooks();
+
+
+    updateCartSummary();
+
+
+
+    /* =====================================================
+       SEARCH BOOKS
+    ===================================================== */
+
+    function searchBooks() {
+
+
+        const searchText =
+            bookSearch.value
+                .trim()
+                .toLowerCase();
+
+
+
+        /* ===============================================
+           EMPTY SEARCH
+        ================================================ */
+
+        if (
+            searchText === ""
+        ) {
+
+
+            clearSearch.style.display =
+                "none";
+
+
+            searchResultMessage.style.display =
+                "none";
+
+
+            bookGrid.innerHTML =
+                "";
+
+
+            booksLoaded =
+                0;
+
+
+            booksEnd.style.display =
+                "none";
+
+
+            loading =
+                false;
+
+
+            loadMoreBooks();
+
+
+            return;
+
+        }
+
+
+
+        clearSearch.style.display =
+            "flex";
+
+
+
+        /* ===============================================
+           FIND RESULTS
+        ================================================ */
+
+        const results =
+            books.filter(
+                function (book) {
+
+
+                    return (
+
+                        book.title
+                            .toLowerCase()
+                            .includes(searchText)
+
+
+                        ||
+
+
+                        book.author
+                            .toLowerCase()
+                            .includes(searchText)
+
+
+                        ||
+
+
+                        book.category
+                            .toLowerCase()
+                            .includes(searchText)
+
+
+                        ||
+
+
+                        book.publisher
+                            .toLowerCase()
+                            .includes(searchText)
+
+
+                        ||
+
+
+                        book.isbn
+                            .toLowerCase()
+                            .includes(searchText)
+
+                    );
+
+                }
+            );
+
+
+
+        /* ===============================================
+           CLEAR GRID
+        ================================================ */
+
+        bookGrid.innerHTML =
+            "";
+
+
+        booksLoader.style.display =
+            "none";
+
+
+        booksEnd.style.display =
+            "none";
+
+
+
+        /* ===============================================
+           NO RESULTS
+        ================================================ */
+
+        if (
+            results.length === 0
+        ) {
+
+
+            searchResultMessage.innerHTML = `
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <p>
+
+                    No books found for
+                    "<strong></strong>"
+
+                </p>
+
+                <span>
+
+                    Try searching by book title,
+                    author or category.
+
+                </span>
+
+            `;
+
+
+            const strong =
+                searchResultMessage.querySelector(
+                    "strong"
+                );
+
+
+            strong.textContent =
+                bookSearch.value;
+
+
+            searchResultMessage.style.display =
+                "block";
+
+
+            return;
+
+        }
+
+
+
+        /* ===============================================
+           RESULTS MESSAGE
+        ================================================ */
+
+        searchResultMessage.innerHTML = `
+
+            <p>
+
+                <strong>
+                    ${results.length}
+                </strong>
+
+                book${results.length !== 1 ? "s" : ""}
+
+                found
+
+            </p>
+
+        `;
+
+
+        searchResultMessage.style.display =
+            "block";
+
+
+
+        /* ===============================================
+           DISPLAY RESULTS
+        ================================================ */
+
+        results.forEach(
+            function (book) {
+
+
+                const card =
+                    createBookCard(book);
+
+
+                bookGrid.appendChild(
+                    card
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        card.classList.add(
+                            "card-visible"
+                        );
+
+                    },
+                    50
+                );
+
+            }
+        );
+
+
+
+        /* ===============================================
+           SCROLL TO RESULTS
+        ================================================ */
+
+        const featuredSection =
+            document.getElementById(
+                "featured"
+            );
+
+
+        if (
+            window.scrollY >
+            featuredSection.offsetTop + 300
+        ) {
+
+
+            featuredSection.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       SEARCH INPUT
+    ===================================================== */
+
+    bookSearch.addEventListener(
+        "input",
+        searchBooks
+    );
+
+
+
+    /* =====================================================
+       CLEAR SEARCH
+    ===================================================== */
+
+    clearSearch.addEventListener(
+        "click",
+        function () {
+
+
+            bookSearch.value =
+                "";
+
+
+            searchBooks();
+
+
+            bookSearch.focus();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       ENTER KEY
+    ===================================================== */
+
+    bookSearch.addEventListener(
+        "keydown",
+        function (event) {
+
+
+            if (
+                event.key === "Enter"
+            ) {
+
+
+                event.preventDefault();
+
+
+                searchBooks();
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       SCROLL LOADER
+    ===================================================== */
+
+    const loaderObserver =
+        new IntersectionObserver(
+            function (entries) {
+
+
+                if (
+
+                    entries[0].isIntersecting
+
+                    &&
+
+                    bookSearch.value
+                        .trim() === ""
+
+                ) {
+
+
+                    loadMoreBooks();
+
+                }
+
+            },
+            {
+                rootMargin: "500px"
+            }
+        );
+
+
+    loaderObserver.observe(
+        booksLoader
+    );
+
+
+
+    /* =====================================================
+       HEADER CART CLICK
+    ===================================================== */
+
+    headerCart.addEventListener(
+        "click",
+        function () {
+
+
+            const cart =
+                calculateCart();
+
+
+            if (
+                cart.totalItems === 0
+            ) {
+
+
+                alert(
+                    "Your cart is empty."
+                );
+
+
+                return;
+
+            }
+
+
+            // Show cart items in a formatted alert
+            let message = "🛒 Shopping Cart\n\n";
+            let itemCount = 0;
+
+            books.forEach(function (book) {
+                if (book.quantity > 0) {
+                    itemCount++;
+                    message += `${itemCount}. ${book.title}\n`;
+                    message += `   Quantity: ${book.quantity}\n`;
+                    message += `   Price: ₹${book.price.toLocaleString("en-IN")}\n`;
+                    message += `   Subtotal: ₹${(book.price * book.quantity).toLocaleString("en-IN")}\n\n`;
+                }
+            });
+
+            message += `━━━━━━━━━━━━━━━━━━━\n`;
+            message += `Total Items: ${cart.totalItems}\n`;
+            message += `Total Amount: ₹${cart.totalAmount.toLocaleString("en-IN")}`;
+
+            alert(message);
+
+        }
+    );
+
+
+
+    /* =====================================================
+       OFFER SLIDER
+    ===================================================== */
+
+    const slides =
+        document.querySelectorAll(
+            ".offer-slide"
+        );
+
+
+    const dots =
+        document.querySelectorAll(
+            ".offer-dot"
+        );
+
+
+    let currentSlide =
+        0;
+
+
+    let slideInterval;
+
+
+
+    /* =====================================================
+       SHOW SLIDE
+    ===================================================== */
+
+    function showSlide(index) {
+
+
+        slides.forEach(
+            function (slide) {
+
+                slide.classList.remove(
+                    "offer-slide-active"
+                );
+
+            }
+        );
+
+
+        dots.forEach(
+            function (dot) {
+
+                dot.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        slides[index].classList.add(
+            "offer-slide-active"
+        );
+
+
+        dots[index].classList.add(
+            "active"
+        );
+
+
+        currentSlide =
+            index;
+
+    }
+
+
+
+    /* =====================================================
+       NEXT SLIDE
+    ===================================================== */
+
+    function nextSlide() {
+
+
+        let next =
+            currentSlide + 1;
+
+
+        if (
+            next >= slides.length
+        ) {
+
+            next = 0;
+
+        }
+
+
+        showSlide(next);
+
+    }
+
+
+
+    /* =====================================================
+       PREVIOUS SLIDE
+    ===================================================== */
+
+    function previousSlide() {
+
+
+        let previous =
+            currentSlide - 1;
+
+
+        if (
+            previous < 0
+        ) {
+
+            previous =
+                slides.length - 1;
+
+        }
+
+
+        showSlide(previous);
+
+    }
+
+
+
+    /* =====================================================
+       NEXT BUTTON
+    ===================================================== */
+
+    document.getElementById(
+        "offerNext"
+    ).addEventListener(
+        "click",
+        function () {
+
+
+            nextSlide();
+
+
+            resetAutoSlide();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       PREVIOUS BUTTON
+    ===================================================== */
+
+    document.getElementById(
+        "offerPrev"
+    ).addEventListener(
+        "click",
+        function () {
+
+
+            previousSlide();
+
+
+            resetAutoSlide();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       DOT BUTTONS
+    ===================================================== */
+
+    dots.forEach(
+        function (dot, index) {
+
+
+            dot.addEventListener(
+                "click",
+                function () {
+
+
+                    showSlide(index);
+
+
+                    resetAutoSlide();
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
+       START AUTO SLIDE
+    ===================================================== */
+
+    function startAutoSlide() {
+
+
+        slideInterval =
+            setInterval(
+                nextSlide,
+                5000
+            );
+
+    }
+
+
+
+    /* =====================================================
+       RESET AUTO SLIDE
+    ===================================================== */
+
+    function resetAutoSlide() {
+
+
+        clearInterval(
+            slideInterval
+        );
+
+
+        startAutoSlide();
+
+    }
+
+
+    startAutoSlide();
+
+
+
+    /* =====================================================
+       NAVBAR SCROLL
+    ===================================================== */
+
+    const navbar =
+        document.getElementById(
+            "navbar"
+        );
+
+
+    window.addEventListener(
+        "scroll",
+        function () {
+
+
+            if (
+                window.scrollY > 30
+            ) {
+
+
+                navbar.classList.add(
+                    "scrolled"
+                );
+
+
+            } else {
+
+
+                navbar.classList.remove(
+                    "scrolled"
+                );
+
+            }
+
+        }
+    );
+
+});
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+if (logoutButton) {
+
+    logoutButton.addEventListener(
+        "click",
+        function () {
+
+            // Remove login/session data
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            localStorage.removeItem("adminToken");
+
+            // Navigate to index.html
+            window.location.href = "/";
+
+        }
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

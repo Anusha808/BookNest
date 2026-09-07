@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart | BookNest</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Cart CSS -->
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        <i class="fa-solid fa-book-open"></i>
+
+        <span>
+            Book<span class="logo-highlight">Nest</span>
+        </span>
+    </a>
+
+    <div class="navbar-actions">
+
+        <!-- Search -->
+        <div class="search-container">
+
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+            <input
+                    type="text"
+                    id="bookSearch"
+                    class="book-search"
+                    placeholder="Search books, authors..."
+                    autocomplete="off">
+
+            <button
+                    type="button"
+                    id="clearSearch"
+                    class="clear-search"
+                    title="Clear search"
+                    aria-label="Clear search">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Cart -->
+        <button
+                type="button"
+                class="header-cart active-cart"
+                id="headerCart"
+                title="Shopping Cart"
+                aria-label="Shopping Cart">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span class="cart-badge" id="cartBadge">0</span>
+
+            <div class="cart-summary">
+
+                <span class="cart-label">Cart</span>
+
+                <strong id="cartTotal">₹0</strong>
+
+            </div>
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     PAGE
+========================================================= -->
+
+<main class="cart-page">
+
+    <!-- Breadcrumb -->
+
+    <div class="breadcrumb">
+
+        <a href="/">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+        <span>Shopping Cart</span>
+
+    </div>
+
+
+    <!-- =====================================================
+         CART HEADER
+    ====================================================== -->
+
+    <section class="cart-header">
+
+        <div>
+
+            <h1>
+                <i class="fa-solid fa-cart-shopping"></i>
+                Shopping Cart
+            </h1>
+
+            <p id="cartSubtitle">
+                Review your selected books before checkout.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         EMPTY CART
+    ====================================================== -->
+
+    <section class="empty-cart" id="emptyCart">
+
+        <div class="empty-cart-icon">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+        </div>
+
+        <h2>Your Cart is Empty</h2>
+
+        <p>
+            Looks like you haven't added any books to your cart yet.
+        </p>
+
+        <a href="/" class="continue-shopping-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Continue Shopping
+
+        </a>
+
+    </section>
+
+
+    <!-- =====================================================
+         CART CONTENT
+    ====================================================== -->
+
+    <section class="cart-content" id="cartContent">
+
+        <!-- =================================================
+             CART ITEMS
+        ================================================== -->
+
+        <div class="cart-items-section">
+
+            <div class="cart-items-header">
+
+                <div>
+
+                    <h2>Your Books</h2>
+
+                    <span id="itemCount">
+                        0 items
+                    </span>
+
+                </div>
+
+                <button
+                        type="button"
+                        class="clear-cart-btn"
+                        id="clearCartBtn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Clear Cart
+
+                </button>
+
+            </div>
+
+
+            <div id="cartItems"></div>
+
+
+            <!-- Continue Shopping -->
+
+            <div class="continue-shopping-wrapper">
+
+                <a href="/" class="continue-shopping">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Continue Shopping
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PRICE SUMMARY
+        ================================================== -->
+
+        <aside class="price-summary">
+
+            <h2>Price Details</h2>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Price
+                    (<span id="summaryItemCount">0</span> items)
+                </span>
+
+                <strong id="subtotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Discount</span>
+
+                <strong class="discount" id="discount">
+                    -₹0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Delivery</span>
+
+                <strong id="delivery">
+                    FREE
+                </strong>
+
+            </div>
+
+
+            <div class="free-delivery-message" id="freeDeliveryMessage">
+
+                <i class="fa-solid fa-truck"></i>
+
+                Free delivery on orders above ₹499
+
+            </div>
+
+
+            <div class="summary-divider"></div>
+
+
+            <div class="total-row">
+
+                <span>Total Amount</span>
+
+                <strong id="totalAmount">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <button
+                    type="button"
+                    class="checkout-btn"
+                    id="checkoutBtn">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Proceed to Checkout
+
+            </button>
+
+
+            <div class="secure-note">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+
+                    <strong>Safe & Secure Shopping</strong>
+
+                    <span>
+                        Your order information is protected.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div class="toast" id="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastMessage">
+        Cart updated
+    </span>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <a href="/" class="logo">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>
+                    Book<span class="logo-highlight">Nest</span>
+                </span>
+
+            </a>
+
+            <p>
+                Discover your next great read with BookNest.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>Quick Links</h3>
+
+            <a href="/">Home</a>
+
+            <a href="/">Books</a>
+
+            <a href="/cart">Cart</a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>Customer Service</h3>
+
+            <a href="#">Help Center</a>
+
+            <a href="#">Contact Us</a>
+
+            <a href="#">Shipping</a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>Follow Us</h3>
+
+            <div class="social-links">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="Twitter">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 BookNest. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const cartItemsContainer =
+        document.getElementById("cartItems");
+
+    const cartContent =
+        document.getElementById("cartContent");
+
+    const emptyCart =
+        document.getElementById("emptyCart");
+
+    const cartBadge =
+        document.getElementById("cartBadge");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+    const itemCount =
+        document.getElementById("itemCount");
+
+    const summaryItemCount =
+        document.getElementById("summaryItemCount");
+
+    const subtotalElement =
+        document.getElementById("subtotal");
+
+    const discountElement =
+        document.getElementById("discount");
+
+    const deliveryElement =
+        document.getElementById("delivery");
+
+    const totalAmountElement =
+        document.getElementById("totalAmount");
+
+    const cartSubtitle =
+        document.getElementById("cartSubtitle");
+
+    const toast =
+        document.getElementById("toast");
+
+    const toastMessage =
+        document.getElementById("toastMessage");
+
+
+    /* =====================================================
+       CART STORAGE
+    ====================================================== */
+
+    function getCart() {
+
+        try {
+
+            const storedCart =
+                localStorage.getItem("booknestCart");
+
+            if (!storedCart) {
+                return [];
+            }
+
+            const cart = JSON.parse(storedCart);
+
+            return Array.isArray(cart) ? cart : [];
+
+        } catch (error) {
+
+            console.error(
+                "Unable to read cart:",
+                error
+            );
+
+            return [];
+
+        }
+
+    }
+
+
+    function saveCart(cart) {
+
+        localStorage.setItem(
+            "booknestCart",
+            JSON.stringify(cart)
+        );
+
+        updateCartSummary(cart);
+
+    }
+
+
+    /* =====================================================
+       FORMAT PRICE
+    ====================================================== */
+
+    function formatPrice(price) {
+
+        return "₹" +
+            Number(price || 0).toLocaleString("en-IN");
+
+    }
+
+
+    /* =====================================================
+       CALCULATE CART
+    ====================================================== */
+
+    function calculateCart(cart) {
+
+        let subtotal = 0;
+
+        let originalTotal = 0;
+
+        let quantityTotal = 0;
+
+        cart.forEach(item => {
+
+            const quantity =
+                Number(item.quantity) || 0;
+
+            const price =
+                Number(item.price) || 0;
+
+            const originalPrice =
+                Number(item.originalPrice || item.price) || 0;
+
+            subtotal += price * quantity;
+
+            originalTotal +=
+                originalPrice * quantity;
+
+            quantityTotal += quantity;
+
+        });
+
+
+        const discount =
+            Math.max(0, originalTotal - subtotal);
+
+
+        let delivery = 0;
+
+        if (subtotal > 0 && subtotal < 499) {
+            delivery = 40;
+        }
+
+
+        const total =
+            subtotal + delivery;
+
+
+        return {
+            subtotal,
+            originalTotal,
+            discount,
+            delivery,
+            total,
+            quantityTotal
+        };
+
+    }
+
+
+    /* =====================================================
+       UPDATE NAVBAR CART
+    ====================================================== */
+
+    function updateCartSummary(cart = getCart()) {
+
+        const summary =
+            calculateCart(cart);
+
+
+        cartBadge.textContent =
+            summary.quantityTotal;
+
+
+        cartTotal.textContent =
+            formatPrice(summary.total);
+
+    }
+
+
+    /* =====================================================
+       RENDER CART
+    ====================================================== */
+
+    function renderCart() {
+
+        const cart = getCart();
+
+        if (cart.length === 0) {
+
+            cartContent.style.display = "none";
+
+            emptyCart.style.display = "flex";
+
+            cartSubtitle.textContent =
+                "Your shopping cart is currently empty.";
+
+            updateCartSummary([]);
+
+            return;
+
+        }
+
+
+        cartContent.style.display = "grid";
+
+        emptyCart.style.display = "none";
+
+
+        const summary =
+            calculateCart(cart);
+
+
+        /* ---------------------------------------------
+           Header
+        --------------------------------------------- */
+
+        cartSubtitle.textContent =
+            summary.quantityTotal === 1
+                ? "You have 1 book in your cart."
+                : `You have ${summary.quantityTotal} books in your cart.`;
+
+
+        itemCount.textContent =
+            summary.quantityTotal === 1
+                ? "1 item"
+                : `${summary.quantityTotal} items`;
+
+
+        summaryItemCount.textContent =
+            summary.quantityTotal;
+
+
+        /* ---------------------------------------------
+           Items
+        --------------------------------------------- */
+
+        cartItemsContainer.innerHTML = "";
+
+
+        cart.forEach((item, index) => {
+
+            const quantity =
+                Number(item.quantity) || 0;
+
+            const price =
+                Number(item.price) || 0;
+
+            const originalPrice =
+                Number(item.originalPrice || item.price) || 0;
+
+
+            const itemTotal =
+                price * quantity;
+
+
+            const itemDiscount =
+                Math.max(
+                    0,
+                    originalPrice - price
+                );
+
+
+            const cartItem =
+                document.createElement("div");
+
+            cartItem.className = "cart-item";
+
+
+            cartItem.innerHTML = `
+
+                <div class="cart-book-image">
+
+                    <img
+                        src="${item.image || 'https://via.placeholder.com/150x220?text=Book'}"
+                        alt="${escapeHTML(item.title || 'Book')}"
+                        onerror="this.src='https://via.placeholder.com/150x220?text=Book'">
+
+                </div>
+
+
+                <div class="cart-book-info">
+
+                    <span class="cart-book-category">
+                        ${escapeHTML(item.category || "Book")}
+                    </span>
+
+                    <h3>
+                        ${escapeHTML(item.title || "Untitled Book")}
+                    </h3>
+
+                    <p class="cart-author">
+                        by ${escapeHTML(item.author || "Unknown Author")}
+                    </p>
+
+
+                    <div class="cart-rating">
+
+                        <span class="rating-badge">
+
+                            ${item.rating || "4.5"}
+
+                            <i class="fa-solid fa-star"></i>
+
+                        </span>
+
+                        <span>
+                            Highly Rated
+                        </span>
+
+                    </div>
+
+
+                    <div class="cart-price">
+
+                        <strong>
+                            ${formatPrice(price)}
+                        </strong>
+
+                        ${
+                            originalPrice > price
+                            ?
+                            `<span class="original-price">
+                                ${formatPrice(originalPrice)}
+                            </span>`
+                            :
+                            ""
+                        }
+
+                        ${
+                            itemDiscount > 0
+                            ?
+                            `<span class="discount-percent">
+                                ${Math.round((itemDiscount / originalPrice) * 100)}% off
+                            </span>`
+                            :
+                            ""
+                        }
+
+                    </div>
+
+
+                    <div class="cart-actions">
+
+                        <div class="quantity-control">
+
+                            <button
+                                type="button"
+                                class="quantity-btn decrease-btn"
+                                data-index="${index}"
+                                ${quantity <= 1 ? "disabled" : ""}>
+
+                                <i class="fa-solid fa-minus"></i>
+
+                            </button>
+
+
+                            <span class="cart-quantity">
+                                ${quantity}
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="quantity-btn increase-btn"
+                                data-index="${index}"
+                                ${quantity >= 10 ? "disabled" : ""}>
+
+                                <i class="fa-solid fa-plus"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="remove-btn"
+                            data-index="${index}">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                            Remove
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="cart-item-total">
+
+                    <span>Item Total</span>
+
+                    <strong>
+                        ${formatPrice(itemTotal)}
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            cartItemsContainer.appendChild(cartItem);
+
+        });
+
+
+        /* ---------------------------------------------
+           Price Details
+        --------------------------------------------- */
+
+        subtotalElement.textContent =
+            formatPrice(summary.subtotal);
+
+
+        discountElement.textContent =
+            "-" + formatPrice(summary.discount);
+
+
+        if (summary.delivery === 0) {
+
+            deliveryElement.textContent =
+                "FREE";
+
+        } else {
+
+            deliveryElement.textContent =
+                formatPrice(summary.delivery);
+
+        }
+
+
+        totalAmountElement.textContent =
+            formatPrice(summary.total);
+
+
+        /* ---------------------------------------------
+           Delivery Message
+        --------------------------------------------- */
+
+        const freeDeliveryMessage =
+            document.getElementById(
+                "freeDeliveryMessage"
+            );
+
+
+        if (
+            summary.subtotal > 0 &&
+            summary.subtotal < 499
+        ) {
+
+            const remaining =
+                499 - summary.subtotal;
+
+            freeDeliveryMessage.innerHTML = `
+
+                <i class="fa-solid fa-truck"></i>
+
+                Add ${formatPrice(remaining)}
+                more to get FREE delivery
+
+            `;
+
+        } else {
+
+            freeDeliveryMessage.innerHTML = `
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                You qualify for FREE delivery!
+
+            `;
+
+        }
+
+
+        updateCartSummary(cart);
+
+    }
+
+
+    /* =====================================================
+       QUANTITY CHANGE
+    ====================================================== */
+
+    function changeQuantity(index, change) {
+
+        const cart = getCart();
+
+        if (!cart[index]) {
+            return;
+        }
+
+
+        let quantity =
+            Number(cart[index].quantity) || 0;
+
+
+        quantity += change;
+
+
+        /*
+         * Keep quantity between 1 and 10
+         * inside the cart.
+         */
+
+        quantity =
+            Math.max(
+                1,
+                Math.min(10, quantity)
+            );
+
+
+        cart[index].quantity =
+            quantity;
+
+
+        saveCart(cart);
+
+        renderCart();
+
+    }
+
+
+    /* =====================================================
+       REMOVE ITEM
+    ====================================================== */
+
+    function removeItem(index) {
+
+        const cart = getCart();
+
+        if (!cart[index]) {
+            return;
+        }
+
+
+        const removedBook =
+            cart[index].title || "Book";
+
+
+        cart.splice(index, 1);
+
+
+        saveCart(cart);
+
+        renderCart();
+
+
+        showToast(
+            `${removedBook} removed from cart`
+        );
+
+    }
+
+
+    /* =====================================================
+       CLEAR CART
+    ====================================================== */
+
+    function clearCart() {
+
+        const cart = getCart();
+
+        if (cart.length === 0) {
+            return;
+        }
+
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to remove all books from your cart?"
+            );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        localStorage.removeItem(
+            "booknestCart"
+        );
+
+
+        localStorage.setItem(
+            "booknestCartCount",
+            "0"
+        );
+
+
+        localStorage.setItem(
+            "booknestCartTotal",
+            "0"
+        );
+
+
+        renderCart();
+
+
+        showToast(
+            "Cart cleared successfully"
+        );
+
+    }
+
+
+    /* =====================================================
+       EVENT DELEGATION
+    ====================================================== */
+
+    cartItemsContainer.addEventListener(
+        "click",
+        function (event) {
+
+            const decreaseButton =
+                event.target.closest(
+                    ".decrease-btn"
+                );
+
+
+            const increaseButton =
+                event.target.closest(
+                    ".increase-btn"
+                );
+
+
+            const removeButton =
+                event.target.closest(
+                    ".remove-btn"
+                );
+
+
+            if (decreaseButton) {
+
+                const index =
+                    Number(
+                        decreaseButton.dataset.index
+                    );
+
+                changeQuantity(index, -1);
+
+                return;
+
+            }
+
+
+            if (increaseButton) {
+
+                const index =
+                    Number(
+                        increaseButton.dataset.index
+                    );
+
+                changeQuantity(index, 1);
+
+                return;
+
+            }
+
+
+            if (removeButton) {
+
+                const index =
+                    Number(
+                        removeButton.dataset.index
+                    );
+
+                removeItem(index);
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       CLEAR CART BUTTON
+    ====================================================== */
+
+    document
+        .getElementById("clearCartBtn")
+        .addEventListener(
+            "click",
+            clearCart
+        );
+
+
+    /* =====================================================
+       CHECKOUT
+    ====================================================== */
+
+    document
+        .getElementById("checkoutBtn")
+        .addEventListener(
+            "click",
+            function () {
+
+                const cart = getCart();
+
+                if (cart.length === 0) {
+
+                    showToast(
+                        "Your cart is empty"
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Checkout page will be created next.
+                 */
+
+                window.location.href =
+                    "/checkout";
+
+            }
+        );
+
+
+    /* =====================================================
+       HEADER CART
+    ====================================================== */
+
+    document
+        .getElementById("headerCart")
+        .addEventListener(
+            "click",
+            function () {
+
+                window.location.href =
+                    "/cart";
+
+            }
+        );
+
+
+    /* =====================================================
+       SEARCH
+    ====================================================== */
+
+    const searchInput =
+        document.getElementById("bookSearch");
+
+    const clearSearch =
+        document.getElementById("clearSearch");
+
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+
+            clearSearch.style.display =
+                this.value.trim()
+                    ? "flex"
+                    : "none";
+
+        }
+    );
+
+
+    clearSearch.addEventListener(
+        "click",
+        function () {
+
+            searchInput.value = "";
+
+            clearSearch.style.display =
+                "none";
+
+            searchInput.focus();
+
+        }
+    );
+
+
+    searchInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Enter" &&
+                this.value.trim()
+            ) {
+
+                window.location.href =
+                    "/book-details";
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ====================================================== */
+
+    function escapeHTML(value) {
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =====================================================
+       TOAST
+    ====================================================== */
+
+    let toastTimer;
+
+
+    function showToast(message) {
+
+        toastMessage.textContent =
+            message;
+
+
+        toast.classList.add("show");
+
+
+        clearTimeout(toastTimer);
+
+
+        toastTimer =
+            setTimeout(
+                function () {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                2500
+            );
+
+    }
+
+
+    /* =====================================================
+       INITIAL LOAD
+    ====================================================== */
+
+    renderCart();
+
+</script>
+
+</body>
+</html>

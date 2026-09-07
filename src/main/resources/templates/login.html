@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | BookNest</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Login CSS -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <!-- ================= LEFT SIDE ================= -->
+
+    <div class="login-left">
+
+        <!-- Brand -->
+        <div class="brand">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>
+                Book<span>Nest</span>
+            </span>
+
+        </div>
+
+
+        <!-- Left Content -->
+        <div class="left-content">
+
+            <span class="welcome-label">
+                WELCOME BACK
+            </span>
+
+            <h1>
+                Your next
+                <span>great story awaits.</span>
+            </h1>
+
+            <p>
+                Sign in to your BookNest account and continue
+                discovering books, ideas and stories that inspire you.
+            </p>
+
+        </div>
+
+
+        <!-- Decorative Books -->
+        <div class="decorative-books">
+
+            <div class="decor-book book-one"></div>
+
+            <div class="decor-book book-two"></div>
+
+            <div class="decor-book book-three"></div>
+
+        </div>
+
+
+        <!-- Decorative Circles -->
+        <div class="circle circle-one"></div>
+
+        <div class="circle circle-two"></div>
+
+    </div>
+
+
+    <!-- ================= RIGHT SIDE ================= -->
+
+    <div class="login-right">
+
+        <div class="login-box">
+
+
+            <!-- Mobile Logo -->
+            <div class="mobile-brand">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                Book<span>Nest</span>
+
+            </div>
+
+
+            <!-- Heading -->
+            <div class="form-heading">
+
+                <h2>
+                    Welcome Back
+                </h2>
+
+                <p>
+                    Login to your account to continue exploring BookNest.
+                </p>
+
+            </div>
+
+
+            <!-- ================= SUCCESS MESSAGE ================= -->
+
+            <div class="message success-message"
+                 th:if="${param.registered}">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Account created successfully.
+                You can now login.
+
+            </div>
+
+
+            <!-- ================= PASSWORD RESET SUCCESS ================= -->
+
+            <div class="message success-message"
+                 th:if="${param.reset}">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Password reset successfully.
+                You can now login.
+
+            </div>
+
+
+            <!-- ================= LOGOUT MESSAGE ================= -->
+
+            <div class="message success-message"
+                 th:if="${param.logout}">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                You have been logged out successfully.
+
+            </div>
+
+
+            <!-- ================= LOGIN ERROR ================= -->
+
+            <div class="message error-message"
+                 th:if="${message}"
+                 th:text="${message}">
+
+            </div>
+
+
+            <!-- ================= LOGIN FORM ================= -->
+
+            <form id="loginForm"
+                  th:action="@{/login}"
+                  method="post">
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <div class="password-label">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <a href="/forgot-password">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+
+                        <!-- PASSWORD TOGGLE -->
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                            aria-label="Show password">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REMEMBER ME -->
+
+                <div class="remember-row">
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                            name="remember">
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-btn">
+
+                    <span>
+                        Login
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+
+                <span>
+                    OR
+                </span>
+
+            </div>
+
+
+            <!-- REGISTER -->
+
+            <div class="register-link">
+
+                Don't have an account?
+
+                <a href="/register">
+                    Create Account
+                </a>
+
+            </div>
+
+
+            <!-- BACK HOME -->
+
+            <a href="/" class="back-home">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Home
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    function togglePassword() {
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const toggleButton =
+            document.querySelector(".password-toggle");
+
+        const icon =
+            toggleButton.querySelector("i");
+
+
+        if (passwordInput.type === "password") {
+
+            passwordInput.type = "text";
+
+            icon.classList.remove("fa-eye");
+
+            icon.classList.add("fa-eye-slash");
+
+            toggleButton.setAttribute(
+                "aria-label",
+                "Hide password"
+            );
+
+        } else {
+
+            passwordInput.type = "password";
+
+            icon.classList.remove("fa-eye-slash");
+
+            icon.classList.add("fa-eye");
+
+            toggleButton.setAttribute(
+                "aria-label",
+                "Show password"
+            );
+
+        }
+
+    }
+
+</script>
+
+</body>
+
+</html>

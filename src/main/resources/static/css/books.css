@@ -1,0 +1,1010 @@
+/* =========================================================
+   BOOKNEST - BOOKS PAGE
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background: #f5f8fc;
+
+    color: #172033;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    width: 100%;
+
+    height: 78px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    border-bottom: 1px solid #e7edf5;
+
+    transition: 0.3s ease;
+}
+
+
+.navbar.scrolled {
+    box-shadow:
+        0 8px 28px rgba(15, 23, 42, 0.09);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #1d4ed8;
+
+    font-size: 24px;
+
+    font-weight: 800;
+}
+
+
+.logo i {
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 34px;
+}
+
+
+.nav-links a {
+    position: relative;
+
+    color: #4b5563;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: 0.25s ease;
+}
+
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #2563eb;
+}
+
+
+.nav-links a.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: -9px;
+
+    height: 2px;
+
+    background: #2563eb;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   NAV ACTIONS
+========================================================= */
+
+.nav-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.search-icon {
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    background: #f1f5f9;
+
+    border-radius: 50%;
+
+    color: #334155;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.25s ease;
+}
+
+
+.search-icon:hover {
+    background: #dbeafe;
+
+    color: #2563eb;
+}
+
+
+.signin-btn {
+    text-decoration: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 11px 22px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.25s ease;
+}
+
+
+.signin-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(37, 99, 235, 0.22);
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.books-page {
+    width: 86%;
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 70px 0 90px;
+}
+
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
+
+.page-heading {
+    margin-bottom: 42px;
+}
+
+
+.small-heading {
+    display: inline-block;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+
+.page-heading h1 {
+    font-size: clamp(34px, 4vw, 48px);
+
+    line-height: 1.15;
+
+    color: #172033;
+
+    margin-bottom: 13px;
+}
+
+
+.page-heading p {
+    color: #64748b;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    max-width: 650px;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.books-toolbar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 28px;
+
+    margin-bottom: 22px;
+}
+
+
+.search-box,
+.category-box {
+    height: 52px;
+
+    background: #ffffff;
+
+    border: 1px solid #dfe7f1;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    transition: 0.25s ease;
+}
+
+
+.search-box {
+    flex: 1;
+
+    max-width: 620px;
+
+    padding: 0 18px;
+}
+
+
+.search-box:focus-within,
+.category-box:focus-within {
+    border-color: #93c5fd;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+
+.search-box i,
+.category-box i {
+    color: #94a3b8;
+
+    margin-right: 11px;
+}
+
+
+.search-box input {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #172033;
+
+    font-size: 14px;
+}
+
+
+.search-box input::placeholder {
+    color: #94a3b8;
+}
+
+
+.category-box {
+    padding: 0 15px;
+}
+
+
+.category-box select {
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    min-width: 170px;
+}
+
+
+/* =========================================================
+   BOOK COUNT
+========================================================= */
+
+.books-count {
+    color: #64748b;
+
+    font-size: 14px;
+
+    margin-bottom: 38px;
+
+    padding-left: 3px;
+}
+
+
+.books-count span {
+    color: #2563eb;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   BOOK GRID
+========================================================= */
+
+.books-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    /*
+       More space between individual book cards
+    */
+
+    column-gap: 42px;
+
+    row-gap: 52px;
+}
+
+
+/* =========================================================
+   INDIVIDUAL BOOK CARD
+========================================================= */
+
+.book-card-item {
+    position: relative;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    /*
+       Individual card border
+    */
+
+    border: 1px solid #dce5f0;
+
+    /*
+       Soft card background/shadow
+    */
+
+    box-shadow:
+        0 7px 22px rgba(15, 23, 42, 0.06);
+
+    opacity: 0;
+
+    transform: translateY(45px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.book-card-item.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   INDIVIDUAL CARD CORNER DESIGN
+========================================================= */
+
+.book-card-corner {
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 58px;
+
+    height: 58px;
+
+    border-top: 3px solid #60a5fa;
+
+    border-left: 3px solid #60a5fa;
+
+    border-top-left-radius: 18px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+.book-card-corner::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -3px;
+
+    left: -3px;
+
+    width: 18px;
+
+    height: 18px;
+
+    border-bottom: 3px solid #bfdbfe;
+
+    border-left: 3px solid #bfdbfe;
+
+    border-bottom-left-radius: 8px;
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.book-card-item:hover {
+    transform: translateY(-9px);
+
+    border-color: #bfdbfe;
+
+    box-shadow:
+        0 20px 45px rgba(15, 23, 42, 0.13);
+}
+
+
+/* =========================================================
+   BOOK COVER
+========================================================= */
+
+.book-cover {
+    height: 330px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #eef3f8;
+
+    border-bottom: 1px solid #e5ebf2;
+}
+
+
+.book-cover img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.book-card-item:hover
+.book-cover img {
+    transform: scale(1.055);
+}
+
+
+/* =========================================================
+   CATEGORY BADGE
+========================================================= */
+
+.category-badge {
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    color: #2563eb;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+    box-shadow:
+        0 5px 15px rgba(15, 23, 42, 0.14);
+}
+
+
+/* =========================================================
+   BOOK INFO
+========================================================= */
+
+.book-info {
+    padding: 21px;
+}
+
+
+.book-info h2 {
+    color: #172033;
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+    min-height: 51px;
+
+    margin-bottom: 7px;
+}
+
+
+.author {
+    color: #64748b;
+
+    font-size: 14px;
+
+    margin-bottom: 19px;
+}
+
+
+/* =========================================================
+   BOOK BOTTOM
+========================================================= */
+
+.book-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-top: 1px solid #edf1f5;
+
+    padding-top: 15px;
+}
+
+
+.rating {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.rating i {
+    color: #f59e0b;
+
+    font-size: 13px;
+}
+
+
+.price {
+    color: #2563eb;
+
+    font-size: 17px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   NO RESULTS
+========================================================= */
+
+.no-results {
+    display: none;
+
+    text-align: center;
+
+    padding: 80px 20px;
+}
+
+
+.no-results i {
+    font-size: 46px;
+
+    color: #94a3b8;
+
+    margin-bottom: 20px;
+}
+
+
+.no-results h2 {
+    color: #334155;
+
+    font-size: 24px;
+
+    margin-bottom: 8px;
+}
+
+
+.no-results p {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    background: #111827;
+
+    color: white;
+
+    margin-top: 20px;
+}
+
+
+.footer-content {
+    width: 86%;
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 60px 0 45px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1.5fr;
+
+    gap: 80px;
+}
+
+
+.footer-logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 23px;
+
+    font-weight: 800;
+
+    margin-bottom: 15px;
+}
+
+
+.footer-logo i {
+    color: #60a5fa;
+}
+
+
+.footer-brand p {
+    color: #9ca3af;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    max-width: 330px;
+}
+
+
+.footer-links {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 40px;
+}
+
+
+.footer-links h3 {
+    font-size: 15px;
+
+    margin-bottom: 18px;
+}
+
+
+.footer-links a {
+    display: block;
+
+    color: #9ca3af;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    margin-bottom: 11px;
+
+    transition: 0.25s ease;
+}
+
+
+.footer-links a:hover {
+    color: white;
+
+    transform: translateX(3px);
+}
+
+
+.footer-bottom {
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    text-align: center;
+
+    padding: 22px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .books-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        column-gap: 34px;
+
+        row-gap: 45px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 900px
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+
+    .nav-links {
+        display: none;
+    }
+
+
+    .books-page {
+        width: 90%;
+    }
+
+
+    .footer-content {
+        width: 90%;
+
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 800px
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .books-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        column-gap: 30px;
+
+        row-gap: 40px;
+    }
+
+
+    .books-toolbar {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .search-box {
+        max-width: none;
+    }
+
+
+    .category-box {
+        width: 100%;
+    }
+
+
+    .category-box select {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 520px
+========================================================= */
+
+@media (max-width: 520px) {
+
+    .navbar {
+        height: 70px;
+
+        padding: 0 5%;
+    }
+
+
+    .logo {
+        font-size: 21px;
+    }
+
+
+    .nav-actions {
+        gap: 9px;
+    }
+
+
+    .signin-btn {
+        padding: 9px 14px;
+
+        font-size: 12px;
+    }
+
+
+    .search-icon {
+        width: 36px;
+
+        height: 36px;
+    }
+
+
+    .books-page {
+        width: 90%;
+
+        padding-top: 45px;
+    }
+
+
+    .page-heading h1 {
+        font-size: 32px;
+    }
+
+
+    .books-grid {
+        grid-template-columns: 1fr;
+
+        row-gap: 35px;
+    }
+
+
+    .book-cover {
+        height: 390px;
+    }
+
+
+    .footer-links {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 380px
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+
+
+    .book-cover {
+        height: 350px;
+    }
+
+}

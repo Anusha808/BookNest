@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | BookNest</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Admin Login CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/admin-login.css}">
+
+</head>
+
+
+<body>
+
+
+<div class="admin-login-page">
+
+
+    <!-- =================================================
+         LEFT SIDE
+         ================================================= -->
+
+    <div class="admin-left">
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>
+                Book<span>Nest</span>
+            </span>
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="admin-left-content">
+
+            <span class="admin-label">
+                ADMIN PORTAL
+            </span>
+
+
+            <h1>
+
+                Manage your
+
+                <span>
+                    bookstore with ease.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Access the BookNest administration panel
+                to manage books, users, orders and payments
+                from one secure place.
+
+            </p>
+
+
+            <!-- ADMIN FEATURES -->
+
+            <div class="admin-features">
+
+                <div class="feature">
+
+                    <i class="fa-solid fa-book"></i>
+
+                    <span>
+                        Manage Books
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>
+                        Manage Users
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <i class="fa-solid fa-box"></i>
+
+                    <span>
+                        Manage Orders
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DECORATIVE ELEMENTS -->
+
+        <div class="decor-book admin-book-one"></div>
+
+        <div class="decor-book admin-book-two"></div>
+
+        <div class="admin-circle admin-circle-one"></div>
+
+        <div class="admin-circle admin-circle-two"></div>
+
+    </div>
+
+
+    <!-- =================================================
+         RIGHT SIDE
+         ================================================= -->
+
+    <div class="admin-right">
+
+        <div class="admin-login-box">
+
+
+            <!-- MOBILE BRAND -->
+
+            <div class="mobile-brand">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                Book<span>Nest</span>
+
+            </div>
+
+
+            <!-- ADMIN ICON -->
+
+            <div class="admin-icon">
+
+                <i class="fa-solid fa-user-shield"></i>
+
+            </div>
+
+
+            <!-- HEADING -->
+
+            <div class="form-heading">
+
+                <span>
+                    SECURE ACCESS
+                </span>
+
+                <h2>
+                    Admin Login
+                </h2>
+
+                <p>
+                    Sign in to access the BookNest
+                    administration dashboard.
+                </p>
+
+            </div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form id="adminLoginForm">
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="adminEmail">
+                        Admin Email
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="adminEmail"
+                            name="email"
+                            placeholder="Enter admin email"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <div class="password-label">
+
+                        <label for="adminPassword">
+                            Password
+                        </label>
+
+                    </div>
+
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="adminPassword"
+                            name="password"
+                            placeholder="Enter admin password"
+                            required>
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="toggleAdminPassword()"
+                            aria-label="Show password">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="admin-login-btn">
+
+                    <span>
+                        Login to Dashboard
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+            <!-- SECURITY NOTE -->
+
+            <div class="security-note">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Secure administrator access
+                </span>
+
+            </div>
+
+
+            <!-- BACK TO HOME -->
+
+            <a href="/"
+               class="back-home">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to BookNest
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     JAVASCRIPT
+     ================================================= -->
+
+<script>
+
+
+/* =================================================
+   SHOW / HIDE PASSWORD
+   ================================================= */
+
+function toggleAdminPassword() {
+
+    const password =
+        document.getElementById("adminPassword");
+
+    const button =
+        document.querySelector(".password-toggle");
+
+    const icon =
+        button.querySelector("i");
+
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        icon.classList.remove("fa-eye");
+
+        icon.classList.add("fa-eye-slash");
+
+        button.setAttribute(
+            "aria-label",
+            "Hide password"
+        );
+
+    } else {
+
+        password.type = "password";
+
+        icon.classList.remove("fa-eye-slash");
+
+        icon.classList.add("fa-eye");
+
+        button.setAttribute(
+            "aria-label",
+            "Show password"
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   FORM SUBMISSION
+   ================================================= */
+
+document
+    .getElementById("adminLoginForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById("adminEmail").value.trim();
+
+
+        const password =
+            document.getElementById("adminPassword").value.trim();
+
+
+        if (email === "" || password === "") {
+
+            alert(
+                "Please enter admin email and password."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "Admin login form submitted successfully!"
+        );
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Books | BookNest</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/books.css}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <i class="fa-solid fa-book-open"></i>
+        <span>BookNest</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/books" class="active">
+            Books
+        </a>
+
+        <a href="/#categories">
+            Categories
+        </a>
+
+        <a href="/#about">
+            About
+        </a>
+
+    </div>
+
+    <div class="nav-actions">
+
+        <button class="search-icon"
+                id="searchIcon"
+                aria-label="Search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+        </button>
+
+        <a href="/login" class="signin-btn">
+            Sign In
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="books-page">
+
+
+    <!-- ================= PAGE HEADING ================= -->
+
+    <section class="page-heading">
+
+        <span class="small-heading">
+            BOOK COLLECTION
+        </span>
+
+        <h1>
+            Explore Our Books
+        </h1>
+
+        <p>
+            Discover stories, ideas and knowledge from our
+            carefully selected collection.
+        </p>
+
+    </section>
+
+
+    <!-- ================= TOOLBAR ================= -->
+
+    <section class="books-toolbar">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                    type="text"
+                    id="bookSearch"
+                    placeholder="Search by title or author..."
+                    autocomplete="off">
+
+        </div>
+
+
+        <div class="category-box">
+
+            <i class="fa-solid fa-filter"></i>
+
+            <select id="categoryFilter">
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="fiction">
+                    Fiction
+                </option>
+
+                <option value="self-help">
+                    Self Help
+                </option>
+
+                <option value="classics">
+                    Classics
+                </option>
+
+                <option value="productivity">
+                    Productivity
+                </option>
+
+                <option value="business">
+                    Business
+                </option>
+
+                <option value="science">
+                    Science
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BOOK COUNT ================= -->
+
+    <div class="books-count">
+
+        <span id="bookCount">12</span>
+        books available
+
+    </div>
+
+
+    <!-- =====================================================
+         BOOK GRID
+    ====================================================== -->
+
+    <section class="books-grid" id="booksGrid">
+
+
+        <!-- ================= BOOK 1 ================= -->
+
+        <article class="book-card-item"
+                 data-title="The Alchemist"
+                 data-author="Paulo Coelho"
+                 data-category="fiction">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9780062315007-L.jpg"
+                        alt="The Alchemist"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Fiction
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    The Alchemist
+                </h2>
+
+                <p class="author">
+                    Paulo Coelho
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.8</span>
+                    </div>
+
+                    <span class="price">
+                        ₹399
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 2 ================= -->
+
+        <article class="book-card-item"
+                 data-title="Atomic Habits"
+                 data-author="James Clear"
+                 data-category="self-help">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg"
+                        alt="Atomic Habits"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Self Help
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    Atomic Habits
+                </h2>
+
+                <p class="author">
+                    James Clear
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.9</span>
+                    </div>
+
+                    <span class="price">
+                        ₹499
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 3 ================= -->
+
+        <article class="book-card-item"
+                 data-title="The Great Gatsby"
+                 data-author="F. Scott Fitzgerald"
+                 data-category="classics">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg"
+                        alt="The Great Gatsby"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Classics
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    The Great Gatsby
+                </h2>
+
+                <p class="author">
+                    F. Scott Fitzgerald
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.6</span>
+                    </div>
+
+                    <span class="price">
+                        ₹299
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 4 ================= -->
+
+        <article class="book-card-item"
+                 data-title="Deep Work"
+                 data-author="Cal Newport"
+                 data-category="productivity">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg"
+                        alt="Deep Work"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Productivity
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    Deep Work
+                </h2>
+
+                <p class="author">
+                    Cal Newport
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.7</span>
+                    </div>
+
+                    <span class="price">
+                        ₹449
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 5 ================= -->
+
+        <article class="book-card-item"
+                 data-title="Ikigai"
+                 data-author="Hector Garcia"
+                 data-category="self-help">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9780143130727-L.jpg"
+                        alt="Ikigai"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Self Help
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    Ikigai
+                </h2>
+
+                <p class="author">
+                    Hector Garcia
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.7</span>
+                    </div>
+
+                    <span class="price">
+                        ₹349
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 6 ================= -->
+
+        <article class="book-card-item"
+                 data-title="Rich Dad Poor Dad"
+                 data-author="Robert Kiyosaki"
+                 data-category="business">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9781612680194-L.jpg"
+                        alt="Rich Dad Poor Dad"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Business
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    Rich Dad Poor Dad
+                </h2>
+
+                <p class="author">
+                    Robert Kiyosaki
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.6</span>
+                    </div>
+
+                    <span class="price">
+                        ₹399
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 7 ================= -->
+
+        <article class="book-card-item"
+                 data-title="Sapiens"
+                 data-author="Yuval Noah Harari"
+                 data-category="science">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg"
+                        alt="Sapiens"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Science
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    Sapiens
+                </h2>
+
+                <p class="author">
+                    Yuval Noah Harari
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.8</span>
+                    </div>
+
+                    <span class="price">
+                        ₹599
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 8 ================= -->
+
+        <article class="book-card-item"
+                 data-title="The Psychology of Money"
+                 data-author="Morgan Housel"
+                 data-category="business">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg"
+                        alt="The Psychology of Money"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Business
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    The Psychology of Money
+                </h2>
+
+                <p class="author">
+                    Morgan Housel
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.8</span>
+                    </div>
+
+                    <span class="price">
+                        ₹449
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 9 ================= -->
+
+        <article class="book-card-item"
+                 data-title="Think and Grow Rich"
+                 data-author="Napoleon Hill"
+                 data-category="self-help">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9781585424337-L.jpg"
+                        alt="Think and Grow Rich"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Self Help
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    Think and Grow Rich
+                </h2>
+
+                <p class="author">
+                    Napoleon Hill
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.6</span>
+                    </div>
+
+                    <span class="price">
+                        ₹299
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 10 ================= -->
+
+        <article class="book-card-item"
+                 data-title="The 7 Habits of Highly Effective People"
+                 data-author="Stephen Covey"
+                 data-category="productivity">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9781982137274-L.jpg"
+                        alt="The 7 Habits of Highly Effective People"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Productivity
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    The 7 Habits of Highly Effective People
+                </h2>
+
+                <p class="author">
+                    Stephen Covey
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.7</span>
+                    </div>
+
+                    <span class="price">
+                        ₹499
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 11 ================= -->
+
+        <article class="book-card-item"
+                 data-title="The Hobbit"
+                 data-author="J.R.R. Tolkien"
+                 data-category="fiction">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg"
+                        alt="The Hobbit"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Fiction
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    The Hobbit
+                </h2>
+
+                <p class="author">
+                    J.R.R. Tolkien
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.9</span>
+                    </div>
+
+                    <span class="price">
+                        ₹399
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= BOOK 12 ================= -->
+
+        <article class="book-card-item"
+                 data-title="The Power of Now"
+                 data-author="Eckhart Tolle"
+                 data-category="self-help">
+
+            <div class="book-card-corner"></div>
+
+            <div class="book-cover">
+
+                <img
+                        src="https://covers.openlibrary.org/b/isbn/9781577314806-L.jpg"
+                        alt="The Power of Now"
+                        loading="lazy">
+
+                <span class="category-badge">
+                    Self Help
+                </span>
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>
+                    The Power of Now
+                </h2>
+
+                <p class="author">
+                    Eckhart Tolle
+                </p>
+
+                <div class="book-bottom">
+
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.7</span>
+                    </div>
+
+                    <span class="price">
+                        ₹449
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- ================= NO RESULTS ================= -->
+
+    <div class="no-results" id="noResults">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <h2>
+            No books found
+        </h2>
+
+        <p>
+            Try searching for another title,
+            author or category.
+        </p>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                BookNest
+
+            </div>
+
+            <p>
+                Your destination for discovering great books
+                and unforgettable stories.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <div>
+
+                <h3>Quick Links</h3>
+
+                <a href="/">Home</a>
+
+                <a href="/books">Books</a>
+
+                <a href="/#categories">Categories</a>
+
+                <a href="/#about">About</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>Account</h3>
+
+                <a href="/login">Sign In</a>
+
+                <a href="/register">Register</a>
+
+                <a href="/orders">My Orders</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>Support</h3>
+
+                <a href="/contact">Contact</a>
+
+                <a href="/faq">FAQ</a>
+
+                <a href="/privacy">Privacy</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 BookNest. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    const searchInput =
+        document.getElementById("bookSearch");
+
+    const categoryFilter =
+        document.getElementById("categoryFilter");
+
+    const books =
+        document.querySelectorAll(".book-card-item");
+
+    const noResults =
+        document.getElementById("noResults");
+
+    const bookCount =
+        document.getElementById("bookCount");
+
+
+    /* ================= FILTER ================= */
+
+    function filterBooks() {
+
+        const searchValue =
+            searchInput.value.toLowerCase().trim();
+
+        const categoryValue =
+            categoryFilter.value;
+
+        let visibleBooks = 0;
+
+
+        books.forEach(book => {
+
+            const title =
+                book.dataset.title.toLowerCase();
+
+            const author =
+                book.dataset.author.toLowerCase();
+
+            const category =
+                book.dataset.category;
+
+
+            const matchesSearch =
+                title.includes(searchValue) ||
+                author.includes(searchValue);
+
+
+            const matchesCategory =
+                categoryValue === "all" ||
+                category === categoryValue;
+
+
+            if (matchesSearch && matchesCategory) {
+
+                book.style.display = "block";
+
+                visibleBooks++;
+
+                setTimeout(() => {
+
+                    book.classList.add("show");
+
+                }, 20);
+
+            } else {
+
+                book.style.display = "none";
+
+                book.classList.remove("show");
+
+            }
+
+        });
+
+
+        bookCount.textContent =
+            visibleBooks;
+
+
+        if (visibleBooks === 0) {
+
+            noResults.style.display = "block";
+
+        } else {
+
+            noResults.style.display = "none";
+
+        }
+
+    }
+
+
+    searchInput.addEventListener(
+        "input",
+        filterBooks
+    );
+
+
+    categoryFilter.addEventListener(
+        "change",
+        filterBooks
+    );
+
+
+    /* ================= SCROLL REVEAL ================= */
+
+    const observer =
+        new IntersectionObserver(
+
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12
+            }
+
+        );
+
+
+    books.forEach(book => {
+
+        observer.observe(book);
+
+    });
+
+
+    /* ================= NAVBAR ================= */
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            const navbar =
+                document.querySelector(".navbar");
+
+
+            if (window.scrollY > 20) {
+
+                navbar.classList.add("scrolled");
+
+            } else {
+
+                navbar.classList.remove("scrolled");
+
+            }
+
+        }
+    );
+
+
+    /* ================= SEARCH BUTTON ================= */
+
+    document
+        .getElementById("searchIcon")
+        .addEventListener(
+            "click",
+            () => {
+
+                searchInput.focus();
+
+                window.scrollTo({
+
+                    top: 150,
+
+                    behavior: "smooth"
+
+                });
+
+            }
+        );
+
+</script>
+
+</body>
+</html>

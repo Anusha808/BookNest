@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Books | BookNest Admin</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/admin-books.css}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-top">
+
+            <div class="admin-logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div>
+                    <h2>BookNest</h2>
+                    <span>Admin Portal</span>
+                </div>
+
+            </div>
+
+            <button class="close-sidebar" id="closeSidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MAIN MENU</p>
+
+            <a href="/admin/dashboard" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="/admin/books" class="nav-link active">
+                <i class="fa-solid fa-book"></i>
+                <span>Books</span>
+            </a>
+
+            <a href="/admin/categories" class="nav-link">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Categories</span>
+            </a>
+
+            <a href="/admin/users" class="nav-link">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="/admin/orders" class="nav-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Orders</span>
+            </a>
+
+            <a href="/admin/payments" class="nav-link">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Payments</span>
+            </a>
+
+            <a href="/admin/inventory" class="nav-link">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>Inventory</span>
+            </a>
+
+
+            <p class="nav-title second-title">SYSTEM</p>
+
+            <a href="/admin/notifications" class="nav-link">
+                <i class="fa-regular fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+
+            <a href="/admin/settings" class="nav-link">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+            <a href="/" class="nav-link">
+                <i class="fa-solid fa-store"></i>
+                <span>View Store</span>
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-mini-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+                <div class="profile-info">
+                    <strong>Administrator</strong>
+                    <span>admin@booknest.com</span>
+                </div>
+
+            </div>
+
+            <a href="/admin/login" class="logout-link">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-button" id="openSidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h1>Books</h1>
+                    <p>Manage your bookstore collection.</p>
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="notification-button">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <div class="top-profile">
+
+                    <div class="top-avatar">
+                        A
+                    </div>
+
+                    <div class="top-profile-info">
+
+                        <strong>Administrator</strong>
+
+                        <span>Admin</span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <section class="books-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-label">
+                        BOOK MANAGEMENT
+                    </span>
+
+                    <h2>All Books</h2>
+
+                    <p>
+                        Add, edit and manage books available in your bookstore.
+                    </p>
+
+                </div>
+
+
+                <a href="/admin/books/add" class="add-book-btn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add New Book
+
+                </a>
+
+            </div>
+
+
+            <!-- ================= STAT BOXES ================= -->
+
+            <div class="book-stats">
+
+
+                <div class="small-stat">
+
+                    <div class="small-stat-icon blue">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <div>
+                        <span>Total Books</span>
+                        <strong>1,248</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="small-stat">
+
+                    <div class="small-stat-icon green">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+                        <span>In Stock</span>
+                        <strong>1,102</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="small-stat">
+
+                    <div class="small-stat-icon orange">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <div>
+                        <span>Low Stock</span>
+                        <strong>86</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="small-stat">
+
+                    <div class="small-stat-icon red">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+
+                    <div>
+                        <span>Out of Stock</span>
+                        <strong>60</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= BOOK MANAGEMENT CARD ================= -->
+
+            <div class="books-card">
+
+
+                <!-- FILTER BAR -->
+
+                <div class="filter-bar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                                type="text"
+                                id="bookSearch"
+                                placeholder="Search books, authors or ISBN...">
+
+                    </div>
+
+
+                    <select class="category-filter">
+
+                        <option value="">All Categories</option>
+                        <option>Fiction</option>
+                        <option>Technology</option>
+                        <option>Business</option>
+                        <option>Self Help</option>
+                        <option>Science</option>
+                        <option>Fantasy</option>
+
+                    </select>
+
+
+                    <select class="stock-filter">
+
+                        <option value="">All Stock</option>
+                        <option>In Stock</option>
+                        <option>Low Stock</option>
+                        <option>Out of Stock</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TABLE -->
+
+                <div class="table-wrapper">
+
+                    <table id="booksTable">
+
+                        <thead>
+
+                        <tr>
+
+                            <th>BOOK</th>
+
+                            <th>AUTHOR</th>
+
+                            <th>CATEGORY</th>
+
+                            <th>PRICE</th>
+
+                            <th>STOCK</th>
+
+                            <th>STATUS</th>
+
+                            <th>ACTIONS</th>
+
+                        </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                        <!-- BOOK 1 -->
+
+                        <tr>
+
+                            <td>
+
+                                <div class="book-info">
+
+                                    <div class="book-cover cover-one">
+                                        <i class="fa-solid fa-book"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>Atomic Habits</strong>
+
+                                        <span>ISBN: 9780735211292</span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                James Clear
+                            </td>
+
+
+                            <td>
+                                <span class="category-tag">
+                                    Self Help
+                                </span>
+                            </td>
+
+
+                            <td>
+                                ₹599
+                            </td>
+
+
+                            <td>
+                                42
+                            </td>
+
+
+                            <td>
+
+                                <span class="stock-status in-stock">
+                                    In Stock
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <a href="#" class="edit-btn">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+
+                                    <button class="delete-btn"
+                                            onclick="deleteBook('Atomic Habits')">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BOOK 2 -->
+
+                        <tr>
+
+                            <td>
+
+                                <div class="book-info">
+
+                                    <div class="book-cover cover-two">
+                                        <i class="fa-solid fa-book"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>The Psychology of Money</strong>
+
+                                        <span>ISBN: 9780857197689</span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Morgan Housel
+                            </td>
+
+
+                            <td>
+                                <span class="category-tag">
+                                    Business
+                                </span>
+                            </td>
+
+
+                            <td>
+                                ₹499
+                            </td>
+
+
+                            <td>
+                                27
+                            </td>
+
+
+                            <td>
+
+                                <span class="stock-status in-stock">
+                                    In Stock
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <a href="#" class="edit-btn">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+
+                                    <button class="delete-btn"
+                                            onclick="deleteBook('The Psychology of Money')">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BOOK 3 -->
+
+                        <tr>
+
+                            <td>
+
+                                <div class="book-info">
+
+                                    <div class="book-cover cover-three">
+                                        <i class="fa-solid fa-book"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>Clean Code</strong>
+
+                                        <span>ISBN: 9780132350884</span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Robert C. Martin
+                            </td>
+
+
+                            <td>
+                                <span class="category-tag">
+                                    Technology
+                                </span>
+                            </td>
+
+
+                            <td>
+                                ₹799
+                            </td>
+
+
+                            <td>
+                                9
+                            </td>
+
+
+                            <td>
+
+                                <span class="stock-status low-stock">
+                                    Low Stock
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <a href="#" class="edit-btn">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+
+                                    <button class="delete-btn"
+                                            onclick="deleteBook('Clean Code')">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BOOK 4 -->
+
+                        <tr>
+
+                            <td>
+
+                                <div class="book-info">
+
+                                    <div class="book-cover cover-four">
+                                        <i class="fa-solid fa-book"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>The Alchemist</strong>
+
+                                        <span>ISBN: 9780062315007</span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Paulo Coelho
+                            </td>
+
+
+                            <td>
+                                <span class="category-tag">
+                                    Fiction
+                                </span>
+                            </td>
+
+
+                            <td>
+                                ₹399
+                            </td>
+
+
+                            <td>
+                                56
+                            </td>
+
+
+                            <td>
+
+                                <span class="stock-status in-stock">
+                                    In Stock
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <a href="#" class="edit-btn">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+
+                                    <button class="delete-btn"
+                                            onclick="deleteBook('The Alchemist')">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BOOK 5 -->
+
+                        <tr>
+
+                            <td>
+
+                                <div class="book-info">
+
+                                    <div class="book-cover cover-five">
+                                        <i class="fa-solid fa-book"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>Rich Dad Poor Dad</strong>
+
+                                        <span>ISBN: 9781612680194</span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Robert Kiyosaki
+                            </td>
+
+
+                            <td>
+                                <span class="category-tag">
+                                    Business
+                                </span>
+                            </td>
+
+
+                            <td>
+                                ₹450
+                            </td>
+
+
+                            <td>
+                                4
+                            </td>
+
+
+                            <td>
+
+                                <span class="stock-status low-stock">
+                                    Low Stock
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <a href="#" class="edit-btn">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+
+                                    <button class="delete-btn"
+                                            onclick="deleteBook('Rich Dad Poor Dad')">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BOOK 6 -->
+
+                        <tr>
+
+                            <td>
+
+                                <div class="book-info">
+
+                                    <div class="book-cover cover-six">
+                                        <i class="fa-solid fa-book"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong>Introduction to Algorithms</strong>
+
+                                        <span>ISBN: 9780262046305</span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Thomas H. Cormen
+                            </td>
+
+
+                            <td>
+                                <span class="category-tag">
+                                    Technology
+                                </span>
+                            </td>
+
+
+                            <td>
+                                ₹1,199
+                            </td>
+
+
+                            <td>
+                                0
+                            </td>
+
+
+                            <td>
+
+                                <span class="stock-status out-stock">
+                                    Out of Stock
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <a href="#" class="edit-btn">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+
+                                    <button class="delete-btn"
+                                            onclick="deleteBook('Introduction to Algorithms')">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- PAGINATION -->
+
+                <div class="pagination">
+
+                    <span>
+                        Showing <strong>1–6</strong> of <strong>1,248</strong> books
+                    </span>
+
+                    <div class="pagination-buttons">
+
+                        <button class="page-arrow">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <button class="page-number active-page">
+                            1
+                        </button>
+
+                        <button class="page-number">
+                            2
+                        </button>
+
+                        <button class="page-number">
+                            3
+                        </button>
+
+                        <span>...</span>
+
+                        <button class="page-number">
+                            208
+                        </button>
+
+                        <button class="page-arrow">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    /* Sidebar */
+
+    const sidebar = document.getElementById("sidebar");
+
+    const openSidebar = document.getElementById("openSidebar");
+
+    const closeSidebar = document.getElementById("closeSidebar");
+
+
+    openSidebar.addEventListener("click", function () {
+        sidebar.classList.add("show");
+    });
+
+
+    closeSidebar.addEventListener("click", function () {
+        sidebar.classList.remove("show");
+    });
+
+
+    /* Search */
+
+    const searchInput = document.getElementById("bookSearch");
+
+    const rows = document.querySelectorAll("#booksTable tbody tr");
+
+
+    searchInput.addEventListener("input", function () {
+
+        const searchValue = this.value.toLowerCase();
+
+        rows.forEach(function (row) {
+
+            const text = row.innerText.toLowerCase();
+
+            if (text.includes(searchValue)) {
+
+                row.style.display = "";
+
+            } else {
+
+                row.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+
+    /* Delete */
+
+    function deleteBook(bookName) {
+
+        const confirmDelete =
+            confirm("Are you sure you want to delete \"" + bookName + "\"?");
+
+        if (confirmDelete) {
+
+            alert(bookName + " deleted successfully.");
+
+        }
+
+    }
+
+</script>
+
+</body>
+
+</html>

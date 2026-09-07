@@ -1,0 +1,661 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-page {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 18px;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    color: #2563eb;
+
+    padding: 0 12px;
+}
+
+.logo i {
+    font-size: 27px;
+}
+
+.logo span span {
+    color: #111827;
+}
+
+
+/* NAVIGATION */
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-top: 45px;
+}
+
+.sidebar-nav a,
+.sidebar-bottom a {
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    color: #6b7280;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+}
+
+.sidebar-nav a i,
+.sidebar-bottom a i {
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-nav a:hover,
+.sidebar-bottom a:hover {
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+.sidebar-nav a.active {
+
+    background: #2563eb;
+
+    color: #ffffff;
+}
+
+
+/* SIDEBAR BOTTOM */
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    border-top: 1px solid #e5e7eb;
+
+    padding-top: 15px;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    padding: 35px 45px;
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.topbar h1 {
+
+    font-size: 28px;
+
+    color: #111827;
+
+    margin-bottom: 6px;
+}
+
+.topbar p {
+
+    color: #6b7280;
+
+    font-size: 15px;
+}
+
+.user-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.notification {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #6b7280;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-avatar {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================
+   WELCOME CARD
+========================= */
+
+.welcome-card {
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    color: #ffffff;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    margin-bottom: 30px;
+}
+
+.welcome-card span {
+
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+    opacity: 0.85;
+}
+
+.welcome-card h2 {
+
+    font-size: 30px;
+
+    margin: 10px 0;
+}
+
+.welcome-card p {
+
+    font-size: 15px;
+
+    opacity: 0.9;
+
+    max-width: 500px;
+
+    line-height: 1.6;
+}
+
+.browse-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 20px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    font-size: 14px;
+}
+
+.welcome-icon {
+
+    font-size: 90px;
+
+    opacity: 0.2;
+
+    margin-right: 30px;
+}
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 35px;
+}
+
+.stat-card {
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    border: 1px solid #eef0f4;
+}
+
+.stat-icon {
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+.stat-card span {
+
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+.stat-card strong {
+
+    font-size: 22px;
+
+    color: #111827;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+
+    margin-bottom: 35px;
+}
+
+.section-heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+
+    font-size: 20px;
+
+    color: #111827;
+}
+
+.section-heading a {
+
+    color: #2563eb;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick-actions {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.action-card {
+
+    background: #ffffff;
+
+    border: 1px solid #eef0f4;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    transition: 0.2s;
+}
+
+.action-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.07);
+}
+
+.action-card > i {
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.action-card h3 {
+
+    font-size: 15px;
+
+    color: #111827;
+
+    margin-bottom: 5px;
+}
+
+.action-card p {
+
+    font-size: 12px;
+
+    color: #6b7280;
+}
+
+
+/* =========================
+   EXPLORE CARD
+========================= */
+
+.explore-card {
+
+    background: #ffffff;
+
+    border: 1px solid #eef0f4;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.explore-icon {
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+.explore-card h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 7px;
+}
+
+.explore-card p {
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.explore-card > a {
+
+    margin-left: auto;
+
+    color: #2563eb;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .stats,
+    .quick-actions {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .sidebar {
+
+        width: 70px;
+
+        padding: 20px 10px;
+    }
+
+    .logo span,
+    .sidebar-nav span,
+    .sidebar-bottom span {
+
+        display: none;
+    }
+
+    .logo {
+
+        justify-content: center;
+
+        padding: 0;
+    }
+
+    .sidebar-nav a,
+    .sidebar-bottom a {
+
+        justify-content: center;
+    }
+
+    .main-content {
+
+        margin-left: 70px;
+
+        width: calc(100% - 70px);
+
+        padding: 25px 20px;
+    }
+
+    .welcome-card {
+
+        padding: 25px;
+    }
+
+    .welcome-icon {
+
+        display: none;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .stats,
+    .quick-actions {
+
+        grid-template-columns: 1fr;
+    }
+
+    .topbar h1 {
+
+        font-size: 22px;
+    }
+
+    .welcome-card h2 {
+
+        font-size: 24px;
+    }
+
+}
