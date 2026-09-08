@@ -1,0 +1,989 @@
+/* =====================================================
+   BOOKNEST CHECKOUT PAGE
+===================================================== */
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    height: 72px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header > div:first-child a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #2563eb;
+    font-size: 22px;
+}
+
+header > div:first-child i {
+    font-size: 27px;
+}
+
+header > div:last-child span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #16a34a;
+    background: #f0fdf4;
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 35px 0 60px;
+}
+
+
+/* =====================================================
+   BACK TO CART
+===================================================== */
+
+main > div:first-child {
+    margin-bottom: 22px;
+}
+
+main > div:first-child a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #2563eb;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+main > div:first-child a:hover {
+    color: #1d4ed8;
+    transform: translateX(-3px);
+}
+
+
+/* =====================================================
+   PAGE HEADING
+===================================================== */
+
+main > section:first-of-type {
+    margin-bottom: 28px;
+}
+
+main > section:first-of-type h1 {
+    font-size: 34px;
+    color: #111827;
+
+    margin-bottom: 5px;
+}
+
+main > section:first-of-type p {
+    color: #6b7280;
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   CHECKOUT STEPS
+===================================================== */
+
+main > section:nth-of-type(2) {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    padding: 20px 25px;
+    margin-bottom: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+main > section:nth-of-type(2) > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+main > section:nth-of-type(2) > div:nth-child(even) {
+    color: #d1d5db;
+    font-size: 18px;
+}
+
+main > section:nth-of-type(2) span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+main > section:nth-of-type(2) strong {
+    font-size: 13px;
+    color: #374151;
+}
+
+
+/* =====================================================
+   CHECKOUT CONTENT
+===================================================== */
+
+main > section:nth-of-type(3) {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) 380px;
+
+    gap: 30px;
+
+    align-items: start;
+}
+
+
+/* =====================================================
+   CUSTOMER INFORMATION CARD
+===================================================== */
+
+main > section:nth-of-type(3) > div {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+
+    padding: 30px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+main > section:nth-of-type(3) > div > h2 {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 21px;
+
+    color: #111827;
+
+    margin-bottom: 5px;
+}
+
+main > section:nth-of-type(3) > div > h2 i {
+    color: #2563eb;
+}
+
+main > section:nth-of-type(3) > div > p {
+    color: #6b7280;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+#checkoutForm {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+#checkoutForm > div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =====================================================
+   LABELS
+===================================================== */
+
+#checkoutForm label {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #374151;
+
+    margin-bottom: 7px;
+}
+
+#checkoutForm label span {
+    color: #ef4444;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+#checkoutForm input[type="text"],
+#checkoutForm input[type="email"],
+#checkoutForm input[type="tel"],
+#checkoutForm textarea,
+#checkoutForm select {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+#checkoutForm input[type="text"]:focus,
+#checkoutForm input[type="email"]:focus,
+#checkoutForm input[type="tel"]:focus,
+#checkoutForm textarea:focus,
+#checkoutForm select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+#checkoutForm input::placeholder,
+#checkoutForm textarea::placeholder {
+    color: #9ca3af;
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+#checkoutForm textarea {
+    min-height: 105px;
+
+    resize: vertical;
+}
+
+
+/* =====================================================
+   ADDRESS - FULL WIDTH
+===================================================== */
+
+#checkoutForm > div:nth-child(4) {
+    grid-column: 1 / -1;
+}
+
+
+/* =====================================================
+   PAYMENT METHOD
+===================================================== */
+
+#checkoutForm > div:nth-child(9) {
+    grid-column: 1 / -1;
+
+    border-top: 1px solid #e5e7eb;
+
+    padding-top: 25px;
+
+    margin-top: 5px;
+}
+
+#checkoutForm > div:nth-child(9) > h2 {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 20px;
+
+    color: #111827;
+
+    margin-bottom: 5px;
+}
+
+#checkoutForm > div:nth-child(9) > h2 i {
+    color: #2563eb;
+}
+
+#checkoutForm > div:nth-child(9) > p {
+    color: #6b7280;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =====================================================
+   PAYMENT OPTIONS
+===================================================== */
+
+#checkoutForm > div:nth-child(9) > div {
+    position: relative;
+
+    margin-bottom: 12px;
+}
+
+#checkoutForm > div:nth-child(9) input[type="radio"] {
+    position: absolute;
+
+    opacity: 0;
+}
+
+#checkoutForm > div:nth-child(9) label {
+    margin: 0;
+
+    display: grid;
+
+    grid-template-columns: 35px 1fr;
+
+    grid-template-rows: auto auto;
+
+    padding: 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#checkoutForm > div:nth-child(9) label i {
+    grid-row: 1 / 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #2563eb;
+
+    font-size: 20px;
+}
+
+#checkoutForm > div:nth-child(9) label strong {
+    font-size: 14px;
+
+    color: #111827;
+}
+
+#checkoutForm > div:nth-child(9) label span {
+    color: #6b7280;
+
+    font-size: 12px;
+
+    font-weight: normal;
+}
+
+#checkoutForm > div:nth-child(9) label:hover {
+    border-color: #2563eb;
+
+    background: #f8fbff;
+}
+
+#checkoutForm > div:nth-child(9)
+input[type="radio"]:checked + label {
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+    box-shadow:
+        0 0 0 2px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =====================================================
+   ORDER NOTES
+===================================================== */
+
+#checkoutForm > div:nth-child(10) {
+    grid-column: 1 / -1;
+}
+
+#checkoutForm > div:nth-child(10) label span {
+    color: #9ca3af;
+
+    font-weight: normal;
+}
+
+
+/* =====================================================
+   PLACE ORDER BUTTON
+===================================================== */
+
+#checkoutForm > div:last-child {
+    grid-column: 1 / -1;
+
+    margin-top: 5px;
+}
+
+#placeOrderBtn {
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    transition: 0.2s;
+}
+
+#placeOrderBtn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(37, 99, 235, 0.25);
+}
+
+#placeOrderBtn:disabled {
+    background: #9ca3af;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =====================================================
+   ORDER SUMMARY
+===================================================== */
+
+main > section:nth-of-type(3) aside {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.05);
+
+    position: sticky;
+
+    top: 95px;
+}
+
+main > section:nth-of-type(3) aside > h2 {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 20px;
+
+    color: #111827;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+main > section:nth-of-type(3) aside > h2 i {
+    color: #2563eb;
+}
+
+
+/* =====================================================
+   ORDER ITEMS
+===================================================== */
+
+#orderItems {
+    padding: 15px 0;
+
+    max-height: 330px;
+
+    overflow-y: auto;
+}
+
+#orderItems > div {
+    display: grid;
+
+    grid-template-columns: 55px 1fr auto;
+
+    gap: 12px;
+
+    align-items: center;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#orderItems > div > div:first-child {
+    width: 55px;
+
+    height: 70px;
+
+    border-radius: 6px;
+
+    background: #f3f4f6;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+#orderItems img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+#orderItems > div > div:first-child i {
+    color: #9ca3af;
+
+    font-size: 20px;
+}
+
+#orderItems > div > div:nth-child(2) {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+#orderItems strong {
+    font-size: 13px;
+
+    color: #111827;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+#orderItems span {
+    font-size: 11px;
+
+    color: #6b7280;
+}
+
+#orderItems > div > div:last-child {
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   PRICE ROWS
+===================================================== */
+
+#orderItems + div {
+    border-top: 1px solid #e5e7eb;
+
+    padding-top: 15px;
+}
+
+#orderItems + div,
+#orderItems + div ~ div {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+#subtotal,
+#delivery,
+#discount {
+    font-weight: 600;
+}
+
+#delivery {
+    color: #16a34a;
+}
+
+#discount {
+    color: #16a34a;
+}
+
+
+/* =====================================================
+   TOTAL
+===================================================== */
+
+aside > div:nth-last-of-type(3) {
+    margin-top: 15px;
+
+    padding-top: 17px;
+
+    border-top: 2px solid #e5e7eb;
+}
+
+aside > div:nth-last-of-type(3) strong {
+    font-size: 18px;
+
+    color: #111827;
+}
+
+
+/* =====================================================
+   SECURITY MESSAGE
+===================================================== */
+
+aside > div:nth-last-of-type(2) {
+    margin-top: 20px;
+
+    padding: 14px;
+
+    background: #f0fdf4;
+
+    border-radius: 8px;
+
+    color: #166534;
+
+    display: flex;
+
+    justify-content: flex-start;
+
+    gap: 10px;
+}
+
+aside > div:nth-last-of-type(2) i {
+    margin-top: 3px;
+
+    font-size: 17px;
+}
+
+aside > div:nth-last-of-type(2) span {
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   FREE DELIVERY MESSAGE
+===================================================== */
+
+#deliveryMessage {
+    margin-top: 12px;
+
+    padding: 12px;
+
+    background: #eff6ff;
+
+    border-radius: 8px;
+
+    color: #1d4ed8;
+
+    display: flex;
+
+    justify-content: flex-start;
+
+    gap: 9px;
+}
+
+#deliveryMessage i {
+    margin-top: 3px;
+}
+
+#deliveryMessage span {
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    background: #111827;
+
+    color: #ffffff;
+
+    padding: 35px 7%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+footer strong {
+    font-size: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+footer strong i {
+    color: #60a5fa;
+}
+
+footer p {
+    color: #9ca3af;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+footer > div:last-child p {
+    margin: 0;
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+#orderItems::-webkit-scrollbar {
+    width: 5px;
+}
+
+#orderItems::-webkit-scrollbar-track {
+    background: #f3f4f6;
+}
+
+#orderItems::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+/* =====================================================
+   RESPONSIVE - TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    main > section:nth-of-type(3) {
+        grid-template-columns: 1fr;
+    }
+
+    main > section:nth-of-type(3) aside {
+        position: static;
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE - MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+    header {
+        padding: 0 5%;
+    }
+
+    header > div:first-child a {
+        font-size: 19px;
+    }
+
+    header > div:last-child span {
+        font-size: 12px;
+
+        padding: 7px 10px;
+    }
+
+    main {
+        width: 94%;
+
+        padding-top: 25px;
+    }
+
+    main > section:first-of-type h1 {
+        font-size: 28px;
+    }
+
+    main > section:nth-of-type(2) {
+        overflow-x: auto;
+
+        justify-content: flex-start;
+
+        padding: 15px;
+    }
+
+    main > section:nth-of-type(2) > div:nth-child(even) {
+        display: none;
+    }
+
+    main > section:nth-of-type(2) {
+        gap: 12px;
+    }
+
+    main > section:nth-of-type(3) > div {
+        padding: 20px;
+    }
+
+    #checkoutForm {
+        grid-template-columns: 1fr;
+    }
+
+    #checkoutForm > div {
+        grid-column: 1 / -1;
+    }
+
+    footer {
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 20px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 400px) {
+
+    header > div:last-child span {
+        display: none;
+    }
+
+    main > section:nth-of-type(3) aside {
+        padding: 18px;
+    }
+
+    #orderItems > div {
+        grid-template-columns: 45px 1fr auto;
+    }
+
+    #orderItems > div > div:first-child {
+        width: 45px;
+        height: 60px;
+    }
+
+}

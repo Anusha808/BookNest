@@ -3417,54 +3417,16 @@ document.addEventListener("DOMContentLoaded", function () {
        HEADER CART CLICK
     ===================================================== */
 
-    headerCart.addEventListener(
-        "click",
-        function () {
+    /* =====================================================
+   HEADER CART CLICK
+===================================================== */
 
-
-            const cart =
-                calculateCart();
-
-
-            if (
-                cart.totalItems === 0
-            ) {
-
-
-                alert(
-                    "Your cart is empty."
-                );
-
-
-                return;
-
-            }
-
-
-            // Show cart items in a formatted alert
-            let message = "🛒 Shopping Cart\n\n";
-            let itemCount = 0;
-
-            books.forEach(function (book) {
-                if (book.quantity > 0) {
-                    itemCount++;
-                    message += `${itemCount}. ${book.title}\n`;
-                    message += `   Quantity: ${book.quantity}\n`;
-                    message += `   Price: ₹${book.price.toLocaleString("en-IN")}\n`;
-                    message += `   Subtotal: ₹${(book.price * book.quantity).toLocaleString("en-IN")}\n\n`;
-                }
-            });
-
-            message += `━━━━━━━━━━━━━━━━━━━\n`;
-            message += `Total Items: ${cart.totalItems}\n`;
-            message += `Total Amount: ₹${cart.totalAmount.toLocaleString("en-IN")}`;
-
-            alert(message);
-
-        }
-    );
-
-
+headerCart.addEventListener(
+    "click",
+    function () {
+        window.location.href = "/cart";
+    }
+);
 
     /* =====================================================
        OFFER SLIDER

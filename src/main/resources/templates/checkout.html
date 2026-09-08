@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Checkout</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+              <link rel="stylesheet" th:href="@{/css/checkout.css}">
+
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header>
+
+        <div>
+
+            <a href="/home">
+                <i class="fa-solid fa-book-open"></i>
+                <strong>BookNest</strong>
+            </a>
+
+        </div>
+
+        <div>
+
+            <span>
+                <i class="fa-solid fa-lock"></i>
+                Secure Checkout
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN CHECKOUT PAGE
+    ====================================================== -->
+
+    <main>
+
+        <!-- Back to Cart -->
+
+        <div>
+
+            <a href="/cart">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Cart
+            </a>
+
+        </div>
+
+
+        <!-- Page Heading -->
+
+        <section>
+
+            <h1>Checkout</h1>
+
+            <p>
+                Complete your details to place your order.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             CHECKOUT STEPS
+        ================================================== -->
+
+        <section>
+
+            <div>
+
+                <span>1</span>
+                <strong>Cart</strong>
+
+            </div>
+
+            <div>
+                —
+            </div>
+
+            <div>
+
+                <span>2</span>
+                <strong>Checkout</strong>
+
+            </div>
+
+            <div>
+                —
+            </div>
+
+            <div>
+
+                <span>3</span>
+                <strong>Payment</strong>
+
+            </div>
+
+            <div>
+                —
+            </div>
+
+            <div>
+
+                <span>4</span>
+                <strong>Confirmation</strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CHECKOUT CONTENT
+        ================================================== -->
+
+        <section>
+
+
+            <!-- =============================================
+                 CUSTOMER INFORMATION
+            ============================================== -->
+
+            <div>
+
+                <h2>
+                    <i class="fa-solid fa-user"></i>
+                    Customer Information
+                </h2>
+
+                <p>
+                    Enter your personal details.
+                </p>
+
+
+                <form id="checkoutForm">
+
+
+                    <!-- Full Name -->
+
+                    <div>
+
+                        <label for="name">
+                            Full Name
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div>
+
+                        <label for="email">
+                            Email Address
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            required>
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div>
+
+                        <label for="phone">
+                            Phone Number
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter your phone number"
+                            required>
+
+                    </div>
+
+
+                    <!-- Address -->
+
+                    <div>
+
+                        <label for="address">
+                            Delivery Address
+                            <span>*</span>
+                        </label>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            placeholder="Enter your complete delivery address"
+                            required></textarea>
+
+                    </div>
+
+
+                    <!-- City -->
+
+                    <div>
+
+                        <label for="city">
+                            City
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Enter your city"
+                            required>
+
+                    </div>
+
+
+                    <!-- State -->
+
+                    <div>
+
+                        <label for="state">
+                            State
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            name="state"
+                            placeholder="Enter your state"
+                            required>
+
+                    </div>
+
+
+                    <!-- PIN Code -->
+
+                    <div>
+
+                        <label for="pincode">
+                            PIN Code
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="pincode"
+                            name="pincode"
+                            placeholder="Enter PIN code"
+                            maxlength="6"
+                            required>
+
+                    </div>
+
+
+                    <!-- Country -->
+
+                    <div>
+
+                        <label for="country">
+                            Country
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="country"
+                            name="country"
+                            required>
+
+                            <option value="">
+                                Select Country
+                            </option>
+
+                            <option value="India">
+                                India
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- =====================================
+                         PAYMENT METHOD
+                    ====================================== -->
+
+                    <div>
+
+                        <h2>
+                            <i class="fa-solid fa-credit-card"></i>
+                            Payment Method
+                        </h2>
+
+                        <p>
+                            Select your preferred payment method.
+                        </p>
+
+
+                        <!-- Cash on Delivery -->
+
+                        <div>
+
+                            <input
+                                type="radio"
+                                id="cod"
+                                name="payment"
+                                value="COD"
+                                required>
+
+                            <label for="cod">
+
+                                <i class="fa-solid fa-money-bill-wave"></i>
+
+                                <strong>
+                                    Cash on Delivery
+                                </strong>
+
+                                <span>
+                                    Pay when your order is delivered.
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- Razorpay -->
+
+                        <div>
+
+                            <input
+                                type="radio"
+                                id="razorpay"
+                                name="payment"
+                                value="RAZORPAY">
+
+                            <label for="razorpay">
+
+                                <i class="fa-solid fa-wallet"></i>
+
+                                <strong>
+                                    Razorpay
+                                </strong>
+
+                                <span>
+                                    Pay securely using Razorpay.
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =====================================
+                         ORDER NOTES
+                    ====================================== -->
+
+                    <div>
+
+                        <label for="notes">
+                            Order Notes
+                            <span>(Optional)</span>
+                        </label>
+
+                        <textarea
+                            id="notes"
+                            name="notes"
+                            placeholder="Any special instructions for your order"></textarea>
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <div>
+
+                        <button
+                            type="submit"
+                            id="placeOrderBtn">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Place Order
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- =============================================
+                 ORDER SUMMARY
+            ============================================== -->
+
+            <aside>
+
+                <h2>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Order Summary
+                </h2>
+
+
+                <!-- Cart Items -->
+
+                <div id="orderItems">
+
+                    <!-- JavaScript will insert cart items here -->
+
+                </div>
+
+
+                <!-- Subtotal -->
+
+                <div>
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <!-- Delivery -->
+
+                <div>
+
+                    <span>
+                        Delivery
+                    </span>
+
+                    <span id="delivery">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <!-- Discount -->
+
+                <div>
+
+                    <span>
+                        Discount
+                    </span>
+
+                    <span id="discount">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <!-- Total -->
+
+                <div>
+
+                    <strong>
+                        Total
+                    </strong>
+
+                    <strong id="total">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <!-- Security -->
+
+                <div>
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Your payment and personal information
+                        are protected with secure encryption.
+                    </span>
+
+                </div>
+
+
+                <!-- Free Delivery Message -->
+
+                <div id="deliveryMessage">
+
+                    <i class="fa-solid fa-truck"></i>
+
+                    <span>
+                        Free delivery on orders above ₹500.
+                    </span>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div>
+
+            <strong>
+                <i class="fa-solid fa-book-open"></i>
+                BookNest
+            </strong>
+
+            <p>
+                Your trusted online bookstore.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <p>
+                © 2026 BookNest. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        const cartKey = "booknestCart";
+
+
+        /* =================================================
+           LOAD CART
+        ================================================== */
+
+        function loadCart() {
+
+            const storedCart =
+                localStorage.getItem(cartKey);
+
+            if (!storedCart) {
+                return [];
+            }
+
+            try {
+
+                return JSON.parse(storedCart);
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to load cart:",
+                    error
+                );
+
+                return [];
+
+            }
+
+        }
+
+
+        /* =================================================
+           DISPLAY ORDER SUMMARY
+        ================================================== */
+
+        function displayOrderSummary() {
+
+            const cart = loadCart();
+
+            const orderItems =
+                document.getElementById("orderItems");
+
+            const subtotalElement =
+                document.getElementById("subtotal");
+
+            const deliveryElement =
+                document.getElementById("delivery");
+
+            const discountElement =
+                document.getElementById("discount");
+
+            const totalElement =
+                document.getElementById("total");
+
+
+            if (cart.length === 0) {
+
+                orderItems.innerHTML = `
+
+                    <div>
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                        <h3>
+                            Your cart is empty
+                        </h3>
+
+                        <p>
+                            Please add books to your cart
+                            before proceeding to checkout.
+                        </p>
+
+                        <a href="/home">
+                            Continue Shopping
+                        </a>
+
+                    </div>
+
+                `;
+
+                subtotalElement.textContent = "₹0";
+                deliveryElement.textContent = "₹0";
+                discountElement.textContent = "₹0";
+                totalElement.textContent = "₹0";
+
+                document.getElementById(
+                    "placeOrderBtn"
+                ).disabled = true;
+
+                return;
+
+            }
+
+
+            let subtotal = 0;
+
+
+            orderItems.innerHTML = "";
+
+
+            cart.forEach(function(book) {
+
+                const quantity =
+                    book.quantity || 1;
+
+                const price =
+                    Number(book.price) || 0;
+
+                const itemTotal =
+                    price * quantity;
+
+                subtotal += itemTotal;
+
+
+                const item =
+                    document.createElement("div");
+
+
+                item.innerHTML = `
+
+                    <div>
+
+                        ${
+                            book.image
+                            ?
+                            `<img
+                                src="${book.image}"
+                                alt="${book.title}">`
+                            :
+                            `<i class="fa-solid fa-book"></i>`
+                        }
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            ${book.title}
+                        </strong>
+
+                        <span>
+                            ${book.author || ""}
+                        </span>
+
+                        <span>
+                            Quantity: ${quantity}
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        ₹${itemTotal.toLocaleString("en-IN")}
+
+                    </div>
+
+                `;
+
+
+                orderItems.appendChild(item);
+
+            });
+
+
+            /* =============================================
+               DELIVERY CHARGE
+            ============================================== */
+
+            let delivery = 0;
+
+
+            if (subtotal > 0 && subtotal < 500) {
+
+                delivery = 50;
+
+            }
+
+
+            /* =============================================
+               DISCOUNT
+            ============================================== */
+
+            const discount = 0;
+
+
+            /* =============================================
+               FINAL TOTAL
+            ============================================== */
+
+            const total =
+                subtotal +
+                delivery -
+                discount;
+
+
+            subtotalElement.textContent =
+                "₹" +
+                subtotal.toLocaleString("en-IN");
+
+
+            if (delivery === 0) {
+
+                deliveryElement.textContent =
+                    "FREE";
+
+            } else {
+
+                deliveryElement.textContent =
+                    "₹" +
+                    delivery.toLocaleString("en-IN");
+
+            }
+
+
+            discountElement.textContent =
+                "₹" +
+                discount.toLocaleString("en-IN");
+
+
+            totalElement.textContent =
+                "₹" +
+                total.toLocaleString("en-IN");
+
+        }
+
+
+        /* =================================================
+           PLACE ORDER
+        ================================================== */
+
+        document
+            .getElementById("checkoutForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const cart =
+                        loadCart();
+
+
+                    if (cart.length === 0) {
+
+                        alert(
+                            "Your cart is empty."
+                        );
+
+                        window.location.href =
+                            "/cart";
+
+                        return;
+
+                    }
+
+
+                    const payment =
+                        document.querySelector(
+                            'input[name="payment"]:checked'
+                        );
+
+
+                    if (!payment) {
+
+                        alert(
+                            "Please select a payment method."
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* =====================================
+                       RAZORPAY
+                    ====================================== */
+
+                    if (
+                        payment.value ===
+                        "RAZORPAY"
+                    ) {
+
+                        alert(
+                            "Razorpay payment integration will be connected here."
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* =====================================
+                       CASH ON DELIVERY
+                    ====================================== */
+
+                    if (
+                        payment.value ===
+                        "COD"
+                    ) {
+
+                        const customerName =
+                            document.getElementById(
+                                "name"
+                            ).value;
+
+
+                        alert(
+                            "Order placed successfully!\n\n" +
+                            "Thank you, " +
+                            customerName +
+                            "!"
+                        );
+
+
+                        /*
+                         * Remove cart after
+                         * successful order.
+                         */
+
+                        localStorage.removeItem(
+                            cartKey
+                        );
+
+
+                        /*
+                         * Redirect to home.
+                         * Later this can be changed
+                         * to an order-confirmation page.
+                         */
+
+                        window.location.href =
+                            "/home";
+
+                    }
+
+                }
+            );
+
+
+        /* =================================================
+           LOAD SUMMARY WHEN PAGE OPENS
+        ================================================== */
+
+        displayOrderSummary();
+
+    </script>
+
+</body>
+
+</html>
