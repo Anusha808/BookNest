@@ -1,2435 +1,2371 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Details | BookNest</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Book Details</title>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        /* =========================================================
-           RESET & BASE
-        ========================================================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            padding-top: 80px;
+            background: #f5f7fb;
+            color: #222;
         }
 
-        /* =========================================================
-           NAVBAR
-        ========================================================= */
+        /* ================= NAVBAR ================= */
+
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+            width: 100%;
+            background: #2874f0;
+            color: white;
+            padding: 14px 6%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 16px 5%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            gap: 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            font-size: 24px;
-            font-weight: 800;
-            color: #0f172a;
+            font-size: 26px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
         }
 
         .logo i {
-            color: #3b82f6;
-            font-size: 28px;
+            margin-right: 7px;
         }
 
-        .logo-highlight {
-            color: #3b82f6;
+        .search-box {
+            flex: 1;
+            max-width: 550px;
+            position: relative;
         }
 
-        .navbar-actions {
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 18px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 45px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: #2874f0;
+            font-size: 17px;
+        }
+
+        .nav-actions {
+            margin-left: auto;
             display: flex;
             align-items: center;
             gap: 20px;
-            position: relative;
         }
 
-        /* Search */
-        .search-container {
+        .cart-button {
+            position: relative;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .cart-button i {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: #ff6161;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 11px;
             display: flex;
             align-items: center;
-            background: #f1f5f9;
-            border-radius: 50px;
-            padding: 0 16px;
-            transition: all 0.3s ease;
-            position: relative;
+            justify-content: center;
         }
 
-        .search-container:focus-within {
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
+        /* ================= CART DROPDOWN ================= */
 
-        .search-icon {
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
-        .book-search {
-            border: none;
-            background: transparent;
-            padding: 10px 12px;
-            font-size: 14px;
-            width: 220px;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-            color: #0f172a;
-        }
-
-        .book-search::placeholder {
-            color: #94a3b8;
-        }
-
-        .clear-search {
+        .cart-dropdown {
             display: none;
-            background: none;
-            border: none;
-            color: #94a3b8;
-            cursor: pointer;
-            padding: 4px 8px;
-            font-size: 16px;
-            border-radius: 50%;
-            transition: all 0.2s ease;
+            position: absolute;
+            right: 5%;
+            top: 65px;
+            width: 350px;
+            background: white;
+            color: #222;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            z-index: 2000;
         }
 
-        .clear-search:hover {
-            background: #e2e8f0;
-            color: #475569;
+        .cart-dropdown.active {
+            display: block;
         }
 
-        /* Cart Button */
-        .header-cart {
+        .cart-header {
+            padding: 15px;
+            background: #f1f3f6;
+            font-size: 17px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
             display: flex;
             align-items: center;
             gap: 12px;
-            background: none;
-            border: none;
-            padding: 8px 16px 8px 12px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            background: #f1f5f9;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
         }
 
-        .header-cart:hover {
-            background: #e2e8f0;
-        }
-
-        .header-cart i {
-            font-size: 20px;
-            color: #0f172a;
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -6px;
-            right: -4px;
-            background: #ef4444;
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
-        }
-
-        .cart-badge.cart-bump {
-            animation: cartBump 0.3s ease;
-        }
-
-        @keyframes cartBump {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.4); }
-            100% { transform: scale(1); }
-        }
-
-        .cart-summary {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            line-height: 1.2;
-        }
-
-        .cart-label {
-            font-size: 11px;
-            color: #64748b;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .cart-summary strong {
-            font-size: 15px;
-            color: #0f172a;
-        }
-
-        /* =========================================================
-           CART DROPDOWN
-        ========================================================= */
-        .cart-dropdown {
-            position: absolute;
-            top: calc(100% + 12px);
-            right: 0;
-            width: 380px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            z-index: 1001;
-            display: none;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-        }
-
-        .cart-dropdown.show {
-            display: block;
-            animation: slideDown 0.25s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cart-dropdown-header {
-            padding: 16px 20px;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #f8fafc;
-        }
-
-        .cart-dropdown-header span {
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .cart-dropdown-header button {
-            background: none;
-            border: none;
-            font-size: 20px;
-            color: #94a3b8;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .cart-dropdown-header button:hover {
-            background: #e2e8f0;
-            color: #0f172a;
-        }
-
-        .cart-dropdown-items {
-            max-height: 320px;
-            overflow-y: auto;
-            padding: 8px 12px;
-        }
-
-        .cart-dropdown-items::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .cart-dropdown-items::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+        .cart-item img {
+            width: 55px;
+            height: 70px;
+            object-fit: cover;
             border-radius: 4px;
         }
 
-        .cart-dropdown-empty {
-            padding: 40px 20px;
-            text-align: center;
-            color: #94a3b8;
-        }
-
-        .cart-dropdown-empty i {
-            font-size: 48px;
-            margin-bottom: 12px;
-            color: #e2e8f0;
-        }
-
-        .cart-dropdown-empty p {
-            font-size: 14px;
-        }
-
-        .cart-dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 10px 8px;
-            border-bottom: 1px solid #f1f5f9;
-            transition: background 0.2s ease;
-            border-radius: 8px;
-        }
-
-        .cart-dropdown-item:hover {
-            background: #f8fafc;
-        }
-
-        .cart-dropdown-item img {
-            width: 52px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 6px;
-            flex-shrink: 0;
-        }
-
-        .cart-dropdown-item-info {
+        .cart-item-info {
             flex: 1;
-            min-width: 0;
         }
 
-        .cart-dropdown-item-info h4 {
+        .cart-item-info h4 {
             font-size: 14px;
-            font-weight: 600;
-            margin: 0 0 4px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            margin-bottom: 5px;
         }
 
-        .cart-dropdown-item-info .item-meta {
+        .cart-item-info p {
             font-size: 13px;
-            color: #64748b;
-        }
-
-        .cart-dropdown-item-info .item-meta strong {
-            color: #0f172a;
+            color: #666;
         }
 
         .remove-cart-item {
-            background: none;
             border: none;
-            color: #94a3b8;
+            background: transparent;
+            color: #e53935;
             cursor: pointer;
-            padding: 6px 8px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            font-size: 14px;
+            font-size: 17px;
         }
 
-        .remove-cart-item:hover {
-            background: #fee2e2;
-            color: #ef4444;
+        .cart-footer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
         }
 
-        .cart-dropdown-footer {
-            padding: 16px 20px;
-            border-top: 1px solid #e2e8f0;
+        .cart-total {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            background: #f8fafc;
+            font-weight: bold;
+            margin-bottom: 12px;
         }
 
-        .cart-dropdown-footer .total-label {
-            font-size: 14px;
-            color: #64748b;
-        }
-
-        .cart-dropdown-footer .total-price {
-            font-size: 20px;
-            font-weight: 800;
-            color: #0f172a;
-        }
-
-        .cart-dropdown-footer .view-cart-btn {
-            background: #3b82f6;
-            color: white;
+        .view-cart-btn {
+            width: 100%;
+            padding: 11px;
             border: none;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 14px;
+            background: #2874f0;
+            color: white;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
+            font-weight: bold;
         }
 
-        .cart-dropdown-footer .view-cart-btn:hover {
-            background: #2563eb;
-            transform: scale(1.02);
+        .view-cart-btn:hover {
+            background: #1259c3;
         }
 
-        /* =========================================================
-           BREADCRUMB
-        ========================================================= */
-        .breadcrumb-section {
-            padding: 20px 5% 0;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
+        /* ================= BREADCRUMB ================= */
 
         .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: #64748b;
+            padding: 18px 7%;
+            font-size: 13px;
+            color: #777;
         }
 
         .breadcrumb a {
-            color: #3b82f6;
+            color: #2874f0;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.2s ease;
-        }
-
-        .breadcrumb a:hover {
-            color: #2563eb;
-        }
-
-        .breadcrumb i {
-            font-size: 12px;
         }
 
         .breadcrumb span {
-            color: #0f172a;
-            font-weight: 500;
+            margin: 0 7px;
         }
 
-        /* =========================================================
-           BOOK DETAILS PAGE
-        ========================================================= */
-        .book-details-page {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 30px 5% 60px;
-        }
+        /* ================= BOOK DETAILS ================= */
 
-        .book-details-container {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 50px;
+        .book-container {
+            width: 86%;
+            margin: auto;
             background: white;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-            margin-bottom: 40px;
+            border-radius: 8px;
+            padding: 35px;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 55px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
         }
 
-        /* =========================================================
-           BOOK IMAGE SECTION
-        ========================================================= */
         .book-image-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            text-align: center;
         }
 
         .book-image-wrapper {
-            position: relative;
-            background: #f1f5f9;
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 3/4;
+            width: 300px;
+            height: 410px;
+            margin: auto;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            background: #f7f7f7;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .book-image-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            padding: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .book-image-wrapper:hover img {
-            transform: scale(1.02);
-        }
-
-        .book-badge {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            background: #3b82f6;
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 50px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .image-actions {
-            display: flex;
-            gap: 12px;
         }
 
         .wishlist-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            margin-top: 18px;
+            width: 300px;
             padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            background: transparent;
-            font-size: 14px;
-            font-weight: 600;
-            color: #0f172a;
+            border: 1px solid #2874f0;
+            background: white;
+            color: #2874f0;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .wishlist-btn:hover {
-            border-color: #3b82f6;
-            background: #eff6ff;
+            font-size: 15px;
+            font-weight: bold;
         }
 
         .wishlist-btn.active {
-            border-color: #ef4444;
-            background: #fef2f2;
-            color: #ef4444;
+            background: #2874f0;
+            color: white;
         }
 
-        .wishlist-btn i {
-            font-size: 18px;
+        /* ================= INFO ================= */
+
+        .book-info h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #222;
         }
 
-        /* =========================================================
-           BOOK INFO SECTION
-        ========================================================= */
-        .book-info-section {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .book-category {
-            display: inline-block;
-            background: #eff6ff;
-            color: #3b82f6;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 4px 14px;
-            border-radius: 50px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            width: fit-content;
-        }
-
-        .book-title {
-            font-size: 32px;
-            font-weight: 800;
-            color: #0f172a;
-            line-height: 1.2;
-        }
-
-        .book-author {
-            font-size: 18px;
-            color: #64748b;
-        }
-
-        .book-author span {
-            color: #0f172a;
-            font-weight: 600;
+        .author {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 15px;
         }
 
         .rating-row {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
-        .rating-box {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: #22c55e;
+        .rating {
+            background: #388e3c;
             color: white;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 15px;
-        }
-
-        .rating-box i {
-            font-size: 13px;
-        }
-
-        .rating-count {
+            padding: 6px 10px;
+            border-radius: 4px;
             font-size: 14px;
-            color: #64748b;
+            font-weight: bold;
         }
 
-        .rating-count span {
-            font-weight: 600;
-            color: #0f172a;
+        .rating i {
+            margin-left: 3px;
         }
 
-        .divider {
-            height: 1px;
-            background: #e2e8f0;
-            margin: 8px 0;
+        .reviews {
+            color: #777;
+            font-size: 14px;
         }
 
         .price-section {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            margin-bottom: 20px;
         }
 
         .current-price {
             font-size: 32px;
-            font-weight: 800;
-            color: #0f172a;
+            font-weight: bold;
+            color: #212121;
         }
 
-        .original-price {
-            font-size: 18px;
-            color: #94a3b8;
+        .old-price {
             text-decoration: line-through;
+            color: #878787;
+            margin-left: 12px;
+            font-size: 17px;
         }
 
         .discount {
-            background: #fef2f2;
-            color: #ef4444;
-            font-weight: 700;
-            padding: 4px 12px;
+            color: #388e3c;
+            margin-left: 12px;
+            font-weight: bold;
+        }
+
+        .tax-info {
+            margin-top: 8px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* ================= OFFERS ================= */
+
+        .offers {
+            margin-bottom: 25px;
+        }
+
+        .offers h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .offer {
+            padding: 9px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .offer i {
+            color: #2874f0;
+            margin-right: 8px;
+        }
+
+        /* ================= DELIVERY ================= */
+
+        .delivery-box {
+            background: #f8f9fa;
             border-radius: 6px;
-            font-size: 14px;
+            padding: 18px;
+            margin-bottom: 20px;
         }
 
-        .price-note {
-            font-size: 13px;
-            color: #64748b;
-        }
-
-        /* =========================================================
-           OFFERS
-        ========================================================= */
-        .offers-box {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 16px 20px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .offers-heading {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 15px;
+        .delivery-box h3 {
+            font-size: 17px;
             margin-bottom: 12px;
         }
 
-        .offers-heading i {
-            color: #22c55e;
-        }
-
-        .offer-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 8px 0;
-            font-size: 14px;
-        }
-
-        .offer-item i {
-            color: #22c55e;
-            margin-top: 2px;
-            font-size: 16px;
-        }
-
-        .offer-item strong {
-            display: block;
-            font-weight: 600;
-        }
-
-        .offer-item p {
-            color: #64748b;
-            font-size: 13px;
-        }
-
-        /* =========================================================
-           DELIVERY
-        ========================================================= */
-        .delivery-section {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 16px 20px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .delivery-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
-
-        .delivery-title i {
-            color: #3b82f6;
-        }
-
-        .delivery-input-row {
+        .pincode-row {
             display: flex;
             gap: 10px;
+            max-width: 400px;
         }
 
-        .delivery-input-row input {
+        .pincode-row input {
             flex: 1;
-            padding: 10px 14px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             outline: none;
-            transition: all 0.3s ease;
         }
 
-        .delivery-input-row input:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .delivery-input-row button {
-            padding: 10px 24px;
-            background: #3b82f6;
-            color: white;
+        .pincode-row button {
+            padding: 11px 18px;
             border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
+            background: #2874f0;
+            color: white;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .delivery-input-row button:hover {
-            background: #2563eb;
         }
 
         .delivery-message {
-            margin-top: 12px;
-            font-size: 14px;
-            color: #22c55e;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-top: 10px;
+            font-size: 13px;
         }
 
-        .delivery-message.error {
-            color: #ef4444;
+        /* ================= AVAILABILITY ================= */
+
+        .availability {
+            color: #388e3c;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
-        /* =========================================================
-           AVAILABILITY
-        ========================================================= */
-        .availability-row {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
+        .availability i {
+            margin-right: 6px;
         }
 
-        .availability-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 500;
-        }
+        /* ================= QUANTITY ================= */
 
-        .availability-item i {
-            color: #22c55e;
-            font-size: 18px;
-        }
-
-        /* =========================================================
-           QUANTITY
-        ========================================================= */
         .quantity-section {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 15px;
+            margin-bottom: 22px;
         }
 
         .quantity-section label {
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: bold;
         }
 
         .quantity-control {
             display: flex;
             align-items: center;
-            gap: 0;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             overflow: hidden;
         }
 
         .quantity-control button {
-            background: #f8fafc;
+            width: 40px;
+            height: 40px;
             border: none;
-            padding: 8px 16px;
-            font-size: 16px;
+            background: #f1f1f1;
             cursor: pointer;
-            transition: all 0.2s ease;
-            color: #0f172a;
-            font-weight: 600;
+            font-size: 18px;
         }
 
-        .quantity-control button:hover:not(:disabled) {
-            background: #e2e8f0;
+        .quantity-control button:hover {
+            background: #ddd;
         }
 
-        .quantity-control button:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        .quantity-control span {
-            padding: 8px 20px;
-            font-weight: 700;
-            font-size: 16px;
-            min-width: 40px;
+        .quantity-control input {
+            width: 50px;
+            height: 40px;
+            border: none;
             text-align: center;
-            background: white;
+            outline: none;
+            font-size: 16px;
         }
 
-        /* =========================================================
-           ACTION BUTTONS
-        ========================================================= */
+        /* ================= ACTION BUTTONS ================= */
+
         .action-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
         }
 
         .add-cart-btn,
         .buy-now-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 24px;
+            padding: 15px 28px;
             border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            min-width: 180px;
         }
 
         .add-cart-btn {
-            background: #eff6ff;
-            color: #3b82f6;
+            background: #ff9f00;
+            color: white;
         }
 
         .add-cart-btn:hover {
-            background: #dbeafe;
-            transform: translateY(-2px);
-        }
-
-        .add-cart-btn:active {
-            transform: scale(0.96);
+            background: #e88f00;
         }
 
         .buy-now-btn {
-            background: #3b82f6;
+            background: #fb641b;
             color: white;
         }
 
         .buy-now-btn:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+            background: #e8540b;
         }
 
-        .buy-now-btn:active {
-            transform: scale(0.96);
-        }
+        /* ================= ABOUT ================= */
 
-        /* =========================================================
-           SECURE SHOPPING
-        ========================================================= */
-        .secure-shopping {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding-top: 8px;
-        }
-
-        .secure-shopping div {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: #64748b;
-        }
-
-        .secure-shopping i {
-            color: #22c55e;
-            font-size: 16px;
-        }
-
-        /* =========================================================
-           ABOUT THE BOOK
-        ========================================================= */
-        .book-content-section {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-            margin-bottom: 40px;
-        }
-
-        .content-card {
+        .content-section {
+            width: 86%;
+            margin: 25px auto;
             background: white;
-            border-radius: 20px;
-            padding: 32px 36px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
         }
 
-        .content-card h2 {
+        .content-section h2 {
             font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
         }
 
-        .section-line {
-            width: 48px;
-            height: 4px;
-            background: #3b82f6;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .content-card p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #334155;
-        }
-
-        /* =========================================================
-           HIGHLIGHTS
-        ========================================================= */
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .highlight-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 16px 20px;
-            background: #f8fafc;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .highlight-item i {
-            font-size: 24px;
-            color: #3b82f6;
-            width: 40px;
-            text-align: center;
-        }
-
-        .highlight-item div {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .highlight-item span {
-            font-size: 12px;
-            color: #94a3b8;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .highlight-item strong {
+        .content-section p {
+            line-height: 1.7;
+            color: #555;
             font-size: 15px;
-            font-weight: 700;
-            color: #0f172a;
         }
 
-        /* =========================================================
-           BOOK DETAILS TABLE
-        ========================================================= */
+        /* ================= HIGHLIGHTS ================= */
+
+        .highlights {
+            list-style: none;
+        }
+
+        .highlights li {
+            padding: 9px 0;
+            color: #444;
+        }
+
+        .highlights li i {
+            color: #2874f0;
+            margin-right: 10px;
+        }
+
+        /* ================= DETAILS TABLE ================= */
+
         .details-table {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4px 40px;
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #f1f5f9;
+        .details-table tr {
+            border-bottom: 1px solid #eee;
         }
 
-        .detail-row span {
-            color: #64748b;
-            font-size: 14px;
+        .details-table td {
+            padding: 13px;
         }
 
-        .detail-row strong {
-            font-size: 14px;
-            font-weight: 600;
-            color: #0f172a;
+        .details-table td:first-child {
+            width: 30%;
+            color: #777;
         }
 
-        /* =========================================================
-           RECOMMENDED BOOKS
-        ========================================================= */
-        .recommended-section {
-            background: white;
-            border-radius: 20px;
-            padding: 32px 36px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        .details-table td:last-child {
+            font-weight: 500;
         }
 
-        .section-heading {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 28px;
+        /* ================= RECOMMENDED ================= */
+
+        .recommended-container {
+            width: 86%;
+            margin: 25px auto;
         }
 
-        .section-eyebrow {
-            font-size: 12px;
-            font-weight: 600;
-            color: #3b82f6;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .recommended-container h2 {
+            margin-bottom: 18px;
         }
 
-        .section-heading h2 {
-            font-size: 24px;
-            font-weight: 800;
-            margin-top: 4px;
-        }
-
-        .section-heading a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #3b82f6;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .section-heading a:hover {
-            gap: 12px;
-        }
-
-        .recommended-grid {
+        .recommended {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
         .recommended-card {
-            background: #f8fafc;
-            border-radius: 16px;
-            overflow: hidden;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            transition: 0.2s;
         }
 
         .recommended-card:hover {
             transform: translateY(-4px);
-            border-color: #e2e8f0;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 5px 18px rgba(0,0,0,0.15);
         }
 
-        .recommended-image {
-            aspect-ratio: 2/3;
-            background: #f1f5f9;
-            overflow: hidden;
-        }
-
-        .recommended-image img {
+        .recommended-card img {
             width: 100%;
-            height: 100%;
+            height: 230px;
             object-fit: contain;
-            padding: 16px;
-            transition: transform 0.3s ease;
+            margin-bottom: 10px;
         }
 
-        .recommended-card:hover .recommended-image img {
-            transform: scale(1.05);
-        }
-
-        .recommended-info {
-            padding: 14px 16px 18px;
-        }
-
-        .recommended-category {
-            font-size: 11px;
-            font-weight: 600;
-            color: #3b82f6;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .recommended-info h3 {
-            font-size: 15px;
-            font-weight: 700;
-            margin: 4px 0 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .recommended-info > p {
-            font-size: 13px;
-            color: #64748b;
+        .recommended-card h3 {
+            font-size: 16px;
             margin-bottom: 6px;
         }
 
-        .recommended-rating {
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .recommended-card p {
+            color: #777;
             font-size: 13px;
-        }
-
-        .recommended-rating span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-weight: 600;
-        }
-
-        .recommended-rating span i {
-            color: #f59e0b;
-            font-size: 12px;
-        }
-
-        .recommended-rating small {
-            color: #94a3b8;
+            margin-bottom: 8px;
         }
 
         .recommended-price {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 6px;
+            font-size: 17px;
+            font-weight: bold;
         }
 
-        .recommended-price strong {
-            font-size: 16px;
-            font-weight: 700;
-        }
+        /* ================= TOAST ================= */
 
-        .recommended-price del {
-            font-size: 13px;
-            color: #94a3b8;
-        }
-
-        /* =========================================================
-           TOAST
-        ========================================================= */
         .toast {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: #0f172a;
+            background: #323232;
             color: white;
-            padding: 14px 24px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            transform: translateY(120px);
+            padding: 14px 20px;
+            border-radius: 5px;
             opacity: 0;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            z-index: 9999;
-            font-family: 'Inter', sans-serif;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: 0.3s;
+            z-index: 5000;
         }
 
         .toast.show {
-            transform: translateY(0);
             opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
-        .toast i {
-            font-size: 20px;
-            color: #22c55e;
-        }
+        /* ================= FOOTER ================= */
 
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-        .footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 48px 5% 20px;
-            margin-top: 40px;
-        }
-
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #1e293b;
-        }
-
-        .footer-brand .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            font-size: 24px;
-            font-weight: 800;
+        footer {
+            margin-top: 50px;
+            background: #172337;
             color: white;
+            padding: 40px 7%;
         }
 
-        .footer-brand .footer-logo i {
-            color: #3b82f6;
-        }
-
-        .footer-brand .footer-logo span span {
-            color: #3b82f6;
-        }
-
-        .footer-brand p {
-            margin-top: 12px;
-            font-size: 14px;
-            line-height: 1.7;
-            max-width: 320px;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
         }
 
         .footer-column h3 {
-            color: white;
+            margin-bottom: 15px;
             font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 16px;
         }
 
+        .footer-column p,
         .footer-column a {
             display: block;
-            color: #94a3b8;
+            color: #ccc;
             text-decoration: none;
-            font-size: 14px;
-            padding: 6px 0;
-            transition: color 0.2s ease;
+            font-size: 13px;
+            margin-bottom: 9px;
         }
 
         .footer-column a:hover {
             color: white;
         }
 
-        .footer-bottom {
-            max-width: 1280px;
-            margin: 20px auto 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
+        .copyright {
+            border-top: 1px solid #384455;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 13px;
         }
 
-        .footer-bottom div {
-            display: flex;
-            gap: 16px;
-        }
+        /* ================= RESPONSIVE ================= */
 
-        .footer-bottom i {
-            font-size: 18px;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
+        @media (max-width: 1000px) {
 
-        .footer-bottom i:hover {
-            color: white;
-        }
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-        @media (max-width: 1024px) {
-            .book-details-container {
+            .book-container {
                 grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 30px;
             }
 
-            .book-image-wrapper {
-                max-width: 300px;
-                margin: 0 auto;
+            .book-image-section {
+                margin-bottom: 10px;
             }
 
-            .recommended-grid {
+            .recommended {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
+        @media (max-width: 650px) {
 
             .navbar {
-                padding: 12px 4%;
                 flex-wrap: wrap;
-                gap: 10px;
+                padding: 12px 4%;
             }
 
-            .logo {
-                font-size: 20px;
+            .search-box {
+                order: 3;
+                flex-basis: 100%;
+                max-width: none;
             }
 
-            .logo i {
-                font-size: 22px;
+            .book-container,
+            .content-section,
+            .recommended-container {
+                width: 94%;
             }
 
-            .search-container {
-                flex: 1;
-                min-width: 140px;
-            }
-
-            .book-search {
-                width: 100%;
-                font-size: 13px;
-                padding: 8px 10px;
-            }
-
-            .header-cart {
-                padding: 6px 12px;
-            }
-
-            .cart-summary {
-                display: none;
-            }
-
-            .book-details-container {
+            .book-container {
                 padding: 20px;
             }
 
-            .book-title {
-                font-size: 26px;
-            }
-
-            .current-price {
-                font-size: 26px;
+            .book-image-wrapper,
+            .wishlist-btn {
+                width: 100%;
             }
 
             .action-buttons {
-                grid-template-columns: 1fr;
-            }
-
-            .highlights-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .details-table {
-                grid-template-columns: 1fr;
-            }
-
-            .recommended-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .recommended-section {
-                padding: 20px;
-            }
-
-            .content-card {
-                padding: 20px;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .footer-bottom {
                 flex-direction: column;
-                gap: 12px;
-                text-align: center;
             }
 
-            .cart-dropdown {
-                width: 320px;
-                right: -80px;
+            .add-cart-btn,
+            .buy-now-btn {
+                width: 100%;
             }
 
-            .secure-shopping {
-                gap: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar-actions {
-                gap: 10px;
+            .recommended {
+                grid-template-columns: 1fr;
             }
 
-            .search-container {
-                min-width: 100px;
-            }
-
-            .book-search {
-                font-size: 12px;
-                padding: 6px 8px;
-            }
-
-            .book-details-container {
-                padding: 16px;
-            }
-
-            .book-title {
-                font-size: 22px;
-            }
-
-            .price-section {
-                gap: 10px;
-            }
-
-            .current-price {
-                font-size: 22px;
-            }
-
-            .recommended-grid {
+            .footer-content {
                 grid-template-columns: 1fr;
             }
 
             .cart-dropdown {
-                width: 290px;
-                right: -60px;
+                right: 3%;
+                width: 94%;
             }
         }
+
     </style>
+
 </head>
 
 <body>
 
-<!-- =========================================================
+<!-- =====================================================
      NAVBAR
-========================================================= -->
+====================================================== -->
+
 <nav class="navbar">
-    <a href="/" class="logo">
+
+    <div class="logo" onclick="window.location.href='/'">
         <i class="fa-solid fa-book-open"></i>
-        <span>Book<span class="logo-highlight">Nest</span></span>
-    </a>
+        BookNest
+    </div>
 
-    <div class="navbar-actions">
-        <!-- Search -->
-        <div class="search-container">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="bookSearch" class="book-search" placeholder="Search books, authors..." autocomplete="off">
-            <button type="button" id="clearSearch" class="clear-search" title="Clear Search" aria-label="Clear Search">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
+    <div class="search-box">
 
-        <!-- Cart -->
-        <button type="button" class="header-cart" id="headerCart" title="Shopping Cart" aria-label="Shopping Cart">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span class="cart-badge" id="cartBadge">0</span>
-            <div class="cart-summary">
-                <span class="cart-label">Cart</span>
-                <strong id="cartTotal">₹0</strong>
-            </div>
+        <input type="text"
+               id="searchInput"
+               placeholder="Search for books, authors, ISBN...">
+
+        <button id="searchBtn">
+            <i class="fa-solid fa-search"></i>
         </button>
 
-        <!-- Cart Dropdown -->
-        <div class="cart-dropdown" id="cartDropdown">
-            <div class="cart-dropdown-header">
-                <span>Shopping Cart</span>
-                <button id="closeCartDropdown" aria-label="Close cart">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="cart-dropdown-items" id="cartDropdownItems"></div>
-            <div class="cart-dropdown-footer">
-                <div>
-                    <div class="total-label">Total</div>
-                    <div class="total-price" id="dropdownTotal">₹0</div>
-                </div>
-                <button class="view-cart-btn" id="viewCartBtn">View Cart</button>
-            </div>
-        </div>
     </div>
+
+    <div class="nav-actions">
+
+        <div class="cart-button" id="cartButton">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+            Cart
+
+            <span class="cart-count"
+                  id="cartCount">
+                0
+            </span>
+
+        </div>
+
+    </div>
+
 </nav>
 
-<!-- =========================================================
-     BREADCRUMB
-========================================================= -->
-<section class="breadcrumb-section">
-    <div class="breadcrumb">
-        <a href="/"><i class="fa-solid fa-house"></i>Home</a>
-        <i class="fa-solid fa-chevron-right"></i>
-        <span>Book Details</span>
-    </div>
-</section>
 
-<!-- =========================================================
-     BOOK DETAILS
-========================================================= -->
-<main class="book-details-page">
-    <div class="book-details-container">
-        <!-- LEFT: BOOK IMAGE -->
-        <section class="book-image-section">
-            <div class="book-image-wrapper">
-                <span class="book-badge">BESTSELLER</span>
-                <img id="bookImage" src="" alt="Book Cover">
-            </div>
-            <div class="image-actions">
-                <button type="button" id="wishlistBtn" class="wishlist-btn">
-                    <i class="fa-regular fa-heart"></i>
-                    <span>Add to Wishlist</span>
-                </button>
-            </div>
-        </section>
+<!-- =====================================================
+     CART DROPDOWN
+====================================================== -->
 
-        <!-- RIGHT: BOOK INFORMATION -->
-        <section class="book-info-section">
-            <div id="bookCategory" class="book-category">BOOK</div>
-            <h1 id="bookTitle" class="book-title">Book Title</h1>
-            <p class="book-author">by <span id="bookAuthor">Author Name</span></p>
+<div class="cart-dropdown" id="cartDropdown">
 
-            <div class="rating-row">
-                <div class="rating-box">
-                    <span id="bookRating">4.5</span>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <span class="rating-count"><span id="ratingCount">1,000</span> Ratings & Reviews</span>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="price-section">
-                <span class="current-price" id="bookPrice">₹499</span>
-                <span class="original-price" id="bookOriginalPrice">₹799</span>
-                <span class="discount" id="bookDiscount">38% off</span>
-            </div>
-            <p class="price-note">Inclusive of all taxes</p>
-
-            <!-- OFFERS -->
-            <div class="offers-box">
-                <div class="offers-heading">
-                    <i class="fa-solid fa-tag"></i>
-                    <span>Available Offers</span>
-                </div>
-                <div class="offer-item">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <div>
-                        <strong>Bank Offer</strong>
-                        <p>Get extra 10% off on selected bank cards.</p>
-                    </div>
-                </div>
-                <div class="offer-item">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <div>
-                        <strong>Special Price</strong>
-                        <p>Get additional discount on this book.</p>
-                    </div>
-                </div>
-                <div class="offer-item">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <div>
-                        <strong>BookNest Offer</strong>
-                        <p>Free delivery on eligible orders.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DELIVERY -->
-            <div class="delivery-section">
-                <div class="delivery-title">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Delivery</span>
-                </div>
-                <div class="delivery-input-row">
-                    <input type="text" id="pincode" placeholder="Enter delivery pincode" maxlength="6">
-                    <button type="button" id="checkDelivery">Check</button>
-                </div>
-                <p id="deliveryMessage" class="delivery-message">
-                    <i class="fa-solid fa-truck"></i>
-                    Enter your pincode to check delivery availability.
-                </p>
-            </div>
-
-            <!-- AVAILABILITY -->
-            <div class="availability-row">
-                <div class="availability-item">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <span>In Stock</span>
-                </div>
-                <div class="availability-item">
-                    <i class="fa-solid fa-truck-fast"></i>
-                    <span>Fast Delivery</span>
-                </div>
-                <div class="availability-item">
-                    <i class="fa-solid fa-rotate-left"></i>
-                    <span>Easy Returns</span>
-                </div>
-            </div>
-
-            <!-- QUANTITY -->
-            <div class="quantity-section">
-                <label>Quantity</label>
-                <div class="quantity-control">
-                    <button type="button" id="decreaseQty" aria-label="Decrease Quantity">
-                        <i class="fa-solid fa-minus"></i>
-                    </button>
-                    <span id="quantity">0</span>
-                    <button type="button" id="increaseQty" aria-label="Increase Quantity">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- ACTION BUTTONS -->
-            <div class="action-buttons">
-                <button type="button" id="addToCartBtn" class="add-cart-btn">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    Add to Cart
-                </button>
-                <button type="button" id="buyNowBtn" class="buy-now-btn">
-                    <i class="fa-solid fa-bolt"></i>
-                    Buy Now
-                </button>
-            </div>
-
-            <!-- Secure Shopping -->
-            <div class="secure-shopping">
-                <div><i class="fa-solid fa-shield-halved"></i><span>Secure Payment</span></div>
-                <div><i class="fa-solid fa-lock"></i><span>Safe & Secure</span></div>
-                <div><i class="fa-solid fa-headset"></i><span>24/7 Support</span></div>
-            </div>
-        </section>
+    <div class="cart-header">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Your Cart
     </div>
 
-    <!-- ABOUT THE BOOK -->
-    <section class="book-content-section">
-        <div class="content-card">
-            <h2>About this book</h2>
-            <div class="section-line"></div>
-            <p id="bookDescription">Discover this wonderful book and explore an engaging story filled with memorable characters, meaningful ideas and valuable insights.</p>
+    <div class="cart-items"
+         id="cartItems">
+
+    </div>
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+
+            <span>Total</span>
+
+            <span id="cartTotal">
+                ₹0
+            </span>
+
         </div>
 
-        <!-- HIGHLIGHTS -->
-        <div class="content-card">
-            <h2>Book Highlights</h2>
-            <div class="section-line"></div>
-            <div class="highlights-grid">
-                <div class="highlight-item">
-                    <i class="fa-solid fa-book"></i>
-                    <div>
-                        <span>Format</span>
-                        <strong>Paperback</strong>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <i class="fa-solid fa-language"></i>
-                    <div>
-                        <span>Language</span>
-                        <strong id="bookLanguage">English</strong>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <div>
-                        <span>Pages</span>
-                        <strong id="bookPages">300</strong>
-                    </div>
-                </div>
-                <div class="highlight-item">
-                    <i class="fa-solid fa-building"></i>
-                    <div>
-                        <span>Publisher</span>
-                        <strong id="bookPublisher">Publisher</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <button class="view-cart-btn"
+                id="viewCartBtn">
 
-        <!-- BOOK DETAILS TABLE -->
-        <div class="content-card">
-            <h2>Book Details</h2>
-            <div class="section-line"></div>
-            <div class="details-table">
-                <div class="detail-row">
-                    <span>Book Name</span>
-                    <strong id="detailTitle">-</strong>
-                </div>
-                <div class="detail-row">
-                    <span>Author</span>
-                    <strong id="detailAuthor">-</strong>
-                </div>
-                <div class="detail-row">
-                    <span>Publisher</span>
-                    <strong id="detailPublisher">-</strong>
-                </div>
-                <div class="detail-row">
-                    <span>Publication Date</span>
-                    <strong id="bookPublished">-</strong>
-                </div>
-                <div class="detail-row">
-                    <span>ISBN</span>
-                    <strong id="bookIsbn">-</strong>
-                </div>
-                <div class="detail-row">
-                    <span>Language</span>
-                    <strong id="detailLanguage">English</strong>
-                </div>
-                <div class="detail-row">
-                    <span>Pages</span>
-                    <strong id="detailPages">-</strong>
-                </div>
-            </div>
-        </div>
-    </section>
+            View Cart
 
-    <!-- RECOMMENDED BOOKS -->
-    <section class="recommended-section">
-        <div class="section-heading">
-            <div>
-                <span class="section-eyebrow">YOU MAY ALSO LIKE</span>
-                <h2>More Books For You</h2>
-            </div>
-            <a href="/">View All <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div id="recommendedBooks" class="recommended-grid"></div>
-    </section>
-</main>
+        </button>
 
-<!-- =========================================================
-     TOAST NOTIFICATION
-========================================================= -->
-<div id="toast" class="toast">
-    <i class="fa-solid fa-circle-check"></i>
-    <span id="toastMessage">Added to cart</span>
+    </div>
+
 </div>
 
-<!-- =========================================================
+
+<!-- =====================================================
+     BREADCRUMB
+====================================================== -->
+
+<div class="breadcrumb">
+
+    <a href="/">Home</a>
+
+    <span>/</span>
+
+    <a href="/">Books</a>
+
+    <span>/</span>
+
+    <span id="breadcrumbTitle">
+        Book Details
+    </span>
+
+</div>
+
+
+<!-- =====================================================
+     BOOK DETAILS
+====================================================== -->
+
+<section class="book-container">
+
+    <!-- BOOK IMAGE -->
+
+    <div class="book-image-section">
+
+        <div class="book-image-wrapper">
+
+            <img id="bookImage"
+                 src=""
+                 alt="Book Cover">
+
+        </div>
+
+        <button class="wishlist-btn"
+                id="wishlistBtn">
+
+            <i class="fa-regular fa-heart"></i>
+
+            Add to Wishlist
+
+        </button>
+
+    </div>
+
+
+    <!-- BOOK INFORMATION -->
+
+    <div class="book-info">
+
+        <h1 id="bookTitle">
+            Loading...
+        </h1>
+
+        <div class="author"
+             id="bookAuthor">
+            Loading...
+        </div>
+
+
+        <!-- RATING -->
+
+        <div class="rating-row">
+
+            <span class="rating">
+
+                <span id="bookRating">
+                    4.5
+                </span>
+
+                <i class="fa-solid fa-star"></i>
+
+            </span>
+
+            <span class="reviews"
+                  id="bookReviews">
+
+                0 Reviews
+
+            </span>
+
+        </div>
+
+
+        <!-- PRICE -->
+
+        <div class="price-section">
+
+            <span class="current-price"
+                  id="bookPrice">
+                ₹0
+            </span>
+
+            <span class="old-price"
+                  id="bookOldPrice">
+                ₹0
+            </span>
+
+            <span class="discount"
+                  id="bookDiscount">
+                0% off
+            </span>
+
+            <div class="tax-info">
+                Inclusive of all taxes
+            </div>
+
+        </div>
+
+
+        <!-- OFFERS -->
+
+        <div class="offers">
+
+            <h3>
+                <i class="fa-solid fa-tag"></i>
+                Available Offers
+            </h3>
+
+            <div class="offer">
+                <i class="fa-solid fa-circle-check"></i>
+                10% instant discount on selected bank cards.
+            </div>
+
+            <div class="offer">
+                <i class="fa-solid fa-circle-check"></i>
+                Free delivery on orders above ₹499.
+            </div>
+
+            <div class="offer">
+                <i class="fa-solid fa-circle-check"></i>
+                Extra ₹100 off on your first order.
+            </div>
+
+        </div>
+
+
+        <!-- DELIVERY -->
+
+        <div class="delivery-box">
+
+            <h3>
+                <i class="fa-solid fa-location-dot"></i>
+                Delivery
+            </h3>
+
+            <div class="pincode-row">
+
+                <input type="text"
+                       id="pincode"
+                       maxlength="6"
+                       placeholder="Enter 6-digit pincode">
+
+                <button id="checkPincodeBtn">
+                    Check
+                </button>
+
+            </div>
+
+            <div class="delivery-message"
+                 id="deliveryMessage">
+            </div>
+
+        </div>
+
+
+        <!-- AVAILABILITY -->
+
+        <div class="availability">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            In Stock
+
+        </div>
+
+
+        <!-- QUANTITY -->
+
+        <div class="quantity-section">
+
+            <label>
+                Quantity:
+            </label>
+
+            <div class="quantity-control">
+
+                <button id="minusBtn">
+                    −
+                </button>
+
+                <input type="number"
+                       id="quantityInput"
+                       value="0"
+                       min="0"
+                       max="10"
+                       readonly>
+
+                <button id="plusBtn">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTION BUTTONS -->
+
+        <div class="action-buttons">
+
+            <button class="add-cart-btn"
+                    id="addToCartBtn">
+
+                <i class="fa-solid fa-cart-plus"></i>
+
+                Add to Cart
+
+            </button>
+
+            <button class="buy-now-btn"
+                    id="buyNowBtn">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                Buy Now
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT BOOK
+====================================================== -->
+
+<section class="content-section">
+
+    <h2>
+        About the Book
+    </h2>
+
+    <p id="aboutBook">
+
+        Discover an engaging and informative reading experience
+        with this carefully selected book from BookNest.
+
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     HIGHLIGHTS
+====================================================== -->
+
+<section class="content-section">
+
+    <h2>
+        Book Highlights
+    </h2>
+
+    <ul class="highlights">
+
+        <li>
+            <i class="fa-solid fa-check"></i>
+            Engaging and easy-to-understand content
+        </li>
+
+        <li>
+            <i class="fa-solid fa-check"></i>
+            Suitable for students and general readers
+        </li>
+
+        <li>
+            <i class="fa-solid fa-check"></i>
+            High-quality printed edition
+        </li>
+
+        <li>
+            <i class="fa-solid fa-check"></i>
+            Excellent addition to your personal library
+        </li>
+
+    </ul>
+
+</section>
+
+
+<!-- =====================================================
+     BOOK DETAILS TABLE
+====================================================== -->
+
+<section class="content-section">
+
+    <h2>
+        Book Details
+    </h2>
+
+    <table class="details-table">
+
+        <tr>
+            <td>Title</td>
+            <td id="detailsTitle">-</td>
+        </tr>
+
+        <tr>
+            <td>Author</td>
+            <td id="detailsAuthor">-</td>
+        </tr>
+
+        <tr>
+            <td>ISBN</td>
+            <td id="detailsISBN">-</td>
+        </tr>
+
+        <tr>
+            <td>Language</td>
+            <td id="detailsLanguage">English</td>
+        </tr>
+
+        <tr>
+            <td>Publisher</td>
+            <td id="detailsPublisher">BookNest Publications</td>
+        </tr>
+
+        <tr>
+            <td>Format</td>
+            <td>Paperback</td>
+        </tr>
+
+        <tr>
+            <td>Availability</td>
+            <td>In Stock</td>
+        </tr>
+
+    </table>
+
+</section>
+
+
+<!-- =====================================================
+     RECOMMENDED BOOKS
+====================================================== -->
+
+<section class="recommended-container">
+
+    <h2>
+        Recommended Books
+    </h2>
+
+    <div class="recommended"
+         id="recommendedBooks">
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TOAST
+====================================================== -->
+
+<div class="toast"
+     id="toast">
+
+    Item added to cart
+
+</div>
+
+
+<!-- =====================================================
      FOOTER
-========================================================= -->
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-brand">
-            <a href="/" class="footer-logo">
-                <i class="fa-solid fa-book-open"></i>
-                <span>Book<span>Nest</span></span>
+====================================================== -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div class="footer-column">
+
+            <h3>BookNest</h3>
+
+            <p>
+                Your trusted online bookstore for discovering
+                and purchasing your favourite books.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Quick Links</h3>
+
+            <a href="/">
+                Home
             </a>
-            <p>Your trusted destination for discovering, buying and enjoying great books.</p>
+
+            <a href="/cart">
+                Cart
+            </a>
+
+            <a href="/checkout">
+                Checkout
+            </a>
+
         </div>
+
+
         <div class="footer-column">
-            <h3>Explore</h3>
-            <a href="/">Home</a>
-            <a href="/">Best Sellers</a>
-            <a href="/">New Arrivals</a>
-            <a href="/">Categories</a>
+
+            <h3>Customer Support</h3>
+
+            <p>
+                Help Center
+            </p>
+
+            <p>
+                Contact Us
+            </p>
+
+            <p>
+                Returns & Refunds
+            </p>
+
         </div>
+
+
         <div class="footer-column">
-            <h3>Company</h3>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Careers</a>
-            <a href="#">Blog</a>
+
+            <h3>Follow Us</h3>
+
+            <a href="#">
+                <i class="fa-brands fa-facebook"></i>
+                Facebook
+            </a>
+
+            <a href="#">
+                <i class="fa-brands fa-instagram"></i>
+                Instagram
+            </a>
+
+            <a href="#">
+                <i class="fa-brands fa-twitter"></i>
+                Twitter
+            </a>
+
         </div>
-        <div class="footer-column">
-            <h3>Help</h3>
-            <a href="#">Customer Support</a>
-            <a href="#">Shipping</a>
-            <a href="#">Returns</a>
-            <a href="#">FAQs</a>
-        </div>
+
     </div>
-    <div class="footer-bottom">
-        <p>© 2026 BookNest. All rights reserved.</p>
-        <div>
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-x-twitter"></i>
-            <i class="fa-brands fa-linkedin-in"></i>
-        </div>
+
+
+    <div class="copyright">
+
+        © 2026 BookNest. All Rights Reserved.
+
     </div>
+
 </footer>
 
-<!-- =========================================================
+
+<!-- =====================================================
      JAVASCRIPT
-========================================================= -->
+====================================================== -->
+
 <script>
-/* =========================================================
-   BOOK DATA
-========================================================= */
-const books = [
-    {
-        title: "The Alchemist",
-        author: "Paulo Coelho",
-        category: "Fiction",
-        price: 299,
-        originalPrice: 499,
-        rating: 4.7,
-        ratingCount: "18,542",
-        publisher: "HarperCollins",
-        pages: 208,
-        language: "English",
-        published: "1988",
-        isbn: "9780062315007",
-        image: "https://covers.openlibrary.org/isbn/9780062315007-L.jpg",
-        description: "The Alchemist is a timeless story about following your dreams and listening to your heart. Santiago, a young shepherd, sets out on a journey in search of a treasure and discovers the importance of pursuing one's dreams."
-    },
-    {
-        title: "Atomic Habits",
-        author: "James Clear",
-        category: "Self Help",
-        price: 449,
-        originalPrice: 799,
-        rating: 4.8,
-        ratingCount: "32,681",
-        publisher: "Penguin",
-        pages: 320,
-        language: "English",
-        published: "2018",
-        isbn: "9780735211292",
-        image: "https://covers.openlibrary.org/isbn/9780735211292-L.jpg",
-        description: "Atomic Habits provides a practical framework for improving every day. James Clear explains how tiny changes can lead to remarkable results and offers strategies for building good habits and breaking bad ones."
-    },
-    {
-        title: "The Great Gatsby",
-        author: "F. Scott Fitzgerald",
-        category: "Classic",
-        price: 249,
-        originalPrice: 399,
-        rating: 4.5,
-        ratingCount: "12,426",
-        publisher: "Scribner",
-        pages: 180,
-        language: "English",
-        published: "1925",
-        isbn: "9780743273565",
-        image: "https://covers.openlibrary.org/isbn/9780743273565-L.jpg",
-        description: "The Great Gatsby is a classic American novel exploring love, ambition, wealth and the American Dream through the mysterious millionaire Jay Gatsby."
-    },
-    {
-        title: "Deep Work",
-        author: "Cal Newport",
-        category: "Productivity",
-        price: 399,
-        originalPrice: 699,
-        rating: 4.6,
-        ratingCount: "15,238",
-        publisher: "Grand Central Publishing",
-        pages: 304,
-        language: "English",
-        published: "2016",
-        isbn: "9781455586691",
-        image: "https://covers.openlibrary.org/isbn/9781455586691-L.jpg",
-        description: "Deep Work explains why the ability to concentrate without distraction is becoming increasingly valuable and provides practical rules for developing focused work habits."
-    },
-    {
-        title: "Rich Dad Poor Dad",
-        author: "Robert T. Kiyosaki",
-        category: "Finance",
-        price: 349,
-        originalPrice: 599,
-        rating: 4.7,
-        ratingCount: "28,412",
-        publisher: "Plata Publishing",
-        pages: 336,
-        language: "English",
-        published: "1997",
-        isbn: "9781612680194",
-        image: "https://covers.openlibrary.org/isbn/9781612680194-L.jpg",
-        description: "Rich Dad Poor Dad teaches important lessons about money, investing, financial independence and building wealth through the contrasting financial philosophies of two father figures."
-    },
-    {
-        title: "Ikigai",
-        author: "Héctor García and Francesc Miralles",
-        category: "Self Help",
-        price: 299,
-        originalPrice: 499,
-        rating: 4.6,
-        ratingCount: "19,821",
-        publisher: "Penguin",
-        pages: 208,
-        language: "English",
-        published: "2016",
-        isbn: "9780143130727",
-        image: "https://covers.openlibrary.org/isbn/9780143130727-L.jpg",
-        description: "Ikigai explores the Japanese concept of finding purpose and meaning in everyday life. The book shares ideas for living a happier, healthier and more fulfilling life."
-    },
-    {
-        title: "Think and Grow Rich",
-        author: "Napoleon Hill",
-        category: "Motivation",
-        price: 249,
-        originalPrice: 399,
-        rating: 4.6,
-        ratingCount: "16,521",
-        publisher: "Fingerprint Publishing",
-        pages: 320,
-        language: "English",
-        published: "1937",
-        isbn: "9788175993253",
-        image: "https://covers.openlibrary.org/isbn/9788175993253-L.jpg",
-        description: "Think and Grow Rich is a classic personal development book focused on mindset, goals, persistence and the principles behind achieving success."
-    },
-    {
-        title: "The Psychology of Money",
-        author: "Morgan Housel",
-        category: "Finance",
-        price: 399,
-        originalPrice: 699,
-        rating: 4.8,
-        ratingCount: "24,672",
-        publisher: "Harriman House",
-        pages: 256,
-        language: "English",
-        published: "2020",
-        isbn: "9780857197689",
-        image: "https://covers.openlibrary.org/isbn/9780857197689-L.jpg",
-        description: "The Psychology of Money explores how emotions, behavior and personal experiences influence financial decisions and explains timeless lessons about wealth and investing."
-    }
-];
 
-/* =========================================================
-   GET ISBN FROM URL
-========================================================= */
-const urlParams = new URLSearchParams(window.location.search);
-const isbn = urlParams.get("isbn");
+    /* =====================================================
+       BOOK DATA
+    ====================================================== */
 
-/* =========================================================
-   FIND BOOK
-========================================================= */
-let selectedBook = books.find(book => book.isbn === isbn);
+    const books = [
 
-/* =========================================================
-   FALLBACK
-========================================================= */
-if (!selectedBook) {
-    selectedBook = books[0];
-}
+        {
+            isbn: "9780143454212",
+            title: "The Psychology of Money",
+            author: "Morgan Housel",
+            price: 299,
+            oldPrice: 499,
+            rating: 4.6,
+            reviews: 1245,
+            image: "https://images-na.ssl-images-amazon.com/images/P/9390166268.01.L.jpg",
+            language: "English",
+            publisher: "Jaico Publishing House",
+            about:
+                "The Psychology of Money explores the way people think about money, wealth and financial decisions. It provides practical lessons about investing, saving and building long-term wealth."
+        },
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
-const bookImage = document.getElementById("bookImage");
-const bookTitle = document.getElementById("bookTitle");
-const bookAuthor = document.getElementById("bookAuthor");
-const bookCategory = document.getElementById("bookCategory");
-const bookRating = document.getElementById("bookRating");
-const ratingCount = document.getElementById("ratingCount");
-const bookPrice = document.getElementById("bookPrice");
-const bookOriginalPrice = document.getElementById("bookOriginalPrice");
-const bookDiscount = document.getElementById("bookDiscount");
-const bookDescription = document.getElementById("bookDescription");
-const bookLanguage = document.getElementById("bookLanguage");
-const bookPages = document.getElementById("bookPages");
-const bookPublisher = document.getElementById("bookPublisher");
-const bookPublished = document.getElementById("bookPublished");
-const bookIsbn = document.getElementById("bookIsbn");
-const detailTitle = document.getElementById("detailTitle");
-const detailAuthor = document.getElementById("detailAuthor");
-const detailPublisher = document.getElementById("detailPublisher");
-const detailLanguage = document.getElementById("detailLanguage");
-const detailPages = document.getElementById("detailPages");
+        {
+            isbn: "9780132350884",
+            title: "Clean Code",
+            author: "Robert C. Martin",
+            price: 699,
+            oldPrice: 999,
+            rating: 4.7,
+            reviews: 892,
+            image: "https://images-na.ssl-images-amazon.com/images/P/0132350882.01.L.jpg",
+            language: "English",
+            publisher: "Prentice Hall",
+            about:
+                "Clean Code provides practical principles and techniques for writing readable, maintainable and professional software."
+        },
 
-/* =========================================================
-   CALCULATE DISCOUNT
-========================================================= */
-function calculateDiscount(price, originalPrice) {
-    return Math.round(((originalPrice - price) / originalPrice) * 100);
-}
+        {
+            isbn: "9780262033848",
+            title: "Introduction to Algorithms",
+            author: "Thomas H. Cormen",
+            price: 899,
+            oldPrice: 1299,
+            rating: 4.5,
+            reviews: 674,
+            image: "https://images-na.ssl-images-amazon.com/images/P/0262033844.01.L.jpg",
+            language: "English",
+            publisher: "MIT Press",
+            about:
+                "A comprehensive introduction to algorithms and data structures, covering essential concepts required for computer science students and professionals."
+        },
 
-/* =========================================================
-   LOAD BOOK
-========================================================= */
-function loadBook(book) {
-    document.title = book.title + " | BookNest";
-    bookImage.src = book.image;
-    bookImage.alt = book.title;
-    bookTitle.textContent = book.title;
-    bookAuthor.textContent = book.author;
-    bookCategory.textContent = book.category;
-    bookRating.textContent = book.rating;
-    ratingCount.textContent = book.ratingCount;
-    bookPrice.textContent = "₹" + book.price.toLocaleString("en-IN");
-    bookOriginalPrice.textContent = "₹" + book.originalPrice.toLocaleString("en-IN");
-    const discount = calculateDiscount(book.price, book.originalPrice);
-    bookDiscount.textContent = discount + "% off";
-    bookDescription.textContent = book.description;
-    bookLanguage.textContent = book.language;
-    bookPages.textContent = book.pages;
-    bookPublisher.textContent = book.publisher;
-    bookPublished.textContent = book.published;
-    bookIsbn.textContent = book.isbn;
-    detailTitle.textContent = book.title;
-    detailAuthor.textContent = book.author;
-    detailPublisher.textContent = book.publisher;
-    detailLanguage.textContent = book.language;
-    detailPages.textContent = book.pages;
-}
+        {
+            isbn: "9780134685991",
+            title: "Effective Java",
+            author: "Joshua Bloch",
+            price: 749,
+            oldPrice: 1099,
+            rating: 4.8,
+            reviews: 756,
+            image: "https://images-na.ssl-images-amazon.com/images/P/0134685997.01.L.jpg",
+            language: "English",
+            publisher: "Addison-Wesley",
+            about:
+                "Effective Java provides best practices and practical techniques for writing robust, efficient and maintainable Java programs."
+        },
 
-loadBook(selectedBook);
+        {
+            isbn: "9781491950357",
+            title: "Designing Data-Intensive Applications",
+            author: "Martin Kleppmann",
+            price: 799,
+            oldPrice: 1199,
+            rating: 4.7,
+            reviews: 532,
+            image: "https://images-na.ssl-images-amazon.com/images/P/1491950358.01.L.jpg",
+            language: "English",
+            publisher: "O'Reilly Media",
+            about:
+                "This book explains the principles behind reliable, scalable and maintainable data systems."
+        },
 
-/* =========================================================
-   QUANTITY
-========================================================= */
-let quantity = 0;
-const quantityElement = document.getElementById("quantity");
-const decreaseQty = document.getElementById("decreaseQty");
-const increaseQty = document.getElementById("increaseQty");
+        {
+            isbn: "9781617294945",
+            title: "Spring in Action",
+            author: "Craig Walls",
+            price: 649,
+            oldPrice: 899,
+            rating: 4.4,
+            reviews: 421,
+            image: "https://images-na.ssl-images-amazon.com/images/P/1617294942.01.L.jpg",
+            language: "English",
+            publisher: "Manning Publications",
+            about:
+                "Spring in Action teaches developers how to build modern Java applications using the Spring framework."
+        },
 
-function updateQuantity() {
-    quantityElement.textContent = quantity;
-    decreaseQty.disabled = quantity === 0;
-    increaseQty.disabled = quantity === 10;
-}
+        {
+            isbn: "9781492052203",
+            title: "Learning JavaScript",
+            author: "Ethan Brown",
+            price: 599,
+            oldPrice: 899,
+            rating: 4.3,
+            reviews: 389,
+            image: "https://images-na.ssl-images-amazon.com/images/P/1492052205.01.L.jpg",
+            language: "English",
+            publisher: "O'Reilly Media",
+            about:
+                "A practical guide to modern JavaScript development covering fundamental concepts and advanced techniques."
+        },
 
-decreaseQty.addEventListener("click", function() {
-    if (quantity > 0) {
-        quantity--;
-        updateQuantity();
-    }
-});
-
-increaseQty.addEventListener("click", function() {
-    if (quantity < 10) {
-        quantity++;
-        updateQuantity();
-    }
-});
-
-updateQuantity();
-
-/* =========================================================
-   CART SYSTEM - COMPLETELY REWRITTEN FOR RELIABILITY
-========================================================= */
-
-// Get cart from localStorage or initialize empty
-let cartItems = [];
-let cartCount = 0;
-let cartTotal = 0;
-
-function loadCart() {
-    try {
-        const stored = localStorage.getItem('booknestCart');
-        if (stored) {
-            cartItems = JSON.parse(stored);
-            // Validate data
-            if (!Array.isArray(cartItems)) {
-                cartItems = [];
-            }
-        } else {
-            cartItems = [];
+        {
+            isbn: "9780134494166",
+            title: "Java: The Complete Reference",
+            author: "Herbert Schildt",
+            price: 799,
+            oldPrice: 1199,
+            rating: 4.6,
+            reviews: 812,
+            image: "https://images-na.ssl-images-amazon.com/images/P/1260440230.01.L.jpg",
+            language: "English",
+            publisher: "McGraw-Hill",
+            about:
+                "A comprehensive reference covering Java programming fundamentals, object-oriented programming and advanced Java features."
         }
-    } catch (e) {
-        cartItems = [];
-    }
-    
-    // Calculate totals
-    cartCount = cartItems.reduce((total, item) => total + (item.quantity || 0), 0);
-    cartTotal = cartItems.reduce((total, item) => total + ((item.price || 0) * (item.quantity || 0)), 0);
-}
 
-function saveCart() {
-    try {
-        localStorage.setItem('booknestCart', JSON.stringify(cartItems));
-        localStorage.setItem('booknestCartCount', cartCount);
-        localStorage.setItem('booknestCartTotal', cartTotal);
-    } catch (e) {
-        console.error('Error saving cart:', e);
-    }
-}
+    ];
 
-function updateCartUI() {
-    const badge = document.getElementById("cartBadge");
-    const total = document.getElementById("cartTotal");
-    
-    if (badge) {
-        badge.textContent = cartCount;
-    }
-    if (total) {
-        total.textContent = "₹" + cartTotal.toLocaleString("en-IN");
-    }
-    
-    // Update dropdown total if open
-    const dropdownTotal = document.getElementById("dropdownTotal");
-    if (dropdownTotal) {
-        dropdownTotal.textContent = "₹" + cartTotal.toLocaleString("en-IN");
-    }
-    
-    saveCart();
-    
-    // Re-render dropdown if open
-    if (document.getElementById("cartDropdown").classList.contains('show')) {
-        renderCartDropdown();
-    }
-}
 
-function addToCart(book, qty) {
-    if (qty <= 0) {
-        showToast("Please select quantity first");
-        return false;
+    /* =====================================================
+       GET BOOK FROM URL
+    ====================================================== */
+
+    const params = new URLSearchParams(window.location.search);
+
+    const isbn = params.get("isbn");
+
+
+    /* =====================================================
+       FIND SELECTED BOOK
+    ====================================================== */
+
+    let selectedBook = books.find(book => book.isbn === isbn);
+
+
+    if (!selectedBook) {
+
+        selectedBook = books[0];
+
     }
-    
-    // Check if book already exists in cart
-    const existingIndex = cartItems.findIndex(item => item.isbn === book.isbn);
-    
-    if (existingIndex !== -1) {
-        // Update existing item
-        cartItems[existingIndex].quantity += qty;
-    } else {
-        // Add new item
-        cartItems.push({
-            isbn: book.isbn,
-            title: book.title,
-            author: book.author,
-            price: book.price,
-            originalPrice: book.originalPrice,
-            image: book.image,
-            quantity: qty,
-            category: book.category
+
+
+    /* =====================================================
+       QUANTITY
+    ====================================================== */
+
+    let quantity = 0;
+
+    const quantityInput =
+        document.getElementById("quantityInput");
+
+
+    /* =====================================================
+       LOAD BOOK DETAILS
+    ====================================================== */
+
+    function loadBookDetails() {
+
+        document.getElementById("bookImage").src =
+            selectedBook.image;
+
+        document.getElementById("bookImage").alt =
+            selectedBook.title;
+
+        document.getElementById("bookTitle").textContent =
+            selectedBook.title;
+
+        document.getElementById("bookAuthor").textContent =
+            "by " + selectedBook.author;
+
+        document.getElementById("bookRating").textContent =
+            selectedBook.rating;
+
+        document.getElementById("bookReviews").textContent =
+            selectedBook.reviews + " Reviews";
+
+        document.getElementById("bookPrice").textContent =
+            "₹" + selectedBook.price.toLocaleString("en-IN");
+
+        document.getElementById("bookOldPrice").textContent =
+            "₹" + selectedBook.oldPrice.toLocaleString("en-IN");
+
+        const discount =
+            Math.round(
+                ((selectedBook.oldPrice - selectedBook.price) /
+                selectedBook.oldPrice) * 100
+            );
+
+        document.getElementById("bookDiscount").textContent =
+            discount + "% off";
+
+        document.getElementById("aboutBook").textContent =
+            selectedBook.about;
+
+        document.getElementById("detailsTitle").textContent =
+            selectedBook.title;
+
+        document.getElementById("detailsAuthor").textContent =
+            selectedBook.author;
+
+        document.getElementById("detailsISBN").textContent =
+            selectedBook.isbn;
+
+        document.getElementById("detailsLanguage").textContent =
+            selectedBook.language;
+
+        document.getElementById("detailsPublisher").textContent =
+            selectedBook.publisher;
+
+        document.getElementById("breadcrumbTitle").textContent =
+            selectedBook.title;
+
+        document.title =
+            "BookNest | " + selectedBook.title;
+
+    }
+
+
+    /* =====================================================
+       QUANTITY PLUS
+    ====================================================== */
+
+    document.getElementById("plusBtn")
+        .addEventListener("click", function() {
+
+            if (quantity < 10) {
+
+                quantity++;
+
+                quantityInput.value =
+                    quantity;
+
+            }
+
         });
+
+
+    /* =====================================================
+       QUANTITY MINUS
+    ====================================================== */
+
+    document.getElementById("minusBtn")
+        .addEventListener("click", function() {
+
+            if (quantity > 0) {
+
+                quantity--;
+
+                quantityInput.value =
+                    quantity;
+
+            }
+
+        });
+
+
+    /* =====================================================
+       LOCAL STORAGE CART
+    ====================================================== */
+
+    function getCart() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem("booknestCart")
+            ) || [];
+
+        } catch (error) {
+
+            return [];
+
+        }
+
     }
-    
-    // Recalculate totals
-    cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-    cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-    
-    updateCartUI();
-    
-    // Bump animation
-    const badge = document.getElementById("cartBadge");
-    badge.classList.remove("cart-bump");
-    void badge.offsetWidth;
-    badge.classList.add("cart-bump");
-    
-    // Reset quantity
-    quantity = 0;
-    updateQuantity();
-    
-    showToast(qty + " item" + (qty > 1 ? "s" : "") + " added to cart");
-    return true;
-}
 
-// Load cart on page load
-loadCart();
-updateCartUI();
 
-/* =========================================================
-   ADD TO CART BUTTON - FIXED
-========================================================= */
-document.getElementById("addToCartBtn").addEventListener("click", function(e) {
-    e.preventDefault();
-    addToCart(selectedBook, quantity);
-});
+    let cartItems = getCart();
 
-/* =========================================================
-   BUY NOW BUTTON - FIXED: Navigates to cart.html
-========================================================= */
-document.getElementById("buyNowBtn").addEventListener("click", function(e) {
-    e.preventDefault();
-    if (quantity <= 0) {
-        showToast("Please select quantity first");
-        return;
+
+    /* =====================================================
+       SAVE CART
+    ====================================================== */
+
+    function saveCart() {
+
+        localStorage.setItem(
+            "booknestCart",
+            JSON.stringify(cartItems)
+        );
+
+        updateCartCount();
+
+        updateCartDropdown();
+
     }
-    addToCart(selectedBook, quantity);
-    setTimeout(function() {
-        // Navigate to cart.html after a short delay to ensure cart is updated
-        window.location.href = "cart.html";
-    }, 300);
-});
 
-/* =========================================================
-   CART DROPDOWN - FIXED
-========================================================= */
-const headerCart = document.getElementById("headerCart");
-const cartDropdown = document.getElementById("cartDropdown");
-const closeCartDropdown = document.getElementById("closeCartDropdown");
-const viewCartBtn = document.getElementById("viewCartBtn");
 
-headerCart.addEventListener("click", function(e) {
-    e.stopPropagation();
-    cartDropdown.classList.toggle('show');
-    if (cartDropdown.classList.contains('show')) {
-        renderCartDropdown();
+    /* =====================================================
+       ADD TO CART
+    ====================================================== */
+
+    function addToCart(book, qty) {
+
+        if (!book) {
+
+            showToast("Book not found");
+
+            return false;
+
+        }
+
+        if (!qty || qty <= 0) {
+
+            showToast("Please select quantity first");
+
+            return false;
+
+        }
+
+
+        const existingItem =
+            cartItems.find(
+                item => item.isbn === book.isbn
+            );
+
+
+        if (existingItem) {
+
+            existingItem.quantity += qty;
+
+            if (existingItem.quantity > 10) {
+
+                existingItem.quantity = 10;
+
+            }
+
+        } else {
+
+            cartItems.push({
+
+                isbn: book.isbn,
+
+                title: book.title,
+
+                author: book.author,
+
+                price: book.price,
+
+                oldPrice: book.oldPrice,
+
+                image: book.image,
+
+                quantity: qty
+
+            });
+
+        }
+
+
+        saveCart();
+
+        showToast(
+            book.title + " added to cart"
+        );
+
+        return true;
+
     }
-});
 
-closeCartDropdown.addEventListener("click", function() {
-    cartDropdown.classList.remove('show');
-});
 
-// Close dropdown when clicking outside
-document.addEventListener("click", function(e) {
-    if (!e.target.closest(".navbar-actions") && !e.target.closest(".cart-dropdown")) {
-        cartDropdown.classList.remove('show');
+    /* =====================================================
+       ADD TO CART BUTTON
+    ====================================================== */
+
+    document.getElementById("addToCartBtn")
+        .addEventListener("click", function() {
+
+            if (quantity <= 0) {
+
+                showToast(
+                    "Please select quantity first"
+                );
+
+                return;
+
+            }
+
+            addToCart(
+                selectedBook,
+                quantity
+            );
+
+        });
+
+
+    /* =====================================================
+       BUY NOW BUTTON
+       IMPORTANT:
+       Navigate to /cart, NOT cart.html
+    ====================================================== */
+
+    document.getElementById("buyNowBtn")
+        .addEventListener("click", function(e) {
+
+            e.preventDefault();
+
+
+            if (quantity <= 0) {
+
+                showToast(
+                    "Please select quantity first"
+                );
+
+                return;
+
+            }
+
+
+            const added =
+                addToCart(
+                    selectedBook,
+                    quantity
+                );
+
+
+            if (added) {
+
+                /*
+                 * Spring Boot + Thymeleaf route
+                 *
+                 * cart.html must be inside:
+                 * src/main/resources/templates/
+                 *
+                 * Controller:
+                 * @GetMapping("/cart")
+                 * public String cart() {
+                 *     return "cart";
+                 * }
+                 */
+
+                window.location.href = "/cart";
+
+            }
+
+        });
+
+
+    /* =====================================================
+       UPDATE CART COUNT
+    ====================================================== */
+
+    function updateCartCount() {
+
+        let count = 0;
+
+        cartItems.forEach(function(item) {
+
+            count += Number(item.quantity) || 0;
+
+        });
+
+
+        document.getElementById("cartCount")
+            .textContent = count;
+
+
+        localStorage.setItem(
+            "booknestCartCount",
+            count
+        );
+
     }
-});
 
-viewCartBtn.addEventListener("click", function() {
-    if (cartItems.length === 0) {
-        showToast("Your cart is empty");
-        return;
-    }
-    // Navigate to cart.html
-    window.location.href = "cart.html";
-});
 
-function renderCartDropdown() {
-    const container = document.getElementById("cartDropdownItems");
-    const total = document.getElementById("dropdownTotal");
-    
-    if (!container) return;
-    
-    if (cartItems.length === 0) {
-        container.innerHTML = `
-            <div class="cart-dropdown-empty">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <p>Your cart is empty</p>
-            </div>
-        `;
-        if (total) total.textContent = "₹0";
-        return;
+    /* =====================================================
+       CART TOTAL
+    ====================================================== */
+
+    function calculateCartTotal() {
+
+        let total = 0;
+
+        cartItems.forEach(function(item) {
+
+            total +=
+                Number(item.price) *
+                Number(item.quantity);
+
+        });
+
+        return total;
+
     }
-    
-    let html = "";
-    cartItems.forEach(item => {
-        html += `
-            <div class="cart-dropdown-item" data-isbn="${item.isbn}">
-                <img src="${item.image}" alt="${item.title}">
-                <div class="cart-dropdown-item-info">
-                    <h4>${item.title}</h4>
-                    <div class="item-meta">
-                        Qty: ${item.quantity} × <strong>₹${item.price.toLocaleString("en-IN")}</strong>
+
+
+    /* =====================================================
+       UPDATE CART DROPDOWN
+    ====================================================== */
+
+    function updateCartDropdown() {
+
+        const cartItemsContainer =
+            document.getElementById("cartItems");
+
+        const cartTotal =
+            document.getElementById("cartTotal");
+
+
+        cartItemsContainer.innerHTML = "";
+
+
+        if (cartItems.length === 0) {
+
+            cartItemsContainer.innerHTML = `
+
+                <div style="
+                    padding:25px;
+                    text-align:center;
+                    color:#777;
+                ">
+
+                    <i class="fa-solid fa-cart-shopping"
+                       style="
+                           font-size:35px;
+                           margin-bottom:10px;
+                       ">
+                    </i>
+
+                    <p>
+                        Your cart is empty
+                    </p>
+
+                </div>
+
+            `;
+
+        } else {
+
+            cartItems.forEach(function(item, index) {
+
+                const div =
+                    document.createElement("div");
+
+                div.className =
+                    "cart-item";
+
+
+                div.innerHTML = `
+
+                    <img
+                        src="${item.image}"
+                        alt="${item.title}"
+                    >
+
+                    <div class="cart-item-info">
+
+                        <h4>
+                            ${item.title}
+                        </h4>
+
+                        <p>
+                            ₹${Number(item.price).toLocaleString("en-IN")}
+                            × ${item.quantity}
+                        </p>
+
                     </div>
-                </div>
-                <button class="remove-cart-item" data-isbn="${item.isbn}" aria-label="Remove item">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            </div>
-        `;
-    });
-    
-    container.innerHTML = html;
-    if (total) total.textContent = "₹" + cartTotal.toLocaleString("en-IN");
-    
-    // Add remove functionality
-    document.querySelectorAll(".remove-cart-item").forEach(btn => {
-        btn.addEventListener("click", function(e) {
+
+                    <button
+                        class="remove-cart-item"
+                        data-index="${index}">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+                `;
+
+
+                cartItemsContainer.appendChild(div);
+
+            });
+
+
+            document
+                .querySelectorAll(".remove-cart-item")
+                .forEach(function(button) {
+
+                    button.addEventListener(
+                        "click",
+                        function() {
+
+                            const index =
+                                Number(
+                                    this.dataset.index
+                                );
+
+
+                            cartItems.splice(
+                                index,
+                                1
+                            );
+
+
+                            saveCart();
+
+                            showToast(
+                                "Item removed from cart"
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        const total =
+            calculateCartTotal();
+
+
+        cartTotal.textContent =
+            "₹" +
+            total.toLocaleString("en-IN");
+
+
+        localStorage.setItem(
+            "booknestCartTotal",
+            total
+        );
+
+    }
+
+
+    /* =====================================================
+       CART BUTTON
+    ====================================================== */
+
+    const cartButton =
+        document.getElementById("cartButton");
+
+    const cartDropdown =
+        document.getElementById("cartDropdown");
+
+
+    cartButton.addEventListener(
+        "click",
+        function(e) {
+
             e.stopPropagation();
-            const isbn = this.dataset.isbn;
-            cartItems = cartItems.filter(item => item.isbn !== isbn);
-            cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-            cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-            updateCartUI();
-            renderCartDropdown();
-            showToast("Item removed from cart");
-        });
-    });
-}
 
-/* =========================================================
-   WISHLIST
-========================================================= */
-let wishlistAdded = false;
-document.getElementById("wishlistBtn").addEventListener("click", function() {
-    wishlistAdded = !wishlistAdded;
-    const icon = this.querySelector("i");
-    const text = this.querySelector("span");
-    if (wishlistAdded) {
-        icon.className = "fa-solid fa-heart";
-        this.classList.add("active");
-        text.textContent = "Added to Wishlist";
-        showToast("Added to wishlist");
-    } else {
-        icon.className = "fa-regular fa-heart";
-        this.classList.remove("active");
-        text.textContent = "Add to Wishlist";
-    }
-});
+            cartDropdown.classList.toggle(
+                "active"
+            );
 
-/* =========================================================
-   DELIVERY CHECK
-========================================================= */
-document.getElementById("checkDelivery").addEventListener("click", function() {
-    const pincode = document.getElementById("pincode").value.trim();
-    const message = document.getElementById("deliveryMessage");
-    if (!/^[1-9][0-9]{5}$/.test(pincode)) {
-        message.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Please enter a valid 6-digit pincode.';
-        message.classList.add("error");
-        return;
-    }
-    message.innerHTML = '<i class="fa-solid fa-circle-check"></i> Delivery available to ' + pincode + '. Estimated delivery in 2–5 days.';
-    message.classList.remove("error");
-});
-
-/* =========================================================
-   SEARCH
-========================================================= */
-const searchInput = document.getElementById("bookSearch");
-const clearSearch = document.getElementById("clearSearch");
-
-searchInput.addEventListener("input", function() {
-    clearSearch.style.display = this.value.trim() ? "flex" : "none";
-});
-
-clearSearch.addEventListener("click", function() {
-    searchInput.value = "";
-    clearSearch.style.display = "none";
-    searchInput.focus();
-});
-
-searchInput.addEventListener("keydown", function(event) {
-    if (event.key !== "Enter") return;
-    const query = this.value.trim().toLowerCase();
-    if (!query) return;
-    const result = books.find(book =>
-        book.title.toLowerCase().includes(query) ||
-        book.author.toLowerCase().includes(query) ||
-        book.category.toLowerCase().includes(query)
+        }
     );
-    if (result) {
-        window.location.href = "/book-details?isbn=" + encodeURIComponent(result.isbn);
-    } else {
-        showToast("No matching book found");
-    }
-});
 
-/* =========================================================
-   TOAST
-========================================================= */
-let toastTimer;
 
-function showToast(message) {
-    const toast = document.getElementById("toast");
-    const toastMessage = document.getElementById("toastMessage");
-    
-    toastMessage.textContent = message;
-    toast.classList.add("show");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function() {
-        toast.classList.remove("show");
-    }, 2500);
-}
+    /* =====================================================
+       CLOSE CART WHEN CLICKING OUTSIDE
+    ====================================================== */
 
-/* =========================================================
-   RECOMMENDED BOOKS
-========================================================= */
-function loadRecommendedBooks() {
-    const container = document.getElementById("recommendedBooks");
-    const recommended = books.filter(book => book.isbn !== selectedBook.isbn).slice(0, 4);
-    container.innerHTML = "";
-    recommended.forEach(book => {
-        const card = document.createElement("div");
-        card.className = "recommended-card";
-        card.innerHTML = `
-            <div class="recommended-image">
-                <img src="${book.image}" alt="${book.title}">
-            </div>
-            <div class="recommended-info">
-                <span class="recommended-category">${book.category}</span>
-                <h3>${book.title}</h3>
-                <p>${book.author}</p>
-                <div class="recommended-rating">
-                    <span>${book.rating} <i class="fa-solid fa-star"></i></span>
-                    <small>(${book.ratingCount})</small>
-                </div>
-                <div class="recommended-price">
-                    <strong>₹${book.price.toLocaleString("en-IN")}</strong>
-                    <del>₹${book.originalPrice.toLocaleString("en-IN")}</del>
-                </div>
-            </div>
-        `;
-        card.addEventListener("click", function() {
-            window.location.href = "/book-details?isbn=" + encodeURIComponent(book.isbn);
+    document.addEventListener(
+        "click",
+        function(e) {
+
+            if (
+                !cartDropdown.contains(e.target) &&
+                !cartButton.contains(e.target)
+            ) {
+
+                cartDropdown.classList.remove(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       VIEW CART
+       IMPORTANT:
+       Navigate to /cart
+    ====================================================== */
+
+    document.getElementById("viewCartBtn")
+        .addEventListener("click", function() {
+
+            if (cartItems.length === 0) {
+
+                showToast(
+                    "Your cart is empty"
+                );
+
+                return;
+
+            }
+
+
+            window.location.href = "/cart";
+
         });
-        container.appendChild(card);
-    });
-}
 
-loadRecommendedBooks();
 
-/* =========================================================
-   NAVBAR SCROLL
-========================================================= */
-window.addEventListener("scroll", function() {
-    const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 30) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
+    /* =====================================================
+       WISHLIST
+    ====================================================== */
+
+    const wishlistBtn =
+        document.getElementById("wishlistBtn");
+
+
+    wishlistBtn.addEventListener(
+        "click",
+        function() {
+
+            this.classList.toggle(
+                "active"
+            );
+
+
+            if (
+                this.classList.contains(
+                    "active"
+                )
+            ) {
+
+                this.innerHTML = `
+
+                    <i class="fa-solid fa-heart"></i>
+                    Added to Wishlist
+
+                `;
+
+                showToast(
+                    "Added to wishlist"
+                );
+
+            } else {
+
+                this.innerHTML = `
+
+                    <i class="fa-regular fa-heart"></i>
+                    Add to Wishlist
+
+                `;
+
+                showToast(
+                    "Removed from wishlist"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       PINCODE CHECK
+    ====================================================== */
+
+    document.getElementById("checkPincodeBtn")
+        .addEventListener("click", function() {
+
+            const pincode =
+                document
+                    .getElementById("pincode")
+                    .value
+                    .trim();
+
+            const message =
+                document.getElementById(
+                    "deliveryMessage"
+                );
+
+
+            if (!/^[0-9]{6}$/.test(pincode)) {
+
+                message.textContent =
+                    "Please enter a valid 6-digit pincode.";
+
+                message.style.color =
+                    "#e53935";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Delivery available to this pincode. Estimated delivery in 3-5 days.";
+
+            message.style.color =
+                "#388e3c";
+
+        });
+
+
+    /* =====================================================
+       SEARCH
+    ====================================================== */
+
+    function searchBooks() {
+
+        const query =
+            document
+                .getElementById("searchInput")
+                .value
+                .trim()
+                .toLowerCase();
+
+
+        if (!query) {
+
+            showToast(
+                "Please enter a book name or ISBN"
+            );
+
+            return;
+
+        }
+
+
+        const found =
+            books.find(function(book) {
+
+                return (
+
+                    book.title
+                        .toLowerCase()
+                        .includes(query)
+
+                    ||
+
+                    book.author
+                        .toLowerCase()
+                        .includes(query)
+
+                    ||
+
+                    book.isbn
+                        .toLowerCase()
+                        .includes(query)
+
+                );
+
+            });
+
+
+        if (found) {
+
+            window.location.href =
+                "/book-details?isbn=" +
+                encodeURIComponent(
+                    found.isbn
+                );
+
+        } else {
+
+            showToast(
+                "No matching book found"
+            );
+
+        }
+
     }
-});
 
-// Console log for debugging
-console.log('Book details page loaded successfully');
-console.log('Selected book:', selectedBook.title);
-console.log('Cart items:', cartItems);
-console.log('Cart count:', cartCount);
+
+    document.getElementById("searchBtn")
+        .addEventListener(
+            "click",
+            searchBooks
+        );
+
+
+    document.getElementById("searchInput")
+        .addEventListener(
+            "keydown",
+            function(e) {
+
+                if (e.key === "Enter") {
+
+                    searchBooks();
+
+                }
+
+            }
+        );
+
+
+    /* =====================================================
+       RECOMMENDED BOOKS
+    ====================================================== */
+
+    function loadRecommendedBooks() {
+
+        const container =
+            document.getElementById(
+                "recommendedBooks"
+            );
+
+
+        container.innerHTML = "";
+
+
+        const recommendedBooks =
+            books
+                .filter(
+                    book =>
+                        book.isbn !==
+                        selectedBook.isbn
+                )
+                .slice(0, 4);
+
+
+        recommendedBooks.forEach(
+            function(book) {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "recommended-card";
+
+
+                card.innerHTML = `
+
+                    <img
+                        src="${book.image}"
+                        alt="${book.title}"
+                    >
+
+                    <h3>
+                        ${book.title}
+                    </h3>
+
+                    <p>
+                        ${book.author}
+                    </p>
+
+                    <div class="recommended-price">
+                        ₹${book.price.toLocaleString("en-IN")}
+                    </div>
+
+                `;
+
+
+                card.addEventListener(
+                    "click",
+                    function() {
+
+                        window.location.href =
+                            "/book-details?isbn=" +
+                            encodeURIComponent(
+                                book.isbn
+                            );
+
+                    }
+                );
+
+
+                container.appendChild(card);
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       TOAST
+    ====================================================== */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+
+        toast.textContent =
+            message;
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        setTimeout(
+            function() {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2500
+        );
+
+    }
+
+
+    /* =====================================================
+       INITIALIZE PAGE
+    ====================================================== */
+
+    loadBookDetails();
+
+    loadRecommendedBooks();
+
+    updateCartCount();
+
+    updateCartDropdown();
+
+
 </script>
 
 </body>
+
 </html>

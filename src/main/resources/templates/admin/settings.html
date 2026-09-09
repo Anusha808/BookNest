@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Settings</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 245px;
+            height: 100vh;
+            background: #dbeafe;
+            border-right: 1px solid #bfdbfe;
+            padding: 25px 15px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #2563eb;
+            padding: 0 15px 30px;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: bold;
+            margin: 20px 15px 10px;
+            letter-spacing: 1px;
+        }
+
+        .menu a {
+            display: block;
+            text-decoration: none;
+            color: #334155;
+            padding: 13px 15px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #bfdbfe;
+            color: #1d4ed8;
+        }
+
+        .menu a.active {
+            background: #2563eb;
+            color: white;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 245px;
+            min-height: 100vh;
+        }
+
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            height: 75px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 30px;
+        }
+
+        .topbar h1 {
+            font-size: 22px;
+        }
+
+        .admin {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+
+            background: #2563eb;
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-weight: bold;
+        }
+
+        .admin-text {
+            font-size: 13px;
+        }
+
+        .admin-text strong {
+            display: block;
+        }
+
+        .admin-text span {
+            color: #64748b;
+        }
+
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            padding: 30px;
+            max-width: 1200px;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h2 {
+            font-size: 27px;
+            margin-bottom: 7px;
+        }
+
+        .page-heading p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        /* ================= SUCCESS ================= */
+
+        .success-message {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+
+            padding: 13px 16px;
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= SETTINGS GRID ================= */
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .card.full {
+            grid-column: span 2;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .card-description {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+
+            padding: 11px 12px;
+
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+
+            outline: none;
+
+            font-size: 13px;
+
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2563eb;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+
+        /* ================= TOGGLE ================= */
+
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .setting-row:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .setting-info span {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .switch {
+            position: relative;
+            width: 48px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            background: #cbd5e1;
+
+            border-radius: 30px;
+
+            transition: .3s;
+        }
+
+        .slider:before {
+            content: "";
+
+            position: absolute;
+
+            width: 20px;
+            height: 20px;
+
+            left: 3px;
+            bottom: 3px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            transition: .3s;
+        }
+
+        .switch input:checked + .slider {
+            background: #2563eb;
+        }
+
+        .switch input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 7px;
+
+            padding: 11px 20px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-reset {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-reset:hover {
+            background: #d1d5db;
+        }
+
+
+        /* ================= STATUS ================= */
+
+        .status-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-top: 10px;
+
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .status-open {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-closed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card.full {
+                grid-column: span 1;
+            }
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .main {
+                margin-left: 200px;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .topbar {
+                padding: 15px;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================================
+     SIDEBAR
+========================================================== -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        📚 BookNest
+    </div>
+
+
+    <div class="menu-title">
+        MAIN MENU
+    </div>
+
+
+    <div class="menu">
+
+        <a href="/admin/dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="/admin/books">
+            📚 Books
+        </a>
+
+        <a href="/admin/categories">
+            🗂 Categories
+        </a>
+
+        <a href="/admin/users">
+            👥 Users
+        </a>
+
+        <a href="/admin/orders">
+            🛒 Orders
+        </a>
+
+        <a href="/admin/payments">
+            💳 Payments
+        </a>
+
+        <a href="/admin/inventory">
+            📦 Inventory
+        </a>
+
+    </div>
+
+
+    <div class="menu-title">
+        SYSTEM
+    </div>
+
+
+    <div class="menu">
+
+        <a href="/admin/settings"
+           class="active">
+            ⚙ Settings
+        </a>
+
+        <a href="/">
+            🏪 View Store
+        </a>
+
+        <a href="/admin/login">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================================
+     MAIN
+========================================================== -->
+
+<div class="main">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <h1>Settings</h1>
+
+
+        <div class="admin">
+
+            <div class="avatar">
+                A
+            </div>
+
+            <div class="admin-text">
+
+                <strong>
+                    Administrator
+                </strong>
+
+                <span>
+                    admin@booknest.com
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================================
+         CONTENT
+    ====================================================== -->
+
+    <div class="content">
+
+
+        <div class="page-heading">
+
+            <h2>
+                Store Settings
+            </h2>
+
+            <p>
+                Manage your BookNest store configuration,
+                payments and inventory preferences.
+            </p>
+
+        </div>
+
+
+        <!-- SUCCESS MESSAGE -->
+
+        <div
+                th:if="${param.saved}"
+                class="success-message">
+
+            ✓ Settings saved successfully.
+
+        </div>
+
+
+        <!-- ==================================================
+             FORM
+        ================================================== -->
+
+        <form
+                th:action="@{/admin/settings/save}"
+                method="post">
+
+
+            <div class="settings-grid">
+
+
+                <!-- ==========================================
+                     STORE INFORMATION
+                =========================================== -->
+
+                <div class="card">
+
+                    <h3>
+                        Store Information
+                    </h3>
+
+                    <p class="card-description">
+                        Basic information about your BookNest store.
+                    </p>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Store Name
+                        </label>
+
+                        <input
+                                type="text"
+                                name="storeName"
+                                th:value="${settings.storeName}"
+                                required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Store Email
+                        </label>
+
+                        <input
+                                type="email"
+                                name="storeEmail"
+                                th:value="${settings.storeEmail}"
+                                placeholder="admin@booknest.com">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Store Phone
+                        </label>
+
+                        <input
+                                type="text"
+                                name="storePhone"
+                                th:value="${settings.storePhone}"
+                                placeholder="+91 XXXXX XXXXX">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Store Address
+                        </label>
+
+                        <textarea
+                                name="storeAddress"
+                                th:text="${settings.storeAddress}"
+                                placeholder="Enter store address"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     STORE CONFIGURATION
+                =========================================== -->
+
+                <div class="card">
+
+                    <h3>
+                        Store Configuration
+                    </h3>
+
+                    <p class="card-description">
+                        Configure general store behaviour.
+                    </p>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Currency
+                        </label>
+
+                        <select name="currency">
+
+                            <option value="INR"
+                                    th:selected="${settings.currency == 'INR'}">
+                                INR - Indian Rupee (₹)
+                            </option>
+
+                            <option value="USD"
+                                    th:selected="${settings.currency == 'USD'}">
+                                USD - US Dollar ($)
+                            </option>
+
+                            <option value="EUR"
+                                    th:selected="${settings.currency == 'EUR'}">
+                                EUR - Euro (€)
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <strong>
+                                Store Status
+                            </strong>
+
+                            <span>
+                                Allow customers to access the store.
+                            </span>
+
+                        </div>
+
+
+                        <label class="switch">
+
+                            <input
+                                    type="checkbox"
+                                    name="storeOpen"
+                                    value="true"
+                                    th:checked="${settings.storeOpen}">
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div>
+
+                        <span
+                                th:if="${settings.storeOpen}"
+                                class="status-box status-open">
+
+                            <span class="dot"></span>
+
+                            Store is Open
+
+                        </span>
+
+
+                        <span
+                                th:unless="${settings.storeOpen}"
+                                class="status-box status-closed">
+
+                            <span class="dot"></span>
+
+                            Store is Closed
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     PAYMENT SETTINGS
+                =========================================== -->
+
+                <div class="card">
+
+                    <h3>
+                        Payment Settings
+                    </h3>
+
+                    <p class="card-description">
+                        Control which payment methods customers can use.
+                    </p>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <strong>
+                                Razorpay
+                            </strong>
+
+                            <span>
+                                Accept online payments through Razorpay.
+                            </span>
+
+                        </div>
+
+
+                        <label class="switch">
+
+                            <input
+                                    type="checkbox"
+                                    name="razorpayEnabled"
+                                    value="true"
+                                    th:checked="${settings.razorpayEnabled}">
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div class="setting-info">
+
+                            <strong>
+                                Cash on Delivery
+                            </strong>
+
+                            <span>
+                                Allow customers to pay when the order is delivered.
+                            </span>
+
+                        </div>
+
+
+                        <label class="switch">
+
+                            <input
+                                    type="checkbox"
+                                    name="codEnabled"
+                                    value="true"
+                                    th:checked="${settings.codEnabled}">
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     INVENTORY SETTINGS
+                =========================================== -->
+
+                <div class="card">
+
+                    <h3>
+                        Inventory Settings
+                    </h3>
+
+                    <p class="card-description">
+                        Configure inventory warning levels.
+                    </p>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Low Stock Threshold
+                        </label>
+
+                        <input
+                                type="number"
+                                name="lowStockThreshold"
+                                min="0"
+                                th:value="${settings.lowStockThreshold}"
+                                required>
+
+                        <small
+                                style="display:block;
+                                       margin-top:7px;
+                                       color:#64748b;
+                                       font-size:12px;">
+
+                            Books at or below this quantity will
+                            be considered low stock.
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     SAVE
+                =========================================== -->
+
+                <div class="card full">
+
+                    <h3>
+                        Save Configuration
+                    </h3>
+
+                    <p class="card-description">
+                        Save your current BookNest settings.
+                    </p>
+
+
+                    <div class="actions">
+
+                        <button
+                                type="reset"
+                                class="btn btn-reset">
+
+                            Reset
+
+                        </button>
+
+
+                        <button
+                                type="submit"
+                                class="btn btn-primary">
+
+                            Save Settings
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Inventory</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 245px;
+            height: 100vh;
+            background: #dbeafe;
+            border-right: 1px solid #bfdbfe;
+            padding: 25px 15px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #2563eb;
+            padding: 0 15px 30px;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: bold;
+            margin: 20px 15px 10px;
+            letter-spacing: 1px;
+        }
+
+        .menu a {
+            display: block;
+            text-decoration: none;
+            color: #334155;
+            padding: 13px 15px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #bfdbfe;
+            color: #1d4ed8;
+        }
+
+        .menu a.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 245px;
+            min-height: 100vh;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            height: 75px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .topbar h1 {
+            font-size: 22px;
+        }
+
+        .admin {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            background: #2563eb;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .admin-text {
+            font-size: 13px;
+        }
+
+        .admin-text strong {
+            display: block;
+        }
+
+        .admin-text span {
+            color: #64748b;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            padding: 30px;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h2 {
+            font-size: 26px;
+            margin-bottom: 7px;
+        }
+
+        .page-heading p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* ================= STATS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .stat-title {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .blue {
+            color: #2563eb;
+        }
+
+        .green {
+            color: #16a34a;
+        }
+
+        .orange {
+            color: #ea580c;
+        }
+
+        .red {
+            color: #dc2626;
+        }
+
+        /* ================= SUMMARY ================= */
+
+        .summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .summary-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .summary-card h3 {
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .summary-card p {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .summary-value {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        /* ================= TABLE ================= */
+
+        .table-container {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h3 {
+            font-size: 18px;
+        }
+
+        .search {
+            width: 250px;
+            padding: 10px 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            outline: none;
+        }
+
+        .search:focus {
+            border-color: #2563eb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f8fafc;
+            text-align: left;
+            padding: 14px 16px;
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 15px 16px;
+            border-top: 1px solid #f1f5f9;
+            font-size: 13px;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        .book-title {
+            font-weight: bold;
+        }
+
+        .author {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* ================= STOCK BADGES ================= */
+
+        .stock-badge {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .stock-good {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .stock-low {
+            background: #ffedd5;
+            color: #9a3412;
+        }
+
+        .stock-out {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ================= UPDATE ================= */
+
+        .stock-form {
+            display: flex;
+            gap: 7px;
+            align-items: center;
+        }
+
+        .stock-input {
+            width: 75px;
+            padding: 7px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .update-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 11px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .update-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1100px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 190px;
+            }
+
+            .main {
+                margin-left: 190px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            .table-header {
+                gap: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- ==========================================================
+     SIDEBAR
+========================================================== -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        📚 BookNest
+    </div>
+
+    <div class="menu-title">
+        MAIN MENU
+    </div>
+
+    <div class="menu">
+
+        <a href="/admin/dashboard">
+            📊 Dashboard
+        </a>
+
+        <a href="/admin/books">
+            📚 Books
+        </a>
+
+        <a href="/admin/categories">
+            🗂 Categories
+        </a>
+
+        <a href="/admin/users">
+            👥 Users
+        </a>
+
+        <a href="/admin/orders">
+            🛒 Orders
+        </a>
+
+        <a href="/admin/payments">
+            💳 Payments
+        </a>
+
+        <a href="/admin/inventory"
+           class="active">
+            📦 Inventory
+        </a>
+
+    </div>
+
+
+    <div class="menu-title">
+        SYSTEM
+    </div>
+
+    <div class="menu">
+
+        <a href="/admin/settings">
+            ⚙ Settings
+        </a>
+
+        <a href="/">
+            🏪 View Store
+        </a>
+
+        <a href="/admin/login">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================================
+     MAIN
+========================================================== -->
+
+<div class="main">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <h1>Inventory Management</h1>
+
+        <div class="admin">
+
+            <div class="avatar">
+                A
+            </div>
+
+            <div class="admin-text">
+
+                <strong>Administrator</strong>
+
+                <span>
+                    admin@booknest.com
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+
+        <div class="page-heading">
+
+            <h2>Inventory</h2>
+
+            <p>
+                Monitor and manage book stock levels.
+            </p>
+
+        </div>
+
+
+        <!-- ==================================================
+             STATISTICS
+        ================================================== -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Total Books
+                </div>
+
+                <div class="stat-value blue"
+                     th:text="${totalBooks}">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    In Stock
+                </div>
+
+                <div class="stat-value green"
+                     th:text="${inStock}">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Low Stock
+                </div>
+
+                <div class="stat-value orange"
+                     th:text="${lowStock}">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Out of Stock
+                </div>
+
+                <div class="stat-value red"
+                     th:text="${outOfStock}">
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             SUMMARY
+        ================================================== -->
+
+        <div class="summary">
+
+
+            <div class="summary-card">
+
+                <h3>
+                    Total Available Units
+                </h3>
+
+                <p>
+                    Total number of physical book copies currently
+                    available in inventory.
+                </p>
+
+                <div class="summary-value blue"
+                     th:text="${totalUnits}">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>
+                    Inventory Value
+                </h3>
+
+                <p>
+                    Estimated value of all books based on price × stock.
+                </p>
+
+                <div class="summary-value green">
+
+                    ₹<span th:text="${inventoryValue}">
+                        0.00
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ==================================================
+             INVENTORY TABLE
+        ================================================== -->
+
+        <div class="table-container">
+
+
+            <div class="table-header">
+
+                <h3>
+                    Book Inventory
+                </h3>
+
+                <input
+                        type="text"
+                        id="searchInput"
+                        class="search"
+                        placeholder="Search books..."
+                        onkeyup="searchBooks()">
+
+            </div>
+
+
+            <table id="inventoryTable">
+
+                <thead>
+
+                <tr>
+
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Book
+                    </th>
+
+                    <th>
+                        Category
+                    </th>
+
+                    <th>
+                        Price
+                    </th>
+
+                    <th>
+                        Current Stock
+                    </th>
+
+                    <th>
+                        Stock Status
+                    </th>
+
+                    <th>
+                        Update Stock
+                    </th>
+
+                </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                <tr th:each="book : ${books}">
+
+                    <!-- ID -->
+
+                    <td th:text="${book.id}">
+                        1
+                    </td>
+
+
+                    <!-- BOOK -->
+
+                    <td>
+
+                        <div class="book-title"
+                             th:text="${book.title}">
+                            Book Title
+                        </div>
+
+                        <div class="author"
+                             th:text="${book.author}">
+                            Author
+                        </div>
+
+                    </td>
+
+
+                    <!-- CATEGORY -->
+
+                    <td th:text="${book.category}">
+                        Category
+                    </td>
+
+
+                    <!-- PRICE -->
+
+                    <td>
+
+                        ₹<span
+                            th:text="${#numbers.formatDecimal(book.price, 1, 2)}">
+                            0.00
+                        </span>
+
+                    </td>
+
+
+                    <!-- STOCK -->
+
+                    <td>
+
+                        <strong
+                                th:text="${book.stock}">
+                            0
+                        </strong>
+
+                    </td>
+
+
+                    <!-- STATUS -->
+
+                    <td>
+
+                        <span
+                                th:if="${book.stock > 10}"
+                                class="stock-badge stock-good">
+                            IN STOCK
+                        </span>
+
+                        <span
+                                th:if="${book.stock > 0 and book.stock <= 10}"
+                                class="stock-badge stock-low">
+                            LOW STOCK
+                        </span>
+
+                        <span
+                                th:if="${book.stock == 0}"
+                                class="stock-badge stock-out">
+                            OUT OF STOCK
+                        </span>
+
+                    </td>
+
+
+                    <!-- UPDATE -->
+
+                    <td>
+
+                        <form
+                                th:action="@{'/admin/inventory/update-stock/' + ${book.id}}"
+                                method="post"
+                                class="stock-form">
+
+                            <input
+                                    type="number"
+                                    name="stock"
+                                    min="0"
+                                    th:value="${book.stock}"
+                                    class="stock-input"
+                                    required>
+
+                            <button
+                                    type="submit"
+                                    class="update-btn">
+                                Update
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+
+                <!-- EMPTY -->
+
+                <tr th:if="${#lists.isEmpty(books)}">
+
+                    <td colspan="7"
+                        class="empty">
+
+                        No books found in inventory.
+
+                    </td>
+
+                </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================================
+     SEARCH
+========================================================== -->
+
+<script>
+
+function searchBooks() {
+
+    const input =
+        document.getElementById("searchInput");
+
+    const filter =
+        input.value.toLowerCase();
+
+    const table =
+        document.getElementById("inventoryTable");
+
+    const rows =
+        table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+
+        const row =
+            rows[i];
+
+        const text =
+            row.textContent.toLowerCase();
+
+        if (text.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    }
+}
+
+</script>
+
+
+</body>
+
+</html>

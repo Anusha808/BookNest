@@ -2,24 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Shopping Cart | BookNest</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Shopping Cart</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- Cart CSS -->
-    <link rel="stylesheet" th:href="@{/css/cart.css}">
+    <link rel="stylesheet"
+          th:href="@{/css/cart.css}">
+
 </head>
 
 <body>
@@ -28,314 +26,351 @@
      NAVBAR
 ========================================================= -->
 
-<nav class="navbar">
+<header class="navbar">
 
-    <a href="/" class="logo">
-        <i class="fa-solid fa-book-open"></i>
+    <div class="nav-container">
 
-        <span>
-            Book<span class="logo-highlight">Nest</span>
-        </span>
-    </a>
+        <!-- LOGO -->
+        <a href="/home" class="logo">
 
-    <div class="navbar-actions">
+            <i class="fa-solid fa-book-open"></i>
 
-        <!-- Search -->
+            <span>BookNest</span>
+
+        </a>
+
+
+        <!-- SEARCH -->
         <div class="search-container">
 
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text"
+                   id="searchInput"
+                   placeholder="Search books, authors, categories...">
 
-            <input
-                    type="text"
-                    id="bookSearch"
-                    class="book-search"
-                    placeholder="Search books, authors..."
-                    autocomplete="off">
+            <button type="button"
+                    id="searchBtn">
 
-            <button
-                    type="button"
-                    id="clearSearch"
-                    class="clear-search"
-                    title="Clear search"
-                    aria-label="Clear search">
-
-                <i class="fa-solid fa-xmark"></i>
+                <i class="fa-solid fa-search"></i>
 
             </button>
 
         </div>
 
-        <!-- Cart -->
-        <button
-                type="button"
-                class="header-cart active-cart"
-                id="headerCart"
-                title="Shopping Cart"
-                aria-label="Shopping Cart">
 
-            <i class="fa-solid fa-cart-shopping"></i>
+        <!-- NAVIGATION -->
+        <nav class="nav-links">
 
-            <span class="cart-badge" id="cartBadge">0</span>
+            <a href="/home">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
 
-            <div class="cart-summary">
+            <a href="/books">
+                <i class="fa-solid fa-book"></i>
+                Books
+            </a>
 
-                <span class="cart-label">Cart</span>
+            <a href="/cart" class="cart-link">
 
-                <strong id="cartTotal">₹0</strong>
+                <i class="fa-solid fa-cart-shopping"></i>
 
-            </div>
+                Cart
 
-        </button>
+                <span id="cartCount"
+                      class="cart-count">0</span>
+
+            </a>
+
+        </nav>
 
     </div>
 
-</nav>
+</header>
 
 
 <!-- =========================================================
-     PAGE
+     BREADCRUMB
+========================================================= -->
+
+<div class="breadcrumb-container">
+
+    <div class="breadcrumb">
+
+        <a href="/home">
+            Home
+        </a>
+
+        <span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </span>
+
+        <span>
+            Shopping Cart
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN CONTENT
 ========================================================= -->
 
 <main class="cart-page">
 
-    <!-- Breadcrumb -->
+    <div class="cart-container">
 
-    <div class="breadcrumb">
+        <!-- PAGE TITLE -->
 
-        <a href="/">
-            <i class="fa-solid fa-house"></i>
-            Home
-        </a>
+        <div class="cart-heading">
 
-        <i class="fa-solid fa-chevron-right"></i>
+            <div>
 
-        <span>Shopping Cart</span>
+                <h1>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Shopping Cart
+                </h1>
 
-    </div>
+                <p id="cartItemText">
+                    Your selected books
+                </p>
+
+            </div>
+
+        </div>
 
 
-    <!-- =====================================================
-         CART HEADER
-    ====================================================== -->
+        <!-- =================================================
+             EMPTY CART
+        ================================================== -->
 
-    <section class="cart-header">
+        <section id="emptyCart"
+                 class="empty-cart"
+                 style="display:none;">
 
-        <div>
+            <div class="empty-cart-icon">
 
-            <h1>
                 <i class="fa-solid fa-cart-shopping"></i>
-                Shopping Cart
-            </h1>
 
-            <p id="cartSubtitle">
-                Review your selected books before checkout.
+            </div>
+
+            <h2>
+                Your cart is empty
+            </h2>
+
+            <p>
+                Looks like you haven't added any books to your cart yet.
             </p>
 
-        </div>
+            <!-- CHANGED TO /home -->
+            <a href="/home"
+               class="continue-shopping-btn">
 
-    </section>
+                <i class="fa-solid fa-arrow-left"></i>
 
+                Continue Shopping
 
-    <!-- =====================================================
-         EMPTY CART
-    ====================================================== -->
+            </a>
 
-    <section class="empty-cart" id="emptyCart">
-
-        <div class="empty-cart-icon">
-
-            <i class="fa-solid fa-cart-shopping"></i>
-
-        </div>
-
-        <h2>Your Cart is Empty</h2>
-
-        <p>
-            Looks like you haven't added any books to your cart yet.
-        </p>
-
-        <a href="/" class="continue-shopping-btn">
-
-            <i class="fa-solid fa-arrow-left"></i>
-
-            Continue Shopping
-
-        </a>
-
-    </section>
-
-
-    <!-- =====================================================
-         CART CONTENT
-    ====================================================== -->
-
-    <section class="cart-content" id="cartContent">
-
-        <!-- =================================================
-             CART ITEMS
-        ================================================== -->
-
-        <div class="cart-items-section">
-
-            <div class="cart-items-header">
-
-                <div>
-
-                    <h2>Your Books</h2>
-
-                    <span id="itemCount">
-                        0 items
-                    </span>
-
-                </div>
-
-                <button
-                        type="button"
-                        class="clear-cart-btn"
-                        id="clearCartBtn">
-
-                    <i class="fa-solid fa-trash"></i>
-
-                    Clear Cart
-
-                </button>
-
-            </div>
-
-
-            <div id="cartItems"></div>
-
-
-            <!-- Continue Shopping -->
-
-            <div class="continue-shopping-wrapper">
-
-                <a href="/" class="continue-shopping">
-
-                    <i class="fa-solid fa-arrow-left"></i>
-
-                    Continue Shopping
-
-                </a>
-
-            </div>
-
-        </div>
+        </section>
 
 
         <!-- =================================================
-             PRICE SUMMARY
+             CART CONTENT
         ================================================== -->
 
-        <aside class="price-summary">
+        <section id="cartContent"
+                 class="cart-content"
+                 style="display:none;">
 
-            <h2>Price Details</h2>
-
-
-            <div class="summary-row">
-
-                <span>
-                    Price
-                    (<span id="summaryItemCount">0</span> items)
-                </span>
-
-                <strong id="subtotal">
-                    ₹0
-                </strong>
-
-            </div>
+            <div class="cart-layout">
 
 
-            <div class="summary-row">
+                <!-- =========================================
+                     CART ITEMS
+                ========================================== -->
 
-                <span>Discount</span>
+                <div class="cart-items-section">
 
-                <strong class="discount" id="discount">
-                    -₹0
-                </strong>
+                    <div class="cart-items-header">
 
-            </div>
+                        <h2>
+                            Cart Items
+                        </h2>
 
+                        <button type="button"
+                                id="clearCartBtn"
+                                class="clear-cart-btn">
 
-            <div class="summary-row">
+                            <i class="fa-solid fa-trash"></i>
 
-                <span>Delivery</span>
+                            Clear Cart
 
-                <strong id="delivery">
-                    FREE
-                </strong>
+                        </button>
 
-            </div>
-
-
-            <div class="free-delivery-message" id="freeDeliveryMessage">
-
-                <i class="fa-solid fa-truck"></i>
-
-                Free delivery on orders above ₹499
-
-            </div>
+                    </div>
 
 
-            <div class="summary-divider"></div>
+                    <!-- ITEMS WILL BE GENERATED BY JAVASCRIPT -->
+
+                    <div id="cartItems"
+                         class="cart-items">
+
+                    </div>
 
 
-            <div class="total-row">
+                    <!-- CONTINUE SHOPPING -->
 
-                <span>Total Amount</span>
+                    <!-- CHANGED TO /home -->
+                    <a href="/home"
+                       class="continue-shopping">
 
-                <strong id="totalAmount">
-                    ₹0
-                </strong>
+                        <i class="fa-solid fa-arrow-left"></i>
 
-            </div>
+                        Continue Shopping
 
-
-            <button
-                    type="button"
-                    class="checkout-btn"
-                    id="checkoutBtn">
-
-                <i class="fa-solid fa-lock"></i>
-
-                Proceed to Checkout
-
-            </button>
-
-
-            <div class="secure-note">
-
-                <i class="fa-solid fa-shield-halved"></i>
-
-                <div>
-
-                    <strong>Safe & Secure Shopping</strong>
-
-                    <span>
-                        Your order information is protected.
-                    </span>
+                    </a>
 
                 </div>
 
+
+                <!-- =========================================
+                     PRICE SUMMARY
+                ========================================== -->
+
+                <aside class="price-summary">
+
+                    <h2>
+                        Price Details
+                    </h2>
+
+
+                    <!-- SUBTOTAL -->
+
+                    <div class="price-row">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <span id="subtotal">
+                            ₹0
+                        </span>
+
+                    </div>
+
+
+                    <!-- DISCOUNT -->
+
+                    <div class="price-row discount-row">
+
+                        <span>
+                            Discount
+                        </span>
+
+                        <span id="discount">
+                            -₹0
+                        </span>
+
+                    </div>
+
+
+                    <!-- DELIVERY -->
+
+                    <div class="price-row">
+
+                        <span>
+                            Delivery Charges
+                        </span>
+
+                        <span id="delivery">
+                            ₹0
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="price-row total-row">
+
+                        <strong>
+                            Total Amount
+                        </strong>
+
+                        <strong id="total">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <!-- SAVINGS -->
+
+                    <div id="savingsMessage"
+                         class="savings-message"
+                         style="display:none;">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        You are saving ₹0
+
+                    </div>
+
+
+                    <!-- CHECKOUT -->
+
+                    <button type="button"
+                            id="checkoutBtn"
+                            class="checkout-btn">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Proceed to Checkout
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+
+                    <!-- SECURE PAYMENT -->
+
+                    <div class="secure-payment">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <span>
+                            Safe & Secure Payments
+                        </span>
+
+                    </div>
+
+                </aside>
+
             </div>
 
-        </aside>
+        </section>
 
-    </section>
+    </div>
 
 </main>
 
 
 <!-- =========================================================
-     TOAST
+     TOAST MESSAGE
 ========================================================= -->
 
-<div class="toast" id="toast">
+<div id="toast"
+     class="toast">
 
     <i class="fa-solid fa-circle-check"></i>
 
     <span id="toastMessage">
-        Cart updated
+        Item added successfully
     </span>
 
 </div>
@@ -349,67 +384,102 @@
 
     <div class="footer-container">
 
-        <div class="footer-brand">
 
-            <a href="/" class="logo">
+        <!-- ABOUT -->
+
+        <div class="footer-section">
+
+            <a href="/home"
+               class="footer-logo">
 
                 <i class="fa-solid fa-book-open"></i>
 
-                <span>
-                    Book<span class="logo-highlight">Nest</span>
-                </span>
+                BookNest
 
             </a>
 
             <p>
-                Discover your next great read with BookNest.
+                Your trusted online bookstore for discovering
+                amazing books and authors.
             </p>
 
         </div>
 
 
-        <div class="footer-links">
+        <!-- QUICK LINKS -->
 
-            <h3>Quick Links</h3>
+        <div class="footer-section">
 
-            <a href="/">Home</a>
+            <h3>
+                Quick Links
+            </h3>
 
-            <a href="/">Books</a>
+            <a href="/home">
+                Home
+            </a>
 
-            <a href="/cart">Cart</a>
+            <a href="/books">
+                Books
+            </a>
 
-        </div>
-
-
-        <div class="footer-links">
-
-            <h3>Customer Service</h3>
-
-            <a href="#">Help Center</a>
-
-            <a href="#">Contact Us</a>
-
-            <a href="#">Shipping</a>
+            <a href="/cart">
+                Cart
+            </a>
 
         </div>
 
 
-        <div class="footer-links">
+        <!-- CUSTOMER SERVICE -->
 
-            <h3>Follow Us</h3>
+        <div class="footer-section">
+
+            <h3>
+                Customer Service
+            </h3>
+
+            <a href="#">
+                Contact Us
+            </a>
+
+            <a href="#">
+                FAQs
+            </a>
+
+            <a href="#">
+                Shipping
+            </a>
+
+            <a href="#">
+                Returns
+            </a>
+
+        </div>
+
+
+        <!-- SOCIAL -->
+
+        <div class="footer-section">
+
+            <h3>
+                Follow Us
+            </h3>
 
             <div class="social-links">
 
-                <a href="#" aria-label="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
+                <a href="#">
+                    <i class="fa-brands fa-facebook"></i>
                 </a>
 
-                <a href="#" aria-label="Instagram">
+                <a href="#">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
-                <a href="#" aria-label="Twitter">
-                    <i class="fa-brands fa-x-twitter"></i>
+                <a href="#">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-brands fa-linkedin"></i>
                 </a>
 
             </div>
@@ -422,7 +492,7 @@
     <div class="footer-bottom">
 
         <p>
-            © 2026 BookNest. All rights reserved.
+            © 2026 BookNest. All Rights Reserved.
         </p>
 
     </div>
@@ -436,78 +506,34 @@
 
 <script>
 
-    /* =====================================================
-       ELEMENTS
-    ====================================================== */
-
-    const cartItemsContainer =
-        document.getElementById("cartItems");
-
-    const cartContent =
-        document.getElementById("cartContent");
-
-    const emptyCart =
-        document.getElementById("emptyCart");
-
-    const cartBadge =
-        document.getElementById("cartBadge");
-
-    const cartTotal =
-        document.getElementById("cartTotal");
-
-    const itemCount =
-        document.getElementById("itemCount");
-
-    const summaryItemCount =
-        document.getElementById("summaryItemCount");
-
-    const subtotalElement =
-        document.getElementById("subtotal");
-
-    const discountElement =
-        document.getElementById("discount");
-
-    const deliveryElement =
-        document.getElementById("delivery");
-
-    const totalAmountElement =
-        document.getElementById("totalAmount");
-
-    const cartSubtitle =
-        document.getElementById("cartSubtitle");
-
-    const toast =
-        document.getElementById("toast");
-
-    const toastMessage =
-        document.getElementById("toastMessage");
-
-
-    /* =====================================================
+    /* ========================================================
        CART STORAGE
-    ====================================================== */
+    ======================================================== */
+
+    const CART_KEY = "booknestCart";
+
+
+    /* ========================================================
+       GET CART
+    ======================================================== */
 
     function getCart() {
 
         try {
 
-            const storedCart =
-                localStorage.getItem("booknestCart");
+            const cart = localStorage.getItem(CART_KEY);
 
-            if (!storedCart) {
+            if (!cart) {
+
                 return [];
+
             }
 
-            const cart = JSON.parse(storedCart);
-
-            return Array.isArray(cart) ? cart : [];
+            return JSON.parse(cart);
 
         } catch (error) {
 
-            console.error(
-                "Unable to read cart:",
-                error
-            );
+            console.error("Error reading cart:", error);
 
             return [];
 
@@ -516,735 +542,27 @@
     }
 
 
+    /* ========================================================
+       SAVE CART
+    ======================================================== */
+
     function saveCart(cart) {
 
         localStorage.setItem(
-            "booknestCart",
+            CART_KEY,
             JSON.stringify(cart)
         );
 
-        updateCartSummary(cart);
-
     }
 
 
-    /* =====================================================
-       FORMAT PRICE
-    ====================================================== */
-
-    function formatPrice(price) {
-
-        return "₹" +
-            Number(price || 0).toLocaleString("en-IN");
-
-    }
-
-
-    /* =====================================================
-       CALCULATE CART
-    ====================================================== */
-
-    function calculateCart(cart) {
-
-        let subtotal = 0;
-
-        let originalTotal = 0;
-
-        let quantityTotal = 0;
-
-        cart.forEach(item => {
-
-            const quantity =
-                Number(item.quantity) || 0;
-
-            const price =
-                Number(item.price) || 0;
-
-            const originalPrice =
-                Number(item.originalPrice || item.price) || 0;
-
-            subtotal += price * quantity;
-
-            originalTotal +=
-                originalPrice * quantity;
-
-            quantityTotal += quantity;
-
-        });
-
-
-        const discount =
-            Math.max(0, originalTotal - subtotal);
-
-
-        let delivery = 0;
-
-        if (subtotal > 0 && subtotal < 499) {
-            delivery = 40;
-        }
-
-
-        const total =
-            subtotal + delivery;
-
-
-        return {
-            subtotal,
-            originalTotal,
-            discount,
-            delivery,
-            total,
-            quantityTotal
-        };
-
-    }
-
-
-    /* =====================================================
-       UPDATE NAVBAR CART
-    ====================================================== */
-
-    function updateCartSummary(cart = getCart()) {
-
-        const summary =
-            calculateCart(cart);
-
-
-        cartBadge.textContent =
-            summary.quantityTotal;
-
-
-        cartTotal.textContent =
-            formatPrice(summary.total);
-
-    }
-
-
-    /* =====================================================
-       RENDER CART
-    ====================================================== */
-
-    function renderCart() {
-
-        const cart = getCart();
-
-        if (cart.length === 0) {
-
-            cartContent.style.display = "none";
-
-            emptyCart.style.display = "flex";
-
-            cartSubtitle.textContent =
-                "Your shopping cart is currently empty.";
-
-            updateCartSummary([]);
-
-            return;
-
-        }
-
-
-        cartContent.style.display = "grid";
-
-        emptyCart.style.display = "none";
-
-
-        const summary =
-            calculateCart(cart);
-
-
-        /* ---------------------------------------------
-           Header
-        --------------------------------------------- */
-
-        cartSubtitle.textContent =
-            summary.quantityTotal === 1
-                ? "You have 1 book in your cart."
-                : `You have ${summary.quantityTotal} books in your cart.`;
-
-
-        itemCount.textContent =
-            summary.quantityTotal === 1
-                ? "1 item"
-                : `${summary.quantityTotal} items`;
-
-
-        summaryItemCount.textContent =
-            summary.quantityTotal;
-
-
-        /* ---------------------------------------------
-           Items
-        --------------------------------------------- */
-
-        cartItemsContainer.innerHTML = "";
-
-
-        cart.forEach((item, index) => {
-
-            const quantity =
-                Number(item.quantity) || 0;
-
-            const price =
-                Number(item.price) || 0;
-
-            const originalPrice =
-                Number(item.originalPrice || item.price) || 0;
-
-
-            const itemTotal =
-                price * quantity;
-
-
-            const itemDiscount =
-                Math.max(
-                    0,
-                    originalPrice - price
-                );
-
-
-            const cartItem =
-                document.createElement("div");
-
-            cartItem.className = "cart-item";
-
-
-            cartItem.innerHTML = `
-
-                <div class="cart-book-image">
-
-                    <img
-                        src="${item.image || 'https://via.placeholder.com/150x220?text=Book'}"
-                        alt="${escapeHTML(item.title || 'Book')}"
-                        onerror="this.src='https://via.placeholder.com/150x220?text=Book'">
-
-                </div>
-
-
-                <div class="cart-book-info">
-
-                    <span class="cart-book-category">
-                        ${escapeHTML(item.category || "Book")}
-                    </span>
-
-                    <h3>
-                        ${escapeHTML(item.title || "Untitled Book")}
-                    </h3>
-
-                    <p class="cart-author">
-                        by ${escapeHTML(item.author || "Unknown Author")}
-                    </p>
-
-
-                    <div class="cart-rating">
-
-                        <span class="rating-badge">
-
-                            ${item.rating || "4.5"}
-
-                            <i class="fa-solid fa-star"></i>
-
-                        </span>
-
-                        <span>
-                            Highly Rated
-                        </span>
-
-                    </div>
-
-
-                    <div class="cart-price">
-
-                        <strong>
-                            ${formatPrice(price)}
-                        </strong>
-
-                        ${
-                            originalPrice > price
-                            ?
-                            `<span class="original-price">
-                                ${formatPrice(originalPrice)}
-                            </span>`
-                            :
-                            ""
-                        }
-
-                        ${
-                            itemDiscount > 0
-                            ?
-                            `<span class="discount-percent">
-                                ${Math.round((itemDiscount / originalPrice) * 100)}% off
-                            </span>`
-                            :
-                            ""
-                        }
-
-                    </div>
-
-
-                    <div class="cart-actions">
-
-                        <div class="quantity-control">
-
-                            <button
-                                type="button"
-                                class="quantity-btn decrease-btn"
-                                data-index="${index}"
-                                ${quantity <= 1 ? "disabled" : ""}>
-
-                                <i class="fa-solid fa-minus"></i>
-
-                            </button>
-
-
-                            <span class="cart-quantity">
-                                ${quantity}
-                            </span>
-
-
-                            <button
-                                type="button"
-                                class="quantity-btn increase-btn"
-                                data-index="${index}"
-                                ${quantity >= 10 ? "disabled" : ""}>
-
-                                <i class="fa-solid fa-plus"></i>
-
-                            </button>
-
-                        </div>
-
-
-                        <button
-                            type="button"
-                            class="remove-btn"
-                            data-index="${index}">
-
-                            <i class="fa-solid fa-trash"></i>
-
-                            Remove
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <div class="cart-item-total">
-
-                    <span>Item Total</span>
-
-                    <strong>
-                        ${formatPrice(itemTotal)}
-                    </strong>
-
-                </div>
-
-            `;
-
-
-            cartItemsContainer.appendChild(cartItem);
-
-        });
-
-
-        /* ---------------------------------------------
-           Price Details
-        --------------------------------------------- */
-
-        subtotalElement.textContent =
-            formatPrice(summary.subtotal);
-
-
-        discountElement.textContent =
-            "-" + formatPrice(summary.discount);
-
-
-        if (summary.delivery === 0) {
-
-            deliveryElement.textContent =
-                "FREE";
-
-        } else {
-
-            deliveryElement.textContent =
-                formatPrice(summary.delivery);
-
-        }
-
-
-        totalAmountElement.textContent =
-            formatPrice(summary.total);
-
-
-        /* ---------------------------------------------
-           Delivery Message
-        --------------------------------------------- */
-
-        const freeDeliveryMessage =
-            document.getElementById(
-                "freeDeliveryMessage"
-            );
-
-
-        if (
-            summary.subtotal > 0 &&
-            summary.subtotal < 499
-        ) {
-
-            const remaining =
-                499 - summary.subtotal;
-
-            freeDeliveryMessage.innerHTML = `
-
-                <i class="fa-solid fa-truck"></i>
-
-                Add ${formatPrice(remaining)}
-                more to get FREE delivery
-
-            `;
-
-        } else {
-
-            freeDeliveryMessage.innerHTML = `
-
-                <i class="fa-solid fa-circle-check"></i>
-
-                You qualify for FREE delivery!
-
-            `;
-
-        }
-
-
-        updateCartSummary(cart);
-
-    }
-
-
-    /* =====================================================
-       QUANTITY CHANGE
-    ====================================================== */
-
-    function changeQuantity(index, change) {
-
-        const cart = getCart();
-
-        if (!cart[index]) {
-            return;
-        }
-
-
-        let quantity =
-            Number(cart[index].quantity) || 0;
-
-
-        quantity += change;
-
-
-        /*
-         * Keep quantity between 1 and 10
-         * inside the cart.
-         */
-
-        quantity =
-            Math.max(
-                1,
-                Math.min(10, quantity)
-            );
-
-
-        cart[index].quantity =
-            quantity;
-
-
-        saveCart(cart);
-
-        renderCart();
-
-    }
-
-
-    /* =====================================================
-       REMOVE ITEM
-    ====================================================== */
-
-    function removeItem(index) {
-
-        const cart = getCart();
-
-        if (!cart[index]) {
-            return;
-        }
-
-
-        const removedBook =
-            cart[index].title || "Book";
-
-
-        cart.splice(index, 1);
-
-
-        saveCart(cart);
-
-        renderCart();
-
-
-        showToast(
-            `${removedBook} removed from cart`
-        );
-
-    }
-
-
-    /* =====================================================
-       CLEAR CART
-    ====================================================== */
-
-    function clearCart() {
-
-        const cart = getCart();
-
-        if (cart.length === 0) {
-            return;
-        }
-
-
-        const confirmed =
-            confirm(
-                "Are you sure you want to remove all books from your cart?"
-            );
-
-
-        if (!confirmed) {
-            return;
-        }
-
-
-        localStorage.removeItem(
-            "booknestCart"
-        );
-
-
-        localStorage.setItem(
-            "booknestCartCount",
-            "0"
-        );
-
-
-        localStorage.setItem(
-            "booknestCartTotal",
-            "0"
-        );
-
-
-        renderCart();
-
-
-        showToast(
-            "Cart cleared successfully"
-        );
-
-    }
-
-
-    /* =====================================================
-       EVENT DELEGATION
-    ====================================================== */
-
-    cartItemsContainer.addEventListener(
-        "click",
-        function (event) {
-
-            const decreaseButton =
-                event.target.closest(
-                    ".decrease-btn"
-                );
-
-
-            const increaseButton =
-                event.target.closest(
-                    ".increase-btn"
-                );
-
-
-            const removeButton =
-                event.target.closest(
-                    ".remove-btn"
-                );
-
-
-            if (decreaseButton) {
-
-                const index =
-                    Number(
-                        decreaseButton.dataset.index
-                    );
-
-                changeQuantity(index, -1);
-
-                return;
-
-            }
-
-
-            if (increaseButton) {
-
-                const index =
-                    Number(
-                        increaseButton.dataset.index
-                    );
-
-                changeQuantity(index, 1);
-
-                return;
-
-            }
-
-
-            if (removeButton) {
-
-                const index =
-                    Number(
-                        removeButton.dataset.index
-                    );
-
-                removeItem(index);
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       CLEAR CART BUTTON
-    ====================================================== */
-
-    document
-        .getElementById("clearCartBtn")
-        .addEventListener(
-            "click",
-            clearCart
-        );
-
-
-    /* =====================================================
-       CHECKOUT
-    ====================================================== */
-
-    document
-        .getElementById("checkoutBtn")
-        .addEventListener(
-            "click",
-            function () {
-
-                const cart = getCart();
-
-                if (cart.length === 0) {
-
-                    showToast(
-                        "Your cart is empty"
-                    );
-
-                    return;
-
-                }
-
-
-                /*
-                 * Checkout page will be created next.
-                 */
-
-                window.location.href =
-                    "/checkout";
-
-            }
-        );
-
-
-    /* =====================================================
-       HEADER CART
-    ====================================================== */
-
-    document
-        .getElementById("headerCart")
-        .addEventListener(
-            "click",
-            function () {
-
-                window.location.href =
-                    "/cart";
-
-            }
-        );
-
-
-    /* =====================================================
-       SEARCH
-    ====================================================== */
-
-    const searchInput =
-        document.getElementById("bookSearch");
-
-    const clearSearch =
-        document.getElementById("clearSearch");
-
-
-    searchInput.addEventListener(
-        "input",
-        function () {
-
-            clearSearch.style.display =
-                this.value.trim()
-                    ? "flex"
-                    : "none";
-
-        }
-    );
-
-
-    clearSearch.addEventListener(
-        "click",
-        function () {
-
-            searchInput.value = "";
-
-            clearSearch.style.display =
-                "none";
-
-            searchInput.focus();
-
-        }
-    );
-
-
-    searchInput.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key === "Enter" &&
-                this.value.trim()
-            ) {
-
-                window.location.href =
-                    "/book-details";
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
+    /* ========================================================
        ESCAPE HTML
-    ====================================================== */
+    ======================================================== */
 
     function escapeHTML(value) {
 
-        return String(value)
+        return String(value ?? "")
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;")
@@ -1254,47 +572,775 @@
     }
 
 
-    /* =====================================================
-       TOAST
-    ====================================================== */
+    /* ========================================================
+       FORMAT PRICE
+    ======================================================== */
 
-    let toastTimer;
+    function formatPrice(price) {
 
-
-    function showToast(message) {
-
-        toastMessage.textContent =
-            message;
-
-
-        toast.classList.add("show");
-
-
-        clearTimeout(toastTimer);
-
-
-        toastTimer =
-            setTimeout(
-                function () {
-
-                    toast.classList.remove(
-                        "show"
-                    );
-
-                },
-                2500
-            );
+        return "₹" + Number(price || 0).toLocaleString("en-IN");
 
     }
 
 
-    /* =====================================================
-       INITIAL LOAD
-    ====================================================== */
+    /* ========================================================
+       UPDATE HEADER CART
+    ======================================================== */
 
-    renderCart();
+    function updateHeaderCart() {
+
+        const cart = getCart();
+
+        let count = 0;
+        let total = 0;
+
+        cart.forEach(item => {
+
+            const quantity = Number(item.quantity || 1);
+
+            const price = Number(
+                item.price || 0
+            );
+
+            count += quantity;
+
+            total += price * quantity;
+
+        });
+
+
+        const cartCount =
+            document.getElementById("cartCount");
+
+        if (cartCount) {
+
+            cartCount.textContent = count;
+
+        }
+
+
+        const cartTotal =
+            document.getElementById("cartTotal");
+
+        if (cartTotal) {
+
+            cartTotal.textContent =
+                formatPrice(total);
+
+        }
+
+    }
+
+
+    /* ========================================================
+       SHOW TOAST
+    ======================================================== */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+        const toastMessage =
+            document.getElementById("toastMessage");
+
+
+        toastMessage.textContent = message;
+
+        toast.classList.add("show");
+
+
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 2500);
+
+    }
+
+
+    /* ========================================================
+       CHANGE QUANTITY
+    ======================================================== */
+
+    function changeQuantity(index, change) {
+
+        const cart = getCart();
+
+        if (!cart[index]) {
+
+            return;
+
+        }
+
+
+        let quantity =
+            Number(cart[index].quantity || 1);
+
+
+        quantity += change;
+
+
+        if (quantity < 1) {
+
+            quantity = 1;
+
+        }
+
+
+        if (quantity > 10) {
+
+            quantity = 10;
+
+            showToast(
+                "Maximum quantity is 10"
+            );
+
+        }
+
+
+        cart[index].quantity = quantity;
+
+        saveCart(cart);
+
+        renderCart();
+
+    }
+
+
+    /* ========================================================
+       REMOVE ITEM
+    ======================================================== */
+
+    function removeItem(index) {
+
+        const cart = getCart();
+
+        if (!cart[index]) {
+
+            return;
+
+        }
+
+
+        const removedItem = cart[index];
+
+        cart.splice(index, 1);
+
+        saveCart(cart);
+
+        renderCart();
+
+
+        showToast(
+            (removedItem.title || "Book") +
+            " removed from cart"
+        );
+
+    }
+
+
+    /* ========================================================
+       CLEAR CART
+    ======================================================== */
+
+    function clearCart() {
+
+        const cart = getCart();
+
+        if (cart.length === 0) {
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to clear your cart?"
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+
+        localStorage.removeItem(CART_KEY);
+
+        renderCart();
+
+        showToast(
+            "Cart cleared successfully"
+        );
+
+    }
+
+
+    /* ========================================================
+       RENDER CART
+    ======================================================== */
+
+    function renderCart() {
+
+        const cart = getCart();
+
+
+        const emptyCart =
+            document.getElementById("emptyCart");
+
+        const cartContent =
+            document.getElementById("cartContent");
+
+        const cartItems =
+            document.getElementById("cartItems");
+
+        const cartItemText =
+            document.getElementById("cartItemText");
+
+
+        updateHeaderCart();
+
+
+        /* ================================================
+           EMPTY CART
+        ================================================ */
+
+        if (cart.length === 0) {
+
+            emptyCart.style.display = "block";
+
+            cartContent.style.display = "none";
+
+            cartItemText.textContent =
+                "Your selected books";
+
+            return;
+
+        }
+
+
+        /* ================================================
+           SHOW CART
+        ================================================ */
+
+        emptyCart.style.display = "none";
+
+        cartContent.style.display = "block";
+
+
+        let totalQuantity = 0;
+
+
+        cart.forEach(item => {
+
+            totalQuantity +=
+                Number(item.quantity || 1);
+
+        });
+
+
+        cartItemText.textContent =
+            totalQuantity +
+            (totalQuantity === 1
+                ? " item in your cart"
+                : " items in your cart");
+
+
+        /* ================================================
+           CREATE CART ITEMS
+        ================================================ */
+
+        cartItems.innerHTML = "";
+
+
+        cart.forEach((item, index) => {
+
+            const quantity =
+                Number(item.quantity || 1);
+
+            const price =
+                Number(item.price || 0);
+
+            const originalPrice =
+                Number(
+                    item.originalPrice ||
+                    item.price ||
+                    0
+                );
+
+
+            const itemTotal =
+                price * quantity;
+
+
+            const hasDiscount =
+                originalPrice > price;
+
+
+            const itemHTML = `
+
+                <div class="cart-item">
+
+                    <div class="cart-item-image">
+
+                        <img
+                            src="${escapeHTML(
+                                item.image ||
+                                "https://via.placeholder.com/120x160?text=Book"
+                            )}"
+                            alt="${escapeHTML(
+                                item.title || "Book"
+                            )}"
+                            onerror="
+                                this.src='https://via.placeholder.com/120x160?text=Book';
+                            "
+                        >
+
+                    </div>
+
+
+                    <div class="cart-item-details">
+
+                        <h3>
+                            ${escapeHTML(
+                                item.title || "Untitled Book"
+                            )}
+                        </h3>
+
+
+                        <p class="author">
+
+                            ${
+                                item.author
+                                ? "by " +
+                                  escapeHTML(item.author)
+                                : ""
+                            }
+
+                        </p>
+
+
+                        ${
+                            item.category
+                            ? `
+                                <span class="category">
+                                    ${escapeHTML(item.category)}
+                                </span>
+                              `
+                            : ""
+                        }
+
+
+                        <div class="item-price">
+
+                            <span class="current-price">
+
+                                ${formatPrice(price)}
+
+                            </span>
+
+
+                            ${
+                                hasDiscount
+                                ? `
+                                    <span class="original-price">
+
+                                        ${formatPrice(
+                                            originalPrice
+                                        )}
+
+                                    </span>
+                                  `
+                                : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quantity-section">
+
+                        <span class="quantity-label">
+                            Quantity
+                        </span>
+
+
+                        <div class="quantity-controls">
+
+                            <button
+                                type="button"
+                                onclick="changeQuantity(${index}, -1)"
+                                aria-label="Decrease quantity">
+
+                                <i class="fa-solid fa-minus"></i>
+
+                            </button>
+
+
+                            <span class="quantity">
+
+                                ${quantity}
+
+                            </span>
+
+
+                            <button
+                                type="button"
+                                onclick="changeQuantity(${index}, 1)"
+                                aria-label="Increase quantity">
+
+                                <i class="fa-solid fa-plus"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="item-total">
+
+                        <strong>
+
+                            ${formatPrice(itemTotal)}
+
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="remove-item"
+                        onclick="removeItem(${index})"
+                        aria-label="Remove item">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            cartItems.insertAdjacentHTML(
+                "beforeend",
+                itemHTML
+            );
+
+        });
+
+
+        /* ================================================
+           CALCULATE TOTALS
+        ================================================ */
+
+        calculateTotals();
+
+    }
+
+
+    /* ========================================================
+       CALCULATE TOTALS
+    ======================================================== */
+
+    function calculateTotals() {
+
+        const cart = getCart();
+
+
+        let subtotal = 0;
+
+        let originalTotal = 0;
+
+
+        cart.forEach(item => {
+
+            const quantity =
+                Number(item.quantity || 1);
+
+            const price =
+                Number(item.price || 0);
+
+            const originalPrice =
+                Number(
+                    item.originalPrice ||
+                    item.price ||
+                    0
+                );
+
+
+            subtotal +=
+                price * quantity;
+
+
+            originalTotal +=
+                originalPrice * quantity;
+
+        });
+
+
+        const discount =
+            Math.max(
+                0,
+                originalTotal - subtotal
+            );
+
+
+        let delivery = 0;
+
+
+        if (subtotal > 0 && subtotal < 499) {
+
+            delivery = 40;
+
+        }
+
+
+        const total =
+            subtotal + delivery;
+
+
+        /* ================================================
+           UPDATE UI
+        ================================================ */
+
+        document.getElementById(
+            "subtotal"
+        ).textContent =
+            formatPrice(subtotal);
+
+
+        document.getElementById(
+            "discount"
+        ).textContent =
+            "-" + formatPrice(discount);
+
+
+        document.getElementById(
+            "delivery"
+        ).textContent =
+            delivery === 0
+                ? "FREE"
+                : formatPrice(delivery);
+
+
+        document.getElementById(
+            "total"
+        ).textContent =
+            formatPrice(total);
+
+
+        /* ================================================
+           SAVINGS MESSAGE
+        ================================================ */
+
+        const savingsMessage =
+            document.getElementById(
+                "savingsMessage"
+            );
+
+
+        if (discount > 0) {
+
+            savingsMessage.style.display =
+                "block";
+
+
+            savingsMessage.innerHTML = `
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                You are saving ${formatPrice(discount)}
+
+            `;
+
+        } else {
+
+            savingsMessage.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    /* ========================================================
+       CHECKOUT
+    ======================================================== */
+
+    function goToCheckout() {
+
+        const cart = getCart();
+
+
+        if (cart.length === 0) {
+
+            showToast(
+                "Your cart is empty"
+            );
+
+            return;
+
+        }
+
+
+        window.location.href =
+            "/checkout";
+
+    }
+
+
+    /* ========================================================
+       SEARCH
+    ======================================================== */
+
+    function performSearch() {
+
+        const searchInput =
+            document.getElementById(
+                "searchInput"
+            );
+
+
+        const searchValue =
+            searchInput.value.trim();
+
+
+        if (searchValue === "") {
+
+            return;
+
+        }
+
+
+        /*
+         * Change this URL if you have a dedicated
+         * search/books page.
+         */
+
+        window.location.href =
+            "/book-details?search=" +
+            encodeURIComponent(searchValue);
+
+    }
+
+
+    /* ========================================================
+       EVENT LISTENERS
+    ======================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+
+            /* ============================================
+               INITIAL CART RENDER
+            ============================================ */
+
+            renderCart();
+
+
+            /* ============================================
+               CLEAR CART
+            ============================================ */
+
+            const clearCartBtn =
+                document.getElementById(
+                    "clearCartBtn"
+                );
+
+
+            if (clearCartBtn) {
+
+                clearCartBtn.addEventListener(
+                    "click",
+                    clearCart
+                );
+
+            }
+
+
+            /* ============================================
+               CHECKOUT
+            ============================================ */
+
+            const checkoutBtn =
+                document.getElementById(
+                    "checkoutBtn"
+                );
+
+
+            if (checkoutBtn) {
+
+                checkoutBtn.addEventListener(
+                    "click",
+                    goToCheckout
+                );
+
+            }
+
+
+            /* ============================================
+               SEARCH BUTTON
+            ============================================ */
+
+            const searchBtn =
+                document.getElementById(
+                    "searchBtn"
+                );
+
+
+            if (searchBtn) {
+
+                searchBtn.addEventListener(
+                    "click",
+                    performSearch
+                );
+
+            }
+
+
+            /* ============================================
+               SEARCH ENTER
+            ============================================ */
+
+            const searchInput =
+                document.getElementById(
+                    "searchInput"
+                );
+
+
+            if (searchInput) {
+
+                searchInput.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key === "Enter"
+                        ) {
+
+                            performSearch();
+
+                        }
+
+                    }
+                );
+
+            }
+
+        }
+    );
 
 </script>
 
 </body>
+
 </html>

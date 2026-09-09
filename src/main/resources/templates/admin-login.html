@@ -10,7 +10,11 @@
 
     <title>Admin Login | BookNest</title>
 
-    <!-- Google Font -->
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -21,11 +25,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet">
 
-    <!-- Font Awesome -->
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Admin Login CSS -->
+
+    <!-- =====================================================
+         ADMIN LOGIN CSS
+    ====================================================== -->
+
     <link rel="stylesheet"
           th:href="@{/css/admin-login.css}">
 
@@ -38,13 +50,16 @@
 <div class="admin-login-page">
 
 
-    <!-- =================================================
+    <!-- =====================================================
          LEFT SIDE
-         ================================================= -->
+    ====================================================== -->
 
     <div class="admin-left">
 
-        <!-- BRAND -->
+
+        <!-- =================================================
+             BRAND
+        ================================================== -->
 
         <div class="brand">
 
@@ -57,9 +72,12 @@
         </div>
 
 
-        <!-- CONTENT -->
+        <!-- =================================================
+             LEFT CONTENT
+        ================================================== -->
 
         <div class="admin-left-content">
+
 
             <span class="admin-label">
                 ADMIN PORTAL
@@ -86,9 +104,14 @@
             </p>
 
 
-            <!-- ADMIN FEATURES -->
+            <!-- =================================================
+                 ADMIN FEATURES
+            ================================================== -->
 
             <div class="admin-features">
+
+
+                <!-- MANAGE BOOKS -->
 
                 <div class="feature">
 
@@ -101,6 +124,8 @@
                 </div>
 
 
+                <!-- MANAGE USERS -->
+
                 <div class="feature">
 
                     <i class="fa-solid fa-users"></i>
@@ -112,6 +137,8 @@
                 </div>
 
 
+                <!-- MANAGE ORDERS -->
+
                 <div class="feature">
 
                     <i class="fa-solid fa-box"></i>
@@ -122,12 +149,15 @@
 
                 </div>
 
+
             </div>
 
         </div>
 
 
-        <!-- DECORATIVE ELEMENTS -->
+        <!-- =================================================
+             DECORATIVE ELEMENTS
+        ================================================== -->
 
         <div class="decor-book admin-book-one"></div>
 
@@ -137,19 +167,24 @@
 
         <div class="admin-circle admin-circle-two"></div>
 
+
     </div>
 
 
-    <!-- =================================================
+
+    <!-- =====================================================
          RIGHT SIDE
-         ================================================= -->
+    ====================================================== -->
 
     <div class="admin-right">
+
 
         <div class="admin-login-box">
 
 
-            <!-- MOBILE BRAND -->
+            <!-- =================================================
+                 MOBILE BRAND
+            ================================================== -->
 
             <div class="mobile-brand">
 
@@ -160,7 +195,10 @@
             </div>
 
 
-            <!-- ADMIN ICON -->
+
+            <!-- =================================================
+                 ADMIN ICON
+            ================================================== -->
 
             <div class="admin-icon">
 
@@ -169,154 +207,234 @@
             </div>
 
 
-            <!-- HEADING -->
+
+            <!-- =================================================
+                 FORM HEADING
+            ================================================== -->
 
             <div class="form-heading">
+
 
                 <span>
                     SECURE ACCESS
                 </span>
 
+
                 <h2>
                     Admin Login
                 </h2>
 
+
                 <p>
+
                     Sign in to access the BookNest
                     administration dashboard.
+
                 </p>
+
 
             </div>
 
 
-            <!-- LOGIN FORM -->
 
-            <form id="adminLoginForm">
+            <!-- =================================================
+                 LOGIN FORM
+            ================================================== -->
+
+            <form id="adminLoginForm"
+                  th:action="@{/admin/login}"
+                  method="post">
 
 
-                <!-- EMAIL -->
+                <!-- =================================================
+                     ERROR MESSAGE
+                ================================================== -->
+
+                <div class="login-error"
+                     th:if="${error}"
+                     th:text="${error}">
+
+                </div>
+
+
+
+                <!-- =================================================
+                     EMAIL
+                ================================================== -->
 
                 <div class="form-group">
 
+
                     <label for="adminEmail">
+
                         Admin Email
+
                     </label>
 
 
                     <div class="input-box">
 
+
                         <i class="fa-regular fa-envelope"></i>
 
+
                         <input
-                            type="email"
-                            id="adminEmail"
-                            name="email"
-                            placeholder="Enter admin email"
-                            required>
+                                type="email"
+                                id="adminEmail"
+                                name="email"
+                                placeholder="Enter admin email"
+                                autocomplete="email"
+                                required>
+
 
                     </div>
+
 
                 </div>
 
 
-                <!-- PASSWORD -->
+
+                <!-- =================================================
+                     PASSWORD
+                ================================================== -->
 
                 <div class="form-group">
 
+
                     <div class="password-label">
 
+
                         <label for="adminPassword">
+
                             Password
+
                         </label>
+
 
                     </div>
 
 
                     <div class="input-box">
 
+
                         <i class="fa-solid fa-lock"></i>
 
-                        <input
-                            type="password"
-                            id="adminPassword"
-                            name="password"
-                            placeholder="Enter admin password"
-                            required>
 
+                        <input
+                                type="password"
+                                id="adminPassword"
+                                name="password"
+                                placeholder="Enter admin password"
+                                autocomplete="current-password"
+                                required>
+
+
+                        <!-- PASSWORD TOGGLE -->
 
                         <button
-                            type="button"
-                            class="password-toggle"
-                            onclick="toggleAdminPassword()"
-                            aria-label="Show password">
+                                type="button"
+                                class="password-toggle"
+                                onclick="toggleAdminPassword()"
+                                aria-label="Show password">
+
 
                             <i class="fa-regular fa-eye"></i>
 
+
                         </button>
 
+
                     </div>
+
 
                 </div>
 
 
-                <!-- LOGIN BUTTON -->
+
+                <!-- =================================================
+                     LOGIN BUTTON
+                ================================================== -->
 
                 <button
-                    type="submit"
-                    class="admin-login-btn">
+                        type="submit"
+                        class="admin-login-btn">
+
 
                     <span>
+
                         Login to Dashboard
+
                     </span>
+
 
                     <i class="fa-solid fa-arrow-right"></i>
 
+
                 </button>
+
 
             </form>
 
 
-            <!-- SECURITY NOTE -->
+
+            <!-- =================================================
+                 SECURITY NOTE
+            ================================================== -->
 
             <div class="security-note">
 
+
                 <i class="fa-solid fa-shield-halved"></i>
 
+
                 <span>
+
                     Secure administrator access
+
                 </span>
+
 
             </div>
 
 
-            <!-- BACK TO HOME -->
+
+            <!-- =================================================
+                 BACK TO HOME
+            ================================================== -->
 
             <a href="/"
                class="back-home">
 
+
                 <i class="fa-solid fa-arrow-left"></i>
+
 
                 Back to BookNest
 
+
             </a>
+
 
         </div>
 
+
     </div>
+
 
 </div>
 
 
-<!-- =================================================
+
+<!-- =========================================================
      JAVASCRIPT
-     ================================================= -->
+========================================================= -->
 
 <script>
 
 
-/* =================================================
-   SHOW / HIDE PASSWORD
-   ================================================= */
+/* =========================================================
+   SHOW / HIDE ADMIN PASSWORD
+========================================================= */
 
 function toggleAdminPassword() {
 
@@ -332,70 +450,42 @@ function toggleAdminPassword() {
 
     if (password.type === "password") {
 
+
         password.type = "text";
+
 
         icon.classList.remove("fa-eye");
 
         icon.classList.add("fa-eye-slash");
+
 
         button.setAttribute(
             "aria-label",
             "Hide password"
         );
 
+
     } else {
 
+
         password.type = "password";
+
 
         icon.classList.remove("fa-eye-slash");
 
         icon.classList.add("fa-eye");
+
 
         button.setAttribute(
             "aria-label",
             "Show password"
         );
 
+
     }
 
 }
 
-
-/* =================================================
-   FORM SUBMISSION
-   ================================================= */
-
-document
-    .getElementById("adminLoginForm")
-    .addEventListener("submit", function(event) {
-
-        event.preventDefault();
-
-
-        const email =
-            document.getElementById("adminEmail").value.trim();
-
-
-        const password =
-            document.getElementById("adminPassword").value.trim();
-
-
-        if (email === "" || password === "") {
-
-            alert(
-                "Please enter admin email and password."
-            );
-
-            return;
-
-        }
-
-
-        alert(
-            "Admin login form submitted successfully!"
-        );
-
-    });
 
 </script>
 
