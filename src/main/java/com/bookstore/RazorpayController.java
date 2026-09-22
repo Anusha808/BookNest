@@ -1,6 +1,10 @@
 package com.bookstore.controller;
 
-import com.razorpay.Order;
+import com.bookstore.Notification;
+import com.bookstore.NotificationRepository;
+import com.bookstore.Order;
+import com.bookstore.OrderRepository;
+
 import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
 import com.razorpay.Utils;
@@ -19,16 +23,41 @@ import java.util.Map;
 @RequestMapping("/api/payment")
 public class RazorpayController {
 
+    // =========================================================
+    // RAZORPAY CONFIGURATION
+    // =========================================================
+
     @Value("${razorpay.key.id}")
     private String razorpayKeyId;
 
     @Value("${razorpay.key.secret}")
     private String razorpayKeySecret;
 
+    // =========================================================
+    // REPOSITORIES
+    // =========================================================
+
+    private final OrderRepository orderRepository;
+
+    private final NotificationRepository notificationRepository;
+
+    // =========================================================
+    // CONSTRUCTOR
+    // =========================================================
+
+    public RazorpayController(
+            OrderRepository orderRepository,
+            NotificationRepository notificationRepository) {
+
+        this.orderRepository =
+                orderRepository;
+
+        this.notificationRepository =
+                notificationRepository;
+    }
 
     // =========================================================
     // CREATE RAZORPAY ORDER
-    // POST: /api/payment/create-order
     // =========================================================
 
     @PostMapping("/create-order")
@@ -37,44 +66,56 @@ public class RazorpayController {
 
         try {
 
-            // Get amount from checkout page
-            Object amountObject = request.get("amount");
+            Object amountObject =
+                    request.get("amount");
 
             if (amountObject == null) {
-                return ResponseEntity.badRequest().body(
-                        Map.of(
-                                "success", false,
-                                "message", "Amount is required"
-                        )
-                );
+
+                return ResponseEntity
+                        .badRequest()
+                        .body(
+                                Map.of(
+                                        "success",
+                                        false,
+                                        "message",
+                                        "Amount is required"
+                                )
+                        );
             }
 
-            // Convert amount to rupees
-            double amountInRupees =
-                    Double.parseDouble(amountObject.toString());
+            double amount =
+                    Double.parseDouble(
+                            amountObject.toString()
+                    );
 
-            if (amountInRupees <= 0) {
-                return ResponseEntity.badRequest().body(
-                        Map.of(
-                                "success", false,
-                                "message", "Invalid amount"
-                        )
-                );
+            if (amount <= 0) {
+
+                return ResponseEntity
+                        .badRequest()
+                        .body(
+                                Map.of(
+                                        "success",
+                                        false,
+                                        "message",
+                                        "Invalid amount"
+                                )
+                        );
             }
 
-            // Razorpay requires amount in paise
+            // Rupees -> Paise
             int amountInPaise =
-                    (int) Math.round(amountInRupees * 100);
+                    (int) Math.round(
+                            amount * 100
+                    );
 
-            // Create Razorpay client
             RazorpayClient razorpayClient =
                     new RazorpayClient(
                             razorpayKeyId,
                             razorpayKeySecret
                     );
 
-            // Create order request
-            JSONObject orderRequest = new JSONObject();
+            JSONObject orderRequest =
+                    new JSONObject();
 
             orderRequest.put(
                     "amount",
@@ -88,14 +129,15 @@ public class RazorpayController {
 
             orderRequest.put(
                     "receipt",
-                    "BOOKNEST_" + System.currentTimeMillis()
+                    "BOOKNEST_" +
+                            System.currentTimeMillis()
             );
 
-            // Create order in Razorpay
-            Order order =
-                    razorpayClient.orders.create(orderRequest);
+            com.razorpay.Order razorpayOrder =
+                    razorpayClient.orders.create(
+                            orderRequest
+                    );
 
-            // Send response to checkout.html
             Map<String, Object> response =
                     new HashMap<>();
 
@@ -106,7 +148,7 @@ public class RazorpayController {
 
             response.put(
                     "orderId",
-                    order.get("id")
+                    razorpayOrder.get("id")
             );
 
             response.put(
@@ -124,68 +166,254 @@ public class RazorpayController {
                     razorpayKeyId
             );
 
-            return ResponseEntity.ok(response);
-
-        } catch (RazorpayException e) {
-
-            e.printStackTrace();
-
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(
-                            Map.of(
-                                    "success",
-                                    false,
-
-                                    "message",
-                                    "Unable to create Razorpay order"
-                            )
-                    );
+            return ResponseEntity.ok(
+                    response
+            );
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
             return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .status(
+                            HttpStatus.INTERNAL_SERVER_ERROR
+                    )
                     .body(
                             Map.of(
                                     "success",
                                     false,
-
                                     "message",
-                                    "Payment initialization failed"
+                                    "Unable to create Razorpay order"
                             )
                     );
         }
     }
 
-
     // =========================================================
     // VERIFY RAZORPAY PAYMENT
-    // POST: /api/payment/verify
     // =========================================================
 
     @PostMapping("/verify")
     public ResponseEntity<?> verifyPayment(
-            @RequestBody Map<String, String> paymentData) {
+            @RequestBody Map<String, Object> request) {
 
         try {
 
             String razorpayOrderId =
-                    paymentData.get("razorpay_order_id");
+                    String.valueOf(
+                            request.get(
+                                    "razorpay_order_id"
+                            )
+                    );
 
             String razorpayPaymentId =
-                    paymentData.get("razorpay_payment_id");
+                    String.valueOf(
+                            request.get(
+                                    "razorpay_payment_id"
+                            )
+                    );
 
             String razorpaySignature =
-                    paymentData.get("razorpay_signature");
+                    String.valueOf(
+                            request.get(
+                                    "razorpay_signature"
+                            )
+                    );
 
+            String customerName =
+                    String.valueOf(
+                            request.get(
+                                    "customerName"
+                            )
+                    );
 
-            // Check required payment information
-            if (razorpayOrderId == null ||
-                    razorpayPaymentId == null ||
-                    razorpaySignature == null) {
+            String customerEmail =
+                    String.valueOf(
+                            request.get(
+                                    "customerEmail"
+                            )
+                    );
+
+            double totalAmount =
+                    Double.parseDouble(
+                            String.valueOf(
+                                    request.get(
+                                            "amount"
+                                    )
+                            )
+                    );
+
+            // =================================================
+            // VERIFY SIGNATURE
+            // =================================================
+
+            JSONObject options =
+                    new JSONObject();
+
+            options.put(
+                    "razorpay_order_id",
+                    razorpayOrderId
+            );
+
+            options.put(
+                    "razorpay_payment_id",
+                    razorpayPaymentId
+            );
+
+            options.put(
+                    "razorpay_signature",
+                    razorpaySignature
+            );
+
+            boolean verified =
+                    Utils.verifyPaymentSignature(
+                            options,
+                            razorpayKeySecret
+                    );
+
+            if (!verified) {
+
+                return ResponseEntity
+                        .status(
+                                HttpStatus.BAD_REQUEST
+                        )
+                        .body(
+                                Map.of(
+                                        "success",
+                                        false,
+                                        "message",
+                                        "Payment verification failed"
+                                )
+                        );
+            }
+
+            // =================================================
+            // SAVE RAZORPAY ORDER
+            // =================================================
+
+            Order order =
+                    new Order();
+
+            order.setCustomerName(
+                    customerName
+            );
+
+            order.setCustomerEmail(
+                    customerEmail
+            );
+
+            order.setTotalAmount(
+                    totalAmount
+            );
+
+            order.setRazorpayOrderId(
+                    razorpayOrderId
+            );
+
+            order.setRazorpayPaymentId(
+                    razorpayPaymentId
+            );
+
+            order.setPaymentMethod(
+                    "RAZORPAY"
+            );
+
+            order.setPaymentStatus(
+                    "PAID"
+            );
+
+            order.setStatus(
+                    "PROCESSING"
+            );
+
+            Order savedOrder =
+                    orderRepository.save(
+                            order
+                    );
+
+            // =================================================
+            // RESPONSE
+            // =================================================
+
+            Map<String, Object> response =
+                    new HashMap<>();
+
+            response.put(
+                    "success",
+                    true
+            );
+
+            response.put(
+                    "message",
+                    "Payment successful"
+            );
+
+            response.put(
+                    "booknestOrderId",
+                    savedOrder.getId()
+            );
+
+            return ResponseEntity.ok(
+                    response
+            );
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            return ResponseEntity
+                    .status(
+                            HttpStatus.INTERNAL_SERVER_ERROR
+                    )
+                    .body(
+                            Map.of(
+                                    "success",
+                                    false,
+                                    "message",
+                                    "Payment verification error"
+                            )
+                    );
+        }
+    }
+
+    // =========================================================
+    // CASH ON DELIVERY
+    // =========================================================
+
+    @PostMapping("/cod")
+    public ResponseEntity<?> createCodOrder(
+            @RequestBody Map<String, Object> request) {
+
+        try {
+
+            // =================================================
+            // GET CUSTOMER DETAILS
+            // =================================================
+
+            String customerName =
+                    String.valueOf(
+                            request.get(
+                                    "customerName"
+                            )
+                    );
+
+            String customerEmail =
+                    String.valueOf(
+                            request.get(
+                                    "customerEmail"
+                            )
+                    );
+
+            Object amountObject =
+                    request.get("amount");
+
+            // =================================================
+            // VALIDATION
+            // =================================================
+
+            if (customerName == null
+                    || customerName.trim().isEmpty()
+                    || customerName.equals("null")) {
 
                 return ResponseEntity
                         .badRequest()
@@ -193,75 +421,177 @@ public class RazorpayController {
                                 Map.of(
                                         "success",
                                         false,
-
                                         "message",
-                                        "Payment information is incomplete"
+                                        "Customer name is required"
                                 )
                         );
             }
 
+            if (customerEmail == null
+                    || customerEmail.trim().isEmpty()
+                    || customerEmail.equals("null")) {
 
-            // Create signature payload
-            String payload =
-                    razorpayOrderId
-                            + "|"
-                            + razorpayPaymentId;
-
-
-            // Verify signature
-            boolean verified =
-                    Utils.verifySignature(
-                            payload,
-                            razorpaySignature,
-                            razorpayKeySecret
-                    );
-
-
-            if (verified) {
-
-                return ResponseEntity.ok(
-                        Map.of(
-                                "success",
-                                true,
-
-                                "message",
-                                "Payment verified successfully",
-
-                                "paymentId",
-                                razorpayPaymentId,
-
-                                "orderId",
-                                razorpayOrderId
-                        )
-                );
+                return ResponseEntity
+                        .badRequest()
+                        .body(
+                                Map.of(
+                                        "success",
+                                        false,
+                                        "message",
+                                        "Customer email is required"
+                                )
+                        );
             }
 
+            if (amountObject == null) {
 
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(
-                            Map.of(
-                                    "success",
-                                    false,
+                return ResponseEntity
+                        .badRequest()
+                        .body(
+                                Map.of(
+                                        "success",
+                                        false,
+                                        "message",
+                                        "Amount is required"
+                                )
+                        );
+            }
 
-                                    "message",
-                                    "Payment verification failed"
-                            )
+            double totalAmount =
+                    Double.parseDouble(
+                            amountObject.toString()
                     );
+
+            if (totalAmount <= 0) {
+
+                return ResponseEntity
+                        .badRequest()
+                        .body(
+                                Map.of(
+                                        "success",
+                                        false,
+                                        "message",
+                                        "Invalid amount"
+                                )
+                        );
+            }
+
+            // =================================================
+            // CREATE COD ORDER
+            // =================================================
+
+            Order order =
+                    new Order();
+
+            order.setCustomerName(
+                    customerName
+            );
+
+            order.setCustomerEmail(
+                    customerEmail
+            );
+
+            order.setTotalAmount(
+                    totalAmount
+            );
+
+            order.setPaymentMethod(
+                    "COD"
+            );
+
+            order.setPaymentStatus(
+                    "COD_PENDING"
+            );
+
+            order.setStatus(
+                    "PENDING"
+            );
+
+            // =================================================
+            // SAVE ORDER
+            // =================================================
+
+            Order savedOrder =
+                    orderRepository.save(
+                            order
+                    );
+
+            // =================================================
+            // CREATE ADMIN NOTIFICATION
+            // =================================================
+
+            Notification notification =
+                    new Notification();
+
+            notification.setTitle(
+                    "New Cash on Delivery Order"
+            );
+
+            notification.setMessage(
+                    "New COD order #" +
+                    savedOrder.getId() +
+                    " received from " +
+                    customerName +
+                    ". Order amount: ₹" +
+                    String.format(
+                            "%.2f",
+                            totalAmount
+                    ) +
+                    ". Payment status: COD Pending."
+            );
+
+            notification.setType(
+                    "ORDER"
+            );
+
+            notification.setRead(
+                    false
+            );
+
+            notificationRepository.save(
+                    notification
+            );
+
+            // =================================================
+            // RESPONSE
+            // =================================================
+
+            Map<String, Object> response =
+                    new HashMap<>();
+
+            response.put(
+                    "success",
+                    true
+            );
+
+            response.put(
+                    "message",
+                    "COD order placed successfully"
+            );
+
+            response.put(
+                    "booknestOrderId",
+                    savedOrder.getId()
+            );
+
+            return ResponseEntity.ok(
+                    response
+            );
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
             return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .status(
+                            HttpStatus.INTERNAL_SERVER_ERROR
+                    )
                     .body(
                             Map.of(
                                     "success",
                                     false,
-
                                     "message",
-                                    "Unable to verify payment"
+                                    "Unable to place COD order"
                             )
                     );
         }

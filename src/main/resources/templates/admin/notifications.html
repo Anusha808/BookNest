@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Notifications</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Notifications CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/admin-notifications.css}">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- ==========================================================
+         SIDEBAR
+    =========================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-top">
+
+            <div class="admin-logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div>
+                    <h2>BookNest</h2>
+                    <span>Admin Portal</span>
+                </div>
+
+            </div>
+
+            <button class="close-sidebar"
+                    id="closeSidebar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- ======================================================
+             SIDEBAR NAVIGATION
+        ======================================================= -->
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">
+                MAIN MENU
+            </p>
+
+
+            <a href="/admin/dashboard"
+               class="nav-link">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="/admin/books"
+               class="nav-link">
+
+                <i class="fa-solid fa-book"></i>
+
+                <span>Books</span>
+
+            </a>
+
+
+            <a href="/admin/categories"
+               class="nav-link">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <span>Categories</span>
+
+            </a>
+
+
+            <a href="/admin/users"
+               class="nav-link">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>Users</span>
+
+            </a>
+
+
+            <a href="/admin/orders"
+               class="nav-link">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span>Orders</span>
+
+            </a>
+
+
+            <a href="/admin/payments"
+               class="nav-link">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+                <span>Payments</span>
+
+            </a>
+
+
+            <a href="/admin/inventory"
+               class="nav-link">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <span>Inventory</span>
+
+            </a>
+
+
+            <a href="/admin/notifications"
+               class="nav-link active">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>Notifications</span>
+
+            </a>
+
+
+            <p class="nav-title second-title">
+                SYSTEM
+            </p>
+
+
+            <a href="/admin/settings"
+               class="nav-link">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+
+            <a href="/"
+               class="nav-link">
+
+                <i class="fa-solid fa-store"></i>
+
+                <span>View Store</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- ======================================================
+             SIDEBAR BOTTOM
+        ======================================================= -->
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-mini-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Administrator
+                    </strong>
+
+                    <span>
+                        admin@booknest.com
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <a href="/admin/login"
+               class="logout-link">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==========================================================
+         MAIN CONTENT
+    =========================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- ======================================================
+             TOPBAR
+        ======================================================= -->
+
+        <div class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-button"
+                        id="menuButton">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div>
+
+                    <h1>
+                        Notifications
+                    </h1>
+
+                    <p>
+                        Manage your BookNest notifications.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <!-- NOTIFICATION -->
+
+                <button class="notification-button">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <span
+                        th:if="${unreadCount > 0}"
+                        class="notification-dot">
+                    </span>
+
+                </button>
+
+
+                <!-- ADMIN PROFILE -->
+
+                <div class="top-profile">
+
+                    <div class="top-avatar">
+                        A
+                    </div>
+
+                    <div class="top-profile-info">
+
+                        <strong>
+                            Administrator
+                        </strong>
+
+                        <span>
+                            Admin
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================================
+             NOTIFICATION CONTENT
+        ======================================================= -->
+
+        <div class="notifications-content">
+
+
+            <!-- ==================================================
+                 PAGE HEADING
+            =================================================== -->
+
+            <div class="welcome-section">
+
+                <div>
+
+                    <span class="dashboard-label">
+                        ADMINISTRATION
+                    </span>
+
+                    <h2>
+                        Notifications
+                    </h2>
+
+                    <p>
+                        Stay updated with your BookNest orders
+                        and activities.
+                    </p>
+
+                </div>
+
+
+                <!-- UNREAD COUNT -->
+
+                <div class="unread-box">
+
+                    <div class="unread-icon">
+
+                        <i class="fa-solid fa-bell"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Unread Notifications
+                        </span>
+
+                        <strong
+                            th:text="${unreadCount}">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 ACTION BAR
+            =================================================== -->
+
+            <div class="notification-toolbar">
+
+
+                <div class="toolbar-left">
+
+                    <span class="notification-label">
+
+                        <i class="fa-solid fa-list"></i>
+
+                        All Notifications
+
+                    </span>
+
+
+                    <span
+                        class="count-badge"
+                        th:if="${unreadCount > 0}"
+                        th:text="${unreadCount}">
+
+                        0
+
+                    </span>
+
+                </div>
+
+
+                <div class="toolbar-actions">
+
+
+                    <a href="/admin/notifications/read-all"
+                       class="mark-all-btn">
+
+                        <i class="fa-solid fa-check-double"></i>
+
+                        Mark all as read
+
+                    </a>
+
+
+                    <a href="/admin/dashboard"
+                       class="back-btn">
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Dashboard
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 NOTIFICATIONS LIST
+            =================================================== -->
+
+            <div class="notification-list"
+                 th:if="${!#lists.isEmpty(notifications)}">
+
+
+                <!-- NOTIFICATION CARD -->
+
+                <div class="notification-card"
+                     th:each="notification : ${notifications}"
+                     th:classappend="${!notification.read ? ' unread' : ''}">
+
+
+                    <!-- ICON -->
+
+                    <div class="notification-icon"
+                         th:classappend="${notification.type == 'ORDER' ? ' order-icon' : ' general-icon'}">
+
+                        <i th:if="${notification.type == 'ORDER'}"
+                           class="fa-solid fa-box">
+                        </i>
+
+                        <i th:unless="${notification.type == 'ORDER'}"
+                           class="fa-solid fa-bell">
+                        </i>
+
+                    </div>
+
+
+                    <!-- CONTENT -->
+
+                    <div class="notification-content">
+
+
+                        <div class="notification-title">
+
+                            <span th:text="${notification.title}">
+                                Notification title
+                            </span>
+
+
+                            <span
+                                th:if="${!notification.read}"
+                                class="new-badge">
+
+                                NEW
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="notification-message"
+                             th:text="${notification.message}">
+
+                            Notification message
+
+                        </div>
+
+
+                        <div class="notification-time">
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            <span
+                                th:text="${#temporals.format(
+                                    notification.createdAt,
+                                    'dd MMM yyyy, hh:mm a'
+                                )}">
+
+                                13 Sep 2026, 02:30 PM
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="notification-actions">
+
+
+                        <!-- MARK AS READ -->
+
+                        <a th:if="${!notification.read}"
+                           th:href="@{/admin/notifications/read/{id}(id=${notification.id})}"
+                           class="action-btn read-btn"
+                           title="Mark as read">
+
+                            <i class="fa-solid fa-check"></i>
+
+                        </a>
+
+
+                        <!-- DELETE -->
+
+                        <a th:href="@{/admin/notifications/delete/{id}(id=${notification.id})}"
+                           class="action-btn delete-btn"
+                           title="Delete notification">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 EMPTY STATE
+            =================================================== -->
+
+            <div class="empty-state"
+                 th:if="${#lists.isEmpty(notifications)}">
+
+
+                <div class="empty-icon">
+
+                    <i class="fa-regular fa-bell-slash"></i>
+
+                </div>
+
+
+                <h2>
+                    No notifications
+                </h2>
+
+
+                <p>
+                    You don't have any notifications yet.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ==========================================================
+     MOBILE SIDEBAR SCRIPT
+=========================================================== -->
+
+<script>
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const closeSidebar =
+        document.getElementById("closeSidebar");
+
+
+    menuButton.addEventListener("click", function () {
+
+        sidebar.classList.add("show");
+
+    });
+
+
+    closeSidebar.addEventListener("click", function () {
+
+        sidebar.classList.remove("show");
+
+    });
+
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            window.innerWidth <= 900 &&
+            sidebar.classList.contains("show") &&
+            !sidebar.contains(event.target) &&
+            !menuButton.contains(event.target)
+        ) {
+
+            sidebar.classList.remove("show");
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

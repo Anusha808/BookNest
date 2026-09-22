@@ -29,6 +29,7 @@
 
     <aside class="sidebar" id="sidebar">
 
+
         <!-- Sidebar Top -->
 
         <div class="sidebar-top">
@@ -48,17 +49,26 @@
 
 
             <button class="close-sidebar" id="closeSidebar">
+
                 <i class="fa-solid fa-xmark"></i>
+
             </button>
 
         </div>
 
 
-        <!-- Sidebar Navigation -->
+        <!-- =================================================
+             SIDEBAR NAVIGATION
+        ================================================== -->
 
         <nav class="sidebar-nav">
 
-            <p class="nav-title">MAIN MENU</p>
+
+            <!-- MAIN MENU -->
+
+            <p class="nav-title">
+                MAIN MENU
+            </p>
 
 
             <!-- Dashboard -->
@@ -81,6 +91,18 @@
                 <i class="fa-solid fa-book"></i>
 
                 <span>Books</span>
+
+            </a>
+
+
+            <!-- Categories -->
+
+            <a href="/admin/categories"
+               class="nav-link">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <span>Categories</span>
 
             </a>
 
@@ -121,6 +143,34 @@
             </a>
 
 
+            <!-- Inventory -->
+
+            <a href="/admin/inventory"
+               class="nav-link">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <span>Inventory</span>
+
+            </a>
+
+
+            <!-- Notifications -->
+
+            <a href="/admin/notifications"
+               class="nav-link">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>Notifications</span>
+
+            </a>
+
+
+            <!-- =================================================
+                 SYSTEM
+            ================================================== -->
+
             <p class="nav-title second-title">
                 SYSTEM
             </p>
@@ -152,10 +202,14 @@
         </nav>
 
 
-        <!-- Sidebar Bottom -->
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
 
         <div class="sidebar-bottom">
 
+
+            <!-- Admin Profile -->
 
             <div class="admin-mini-profile">
 
@@ -166,7 +220,9 @@
 
                 <div class="profile-info">
 
-                    <strong>Administrator</strong>
+                    <strong>
+                        Administrator
+                    </strong>
 
                     <span>
                         admin@booknest.com
@@ -176,6 +232,8 @@
 
             </div>
 
+
+            <!-- Logout -->
 
             <a href="/admin/login"
                class="logout-link">
@@ -189,7 +247,6 @@
         </div>
 
     </aside>
-
 
 
     <!-- =====================================================
@@ -209,6 +266,8 @@
             <div class="topbar-left">
 
 
+                <!-- Mobile Menu -->
+
                 <button class="menu-button"
                         id="openSidebar">
 
@@ -219,7 +278,9 @@
 
                 <div>
 
-                    <h1>Dashboard</h1>
+                    <h1>
+                        Dashboard
+                    </h1>
 
                     <p>
                         Welcome back, Administrator.
@@ -230,6 +291,9 @@
             </div>
 
 
+            <!-- =================================================
+                 TOPBAR RIGHT
+            ================================================== -->
 
             <div class="topbar-right">
 
@@ -274,7 +338,6 @@
             </div>
 
         </header>
-
 
 
         <!-- =================================================
@@ -324,7 +387,6 @@
             </div>
 
 
-
             <!-- =================================================
                  STAT CARDS
             ================================================== -->
@@ -332,10 +394,9 @@
             <div class="stats-grid">
 
 
-                <!-- ================= BOOKS ================= -->
+                <!-- BOOKS -->
 
                 <div class="stat-card">
-
 
                     <div class="stat-icon books-icon">
 
@@ -369,11 +430,9 @@
                 </div>
 
 
-
-                <!-- ================= USERS ================= -->
+                <!-- USERS -->
 
                 <div class="stat-card">
-
 
                     <div class="stat-icon users-icon">
 
@@ -407,11 +466,9 @@
                 </div>
 
 
-
-                <!-- ================= ORDERS ================= -->
+                <!-- ORDERS -->
 
                 <div class="stat-card">
-
 
                     <div class="stat-icon orders-icon">
 
@@ -445,11 +502,9 @@
                 </div>
 
 
-
-                <!-- ================= REVENUE ================= -->
+                <!-- REVENUE -->
 
                 <div class="stat-card">
-
 
                     <div class="stat-icon revenue-icon">
 
@@ -487,7 +542,6 @@
             </div>
 
 
-
             <!-- =================================================
                  MIDDLE GRID
             ================================================== -->
@@ -503,7 +557,6 @@
 
 
                     <div class="card-header">
-
 
                         <div>
 
@@ -525,12 +578,9 @@
                     </div>
 
 
-
                     <div class="table-container">
 
-
                         <table>
-
 
                             <thead>
 
@@ -584,7 +634,6 @@
                                 <td>
 
                                     <div class="customer">
-
 
                                         <div class="customer-avatar"
                                              th:text="${order.customerName != null and !order.customerName.isEmpty() ? order.customerName.substring(0,1).toUpperCase() : 'U'}">
@@ -646,7 +695,8 @@
 
                                     <i class="fa-solid fa-cart-shopping"></i>
 
-                                    <br><br>
+                                    <br>
+                                    <br>
 
                                     No orders available yet.
 
@@ -664,7 +714,6 @@
                 </div>
 
 
-
                 <!-- =================================================
                      BOOK STOCK
                 ================================================== -->
@@ -673,7 +722,6 @@
 
 
                     <div class="card-header">
-
 
                         <div>
 
@@ -695,7 +743,6 @@
                     </div>
 
 
-
                     <div class="stock-list">
 
 
@@ -707,51 +754,51 @@
 
                             <div class="stock-info">
 
-
-                                <div class="stock-book-icon">
-
-                                    <i class="fa-solid fa-book"></i>
-
-                                </div>
-
-
                                 <div>
 
-                                    <strong
-                                            th:text="${category.name}">
+                                    <div class="stock-book-icon">
 
-                                        Category
+                                        <i class="fa-solid fa-book"></i>
 
-                                    </strong>
+                                    </div>
 
 
-                                    <span>
+                                    <div>
 
-                                        <span
-                                                th:text="${category.count}">
+                                        <strong
+                                                th:text="${category.name}">
 
-                                            0
+                                            Category
+
+                                        </strong>
+
+
+                                        <span>
+
+                                            <span
+                                                    th:text="${category.count}">
+
+                                                0
+
+                                            </span>
+
+                                            books
 
                                         </span>
 
-                                        books
-
-                                    </span>
+                                    </div>
 
                                 </div>
 
                             </div>
 
 
-
                             <div class="stock-bar">
-
 
                                 <div class="bar">
 
                                     <span
                                             th:style="'width:' + ${category.percentage} + '%;'">
-
                                     </span>
 
                                 </div>
@@ -789,7 +836,6 @@
             </div>
 
 
-
             <!-- =================================================
                  BOTTOM GRID
             ================================================== -->
@@ -805,7 +851,6 @@
 
 
                     <div class="card-header">
-
 
                         <div>
 
@@ -827,7 +872,6 @@
                     </div>
 
 
-
                     <div class="users-list">
 
 
@@ -846,7 +890,6 @@
 
 
                             <div class="user-details">
-
 
                                 <strong
                                         th:text="${user.name}">
@@ -898,7 +941,6 @@
                 </div>
 
 
-
                 <!-- =================================================
                      ORDER SUMMARY
                 ================================================== -->
@@ -907,7 +949,6 @@
 
 
                     <div class="card-header">
-
 
                         <div>
 
@@ -924,14 +965,12 @@
                     </div>
 
 
-
                     <div class="order-summary">
 
 
                         <!-- Pending -->
 
                         <div class="summary-item">
-
 
                             <div class="summary-icon pending">
 
@@ -959,11 +998,9 @@
                         </div>
 
 
-
                         <!-- Processing -->
 
                         <div class="summary-item">
-
 
                             <div class="summary-icon processing">
 
@@ -991,11 +1028,9 @@
                         </div>
 
 
-
                         <!-- Shipped -->
 
                         <div class="summary-item">
-
 
                             <div class="summary-icon shipped">
 
@@ -1023,11 +1058,9 @@
                         </div>
 
 
-
                         <!-- Completed -->
 
                         <div class="summary-item">
-
 
                             <div class="summary-icon completed">
 
@@ -1060,13 +1093,11 @@
 
             </div>
 
-
         </section>
 
     </main>
 
 </div>
-
 
 
 <!-- =====================================================

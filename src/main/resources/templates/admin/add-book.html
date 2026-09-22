@@ -4,114 +4,194 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Add New Book | BookNest Admin</title>
 
-    <link rel="stylesheet" th:href="@{/css/admin-add-book.css}">
+    <link rel="stylesheet"
+          th:href="@{/css/admin-add-book.css}">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
+
 <body>
+
 
 <div class="admin-layout">
 
-    <!-- ================= SIDEBAR ================= -->
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
     <aside class="sidebar">
+
+
+        <!-- LOGO -->
 
         <div class="sidebar-logo">
 
             <div class="logo-icon">
+
                 <i class="fa-solid fa-book-open"></i>
+
             </div>
 
+
             <div>
+
                 <h2>BookNest</h2>
+
                 <span>ADMIN PANEL</span>
+
             </div>
 
         </div>
 
 
+
+        <!-- NAVIGATION -->
+
         <nav class="sidebar-nav">
 
+
             <a href="/admin/dashboard">
+
                 <i class="fa-solid fa-chart-line"></i>
+
                 <span>Dashboard</span>
+
             </a>
 
-            <a href="/admin/books" class="active">
+
+            <a href="/admin/books"
+               class="active">
+
                 <i class="fa-solid fa-book"></i>
+
                 <span>Books</span>
+
             </a>
 
-            <a href="#">
+
+            <a href="/admin/categories">
+
                 <i class="fa-solid fa-layer-group"></i>
+
                 <span>Categories</span>
+
             </a>
 
-            <a href="#">
+
+            <a href="/admin/users">
+
                 <i class="fa-solid fa-users"></i>
+
                 <span>Users</span>
+
             </a>
 
-            <a href="#">
+
+            <a href="/admin/orders">
+
                 <i class="fa-solid fa-cart-shopping"></i>
+
                 <span>Orders</span>
+
             </a>
 
-            <a href="#">
+
+            <a href="/admin/payments">
+
                 <i class="fa-solid fa-credit-card"></i>
+
                 <span>Payments</span>
+
             </a>
 
-            <a href="#">
+
+            <a href="/admin/inventory">
+
                 <i class="fa-solid fa-boxes-stacked"></i>
+
                 <span>Inventory</span>
+
             </a>
 
-            <a href="#">
+
+            <a href="/admin/notifications">
+
                 <i class="fa-solid fa-bell"></i>
+
                 <span>Notifications</span>
+
             </a>
 
-            <a href="#">
+
+            <a href="/admin/settings">
+
                 <i class="fa-solid fa-gear"></i>
+
                 <span>Settings</span>
+
             </a>
+
 
         </nav>
 
 
+
+        <!-- SIDEBAR BOTTOM -->
+
         <div class="sidebar-bottom">
 
+
             <a href="/">
+
                 <i class="fa-solid fa-store"></i>
+
                 <span>View Store</span>
+
             </a>
 
-            <a href="/admin/login" class="logout">
+
+            <a href="/admin/login"
+               class="logout">
+
                 <i class="fa-solid fa-right-from-bracket"></i>
+
                 <span>Logout</span>
+
             </a>
+
 
         </div>
+
 
     </aside>
 
 
-    <!-- ================= MAIN CONTENT ================= -->
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
 
     <main class="main-content">
 
 
-        <!-- ================= TOPBAR ================= -->
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
 
         <header class="topbar">
+
+
+            <!-- MOBILE MENU -->
 
             <div class="mobile-menu">
 
@@ -119,6 +199,9 @@
 
             </div>
 
+
+
+            <!-- TITLE -->
 
             <div class="topbar-title">
 
@@ -129,7 +212,11 @@
             </div>
 
 
+
+            <!-- ADMIN PROFILE -->
+
             <div class="admin-profile">
+
 
                 <div class="notification">
 
@@ -142,9 +229,13 @@
 
                 <div class="profile-info">
 
+
                     <div class="profile-avatar">
+
                         A
+
                     </div>
+
 
                     <div>
 
@@ -154,14 +245,20 @@
 
                     </div>
 
+
                 </div>
 
+
             </div>
+
 
         </header>
 
 
-        <!-- ================= PAGE CONTENT ================= -->
+
+        <!-- =================================================
+             PAGE CONTENT
+        ================================================== -->
 
         <section class="page-section">
 
@@ -170,9 +267,12 @@
 
             <div class="page-header">
 
+
                 <div>
 
-                    <a href="/admin/books" class="back-link">
+
+                    <a href="/admin/books"
+                       class="back-link">
 
                         <i class="fa-solid fa-arrow-left"></i>
 
@@ -183,17 +283,24 @@
 
                     <h2>Add New Book</h2>
 
+
                     <p>
+
                         Add a new book to your BookNest collection.
+
                     </p>
 
+
                 </div>
+
 
             </div>
 
 
 
-            <!-- ================= BOOK FORM ================= -->
+            <!-- =================================================
+                 BOOK FORM
+            ================================================== -->
 
             <form class="book-form"
                   th:action="@{/admin/books/add}"
@@ -201,12 +308,17 @@
                   method="post">
 
 
-                <!-- ================= BOOK INFORMATION ================= -->
+                <!-- =================================================
+                     BOOK INFORMATION
+                ================================================== -->
 
                 <div class="form-card">
 
 
+                    <!-- CARD HEADER -->
+
                     <div class="card-header">
+
 
                         <div class="header-icon">
 
@@ -220,14 +332,19 @@
                             <h3>Book Information</h3>
 
                             <p>
+
                                 Enter the basic details of the book.
+
                             </p>
 
                         </div>
 
+
                     </div>
 
 
+
+                    <!-- FORM GRID -->
 
                     <div class="form-grid">
 
@@ -235,6 +352,7 @@
                         <!-- BOOK TITLE -->
 
                         <div class="form-group full-width">
+
 
                             <label for="title">
 
@@ -252,6 +370,7 @@
                                     placeholder="Enter book title"
                                     required>
 
+
                         </div>
 
 
@@ -259,6 +378,7 @@
                         <!-- AUTHOR -->
 
                         <div class="form-group">
+
 
                             <label for="author">
 
@@ -276,6 +396,7 @@
                                     placeholder="Enter author name"
                                     required>
 
+
                         </div>
 
 
@@ -283,6 +404,7 @@
                         <!-- ISBN -->
 
                         <div class="form-group">
+
 
                             <label for="isbn">
 
@@ -297,6 +419,7 @@
                                     th:field="*{isbn}"
                                     placeholder="Enter ISBN number">
 
+
                         </div>
 
 
@@ -304,6 +427,7 @@
                         <!-- CATEGORY -->
 
                         <div class="form-group">
+
 
                             <label for="category">
 
@@ -319,59 +443,100 @@
                                     th:field="*{category}"
                                     required>
 
+
                                 <option value="">
+
                                     Select category
+
                                 </option>
+
 
                                 <option value="Fiction">
+
                                     Fiction
+
                                 </option>
+
 
                                 <option value="Romance">
+
                                     Romance
+
                                 </option>
+
 
                                 <option value="Mystery">
+
                                     Mystery
+
                                 </option>
+
 
                                 <option value="Self Help">
+
                                     Self Help
+
                                 </option>
+
 
                                 <option value="Business">
+
                                     Business
+
                                 </option>
+
 
                                 <option value="Productivity">
+
                                     Productivity
+
                                 </option>
+
 
                                 <option value="Classics">
+
                                     Classics
+
                                 </option>
+
 
                                 <option value="Science">
+
                                     Science
+
                                 </option>
+
 
                                 <option value="Fantasy">
+
                                     Fantasy
+
                                 </option>
+
 
                                 <option value="History">
+
                                     History
+
                                 </option>
+
 
                                 <option value="Technology">
+
                                     Technology
+
                                 </option>
+
 
                                 <option value="Psychology">
+
                                     Psychology
+
                                 </option>
 
+
                             </select>
+
 
                         </div>
 
@@ -380,6 +545,7 @@
                         <!-- LANGUAGE -->
 
                         <div class="form-group">
+
 
                             <label for="language">
 
@@ -392,27 +558,44 @@
                                     id="language"
                                     th:field="*{language}">
 
+
                                 <option value="English">
+
                                     English
+
                                 </option>
+
 
                                 <option value="Hindi">
+
                                     Hindi
+
                                 </option>
+
 
                                 <option value="Kannada">
+
                                     Kannada
+
                                 </option>
+
 
                                 <option value="Tamil">
+
                                     Tamil
+
                                 </option>
+
 
                                 <option value="Telugu">
+
                                     Telugu
+
                                 </option>
 
+
                             </select>
+
 
                         </div>
 
@@ -421,6 +604,7 @@
                         <!-- DESCRIPTION -->
 
                         <div class="form-group full-width">
+
 
                             <label for="description">
 
@@ -433,22 +617,31 @@
                                     id="description"
                                     th:field="*{description}"
                                     rows="6"
+                                    maxlength="2000"
                                     placeholder="Write a short description of the book..."></textarea>
+
 
                         </div>
 
+
                     </div>
+
 
                 </div>
 
 
 
-                <!-- ================= PRICE & INVENTORY ================= -->
+                <!-- =================================================
+                     PRICE & INVENTORY
+                ================================================== -->
 
                 <div class="form-card">
 
 
+                    <!-- CARD HEADER -->
+
                     <div class="card-header">
+
 
                         <div class="header-icon">
 
@@ -462,10 +655,13 @@
                             <h3>Price & Inventory</h3>
 
                             <p>
+
                                 Set the price and available stock.
+
                             </p>
 
                         </div>
+
 
                     </div>
 
@@ -478,6 +674,7 @@
 
                         <div class="form-group">
 
+
                             <label for="price">
 
                                 Price
@@ -488,6 +685,7 @@
 
 
                             <div class="input-prefix">
+
 
                                 <span>₹</span>
 
@@ -501,7 +699,9 @@
                                         step="0.01"
                                         required>
 
+
                             </div>
+
 
                         </div>
 
@@ -510,6 +710,7 @@
                         <!-- STOCK -->
 
                         <div class="form-group">
+
 
                             <label for="stock">
 
@@ -528,20 +729,28 @@
                                     min="0"
                                     required>
 
+
                         </div>
 
+
                     </div>
+
 
                 </div>
 
 
 
-                <!-- ================= BOOK COVER ================= -->
+                <!-- =================================================
+                     BOOK COVER IMAGE URL
+                ================================================== -->
 
                 <div class="form-card">
 
 
+                    <!-- CARD HEADER -->
+
                     <div class="card-header">
+
 
                         <div class="header-icon">
 
@@ -555,63 +764,125 @@
                             <h3>Book Cover</h3>
 
                             <p>
-                                Add the cover image for this book.
+
+                                Add the book cover using an image URL.
+
                             </p>
 
                         </div>
 
+
                     </div>
 
 
 
-                    <div class="upload-area">
+                    <div class="cover-url-section">
 
 
-                        <div class="upload-icon">
+                        <!-- IMAGE URL -->
 
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <div class="form-group full-width">
+
+
+                            <label for="coverImage">
+
+                                Book Cover Image URL
+
+                            </label>
+
+
+                            <div class="url-input-wrapper">
+
+
+                                <i class="fa-solid fa-link"></i>
+
+
+                                <input
+                                        type="url"
+                                        id="coverImage"
+                                        th:field="*{coverImage}"
+                                        placeholder="https://example.com/book-cover.jpg">
+
+
+                            </div>
+
+
+                            <small class="input-help">
+
+                                Paste the direct URL of the book cover image.
+
+                                Example:
+
+                                https://example.com/book-cover.jpg
+
+                            </small>
+
 
                         </div>
 
 
-                        <h4>
-                            Upload Book Cover
-                        </h4>
+
+                        <!-- IMAGE PREVIEW -->
+
+                        <div class="image-preview-container">
 
 
-                        <p>
-                            PNG, JPG or JPEG
-                        </p>
+                            <div class="preview-label">
 
 
-                        <label
-                                for="coverImage"
-                                class="upload-btn">
+                                <i class="fa-solid fa-eye"></i>
 
-                            <i class="fa-solid fa-upload"></i>
-
-                            Choose Image
-
-                        </label>
+                                Image Preview
 
 
-                        <input
-                                type="file"
-                                id="coverImage"
-                                name="coverImage"
-                                accept="image/png,image/jpeg"
-                                hidden>
+                            </div>
 
 
-                        <div id="fileName"></div>
+
+                            <div class="image-preview">
+
+
+                                <img
+                                        id="coverPreview"
+                                        src=""
+                                        alt="Book Cover Preview"
+                                        style="display:none;">
+
+
+                                <div
+                                        id="previewPlaceholder"
+                                        class="preview-placeholder">
+
+
+                                    <i class="fa-solid fa-image"></i>
+
+
+                                    <span>
+
+                                        Image preview will appear here
+
+                                    </span>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
 
                     </div>
+
 
                 </div>
 
 
 
-                <!-- ================= ACTION BUTTONS ================= -->
+                <!-- =================================================
+                     ACTION BUTTONS
+                ================================================== -->
 
                 <div class="form-actions">
 
@@ -635,67 +906,255 @@
 
                     </button>
 
+
                 </div>
 
 
             </form>
 
+
         </section>
 
+
     </main>
+
 
 </div>
 
 
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
 
 <script>
 
-    // ============================================
-    // BOOK COVER FILE NAME
-    // ============================================
+
+    /* ========================================================
+       BOOK COVER IMAGE URL PREVIEW
+    ========================================================= */
 
     const coverImage =
         document.getElementById("coverImage");
 
-    const fileName =
-        document.getElementById("fileName");
+
+    const coverPreview =
+        document.getElementById("coverPreview");
 
 
-    coverImage.addEventListener("change", function () {
-
-        if (this.files.length > 0) {
-
-            fileName.textContent =
-                this.files[0].name;
-
-        } else {
-
-            fileName.textContent = "";
-
-        }
-
-    });
+    const previewPlaceholder =
+        document.getElementById("previewPlaceholder");
 
 
 
-    // ============================================
-    // MOBILE SIDEBAR
-    // ============================================
+    if (coverImage) {
+
+
+        coverImage.addEventListener(
+            "input",
+            function () {
+
+
+                const imageUrl =
+                    this.value.trim();
+
+
+
+                /* EMPTY URL */
+
+                if (imageUrl === "") {
+
+
+                    coverPreview.src = "";
+
+                    coverPreview.style.display =
+                        "none";
+
+
+                    previewPlaceholder.style.display =
+                        "flex";
+
+
+                    previewPlaceholder.innerHTML = `
+
+                        <i class="fa-solid fa-image"></i>
+
+                        <span>
+                            Image preview will appear here
+                        </span>
+
+                    `;
+
+
+                    return;
+
+                }
+
+
+
+                /* LOAD IMAGE */
+
+                coverPreview.src =
+                    imageUrl;
+
+
+                coverPreview.style.display =
+                    "block";
+
+
+                previewPlaceholder.style.display =
+                    "none";
+
+
+
+                /* IMAGE LOAD ERROR */
+
+                coverPreview.onerror =
+                    function () {
+
+
+                        coverPreview.style.display =
+                            "none";
+
+
+                        previewPlaceholder.style.display =
+                            "flex";
+
+
+                        previewPlaceholder.innerHTML = `
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                            <span>
+                                Unable to load this image.
+                                Please check the URL.
+                            </span>
+
+                        `;
+
+                    };
+
+
+
+                /* IMAGE LOADED */
+
+                coverPreview.onload =
+                    function () {
+
+
+                        coverPreview.style.display =
+                            "block";
+
+
+                        previewPlaceholder.style.display =
+                            "none";
+
+
+                    };
+
+
+            }
+        );
+
+
+    }
+
+
+
+    /* ========================================================
+       MOBILE SIDEBAR
+    ========================================================= */
 
     const menuButton =
         document.querySelector(".mobile-menu");
+
 
     const sidebar =
         document.querySelector(".sidebar");
 
 
-    menuButton.addEventListener("click", function () {
+    if (menuButton && sidebar) {
 
-        sidebar.classList.toggle("show");
 
-    });
+        menuButton.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.toggle("show");
+
+            }
+        );
+
+
+    }
+
+
+
+    /* ========================================================
+       PRICE VALIDATION
+    ========================================================= */
+
+    const priceInput =
+        document.getElementById("price");
+
+
+    if (priceInput) {
+
+
+        priceInput.addEventListener(
+            "input",
+            function () {
+
+
+                if (
+                    parseFloat(this.value) < 0
+                ) {
+
+                    this.value = 0;
+
+                }
+
+
+            }
+        );
+
+
+    }
+
+
+
+    /* ========================================================
+       STOCK VALIDATION
+    ========================================================= */
+
+    const stockInput =
+        document.getElementById("stock");
+
+
+    if (stockInput) {
+
+
+        stockInput.addEventListener(
+            "input",
+            function () {
+
+
+                if (
+                    parseInt(this.value) < 0
+                ) {
+
+                    this.value = 0;
+
+                }
+
+
+            }
+        );
+
+
+    }
+
+
 
 </script>
 

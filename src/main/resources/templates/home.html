@@ -10,6 +10,7 @@
 
     <title>BookNest | Online Bookstore</title>
 
+
     <!-- =====================================================
          FONT AWESOME
     ====================================================== -->
@@ -67,7 +68,6 @@
 
     </a>
 
-        
 
     <!-- =================================================
          NAVBAR ACTIONS
@@ -76,14 +76,13 @@
     <div class="navbar-actions">
 
 
-        <!-- =============================================
+        <!-- =================================================
              SEARCH
-        ============================================== -->
+        ================================================== -->
 
         <div class="search-container">
 
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-
 
             <input
                     type="text"
@@ -91,7 +90,6 @@
                     class="book-search"
                     placeholder="Search books, authors..."
                     autocomplete="off">
-
 
             <button
                     type="button"
@@ -107,9 +105,9 @@
         </div>
 
 
-        <!-- =============================================
+        <!-- =================================================
              CART
-        ============================================== -->
+        ================================================== -->
 
         <button
                 type="button"
@@ -120,7 +118,6 @@
 
             <i class="fa-solid fa-cart-shopping"></i>
 
-
             <span
                     class="cart-badge"
                     id="cartBadge">
@@ -128,7 +125,6 @@
                 0
 
             </span>
-
 
             <div class="cart-summary">
 
@@ -144,20 +140,238 @@
 
         </button>
 
-        <!-- =============================================
-     LOGOUT
-================================================ -->
 
-<button
-        type="button"
-        class="header-logout"
-        id="logoutButton"
-        title="Logout">
+        <!-- =================================================
+             PROFILE
+        ================================================== -->
 
-    <i class="fa-solid fa-right-from-bracket"></i>
-    <span>Logout</span>
+        <div class="profile-container">
 
-</button>
+
+            <!-- PROFILE BUTTON -->
+
+            <button
+                    type="button"
+                    class="profile-button"
+                    id="profileButton"
+                    title="My Profile"
+                    aria-label="My Profile">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+            </button>
+
+
+            <!-- =================================================
+                 PROFILE DROPDOWN
+            ================================================== -->
+
+            <div
+                    class="profile-dropdown"
+                    id="profileDropdown">
+
+
+                <!-- =================================================
+                     PROFILE HEADER
+                ================================================== -->
+
+                <div class="profile-header">
+
+                    <div class="profile-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div class="profile-user-info">
+
+                        <strong id="profileName">
+                            User
+                        </strong>
+
+                        <span id="profileEmail">
+                            user@example.com
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PROFILE DETAILS
+                ================================================== -->
+
+                <div class="profile-details">
+
+
+                    <!-- NAME -->
+
+                    <div class="profile-detail">
+
+                        <div class="profile-detail-icon">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Name
+                            </small>
+
+                            <span id="profileDetailName">
+                                User
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="profile-detail">
+
+                        <div class="profile-detail-icon">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Email
+                            </small>
+
+                            <span id="profileDetailEmail">
+                                user@example.com
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="profile-detail">
+
+                        <div class="profile-detail-icon">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                Location
+                            </small>
+
+                            <span id="profileLocation">
+                                Not specified
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PROFILE MENU
+                ================================================== -->
+
+                <div class="profile-menu">
+
+
+                    <!-- MY PROFILE -->
+
+                    <button
+                            type="button"
+                            class="profile-menu-item"
+                            id="myProfileButton">
+
+                        <i class="fa-solid fa-user-pen"></i>
+
+                        <span>
+                            My Profile
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right profile-arrow"></i>
+
+                    </button>
+
+
+                    <!-- MY ORDERS -->
+
+                    <button
+                            type="button"
+                            class="profile-menu-item"
+                            id="myOrdersButton">
+
+                        <i class="fa-solid fa-box"></i>
+
+                        <span>
+                            My Orders
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right profile-arrow"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     PROFILE LOGOUT
+                ================================================== -->
+
+                <div class="profile-logout-section">
+
+                    <button
+                            type="button"
+                            class="profile-logout"
+                            id="profileLogoutButton">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        <span>
+                            Logout
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NAVBAR LOGOUT
+        ================================================== -->
+
+        <button
+                type="button"
+                class="header-logout"
+                id="logoutButton"
+                title="Logout">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </button>
+
     </div>
 
 </nav>
@@ -179,9 +393,7 @@
 
         <div class="offer-slide offer-slide-active">
 
-
             <div class="offer-content">
-
 
                 <div class="offer-label">
 
@@ -210,7 +422,6 @@
 
 
                 <div class="offer-details">
-
 
                     <div class="offer-item">
 
@@ -245,34 +456,49 @@
 
             <div class="offer-visual">
 
-
                 <div class="offer-circle">
 
-                    <strong>50%</strong>
+                    <strong>
+                        50%
+                    </strong>
 
-                    <span>OFF</span>
+                    <span>
+                        OFF
+                    </span>
 
                 </div>
 
 
                 <div class="offer-book book-one">
 
-                    <span>BEST</span>
+                    <span>
+                        BEST
+                    </span>
 
-                    <strong>SELLERS</strong>
+                    <strong>
+                        SELLERS
+                    </strong>
 
-                    <small>BOOKNEST</small>
+                    <small>
+                        BOOKNEST
+                    </small>
 
                 </div>
 
 
                 <div class="offer-book book-two">
 
-                    <span>NEW</span>
+                    <span>
+                        NEW
+                    </span>
 
-                    <strong>ARRIVALS</strong>
+                    <strong>
+                        ARRIVALS
+                    </strong>
 
-                    <small>2026</small>
+                    <small>
+                        2026
+                    </small>
 
                 </div>
 
@@ -281,16 +507,13 @@
         </div>
 
 
-
         <!-- =================================================
              SLIDE 2
         ================================================== -->
 
         <div class="offer-slide">
 
-
             <div class="offer-content">
-
 
                 <div class="offer-label">
 
@@ -319,7 +542,6 @@
 
 
                 <div class="offer-details">
-
 
                     <div class="offer-item">
 
@@ -354,34 +576,49 @@
 
             <div class="offer-visual">
 
-
                 <div class="offer-circle">
 
-                    <strong>20%</strong>
+                    <strong>
+                        20%
+                    </strong>
 
-                    <span>EXTRA</span>
+                    <span>
+                        EXTRA
+                    </span>
 
                 </div>
 
 
                 <div class="offer-book book-three">
 
-                    <span>READ</span>
+                    <span>
+                        READ
+                    </span>
 
-                    <strong>LEARN</strong>
+                    <strong>
+                        LEARN
+                    </strong>
 
-                    <small>GROW</small>
+                    <small>
+                        GROW
+                    </small>
 
                 </div>
 
 
                 <div class="offer-book book-four">
 
-                    <span>BOOK</span>
+                    <span>
+                        BOOK
+                    </span>
 
-                    <strong>LOVERS</strong>
+                    <strong>
+                        LOVERS
+                    </strong>
 
-                    <small>CHOICE</small>
+                    <small>
+                        CHOICE
+                    </small>
 
                 </div>
 
@@ -390,16 +627,13 @@
         </div>
 
 
-
         <!-- =================================================
              SLIDE 3
         ================================================== -->
 
         <div class="offer-slide">
 
-
             <div class="offer-content">
-
 
                 <div class="offer-label">
 
@@ -428,7 +662,6 @@
 
 
                 <div class="offer-details">
-
 
                     <div class="offer-item">
 
@@ -463,34 +696,49 @@
 
             <div class="offer-visual">
 
-
                 <div class="offer-circle">
 
-                    <strong>30%</strong>
+                    <strong>
+                        30%
+                    </strong>
 
-                    <span>OFF</span>
+                    <span>
+                        OFF
+                    </span>
 
                 </div>
 
 
                 <div class="offer-book book-five">
 
-                    <span>GREAT</span>
+                    <span>
+                        GREAT
+                    </span>
 
-                    <strong>STORIES</strong>
+                    <strong>
+                        STORIES
+                    </strong>
 
-                    <small>FOREVER</small>
+                    <small>
+                        FOREVER
+                    </small>
 
                 </div>
 
 
                 <div class="offer-book book-six">
 
-                    <span>YOUR</span>
+                    <span>
+                        YOUR
+                    </span>
 
-                    <strong>JOURNEY</strong>
+                    <strong>
+                        JOURNEY
+                    </strong>
 
-                    <small>STARTS</small>
+                    <small>
+                        STARTS
+                    </small>
 
                 </div>
 
@@ -499,9 +747,8 @@
         </div>
 
 
-
         <!-- =================================================
-             PREVIOUS ARROW
+             PREVIOUS
         ================================================== -->
 
         <button
@@ -516,7 +763,7 @@
 
 
         <!-- =================================================
-             NEXT ARROW
+             NEXT
         ================================================== -->
 
         <button
@@ -531,11 +778,10 @@
 
 
         <!-- =================================================
-             SLIDER DOTS
+             DOTS
         ================================================== -->
 
         <div class="offer-dots">
-
 
             <button
                     type="button"
@@ -713,9 +959,7 @@
             class="books-loader"
             id="booksLoader">
 
-
         <div class="loader-spinner"></div>
-
 
         <p>
             Loading more books...
@@ -732,9 +976,7 @@
             class="books-end"
             id="booksEnd">
 
-
         <i class="fa-solid fa-check-circle"></i>
-
 
         <p>
             You've reached the end of our featured collection.
@@ -762,7 +1004,6 @@
 
         <div class="footer-brand">
 
-
             <a href="/" class="logo">
 
                 <i class="fa-solid fa-book-open"></i>
@@ -783,7 +1024,6 @@
 
 
             <div class="socials">
-
 
                 <a href="#" aria-label="Instagram">
 
@@ -817,28 +1057,23 @@
         </div>
 
 
-
         <!-- =================================================
              EXPLORE
         ================================================== -->
 
         <div class="footer-column">
 
-
             <h4>
                 Explore
             </h4>
-
 
             <a href="#featured">
                 Featured Books
             </a>
 
-
             <a href="#featured">
                 Best Sellers
             </a>
-
 
             <a href="#featured">
                 New Arrivals
@@ -847,33 +1082,27 @@
         </div>
 
 
-
         <!-- =================================================
              COMPANY
         ================================================== -->
 
         <div class="footer-column">
 
-
             <h4>
                 Company
             </h4>
-
 
             <a href="#">
                 About BookNest
             </a>
 
-
             <a href="#">
                 Careers
             </a>
 
-
             <a href="#">
                 Contact
             </a>
-
 
             <a href="#">
                 Privacy Policy
@@ -882,33 +1111,27 @@
         </div>
 
 
-
         <!-- =================================================
              HELP
         ================================================== -->
 
         <div class="footer-column">
 
-
             <h4>
                 Help
             </h4>
-
 
             <a href="#">
                 Customer Support
             </a>
 
-
             <a href="#">
                 Shipping
             </a>
 
-
             <a href="#">
                 Returns
             </a>
-
 
             <a href="#">
                 FAQs
@@ -919,13 +1142,11 @@
     </div>
 
 
-
     <!-- =================================================
          FOOTER BOTTOM
     ================================================== -->
 
     <div class="footer-bottom">
-
 
         <p>
             © 2026 BookNest. All rights reserved.
@@ -952,379 +1173,58 @@
      JAVASCRIPT
 ===================================================== -->
 
-<script>
+<script th:inline="javascript">
 
 document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       BOOK DATA
+       BOOK DATA FROM MYSQL DATABASE
     ===================================================== */
 
     const books = [
 
+        /*[# th:each="book : ${books}"]*/
 
         {
-            title: "The Alchemist",
-            author: "Paulo Coelho",
-            category: "FICTION",
-            price: 299,
-            originalPrice: 499,
-            rating: 4.7,
-            ratingCount: "12.4K ratings",
-            publisher: "HarperOne",
-            pages: 208,
-            language: "English",
-            published: "1993",
-            isbn: "9780062315007",
-            image: "https://m.media-amazon.com/images/I/617lxveUjYL._AC_UF1000,1000_QL80_.jpg",
-            description: "A timeless story about following your dreams, discovering your purpose and listening to your heart."
-        },
 
+            id: /*[[${book.id}]]*/ 0,
 
-        {
-            title: "Atomic Habits",
-            author: "James Clear",
-            category: "SELF GROWTH",
-            price: 399,
-            originalPrice: 599,
-            rating: 4.8,
-            ratingCount: "25.7K ratings",
-            publisher: "Avery",
-            pages: 320,
-            language: "English",
-            published: "2018",
-            isbn: "9780735211292",
-            image: "https://www.crossword.in/cdn/shop/files/813lkFoLOXL._SL1500.jpg?v=1768037678",
-            description: "A practical guide to building good habits, breaking bad ones and becoming better every day."
-        },
+            title: /*[[${book.title}]]*/ "",
 
+            author: /*[[${book.author}]]*/ "",
 
-        {
-            title: "The Great Gatsby",
-            author: "F. Scott Fitzgerald",
-            category: "FICTION",
-            price: 249,
-            originalPrice: 399,
+            category: /*[[${book.category}]]*/ "GENERAL",
+
+            price: /*[[${book.price}]]*/ 0,
+
+            originalPrice: /*[[${book.price}]]*/ 0,
+
             rating: 4.5,
-            ratingCount: "9.8K ratings",
-            publisher: "Scribner",
-            pages: 180,
-            language: "English",
-            published: "1925",
-            isbn: "9780743273565",
-            image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg/960px-The_Great_Gatsby_Cover_1925_Retouched.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
-            description: "An enduring classic exploring wealth, love, ambition and the American Dream."
+
+            ratingCount: "New",
+
+            publisher: "",
+
+            pages: 0,
+
+            language: /*[[${book.language}]]*/ "English",
+
+            published: "",
+
+            isbn: /*[[${book.isbn}]]*/ "",
+
+            image: /*[[${book.coverImage}]]*/ "",
+
+            description: /*[[${book.description}]]*/ "",
+
+            quantity: 0
+
         },
 
-
-        {
-            title: "Deep Work",
-            author: "Cal Newport",
-            category: "SELF GROWTH",
-            price: 349,
-            originalPrice: 499,
-            rating: 4.6,
-            ratingCount: "8.7K ratings",
-            publisher: "Grand Central Publishing",
-            pages: 304,
-            language: "English",
-            published: "2016",
-            isbn: "9781455586691",
-            image: "https://m.media-amazon.com/images/I/61BSGNwIMuL._AC_UF1000,1000_QL80_.jpg",
-            description: "Learn how focused work can help you achieve better results in a distracted world."
-        },
-
-
-        {
-            title: "Rich Dad Poor Dad",
-            author: "Robert T. Kiyosaki",
-            category: "FINANCE",
-            price: 299,
-            originalPrice: 499,
-            rating: 4.7,
-            ratingCount: "18.2K ratings",
-            publisher: "Plata Publishing",
-            pages: 336,
-            language: "English",
-            published: "1997",
-            isbn: "9781612680194",
-            image: "https://cdn.penguin.co.in/wp-content/uploads/2023/12/9781612681139-1-scaled.jpg",
-            description: "A personal finance classic about money, investing and developing financial intelligence."
-        },
-
-
-        {
-            title: "Ikigai",
-            author: "Héctor García",
-            category: "SELF GROWTH",
-            price: 279,
-            originalPrice: 399,
-            rating: 4.6,
-            ratingCount: "14.5K ratings",
-            publisher: "Penguin Life",
-            pages: 208,
-            language: "English",
-            published: "2016",
-            isbn: "9780143130727",
-            image: "https://upload.wikimedia.org/wikipedia/en/b/b9/Rich_Dad_Poor_Dad.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
-            description: "Discover the Japanese philosophy of finding purpose, happiness and meaning in everyday life."
-        },
-
-
-        {
-            title: "Think and Grow Rich",
-            author: "Napoleon Hill",
-            category: "SELF GROWTH",
-            price: 229,
-            originalPrice: 349,
-            rating: 4.6,
-            ratingCount: "10.3K ratings",
-            publisher: "Fingerprint Publishing",
-            pages: 320,
-            language: "English",
-            published: "1937",
-            isbn: "9788175993257",
-            image: "https://images-na.ssl-images-amazon.com/images/I/61IxJuRI39L._AC_UL600_SR600,600_.jpg",
-            description: "Classic principles for developing a success-oriented mindset and achieving your goals."
-        },
-
-
-        {
-            title: "The Psychology of Money",
-            author: "Morgan Housel",
-            category: "FINANCE",
-            price: 349,
-            originalPrice: 499,
-            rating: 4.8,
-            ratingCount: "21.1K ratings",
-            publisher: "Harriman House",
-            pages: 256,
-            language: "English",
-            published: "2020",
-            isbn: "9780857197689",
-            image: "https://m.media-amazon.com/images/I/71oAJY1LbcL._AC_UF1000,1000_QL80_.jpg",
-            description: "Timeless lessons about wealth, greed, happiness and how people think about money."
-        },
-
-
-        {
-            title: "The Power of Now",
-            author: "Eckhart Tolle",
-            category: "SELF GROWTH",
-            price: 299,
-            originalPrice: 449,
-            rating: 4.6,
-            ratingCount: "11.2K ratings",
-            publisher: "New World Library",
-            pages: 236,
-            language: "English",
-            published: "1997",
-            isbn: "9781577314806",
-            image: "https://upload.wikimedia.org/wikipedia/en/thumb/6/66/TPON_Cover_LG.jpg/250px-TPON_Cover_LG.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
-            description: "A guide to spiritual enlightenment and learning to live fully in the present moment."
-        },
-
-
-        {
-            title: "The 7 Habits of Highly Effective People",
-            author: "Stephen R. Covey",
-            category: "SELF GROWTH",
-            price: 399,
-            originalPrice: 599,
-            rating: 4.7,
-            ratingCount: "16.8K ratings",
-            publisher: "Free Press",
-            pages: 464,
-            language: "English",
-            published: "1989",
-            isbn: "9781982137274",
-            image: "https://m.media-amazon.com/images/I/81qgEPE6k1L._SY466_.jpg",
-            description: "A powerful framework for personal effectiveness, leadership and meaningful success."
-        },
-
-
-        {
-            title: "The Silent Patient",
-            author: "Alex Michaelides",
-            category: "MYSTERY",
-            price: 349,
-            originalPrice: 499,
-            rating: 4.5,
-            ratingCount: "17.9K ratings",
-            publisher: "Celadon Books",
-            pages: 336,
-            language: "English",
-            published: "2019",
-            isbn: "9781250301697",
-            image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQZyh9Ot4kFwXL7iJp0vSCz0rGdSWW0XCp9LJ5hX6Abu4F4SgSE2vSSQv2-o9FaI1zqdevBHRttetbUsSOXqLyyxXL1aCJ481fe1ZpgZ-HyKGLUiwWX9jsib0AkJsT-1T2Vg_UpJto&usqp=CAc",
-            description: "A psychological thriller about a woman who refuses to speak after a shocking crime."
-        },
-
-
-        {
-            title: "The Kite Runner",
-            author: "Khaled Hosseini",
-            category: "FICTION",
-            price: 329,
-            originalPrice: 499,
-            rating: 4.8,
-            ratingCount: "20.4K ratings",
-            publisher: "Riverhead Books",
-            pages: 371,
-            language: "English",
-            published: "2003",
-            isbn: "9781594631931",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-vwUjpOyyym53FJkRS-U8sIU_hWCnWtMwojFtA30Mg&s=10",
-            description: "A deeply moving story of friendship, family, guilt, redemption and sacrifice."
-        },
-
-
-        {
-            title: "1984",
-            author: "George Orwell",
-            category: "FICTION",
-            price: 249,
-            originalPrice: 399,
-            rating: 4.7,
-            ratingCount: "22.8K ratings",
-            publisher: "Penguin Classics",
-            pages: 328,
-            language: "English",
-            published: "1949",
-            isbn: "9780141036144",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR30HRt_jVE9S2eT5z1Q9ushq-2WjeDnDz9p6QzH_13Iw&s=10",
-            description: "A powerful dystopian novel exploring surveillance, truth, freedom and totalitarianism."
-        },
-
-
-        {
-            title: "To Kill a Mockingbird",
-            author: "Harper Lee",
-            category: "FICTION",
-            price: 279,
-            originalPrice: 399,
-            rating: 4.8,
-            ratingCount: "24.6K ratings",
-            publisher: "Harper Perennial",
-            pages: 336,
-            language: "English",
-            published: "1960",
-            isbn: "9780061120084",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRklwBgqUcSxU--3T7Sa7-CSI5DNrd0Po2mn3t_Dn8kEw&s=10",
-            description: "A classic novel about justice, compassion, racism and childhood in the American South."
-        },
-
-
-        {
-            title: "Pride and Prejudice",
-            author: "Jane Austen",
-            category: "ROMANCE",
-            price: 199,
-            originalPrice: 299,
-            rating: 4.7,
-            ratingCount: "19.3K ratings",
-            publisher: "Penguin Classics",
-            pages: 432,
-            language: "English",
-            published: "1813",
-            isbn: "9780141439518",
-            image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSu4_UCHL7h4x--PnYYDyuxt82l__N4jFdjdv7Bh6iHU97zH2EMnC6VCp9HaOGomJUfUmHxKFNi31Vzu2V5g-udeYlQECxk550wsOQX2bTd1ISXh4J8yBIkvIhLgcp0B7DyzFoXpdQ&usqp=CAc",
-            description: "Jane Austen's beloved romantic classic about love, manners, family and social expectations."
-        },
-
-
-        {
-            title: "The Hobbit",
-            author: "J.R.R. Tolkien",
-            category: "FANTASY",
-            price: 349,
-            originalPrice: 499,
-            rating: 4.8,
-            ratingCount: "23.1K ratings",
-            publisher: "HarperCollins",
-            pages: 310,
-            language: "English",
-            published: "1937",
-            isbn: "9780547928227",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfJr5OdCmpm07SMy-CDR6Y-uXcQv1lH3rQn2h8NErOLA&s=10",
-            description: "Join Bilbo Baggins on an unforgettable adventure through Middle-earth."
-        },
-
-
-        {
-            title: "Harry Potter and the Philosopher's Stone",
-            author: "J.K. Rowling",
-            category: "FANTASY",
-            price: 399,
-            originalPrice: 599,
-            rating: 4.9,
-            ratingCount: "31.4K ratings",
-            publisher: "Bloomsbury",
-            pages: 352,
-            language: "English",
-            published: "1997",
-            isbn: "9780747532699",
-            image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTNJ_9f-3JublaTDSE6w-KHta_ofW_jQmyXagQmTiF5ch0_ENm8Yuf-5F13MWq2V81bXF5L0EbeoqfY6cF-GGvRZPHstUzK31c5KsJtvEQ&usqp=CAc",
-            description: "Harry Potter discovers a magical world and begins his extraordinary journey at Hogwarts."
-        },
-
-
-        {
-            title: "Sapiens",
-            author: "Yuval Noah Harari",
-            category: "SCIENCE",
-            price: 449,
-            originalPrice: 699,
-            rating: 4.7,
-            ratingCount: "28.3K ratings",
-            publisher: "Harper",
-            pages: 464,
-            language: "English",
-            published: "2015",
-            isbn: "9780062316097",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKK8eYMgJ-0mPDmMQJ9nqyXyxFyUSy4-aIbqwDQ59F2Q&s=10",
-            description: "A fascinating exploration of human history, culture and the development of civilization."
-        },
-
-         {
-            title: "Educated",
-            author: "Tara Westover",
-            category: "BIOGRAPHY",
-            price: 379,
-            originalPrice: 549,
-            rating: 4.7,
-            ratingCount: "15.7K ratings",
-            publisher: "Random House",
-            pages: 352,
-            language: "English",
-            published: "2018",
-            isbn: "9780399590504",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWTEadtzBClGMDCmYVRickzZ37IiT0kRyM7Y_bpHmuuw&s=10",
-            description: "A powerful memoir about education, family and the struggle to create a new life."
-        },
-
-
-        {
-            title: "Romeo and Juliet",
-            author: "Tara Westover",
-            category: "BIOGRAPHY",
-            price: 379,
-            originalPrice: 549,
-            rating: 4.7,
-            ratingCount: "15.7K ratings",
-            publisher: "Random House",
-            pages: 352,
-            language: "English",
-            published: "2018",
-            isbn: "9780399590504",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2BI6BeRZZg_JScbfLpcUvPqftj_1TxAvyZZxjUc5vMKggXxmsMjA7EyY&s=1",
-            description: "A powerful memoir about education, family and the struggle to create a new life."
-        }
-   
+        /*[/]*/
 
     ];
-
 
 
     /* =====================================================
@@ -1338,7 +1238,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-
     /* =====================================================
        ELEMENTS
     ===================================================== */
@@ -1346,49 +1245,264 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookGrid =
         document.getElementById("bookGrid");
 
-
     const booksLoader =
         document.getElementById("booksLoader");
-
 
     const booksEnd =
         document.getElementById("booksEnd");
 
-
     const bookSearch =
         document.getElementById("bookSearch");
-
 
     const clearSearch =
         document.getElementById("clearSearch");
 
-
     const searchResultMessage =
         document.getElementById("searchResultMessage");
-
 
     const cartBadge =
         document.getElementById("cartBadge");
 
-
     const cartTotal =
         document.getElementById("cartTotal");
-
 
     const headerCart =
         document.getElementById("headerCart");
 
 
-
     /* =====================================================
-       LOCALSTORAGE FUNCTIONS
+       PROFILE ELEMENTS
     ===================================================== */
 
-    // Load cart data from localStorage
+    const profileButton =
+        document.getElementById("profileButton");
+
+    const profileDropdown =
+        document.getElementById("profileDropdown");
+
+    const profileName =
+        document.getElementById("profileName");
+
+    const profileEmail =
+        document.getElementById("profileEmail");
+
+    const profileDetailName =
+        document.getElementById("profileDetailName");
+
+    const profileDetailEmail =
+        document.getElementById("profileDetailEmail");
+
+    const profileLocation =
+        document.getElementById("profileLocation");
+
+    const myProfileButton =
+        document.getElementById("myProfileButton");
+
+    const myOrdersButton =
+        document.getElementById("myOrdersButton");
+
+    const profileLogoutButton =
+        document.getElementById("profileLogoutButton");
+
+
+    /* =====================================================
+       LOAD USER PROFILE
+    ===================================================== */
+
+    function loadUserProfile() {
+
+        const savedUser =
+            localStorage.getItem("user");
+
+
+        if (!savedUser) {
+
+            profileName.textContent =
+                "Guest User";
+
+            profileEmail.textContent =
+                "Please login";
+
+            profileDetailName.textContent =
+                "Guest User";
+
+            profileDetailEmail.textContent =
+                "Please login";
+
+            profileLocation.textContent =
+                "Not specified";
+
+            return;
+
+        }
+
+
+        try {
+
+            const user =
+                JSON.parse(savedUser);
+
+
+            const name =
+                user.name ||
+                user.username ||
+                "User";
+
+
+            const email =
+                user.email ||
+                "No email available";
+
+
+            const location =
+                user.location ||
+                user.address ||
+                "Not specified";
+
+
+            profileName.textContent =
+                name;
+
+            profileEmail.textContent =
+                email;
+
+            profileDetailName.textContent =
+                name;
+
+            profileDetailEmail.textContent =
+                email;
+
+            profileLocation.textContent =
+                location;
+
+
+        } catch (error) {
+
+            console.error(
+                "Error loading user profile:",
+                error
+            );
+
+        }
+
+    }
+
+
+    loadUserProfile();
+
+
+    /* =====================================================
+       PROFILE DROPDOWN
+    ===================================================== */
+
+    profileButton.addEventListener(
+        "click",
+        function (event) {
+
+            event.stopPropagation();
+
+            profileDropdown.classList.toggle(
+                "profile-dropdown-show"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       CLOSE PROFILE DROPDOWN
+    ===================================================== */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                !event.target.closest(
+                    ".profile-container"
+                )
+            ) {
+
+                profileDropdown.classList.remove(
+                    "profile-dropdown-show"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       MY PROFILE
+    ===================================================== */
+
+    myProfileButton.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "/profile";
+
+        }
+    );
+
+
+    /* =====================================================
+       MY ORDERS
+    ===================================================== */
+
+    myOrdersButton.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "/orders";
+
+        }
+    );
+
+
+    /* =====================================================
+       LOGOUT FUNCTION
+    ===================================================== */
+
+    function logoutUser() {
+
+        localStorage.removeItem("token");
+
+        localStorage.removeItem("user");
+
+        localStorage.removeItem("adminToken");
+
+        window.location.href = "/";
+
+    }
+
+
+    /* =====================================================
+       PROFILE LOGOUT
+    ===================================================== */
+
+    profileLogoutButton.addEventListener(
+        "click",
+        function () {
+
+            logoutUser();
+
+        }
+    );
+
+
+    /* =====================================================
+       LOAD CART
+    ===================================================== */
+
     function loadCartFromStorage() {
 
         const savedCart =
-            localStorage.getItem('booknestCart');
+            localStorage.getItem("booknestCart");
+
 
         if (savedCart) {
 
@@ -1397,43 +1511,67 @@ document.addEventListener("DOMContentLoaded", function () {
                 const cartItems =
                     JSON.parse(savedCart);
 
+
                 cartItems.forEach(function (cartItem) {
 
                     const book =
                         books.find(function (b) {
-                            return b.isbn === cartItem.isbn;
+
+                            return b.isbn ===
+                                cartItem.isbn;
+
                         });
 
+
                     if (book) {
-                        book.quantity = cartItem.quantity;
+
+                        book.quantity =
+                            cartItem.quantity;
+
                     }
 
                 });
 
+
             } catch (e) {
-                console.error('Error loading cart:', e);
+
+                console.error(
+                    "Error loading cart:",
+                    e
+                );
+
             }
 
         }
+
 
         updateCartSummary();
 
     }
 
 
-    // Save book to localStorage
+    /* =====================================================
+       SAVE CART
+    ===================================================== */
+
     function saveToStorage(book) {
 
         let cart =
             JSON.parse(
-                localStorage.getItem('booknestCart') ||
-                '[]'
+                localStorage.getItem(
+                    "booknestCart"
+                ) || "[]"
             );
+
 
         const index =
             cart.findIndex(function (item) {
-                return item.isbn === book.isbn;
+
+                return item.isbn ===
+                    book.isbn;
+
             });
+
 
         if (book.quantity > 0) {
 
@@ -1445,13 +1583,28 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
 
                 cart.push({
-                    isbn: book.isbn,
-                    title: book.title,
-                    author: book.author,
-                    price: book.price,
-                    originalPrice: book.originalPrice,
-                    image: book.image,
-                    quantity: book.quantity
+
+                    isbn:
+                        book.isbn,
+
+                    title:
+                        book.title,
+
+                    author:
+                        book.author,
+
+                    price:
+                        book.price,
+
+                    originalPrice:
+                        book.originalPrice,
+
+                    image:
+                        book.image,
+
+                    quantity:
+                        book.quantity
+
                 });
 
             }
@@ -1460,51 +1613,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (index !== -1) {
 
-                cart.splice(index, 1);
+                cart.splice(
+                    index,
+                    1
+                );
 
             }
 
         }
 
+
         localStorage.setItem(
-            'booknestCart',
+            "booknestCart",
             JSON.stringify(cart)
         );
+
 
         updateCartSummary();
 
     }
 
 
-    // Sync all books to localStorage (used when loading from storage)
-    function syncAllToStorage() {
-
-        books.forEach(function (book) {
-
-            if (book.quantity > 0) {
-
-                saveToStorage(book);
-
-            }
-
-        });
-
-    }
-
-
-
     /* =====================================================
        DISCOUNT
     ===================================================== */
 
-    function calculateDiscount(price, originalPrice) {
+    function calculateDiscount(
+        price,
+        originalPrice
+    ) {
+
+        if (
+            !originalPrice ||
+            originalPrice <= price
+        ) {
+
+            return 0;
+
+        }
+
 
         return Math.round(
-            ((originalPrice - price) / originalPrice) * 100
+
+            (
+                (
+                    originalPrice -
+                    price
+                )
+                /
+                originalPrice
+            )
+            * 100
+
         );
 
     }
-
 
 
     /* =====================================================
@@ -1524,7 +1687,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 Number(book.quantity) || 0;
 
 
-            totalItems += quantity;
+            totalItems +=
+                quantity;
 
 
             totalAmount +=
@@ -1535,18 +1699,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return {
 
-            totalItems: totalItems,
+            totalItems:
+                totalItems,
 
-            totalAmount: totalAmount
+            totalAmount:
+                totalAmount
 
         };
 
     }
 
 
-
     /* =====================================================
-       UPDATE HEADER CART
+       UPDATE CART
     ===================================================== */
 
     function updateCartSummary() {
@@ -1561,7 +1726,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         cartTotal.textContent =
             "₹" +
-            cart.totalAmount.toLocaleString("en-IN");
+            cart.totalAmount.toLocaleString(
+                "en-IN"
+            );
 
 
         cartBadge.classList.remove(
@@ -1579,21 +1746,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
-       OPEN BOOK DETAILS PAGE
+       BOOK DETAILS
     ===================================================== */
 
     function openBookDetails(book) {
 
-        /*
-         * We use the ISBN as the unique
-         * identifier for the book.
-         */
-
         const url =
             "/book-details?isbn=" +
-            encodeURIComponent(book.isbn);
+            encodeURIComponent(
+                book.isbn
+            );
 
 
         window.location.href =
@@ -1602,13 +1765,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        CREATE BOOK CARD
     ===================================================== */
 
     function createBookCard(book) {
-
 
         const card =
             document.createElement("div");
@@ -1688,13 +1849,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     <div class="price">
 
-                        ₹${book.price}
+                        ₹${Number(book.price).toLocaleString("en-IN")}
 
-                        <del>
-
-                            ₹${book.originalPrice}
-
-                        </del>
+                        ${
+                            book.originalPrice > book.price
+                            ?
+                            `<del>
+                                ₹${Number(book.originalPrice).toLocaleString("en-IN")}
+                            </del>`
+                            :
+                            ""
+                        }
 
                     </div>
 
@@ -1703,7 +1868,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 <div class="book-discount">
 
-                    ${discount}% OFF
+                    ${
+                        discount > 0
+                        ?
+                        discount + "% OFF"
+                        :
+                        "NEW BOOK"
+                    }
 
                 </div>
 
@@ -1742,7 +1913,6 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
 
 
-
         /* =================================================
            IMAGE FALLBACK
         ================================================== */
@@ -1774,9 +1944,23 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
+        if (
+            !book.image ||
+            book.image.trim() === ""
+        ) {
+
+            image.style.display =
+                "none";
+
+
+            fallback.style.display =
+                "flex";
+
+        }
+
 
         /* =================================================
-           CLICK BOOK → DETAILS PAGE
+           CARD CLICK
         ================================================== */
 
         card.addEventListener(
@@ -1789,9 +1973,8 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-
         /* =================================================
-           PLUS BUTTON
+           PLUS
         ================================================== */
 
         const plus =
@@ -1804,11 +1987,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function (event) {
 
-                /*
-                 * Prevent the card click
-                 * from opening details page.
-                 */
-
                 event.stopPropagation();
 
 
@@ -1820,16 +1998,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     book
                 );
 
-                // Save to localStorage
-                saveToStorage(book);
+
+                saveToStorage(
+                    book
+                );
 
             }
         );
 
 
-
         /* =================================================
-           MINUS BUTTON
+           MINUS
         ================================================== */
 
         const minus =
@@ -1841,11 +2020,6 @@ document.addEventListener("DOMContentLoaded", function () {
         minus.addEventListener(
             "click",
             function (event) {
-
-                /*
-                 * Prevent the card click
-                 * from opening details page.
-                 */
 
                 event.stopPropagation();
 
@@ -1864,8 +2038,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     book
                 );
 
-                // Save to localStorage
-                saveToStorage(book);
+
+                saveToStorage(
+                    book
+                );
 
             }
         );
@@ -1876,13 +2052,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
-       UPDATE CARD QUANTITY
+       UPDATE QUANTITY
     ===================================================== */
 
-    function updateCardQuantity(card, book) {
-
+    function updateCardQuantity(
+        card,
+        book
+    ) {
 
         const quantity =
             card.querySelector(
@@ -1903,23 +2080,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        LAZY LOADING
     ===================================================== */
 
     let booksLoaded = 0;
 
-
     const booksPerLoad = 8;
-
 
     let loading = false;
 
 
-
     function loadMoreBooks() {
-
 
         if (loading) {
 
@@ -1932,7 +2104,6 @@ document.addEventListener("DOMContentLoaded", function () {
             booksLoaded >=
             books.length
         ) {
-
 
             booksLoader.style.display =
                 "none";
@@ -1956,40 +2127,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(function () {
 
-
             const nextBooks =
                 books.slice(
                     booksLoaded,
-                    booksLoaded + booksPerLoad
+                    booksLoaded +
+                    booksPerLoad
                 );
 
 
-            nextBooks.forEach(
-                function (book) {
+            nextBooks.forEach(function (book) {
 
-
-                    const card =
-                        createBookCard(book);
-
-
-                    bookGrid.appendChild(
-                        card
+                const card =
+                    createBookCard(
+                        book
                     );
 
 
-                    setTimeout(
-                        function () {
+                bookGrid.appendChild(
+                    card
+                );
 
-                            card.classList.add(
-                                "card-visible"
-                            );
 
-                        },
-                        50
+                setTimeout(function () {
+
+                    card.classList.add(
+                        "card-visible"
                     );
 
-                }
-            );
+                }, 50);
+
+            });
 
 
             booksLoaded +=
@@ -2004,7 +2171,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 books.length
             ) {
 
-
                 booksLoader.style.display =
                     "none";
 
@@ -2014,26 +2180,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
-
         }, 500);
 
     }
-
 
 
     /* =====================================================
        FIRST LOAD
     ===================================================== */
 
-    // Load cart from localStorage first
     loadCartFromStorage();
 
-    // Then load books
     loadMoreBooks();
 
-
     updateCartSummary();
-
 
 
     /* =====================================================
@@ -2042,22 +2202,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function searchBooks() {
 
-
         const searchText =
             bookSearch.value
                 .trim()
                 .toLowerCase();
 
 
-
-        /* ===============================================
-           EMPTY SEARCH
-        ================================================ */
-
         if (
             searchText === ""
         ) {
-
 
             clearSearch.style.display =
                 "none";
@@ -2091,69 +2244,57 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-
         clearSearch.style.display =
             "flex";
 
 
-
-        /* ===============================================
-           FIND RESULTS
-        ================================================ */
-
         const results =
-            books.filter(
-                function (book) {
+            books.filter(function (book) {
 
+                return (
 
-                    return (
+                    book.title
+                        .toLowerCase()
+                        .includes(
+                            searchText
+                        )
 
-                        book.title
-                            .toLowerCase()
-                            .includes(searchText)
+                    ||
 
+                    book.author
+                        .toLowerCase()
+                        .includes(
+                            searchText
+                        )
 
-                        ||
+                    ||
 
+                    book.category
+                        .toLowerCase()
+                        .includes(
+                            searchText
+                        )
 
-                        book.author
-                            .toLowerCase()
-                            .includes(searchText)
+                    ||
 
+                    book.publisher
+                        .toLowerCase()
+                        .includes(
+                            searchText
+                        )
 
-                        ||
+                    ||
 
+                    book.isbn
+                        .toLowerCase()
+                        .includes(
+                            searchText
+                        )
 
-                        book.category
-                            .toLowerCase()
-                            .includes(searchText)
+                );
 
+            });
 
-                        ||
-
-
-                        book.publisher
-                            .toLowerCase()
-                            .includes(searchText)
-
-
-                        ||
-
-
-                        book.isbn
-                            .toLowerCase()
-                            .includes(searchText)
-
-                    );
-
-                }
-            );
-
-
-
-        /* ===============================================
-           CLEAR GRID
-        ================================================ */
 
         bookGrid.innerHTML =
             "";
@@ -2167,15 +2308,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "none";
 
 
-
-        /* ===============================================
-           NO RESULTS
-        ================================================ */
-
         if (
             results.length === 0
         ) {
-
 
             searchResultMessage.innerHTML = `
 
@@ -2217,11 +2352,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-
-        /* ===============================================
-           RESULTS MESSAGE
-        ================================================ */
-
         searchResultMessage.innerHTML = `
 
             <p>
@@ -2243,43 +2373,29 @@ document.addEventListener("DOMContentLoaded", function () {
             "block";
 
 
+        results.forEach(function (book) {
 
-        /* ===============================================
-           DISPLAY RESULTS
-        ================================================ */
-
-        results.forEach(
-            function (book) {
-
-
-                const card =
-                    createBookCard(book);
-
-
-                bookGrid.appendChild(
-                    card
+            const card =
+                createBookCard(
+                    book
                 );
 
 
-                setTimeout(
-                    function () {
+            bookGrid.appendChild(
+                card
+            );
 
-                        card.classList.add(
-                            "card-visible"
-                        );
 
-                    },
-                    50
+            setTimeout(function () {
+
+                card.classList.add(
+                    "card-visible"
                 );
 
-            }
-        );
+            }, 50);
 
+        });
 
-
-        /* ===============================================
-           SCROLL TO RESULTS
-        ================================================ */
 
         const featuredSection =
             document.getElementById(
@@ -2289,22 +2405,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (
             window.scrollY >
-            featuredSection.offsetTop + 300
+            featuredSection.offsetTop +
+            300
         ) {
-
 
             featuredSection.scrollIntoView({
 
-                behavior: "smooth",
+                behavior:
+                    "smooth",
 
-                block: "start"
+                block:
+                    "start"
 
             });
 
         }
 
     }
-
 
 
     /* =====================================================
@@ -2317,7 +2434,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-
     /* =====================================================
        CLEAR SEARCH
     ===================================================== */
@@ -2325,7 +2441,6 @@ document.addEventListener("DOMContentLoaded", function () {
     clearSearch.addEventListener(
         "click",
         function () {
-
 
             bookSearch.value =
                 "";
@@ -2340,7 +2455,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-
     /* =====================================================
        ENTER KEY
     ===================================================== */
@@ -2349,14 +2463,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "keydown",
         function (event) {
 
-
             if (
                 event.key === "Enter"
             ) {
 
-
                 event.preventDefault();
-
 
                 searchBooks();
 
@@ -2366,7 +2477,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-
     /* =====================================================
        SCROLL LOADER
     ===================================================== */
@@ -2374,7 +2484,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const loaderObserver =
         new IntersectionObserver(
             function (entries) {
-
 
                 if (
 
@@ -2387,14 +2496,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 ) {
 
-
                     loadMoreBooks();
 
                 }
 
             },
             {
-                rootMargin: "500px"
+                rootMargin:
+                    "500px"
             }
         );
 
@@ -2404,21 +2513,20 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-
     /* =====================================================
-       HEADER CART CLICK
+       HEADER CART
     ===================================================== */
 
-    /* =====================================================
-   HEADER CART CLICK
-===================================================== */
+    headerCart.addEventListener(
+        "click",
+        function () {
 
-headerCart.addEventListener(
-    "click",
-    function () {
-        window.location.href = "/cart";
-    }
-);
+            window.location.href =
+                "/cart";
+
+        }
+    );
+
 
     /* =====================================================
        OFFER SLIDER
@@ -2436,12 +2544,9 @@ headerCart.addEventListener(
         );
 
 
-    let currentSlide =
-        0;
-
+    let currentSlide = 0;
 
     let slideInterval;
-
 
 
     /* =====================================================
@@ -2450,27 +2555,22 @@ headerCart.addEventListener(
 
     function showSlide(index) {
 
+        slides.forEach(function (slide) {
 
-        slides.forEach(
-            function (slide) {
+            slide.classList.remove(
+                "offer-slide-active"
+            );
 
-                slide.classList.remove(
-                    "offer-slide-active"
-                );
-
-            }
-        );
+        });
 
 
-        dots.forEach(
-            function (dot) {
+        dots.forEach(function (dot) {
 
-                dot.classList.remove(
-                    "active"
-                );
+            dot.classList.remove(
+                "active"
+            );
 
-            }
-        );
+        });
 
 
         slides[index].classList.add(
@@ -2489,20 +2589,19 @@ headerCart.addEventListener(
     }
 
 
-
     /* =====================================================
        NEXT SLIDE
     ===================================================== */
 
     function nextSlide() {
 
-
         let next =
             currentSlide + 1;
 
 
         if (
-            next >= slides.length
+            next >=
+            slides.length
         ) {
 
             next = 0;
@@ -2515,13 +2614,11 @@ headerCart.addEventListener(
     }
 
 
-
     /* =====================================================
        PREVIOUS SLIDE
     ===================================================== */
 
     function previousSlide() {
-
 
         let previous =
             currentSlide - 1;
@@ -2542,7 +2639,6 @@ headerCart.addEventListener(
     }
 
 
-
     /* =====================================================
        NEXT BUTTON
     ===================================================== */
@@ -2553,15 +2649,12 @@ headerCart.addEventListener(
         "click",
         function () {
 
-
             nextSlide();
-
 
             resetAutoSlide();
 
         }
     );
-
 
 
     /* =====================================================
@@ -2574,15 +2667,12 @@ headerCart.addEventListener(
         "click",
         function () {
 
-
             previousSlide();
-
 
             resetAutoSlide();
 
         }
     );
-
 
 
     /* =====================================================
@@ -2592,14 +2682,11 @@ headerCart.addEventListener(
     dots.forEach(
         function (dot, index) {
 
-
             dot.addEventListener(
                 "click",
                 function () {
 
-
                     showSlide(index);
-
 
                     resetAutoSlide();
 
@@ -2610,13 +2697,11 @@ headerCart.addEventListener(
     );
 
 
-
     /* =====================================================
-       START AUTO SLIDE
+       AUTO SLIDE
     ===================================================== */
 
     function startAutoSlide() {
-
 
         slideInterval =
             setInterval(
@@ -2627,13 +2712,11 @@ headerCart.addEventListener(
     }
 
 
-
     /* =====================================================
        RESET AUTO SLIDE
     ===================================================== */
 
     function resetAutoSlide() {
-
 
         clearInterval(
             slideInterval
@@ -2646,7 +2729,6 @@ headerCart.addEventListener(
 
 
     startAutoSlide();
-
 
 
     /* =====================================================
@@ -2663,19 +2745,15 @@ headerCart.addEventListener(
         "scroll",
         function () {
 
-
             if (
                 window.scrollY > 30
             ) {
-
 
                 navbar.classList.add(
                     "scrolled"
                 );
 
-
             } else {
-
 
                 navbar.classList.remove(
                     "scrolled"
@@ -2688,12 +2766,17 @@ headerCart.addEventListener(
 
 });
 
+
+
 /* =====================================================
-   LOGOUT
+   NORMAL LOGOUT BUTTON
 ===================================================== */
 
 const logoutButton =
-    document.getElementById("logoutButton");
+    document.getElementById(
+        "logoutButton"
+    );
+
 
 if (logoutButton) {
 
@@ -2701,13 +2784,20 @@ if (logoutButton) {
         "click",
         function () {
 
-            // Remove login/session data
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
-            localStorage.removeItem("adminToken");
+            localStorage.removeItem(
+                "token"
+            );
 
-            // Navigate to index.html
-            window.location.href = "/";
+            localStorage.removeItem(
+                "user"
+            );
+
+            localStorage.removeItem(
+                "adminToken"
+            );
+
+            window.location.href =
+                "/";
 
         }
     );

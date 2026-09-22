@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookNest | Edit Book</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .page-title p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .back-button {
+            text-decoration: none;
+            background: #ffffff;
+            color: #374151;
+            padding: 11px 18px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        .back-button:hover {
+            background: #f3f4f6;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            max-width: 1100px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            background: #ffffff;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.10);
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .button-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 12px;
+        }
+
+        .update-button {
+            border: none;
+            background: #4f46e5;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .update-button:hover {
+            background: #4338ca;
+        }
+
+        .cancel-button {
+            text-decoration: none;
+            background: #f3f4f6;
+            color: #374151;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .cancel-button:hover {
+            background: #e5e7eb;
+        }
+
+        @media (max-width: 768px) {
+
+            .page-container {
+                padding: 20px;
+            }
+
+            .top-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="page-container">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="top-section">
+
+        <div class="page-title">
+
+            <h1>Edit Book</h1>
+
+            <p>
+                Update the details of the selected book.
+            </p>
+
+        </div>
+
+        <a href="/admin/books"
+           class="back-button">
+
+            ← Back to Books
+
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         FORM
+    ====================================================== -->
+
+    <div class="form-card">
+
+        <form th:action="@{/admin/books/update/{id}(id=${book.id})}"
+              th:object="${book}"
+              method="post">
+
+
+            <div class="form-grid">
+
+
+                <!-- BOOK TITLE -->
+
+                <div class="form-group">
+
+                    <label for="title">
+                        Book Title
+                    </label>
+
+                    <input type="text"
+                           id="title"
+                           th:field="*{title}"
+                           placeholder="Enter book title"
+                           required>
+
+                </div>
+
+
+                <!-- AUTHOR -->
+
+                <div class="form-group">
+
+                    <label for="author">
+                        Author
+                    </label>
+
+                    <input type="text"
+                           id="author"
+                           th:field="*{author}"
+                           placeholder="Enter author name"
+                           required>
+
+                </div>
+
+
+                <!-- ISBN -->
+
+                <div class="form-group">
+
+                    <label for="isbn">
+                        ISBN
+                    </label>
+
+                    <input type="text"
+                           id="isbn"
+                           th:field="*{isbn}"
+                           placeholder="Enter ISBN">
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="category">
+                        Category
+                    </label>
+
+                    <input type="text"
+                           id="category"
+                           th:field="*{category}"
+                           placeholder="Enter category">
+
+                </div>
+
+
+                <!-- LANGUAGE -->
+
+                <div class="form-group">
+
+                    <label for="language">
+                        Language
+                    </label>
+
+                    <input type="text"
+                           id="language"
+                           th:field="*{language}"
+                           placeholder="Enter language">
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="form-group">
+
+                    <label for="price">
+                        Price (₹)
+                    </label>
+
+                    <input type="number"
+                           id="price"
+                           th:field="*{price}"
+                           placeholder="Enter price"
+                           step="0.01"
+                           min="0"
+                           required>
+
+                </div>
+
+
+                <!-- STOCK -->
+
+                <div class="form-group">
+
+                    <label for="stock">
+                        Stock
+                    </label>
+
+                    <input type="number"
+                           id="stock"
+                           th:field="*{stock}"
+                           placeholder="Enter stock quantity"
+                           min="0"
+                           required>
+
+                </div>
+
+
+                <!-- COVER IMAGE -->
+
+                <div class="form-group">
+
+                    <label for="coverImage">
+                        Cover Image URL
+                    </label>
+
+                    <input type="text"
+                           id="coverImage"
+                           th:field="*{coverImage}"
+                           placeholder="Enter image URL">
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group full-width">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea id="description"
+                              th:field="*{description}"
+                              placeholder="Enter book description"></textarea>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 BUTTONS
+            ================================================== -->
+
+            <div class="button-section">
+
+                <button type="submit"
+                        class="update-button">
+
+                    Update Book
+
+                </button>
+
+                <a href="/admin/books"
+                   class="cancel-button">
+
+                    Cancel
+
+                </a>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

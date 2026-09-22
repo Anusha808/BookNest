@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | BookNest</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Profile CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/profile.css}">
+
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+    <!-- LOGO -->
+
+    <div class="nav-left">
+
+        <a href="/home"
+           class="logo">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>BookNest</span>
+
+        </a>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="nav-right">
+
+        <a href="/home"
+           class="nav-link">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Home</span>
+
+        </a>
+
+
+        <a href="/cart"
+           class="nav-link">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span>Cart</span>
+
+        </a>
+
+
+        <a href="/profile"
+           class="nav-link active">
+
+            <i class="fa-solid fa-user"></i>
+
+            <span>Profile</span>
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================================
+     MAIN PROFILE CONTAINER
+========================================================= -->
+
+<main class="profile-container">
+
+
+    <!-- =====================================================
+         PAGE HEADING
+    ====================================================== -->
+
+    <div class="page-heading">
+
+        <h1>
+
+            <i class="fa-solid fa-user-circle"></i>
+
+            My Profile
+
+        </h1>
+
+        <p>
+            Manage your BookNest account information
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PROFILE CARD
+    ====================================================== -->
+
+    <section class="profile-card">
+
+
+        <!-- PROFILE TOP -->
+
+        <div class="profile-top">
+
+
+            <!-- AVATAR -->
+
+            <div class="profile-avatar">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+
+
+            <!-- USER INFORMATION -->
+
+            <div class="profile-main-info">
+
+                <!-- ACTUAL LOGGED-IN USER NAME -->
+
+                <h2 th:text="${loggedInUserName}">
+                    Guest User
+                </h2>
+
+
+                <!-- ACTUAL LOGGED-IN USER EMAIL -->
+
+                <p th:text="${loggedInUserEmail}">
+                    Please login
+                </p>
+
+
+                <!-- ROLE -->
+
+                <span class="user-role">
+
+                    <i class="fa-solid fa-user-shield"></i>
+
+                    <span th:text="${loggedInUserRole}">
+                        USER
+                    </span>
+
+                </span>
+
+            </div>
+
+
+
+            <!-- EDIT BUTTON -->
+
+            <div class="profile-action">
+
+                <button type="button"
+                        onclick="editProfile()">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Edit Profile
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PERSONAL INFORMATION
+        ================================================== -->
+
+        <div class="section-title">
+
+            <h3>
+
+                <i class="fa-solid fa-id-card"></i>
+
+                Personal Information
+
+            </h3>
+
+        </div>
+
+
+
+        <div class="details-grid">
+
+
+            <!-- =================================================
+                 NAME
+            ================================================== -->
+
+            <div class="detail-box">
+
+                <div class="detail-icon">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <div class="detail-content">
+
+                    <small>
+                        Full Name
+                    </small>
+
+
+                    <p th:text="${loggedInUserName}">
+                        Guest User
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 EMAIL
+            ================================================== -->
+
+            <div class="detail-box">
+
+                <div class="detail-icon">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                </div>
+
+
+                <div class="detail-content">
+
+                    <small>
+                        Email Address
+                    </small>
+
+
+                    <p th:text="${loggedInUserEmail}">
+                        Please login
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LOCATION
+            ================================================== -->
+
+            <div class="detail-box">
+
+                <div class="detail-icon">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                </div>
+
+
+                <div class="detail-content">
+
+                    <small>
+                        Location
+                    </small>
+
+
+                    <p>
+                        Not specified
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ACCOUNT TYPE
+            ================================================== -->
+
+            <div class="detail-box">
+
+                <div class="detail-icon">
+
+                    <i class="fa-solid fa-user-tag"></i>
+
+                </div>
+
+
+                <div class="detail-content">
+
+                    <small>
+                        Account Type
+                    </small>
+
+
+                    <p th:text="${loggedInUserRole}">
+                        USER
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         MY ORDERS
+    ========================================================= -->
+
+    <section class="orders-card">
+
+
+        <!-- ORDERS HEADER -->
+
+        <div class="orders-heading">
+
+
+            <div>
+
+                <h2>
+
+                    <i class="fa-solid fa-box"></i>
+
+                    My Orders
+
+                </h2>
+
+
+                <p>
+                    View your recent BookNest orders
+                </p>
+
+            </div>
+
+
+            <!--
+
+            If you already have an OrdersController,
+            you can keep this link.
+
+            -->
+
+            <a href="/orders"
+               class="view-orders">
+
+                View All
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             EMPTY ORDERS
+        ================================================== -->
+
+        <div class="orders-empty">
+
+
+            <div class="empty-icon">
+
+                <i class="fa-solid fa-box-open"></i>
+
+            </div>
+
+
+            <h3>
+                No Orders Yet
+            </h3>
+
+
+            <p>
+                You haven't placed any orders yet.
+            </p>
+
+
+            <a href="/home"
+               class="shop-button">
+
+                <i class="fa-solid fa-book"></i>
+
+                Start Shopping
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         ACCOUNT ACTIONS
+    ========================================================= -->
+
+    <section class="account-actions">
+
+
+        <h2>
+
+            <i class="fa-solid fa-gear"></i>
+
+            Account Actions
+
+        </h2>
+
+
+
+        <div class="action-buttons">
+
+
+            <!-- EDIT PROFILE -->
+
+            <button type="button"
+                    onclick="editProfile()">
+
+                <i class="fa-solid fa-user-pen"></i>
+
+                Edit Profile
+
+            </button>
+
+
+
+            <!-- CART -->
+
+            <a href="/cart">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                My Cart
+
+            </a>
+
+
+
+            <!-- HOME -->
+
+            <a href="/home">
+
+                <i class="fa-solid fa-house"></i>
+
+                Continue Shopping
+
+            </a>
+
+
+
+            <!-- LOGOUT -->
+
+            <button type="button"
+                    class="logout-button"
+                    onclick="logoutUser()">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+
+    <div class="footer-logo">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <strong>
+            BookNest
+        </strong>
+
+    </div>
+
+
+    <p>
+        Your online destination for books.
+    </p>
+
+
+    <p>
+        © 2026 BookNest. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   EDIT PROFILE
+========================================================= */
+
+function editProfile() {
+
+    alert(
+        "Edit Profile feature will be added soon."
+    );
+
+}
+
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logoutUser() {
+
+    /*
+       Clear cart data if required.
+    */
+
+    localStorage.removeItem("booknestCart");
+
+
+    /*
+       Go back to login page.
+    */
+
+    window.location.href = "/";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

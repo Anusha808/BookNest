@@ -9,1444 +9,899 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>BookNest | Admin Orders</title>
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        body {
-            background: #f4f7fb;
-            color: #1f2937;
-        }
-
-        /* =====================================================
-           SIDEBAR
-           ===================================================== */
-
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 250px;
-            height: 100vh;
-            background: #ffffff;
-            border-right: 1px solid #e5e7eb;
-            padding: 25px 18px;
-            overflow-y: auto;
-        }
-
-        .logo {
-            font-size: 25px;
-            font-weight: 800;
-            color: #2563eb;
-            margin-bottom: 35px;
-            padding-left: 12px;
-        }
-
-        .menu-title {
-            font-size: 11px;
-            font-weight: 700;
-            color: #9ca3af;
-            margin: 20px 12px 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .menu a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: #6b7280;
-            padding: 12px 14px;
-            margin: 4px 0;
-            border-radius: 9px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
-        .menu a:hover {
-            background: #eff6ff;
-            color: #2563eb;
-        }
-
-        .menu a.active {
-            background: #2563eb;
-            color: white;
-        }
-
-        .icon {
-            width: 22px;
-            text-align: center;
-            font-size: 16px;
-        }
-
-
-        /* =====================================================
-           MAIN
-           ===================================================== */
-
-        .main {
-            margin-left: 250px;
-            padding: 30px;
-            min-height: 100vh;
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 28px;
-        }
-
-        .page-title h1 {
-            font-size: 28px;
-            color: #111827;
-            margin-bottom: 6px;
-        }
-
-        .page-title p {
-            font-size: 14px;
-            color: #6b7280;
-        }
-
-        .admin-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .avatar {
-            width: 42px;
-            height: 42px;
-            background: #2563eb;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .admin-info strong {
-            display: block;
-            font-size: 14px;
-        }
-
-        .admin-info span {
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-
-        /* =====================================================
-           STAT CARDS
-           ===================================================== */
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-
-        .stat-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .stat-title {
-            font-size: 13px;
-            color: #6b7280;
-            font-weight: 600;
-        }
-
-        .stat-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 9px;
-            background: #eff6ff;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-
-        .stat-value {
-            font-size: 26px;
-            font-weight: 800;
-            color: #111827;
-        }
-
-        .revenue {
-            color: #059669;
-        }
-
-
-        /* =====================================================
-           PAYMENT SUMMARY
-           ===================================================== */
-
-        .payment-summary {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 25px;
-        }
-
-        .payment-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 18px;
-        }
-
-        .payment-card h4 {
-            font-size: 13px;
-            color: #6b7280;
-            margin-bottom: 8px;
-        }
-
-        .payment-number {
-            font-size: 22px;
-            font-weight: 800;
-            color: #111827;
-        }
-
-        .payment-sub {
-            margin-top: 5px;
-            font-size: 12px;
-            color: #9ca3af;
-        }
-
-
-        /* =====================================================
-           CONTENT CARD
-           ===================================================== */
-
-        .content-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-            overflow: hidden;
-        }
-
-        .content-header {
-            padding: 20px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .content-header h2 {
-            font-size: 18px;
-            color: #111827;
-        }
-
-        .search-box {
-            width: 280px;
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 10px 13px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            outline: none;
-            font-size: 13px;
-        }
-
-        .search-box input:focus {
-            border-color: #2563eb;
-        }
-
-
-        /* =====================================================
-           TABLE
-           ===================================================== */
-
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 1250px;
-        }
-
-        thead {
-            background: #f9fafb;
-        }
-
-        th {
-            text-align: left;
-            padding: 14px 16px;
-            font-size: 11px;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            white-space: nowrap;
-        }
-
-        td {
-            padding: 15px 16px;
-            border-top: 1px solid #f0f1f3;
-            font-size: 13px;
-            vertical-align: middle;
-        }
-
-        tbody tr:hover {
-            background: #fafcff;
-        }
-
-        .order-id {
-            font-weight: 800;
-            color: #2563eb;
-        }
-
-        .customer-name {
-            font-weight: 700;
-            color: #111827;
-        }
-
-        .email {
-            color: #6b7280;
-        }
-
-        .amount {
-            font-weight: 800;
-            color: #111827;
-        }
-
-        .date {
-            color: #6b7280;
-            white-space: nowrap;
-        }
-
-
-        /* =====================================================
-           PAYMENT METHOD
-           ===================================================== */
-
-        .payment-method {
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .razorpay {
-            background: #ede9fe;
-            color: #6d28d9;
-        }
-
-        .cod {
-            background: #fff7ed;
-            color: #c2410c;
-        }
-
-
-        /* =====================================================
-           STATUS BADGES
-           ===================================================== */
-
-        .status {
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .status-paid {
-            background: #dcfce7;
-            color: #15803d;
-        }
-
-        .status-cod-pending {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .status-failed {
-            background: #fee2e2;
-            color: #b91c1c;
-        }
-
-        .status-pending {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .status-processing {
-            background: #dbeafe;
-            color: #1d4ed8;
-        }
-
-        .status-shipped {
-            background: #e0e7ff;
-            color: #4338ca;
-        }
-
-        .status-completed {
-            background: #dcfce7;
-            color: #15803d;
-        }
-
-        .status-cancelled {
-            background: #fee2e2;
-            color: #b91c1c;
-        }
-
-
-        /* =====================================================
-           ACTION BUTTONS
-           ===================================================== */
-
-        .actions {
-            display: flex;
-            gap: 7px;
-        }
-
-        .btn {
-            border: none;
-            border-radius: 7px;
-            padding: 7px 10px;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-view {
-            background: #eff6ff;
-            color: #2563eb;
-        }
-
-        .btn-view:hover {
-            background: #dbeafe;
-        }
-
-        .btn-delete {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-
-        .btn-delete:hover {
-            background: #fecaca;
-        }
-
-
-        /* =====================================================
-           SELECT
-           ===================================================== */
-
-        .status-form select {
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            padding: 6px 8px;
-            font-size: 11px;
-            background: white;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .status-form select:focus {
-            border-color: #2563eb;
-        }
-
-
-        /* =====================================================
-           EMPTY STATE
-           ===================================================== */
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #9ca3af;
-        }
-
-        .empty-state-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-
-        .empty-state h3 {
-            color: #4b5563;
-            margin-bottom: 6px;
-        }
-
-
-        /* =====================================================
-           MODAL
-           ===================================================== */
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.55);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: white;
-            width: 100%;
-            max-width: 650px;
-            max-height: 90vh;
-            overflow-y: auto;
-            border-radius: 14px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-
-        .modal-header {
-            padding: 20px 22px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h2 {
-            font-size: 19px;
-        }
-
-        .close {
-            border: none;
-            background: none;
-            font-size: 25px;
-            color: #6b7280;
-            cursor: pointer;
-        }
-
-        .modal-body {
-            padding: 22px;
-        }
-
-        .detail-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .detail {
-            border: 1px solid #e5e7eb;
-            border-radius: 9px;
-            padding: 13px;
-        }
-
-        .detail.full {
-            grid-column: 1 / -1;
-        }
-
-        .detail label {
-            display: block;
-            font-size: 11px;
-            color: #9ca3af;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .detail span {
-            font-size: 14px;
-            color: #111827;
-            font-weight: 600;
-            word-break: break-word;
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-           ===================================================== */
-
-        @media (max-width: 1100px) {
-
-            .stats,
-            .payment-summary {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-        @media (max-width: 800px) {
-
-            .sidebar {
-                width: 70px;
-                padding: 20px 8px;
-            }
-
-            .logo {
-                font-size: 0;
-                text-align: center;
-            }
-
-            .logo::after {
-                content: "B";
-                font-size: 24px;
-                color: #2563eb;
-            }
-
-            .menu-title,
-            .menu a span:not(.icon) {
-                display: none;
-            }
-
-            .menu a {
-                justify-content: center;
-                padding: 12px;
-            }
-
-            .main {
-                margin-left: 70px;
-                padding: 20px;
-            }
-
-            .topbar {
-                align-items: flex-start;
-            }
-
-            .admin-info {
-                display: none;
-            }
-
-        }
-
-        @media (max-width: 600px) {
-
-            .stats,
-            .payment-summary {
-                grid-template-columns: 1fr;
-            }
-
-            .content-header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-box {
-                width: 100%;
-            }
-
-            .page-title h1 {
-                font-size: 22px;
-            }
-
-        }
-
-    </style>
+    <title>BookNest | Orders</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Orders CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/admin-orders.css}">
 
 </head>
 
-
 <body>
 
-
-<!-- =========================================================
-     SIDEBAR
-     ========================================================= -->
-
-<aside class="sidebar">
-
-    <div class="logo">
-        BookNest
-    </div>
-
-
-    <div class="menu-title">
-        Main Menu
-    </div>
-
-    <nav class="menu">
-
-        <a href="/admin/dashboard">
-            <span class="icon">📊</span>
-            <span>Dashboard</span>
-        </a>
-
-        <a href="/admin/books">
-            <span class="icon">📚</span>
-            <span>Books</span>
-        </a>
-
-        <a href="/admin/categories">
-            <span class="icon">🏷️</span>
-            <span>Categories</span>
-        </a>
-
-        <a href="/admin/users">
-            <span class="icon">👥</span>
-            <span>Users</span>
-        </a>
-
-        <a href="/admin/orders"
-           class="active">
-            <span class="icon">🛒</span>
-            <span>Orders</span>
-        </a>
-
-        <a href="/admin/payments">
-            <span class="icon">💳</span>
-            <span>Payments</span>
-        </a>
-
-    </nav>
-
-
-    <div class="menu-title">
-        System
-    </div>
-
-    <nav class="menu">
-
-        <a href="/admin/inventory">
-            <span class="icon">📦</span>
-            <span>Inventory</span>
-        </a>
-
-        <a href="/admin/notifications">
-            <span class="icon">🔔</span>
-            <span>Notifications</span>
-        </a>
-
-        <a href="/admin/settings">
-            <span class="icon">⚙️</span>
-            <span>Settings</span>
-        </a>
-
-        <a href="/">
-            <span class="icon">🌐</span>
-            <span>View Store</span>
-        </a>
-
-        <a href="/admin/login">
-            <span class="icon">🚪</span>
-            <span>Logout</span>
-        </a>
-
-    </nav>
-
-</aside>
-
-
-
-<!-- =========================================================
-     MAIN CONTENT
-     ========================================================= -->
-
-<main class="main">
-
+<div class="dashboard-container">
 
     <!-- =====================================================
-         TOP BAR
+         SIDEBAR
          ===================================================== -->
 
-    <div class="topbar">
+    <aside class="sidebar" id="sidebar">
 
-        <div class="page-title">
+        <div class="sidebar-top">
 
-            <h1>Orders</h1>
+            <div class="admin-logo">
 
-            <p>
-                Manage customer orders and payments
+                <div class="logo-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div>
+                    <h2>BookNest</h2>
+                    <span>Admin Portal</span>
+                </div>
+
+            </div>
+
+            <button class="close-sidebar"
+                    id="closeSidebar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">
+                MAIN MENU
             </p>
 
-        </div>
+
+            <!-- Dashboard -->
+
+            <a href="/admin/dashboard"
+               class="nav-link">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span>Dashboard</span>
+
+            </a>
 
 
-        <div class="admin-profile">
+            <!-- Books -->
 
-            <div class="avatar">
-                A
+            <a href="/admin/books"
+               class="nav-link">
+
+                <i class="fa-solid fa-book"></i>
+
+                <span>Books</span>
+
+            </a>
+
+
+            <!-- Categories -->
+
+            <a href="/admin/categories"
+               class="nav-link">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <span>Categories</span>
+
+            </a>
+
+
+            <!-- Users -->
+
+            <a href="/admin/users"
+               class="nav-link">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>Users</span>
+
+            </a>
+
+
+            <!-- Orders ACTIVE -->
+
+            <a href="/admin/orders"
+               class="nav-link active">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span>Orders</span>
+
+            </a>
+
+
+            <!-- Payments -->
+
+            <a href="/admin/payments"
+               class="nav-link">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+                <span>Payments</span>
+
+            </a>
+
+
+            <!-- Inventory -->
+
+            <a href="/admin/inventory"
+               class="nav-link">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <span>Inventory</span>
+
+            </a>
+
+
+            <!-- Notifications -->
+
+            <a href="/admin/notifications"
+               class="nav-link">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>Notifications</span>
+
+            </a>
+
+
+            <!-- SYSTEM -->
+
+            <p class="nav-title second-title">
+                SYSTEM
+            </p>
+
+
+            <!-- Settings -->
+
+            <a href="/admin/settings"
+               class="nav-link">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+
+            <!-- View Store -->
+
+            <a href="/"
+               class="nav-link">
+
+                <i class="fa-solid fa-store"></i>
+
+                <span>View Store</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-mini-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Administrator
+                    </strong>
+
+                    <span>
+                        admin@booknest.com
+                    </span>
+
+                </div>
+
             </div>
 
-            <div class="admin-info">
 
-                <strong>
-                    Administrator
-                </strong>
+            <a href="/admin/login"
+               class="logout-link">
 
-                <span>
-                    admin@booknest.com
-                </span>
+                <i class="fa-solid fa-right-from-bracket"></i>
 
-            </div>
+                <span>Logout</span>
+
+            </a>
 
         </div>
 
-    </div>
-
+    </aside>
 
 
     <!-- =====================================================
-         STATISTICS
+         MAIN CONTENT
          ===================================================== -->
 
-    <section class="stats">
+    <main class="main-content">
 
 
-        <!-- TOTAL ORDERS -->
+        <!-- TOP BAR -->
 
-        <div class="stat-card">
+        <div class="topbar">
 
-            <div class="stat-top">
+            <div class="topbar-left">
 
-                <span class="stat-title">
-                    Total Orders
-                </span>
+                <button class="menu-button"
+                        id="menuButton">
 
-                <div class="stat-icon">
-                    🛒
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+                <div>
+
+                    <h1>
+                        Orders
+                    </h1>
+
+                    <p>
+                        Manage and monitor customer orders
+                    </p>
+
                 </div>
 
             </div>
 
-            <div class="stat-value"
-                 th:text="${totalOrders}">
-                0
-            </div>
 
-        </div>
+            <div class="topbar-right">
 
+                <!-- Notification -->
 
+                <button class="notification-button"
+                        onclick="window.location.href='/admin/notifications'">
 
-        <!-- PENDING -->
+                    <i class="fa-solid fa-bell"></i>
 
-        <div class="stat-card">
+                    <span class="notification-dot"></span>
 
-            <div class="stat-top">
+                </button>
 
-                <span class="stat-title">
-                    Pending
-                </span>
 
-                <div class="stat-icon">
-                    ⏳
-                </div>
+                <!-- Admin Profile -->
 
-            </div>
+                <div class="top-profile">
 
-            <div class="stat-value"
-                 th:text="${pendingOrders}">
-                0
-            </div>
+                    <div class="top-avatar">
+                        A
+                    </div>
 
-        </div>
+                    <div class="top-profile-info">
 
+                        <strong>
+                            Administrator
+                        </strong>
 
-
-        <!-- PROCESSING -->
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-
-                <span class="stat-title">
-                    Processing
-                </span>
-
-                <div class="stat-icon">
-                    ⚙️
-                </div>
-
-            </div>
-
-            <div class="stat-value"
-                 th:text="${processingOrders}">
-                0
-            </div>
-
-        </div>
-
-
-
-        <!-- REVENUE -->
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-
-                <span class="stat-title">
-                    Revenue
-                </span>
-
-                <div class="stat-icon">
-                    ₹
-                </div>
-
-            </div>
-
-            <div class="stat-value revenue">
-
-                ₹<span th:text="${totalRevenue}">
-                    0.00
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         PAYMENT SUMMARY
-         ===================================================== -->
-
-    <section class="payment-summary">
-
-
-        <!-- RAZORPAY -->
-
-        <div class="payment-card">
-
-            <h4>
-                Razorpay Paid Orders
-            </h4>
-
-            <div class="payment-number"
-                 th:text="${razorpayOrders}">
-                0
-            </div>
-
-            <div class="payment-sub">
-                Successful online payments
-            </div>
-
-        </div>
-
-
-
-        <!-- COD TOTAL -->
-
-        <div class="payment-card">
-
-            <h4>
-                COD Orders
-            </h4>
-
-            <div class="payment-number"
-                 th:text="${codOrders}">
-                0
-            </div>
-
-            <div class="payment-sub">
-                Cash on Delivery
-            </div>
-
-        </div>
-
-
-
-        <!-- COD PENDING -->
-
-        <div class="payment-card">
-
-            <h4>
-                COD Pending
-            </h4>
-
-            <div class="payment-number"
-                 th:text="${codPending}">
-                0
-            </div>
-
-            <div class="payment-sub">
-                Payment not collected
-            </div>
-
-        </div>
-
-
-
-        <!-- COD PAID -->
-
-        <div class="payment-card">
-
-            <h4>
-                COD Paid
-            </h4>
-
-            <div class="payment-number"
-                 th:text="${codPaid}">
-                0
-            </div>
-
-            <div class="payment-sub">
-                Cash collected
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         ORDERS TABLE
-         ===================================================== -->
-
-    <section class="content-card">
-
-
-        <div class="content-header">
-
-            <h2>
-                All Orders
-            </h2>
-
-            <div class="search-box">
-
-                <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Search orders...">
-
-            </div>
-
-        </div>
-
-
-
-        <div class="table-wrapper">
-
-            <table id="ordersTable">
-
-
-                <thead>
-
-                <tr>
-
-                    <th>
-                        Order ID
-                    </th>
-
-                    <th>
-                        Customer
-                    </th>
-
-                    <th>
-                        Email
-                    </th>
-
-                    <th>
-                        Amount
-                    </th>
-
-                    <th>
-                        Payment Method
-                    </th>
-
-                    <th>
-                        Payment Status
-                    </th>
-
-                    <th>
-                        Order Status
-                    </th>
-
-                    <th>
-                        Order Date
-                    </th>
-
-                    <th>
-                        Actions
-                    </th>
-
-                </tr>
-
-                </thead>
-
-
-
-                <tbody>
-
-
-                <!-- =================================================
-                     DYNAMIC ORDERS
-                     ================================================= -->
-
-                <tr th:each="order : ${orders}">
-
-
-                    <!-- ORDER ID -->
-
-                    <td>
-
-                        <span class="order-id">
-
-                            #
-                            <span th:text="${order.id}">
-                                1
-                            </span>
-
+                        <span>
+                            Admin
                         </span>
 
-                    </td>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </div>
 
 
+        <!-- =====================================================
+             ORDERS CONTENT
+             ===================================================== -->
 
-                    <!-- CUSTOMER -->
+        <section class="orders-content">
 
-                    <td>
 
-                        <span class="customer-name"
-                              th:text="${order.customerName}">
+            <!-- WELCOME / PAGE INTRO -->
 
-                            Customer
+            <div class="welcome-section">
 
+                <div>
+
+                    <span class="dashboard-label">
+                        ORDER MANAGEMENT
+                    </span>
+
+                    <h2>
+                        Customer Orders
+                    </h2>
+
+                    <p>
+                        View, track and manage all bookstore orders.
+                    </p>
+
+                </div>
+
+
+                <div class="date-box">
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                    <span th:text="${#temporals.format(#temporals.createNow(), 'dd MMM yyyy')}">
+                        22 Sep 2026
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 STATISTICS
+                 ===================================================== -->
+
+            <div class="stats-grid">
+
+
+                <!-- TOTAL ORDERS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orders-icon">
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                    </div>
+
+                    <div class="stat-details">
+
+                        <span>
+                            Total Orders
                         </span>
 
-                    </td>
+                        <h3 th:text="${totalOrders}">
+                            0
+                        </h3>
+
+                        <small class="positive">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            All orders
+                        </small>
+
+                    </div>
+
+                </div>
 
 
+                <!-- PENDING ORDERS -->
 
-                    <!-- EMAIL -->
+                <div class="stat-card">
 
-                    <td>
+                    <div class="stat-icon pending-icon">
 
-                        <span class="email"
-                              th:text="${order.customerEmail}">
+                        <i class="fa-solid fa-clock"></i>
 
-                            customer@email.com
+                    </div>
 
+                    <div class="stat-details">
+
+                        <span>
+                            Pending Orders
                         </span>
 
-                    </td>
+                        <h3 th:text="${pendingOrders}">
+                            0
+                        </h3>
+
+                        <small class="warning-text">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                            Awaiting action
+                        </small>
+
+                    </div>
+
+                </div>
 
 
+                <!-- PROCESSING ORDERS -->
 
-                    <!-- AMOUNT -->
+                <div class="stat-card">
 
-                    <td>
+                    <div class="stat-icon processing-icon">
 
-                        <span class="amount">
+                        <i class="fa-solid fa-box"></i>
 
-                            ₹<span
-                                th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)}">
+                    </div>
 
+                    <div class="stat-details">
+
+                        <span>
+                            Processing
+                        </span>
+
+                        <h3 th:text="${processingOrders}">
+                            0
+                        </h3>
+
+                        <small class="processing-text">
+                            <i class="fa-solid fa-spinner"></i>
+                            In progress
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOTAL REVENUE -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon revenue-icon">
+
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                    </div>
+
+                    <div class="stat-details">
+
+                        <span>
+                            Total Revenue
+                        </span>
+
+                        <h3>
+                            ₹<span th:text="${#numbers.formatDecimal(totalRevenue, 1, 2)}">
                                 0.00
+                            </span>
+                        </h3>
 
+                        <small class="positive">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            Paid orders
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 PAYMENT SUMMARY
+                 ===================================================== -->
+
+            <div class="payment-summary">
+
+
+                <div class="summary-title">
+
+                    <div>
+
+                        <span class="dashboard-label">
+                            PAYMENT OVERVIEW
+                        </span>
+
+                        <h3>
+                            Payment Summary
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="payment-grid">
+
+
+                    <!-- RAZORPAY -->
+
+                    <div class="payment-item">
+
+                        <div class="payment-icon razorpay-icon">
+
+                            <i class="fa-solid fa-credit-card"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Razorpay Orders
                             </span>
 
-                        </span>
-
-                    </td>
-
-
-
-                    <!-- PAYMENT METHOD -->
-
-                    <td>
-
-                        <span
-                                th:if="${order.paymentMethod != null and order.paymentMethod.equalsIgnoreCase('RAZORPAY')}"
-                                class="payment-method razorpay">
-
-                            Razorpay
-
-                        </span>
-
-
-                        <span
-                                th:if="${order.paymentMethod != null and order.paymentMethod.equalsIgnoreCase('COD')}"
-                                class="payment-method cod">
-
-                            Cash on Delivery
-
-                        </span>
-
-
-                        <span
-                                th:if="${order.paymentMethod == null}"
-                                class="payment-method razorpay">
-
-                            Razorpay
-
-                        </span>
-
-                    </td>
-
-
-
-                    <!-- PAYMENT STATUS -->
-
-                    <td>
-
-
-                        <!-- RAZORPAY PAID -->
-
-                        <span
-                                th:if="${order.paymentStatus != null and order.paymentStatus.equalsIgnoreCase('PAID')}"
-                                class="status status-paid">
-
-                            PAID
-
-                        </span>
-
-
-
-                        <!-- COD PENDING -->
-
-                        <span
-                                th:if="${order.paymentStatus != null and order.paymentStatus.equalsIgnoreCase('COD_PENDING')}"
-                                class="status status-cod-pending">
-
-                            COD Pending
-
-                        </span>
-
-
-
-                        <!-- COD PAID -->
-
-                        <span
-                                th:if="${order.paymentStatus != null and order.paymentStatus.equalsIgnoreCase('COD_PAID')}"
-                                class="status status-paid">
-
-                            COD Paid
-
-                        </span>
-
-
-
-                        <!-- FAILED -->
-
-                        <span
-                                th:if="${order.paymentStatus != null and order.paymentStatus.equalsIgnoreCase('FAILED')}"
-                                class="status status-failed">
-
-                            FAILED
-
-                        </span>
-
-
-
-                        <!-- OTHER -->
-
-                        <span
-                                th:if="${order.paymentStatus != null
-                                and !order.paymentStatus.equalsIgnoreCase('PAID')
-                                and !order.paymentStatus.equalsIgnoreCase('COD_PENDING')
-                                and !order.paymentStatus.equalsIgnoreCase('COD_PAID')
-                                and !order.paymentStatus.equalsIgnoreCase('FAILED')}"
-                                class="status status-pending"
-                                th:text="${order.paymentStatus}">
-
-                            PENDING
-
-                        </span>
-
-                    </td>
-
-
-
-                    <!-- ORDER STATUS -->
-
-                    <td>
-
-                        <span
-                                th:if="${order.status != null and order.status.equalsIgnoreCase('PENDING')}"
-                                class="status status-pending">
-
-                            PENDING
-
-                        </span>
-
-
-                        <span
-                                th:if="${order.status != null and order.status.equalsIgnoreCase('PROCESSING')}"
-                                class="status status-processing">
-
-                            PROCESSING
-
-                        </span>
-
-
-                        <span
-                                th:if="${order.status != null and order.status.equalsIgnoreCase('SHIPPED')}"
-                                class="status status-shipped">
-
-                            SHIPPED
-
-                        </span>
-
-
-                        <span
-                                th:if="${order.status != null and order.status.equalsIgnoreCase('COMPLETED')}"
-                                class="status status-completed">
-
-                            COMPLETED
-
-                        </span>
-
-
-                        <span
-                                th:if="${order.status != null and order.status.equalsIgnoreCase('CANCELLED')}"
-                                class="status status-cancelled">
-
-                            CANCELLED
-
-                        </span>
-
-
-                        <span
-                                th:if="${order.status == null}"
-                                class="status status-pending">
-
-                            PENDING
-
-                        </span>
-
-                    </td>
-
-
-
-                    <!-- ORDER DATE -->
-
-                    <td>
-
-                        <span class="date"
-                              th:text="${#temporals.format(order.orderDate, 'dd MMM yyyy, hh:mm a')}">
-
-                            09 Sep 2026, 01:00 PM
-
-                        </span>
-
-                    </td>
-
-
-
-                    <!-- ACTIONS -->
-
-                    <td>
-
-                        <div class="actions">
-
-
-                            <!-- VIEW -->
-
-                            <button
-                                    type="button"
-                                    class="btn btn-view"
-                                    th:attr="
-                                    data-id=${order.id},
-                                    data-name=${order.customerName},
-                                    data-email=${order.customerEmail},
-                                    data-amount=${order.totalAmount},
-                                    data-method=${order.paymentMethod},
-                                    data-payment=${order.paymentStatus},
-                                    data-status=${order.status},
-                                    data-date=${#temporals.format(order.orderDate, 'dd MMM yyyy, hh:mm a')},
-                                    data-rporder=${order.razorpayOrderId},
-                                    data-rppayment=${order.razorpayPaymentId}"
-                                    onclick="viewOrder(this)">
-
-                                View
-
-                            </button>
-
-
-
-                            <!-- DELETE -->
-
-                            <a
-                                    class="btn btn-delete"
-                                    th:href="@{/admin/orders/delete/{id}(id=${order.id})}"
-                                    onclick="return confirm('Are you sure you want to delete this order?');">
-
-                                Delete
-
-                            </a>
+                            <strong th:text="${razorpayOrders}">
+                                0
+                            </strong>
 
                         </div>
 
-                    </td>
-
-                </tr>
+                    </div>
 
 
+                    <!-- COD -->
 
-                <!-- =================================================
-                     EMPTY STATE
-                     ================================================= -->
+                    <div class="payment-item">
 
-                <tr th:if="${#lists.isEmpty(orders)}">
+                        <div class="payment-icon cod-icon">
 
-                    <td colspan="9">
-
-                        <div class="empty-state">
-
-                            <div class="empty-state-icon">
-                                🛒
-                            </div>
-
-                            <h3>
-                                No Orders Found
-                            </h3>
-
-                            <p>
-                                Customer orders will appear here.
-                            </p>
+                            <i class="fa-solid fa-money-bill-wave"></i>
 
                         </div>
 
-                    </td>
+                        <div>
 
-                </tr>
+                            <span>
+                                COD Orders
+                            </span>
 
+                            <strong th:text="${codOrders}">
+                                0
+                            </strong>
 
-                </tbody>
+                        </div>
 
-            </table>
-
-        </div>
-
-    </section>
-
-
-</main>
+                    </div>
 
 
+                    <!-- COD PENDING -->
 
-<!-- =========================================================
-     VIEW ORDER MODAL
-     ========================================================= -->
+                    <div class="payment-item">
+
+                        <div class="payment-icon pending-payment-icon">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                COD Pending
+                            </span>
+
+                            <strong th:text="${codPending}">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COD PAID -->
+
+                    <div class="payment-item">
+
+                        <div class="payment-icon paid-payment-icon">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                COD Paid
+                            </span>
+
+                            <strong th:text="${codPaid}">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 ORDERS TABLE
+                 ===================================================== -->
+
+            <div class="dashboard-card orders-card">
+
+
+                <!-- CARD HEADER -->
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            All Orders
+                        </h3>
+
+                        <p>
+                            Manage customer orders and payment details.
+                        </p>
+
+                    </div>
+
+
+                    <!-- SEARCH -->
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input type="text"
+                               id="orderSearch"
+                               placeholder="Search orders...">
+
+                    </div>
+
+                </div>
+
+
+                <!-- TABLE -->
+
+                <div class="table-container">
+
+                    <table id="ordersTable">
+
+                        <thead>
+
+                        <tr>
+
+                            <th>
+                                Order ID
+                            </th>
+
+                            <th>
+                                Customer
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Payment
+                            </th>
+
+                            <th>
+                                Payment Status
+                            </th>
+
+                            <th>
+                                Order Status
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                        <!-- ORDER LOOP -->
+
+                        <tr th:each="order : ${orders}">
+
+                            <!-- ORDER ID -->
+
+                            <td>
+
+                                <strong class="order-id"
+                                        th:text="'#' + ${order.id}">
+                                    #1
+                                </strong>
+
+                            </td>
+
+
+                            <!-- CUSTOMER -->
+
+                            <td>
+
+                                <div class="customer-cell">
+
+                                    <div class="customer-avatar"
+                                         th:text="${#strings.substring(order.customerName, 0, 1).toUpperCase()}">
+                                        A
+                                    </div>
+
+                                    <div class="customer-info">
+
+                                        <strong th:text="${order.customerName}">
+                                            Customer Name
+                                        </strong>
+
+                                        <span th:text="${order.customerEmail}">
+                                            customer@email.com
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <!-- AMOUNT -->
+
+                            <td>
+
+                                <strong class="amount">
+
+                                    ₹<span th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)}">
+                                        0.00
+                                    </span>
+
+                                </strong>
+
+                            </td>
+
+
+                            <!-- PAYMENT METHOD -->
+
+                            <td>
+
+                                <span class="payment-badge"
+                                      th:classappend="${order.paymentMethod == 'RAZORPAY'} ? ' razorpay-badge' : ' cod-badge'"
+                                      th:text="${order.paymentMethod}">
+                                    RAZORPAY
+                                </span>
+
+                            </td>
+
+
+                            <!-- PAYMENT STATUS -->
+
+                            <td>
+
+                                <span class="status-badge payment-status"
+                                      th:classappend="${order.paymentStatus == 'PAID'} ? ' status-paid' :
+                                                      (${order.paymentStatus == 'FAILED'} ? ' status-failed' : ' status-pending')"
+                                      th:text="${order.paymentStatus}">
+                                    PAID
+                                </span>
+
+                            </td>
+
+
+                            <!-- ORDER STATUS -->
+
+                            <td>
+
+                                <span class="status-badge order-status"
+                                      th:classappend="${order.status == 'COMPLETED'} ? ' status-completed' :
+                                                      (${order.status == 'SHIPPED'} ? ' status-shipped' :
+                                                      (${order.status == 'PROCESSING'} ? ' status-processing' : ' status-pending'))"
+                                      th:text="${order.status}">
+                                    PENDING
+                                </span>
+
+                            </td>
+
+
+                            <!-- DATE -->
+
+                            <td>
+
+                                <span class="order-date"
+                                      th:text="${order.orderDate != null ? #temporals.format(order.orderDate, 'dd MMM yyyy, hh:mm a') : 'N/A'}">
+                                    22 Sep 2026
+                                </span>
+
+                            </td>
+
+
+                            <!-- ACTIONS -->
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <!-- VIEW -->
+
+                                    <button type="button"
+                                            class="action-btn view-btn"
+                                            title="View Order"
+                                            th:attr="data-id=${order.id},
+                                                     data-name=${order.customerName},
+                                                     data-email=${order.customerEmail},
+                                                     data-amount=${order.totalAmount},
+                                                     data-payment=${order.paymentMethod},
+                                                     data-payment-status=${order.paymentStatus},
+                                                     data-status=${order.status},
+                                                     data-date=${order.orderDate},
+                                                     data-razorpay-order=${order.razorpayOrderId},
+                                                     data-razorpay-payment=${order.razorpayPaymentId}"
+                                            onclick="viewOrder(this)">
+
+                                        <i class="fa-solid fa-eye"></i>
+
+                                    </button>
+
+
+                                    <!-- DELETE -->
+
+                                    <button type="button"
+                                            class="action-btn delete-btn"
+                                            title="Delete Order"
+                                            th:attr="data-id=${order.id}"
+                                            onclick="deleteOrder(this)">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- EMPTY -->
+
+                        <tr th:if="${#lists.isEmpty(orders)}">
+
+                            <td colspan="8">
+
+                                <div class="empty-state">
+
+                                    <i class="fa-solid fa-cart-shopping"></i>
+
+                                    <h3>
+                                        No Orders Found
+                                    </h3>
+
+                                    <p>
+                                        Customer orders will appear here.
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     ORDER DETAILS MODAL
+     ===================================================== -->
 
 <div class="modal"
      id="orderModal">
@@ -1454,188 +909,163 @@
     <div class="modal-content">
 
 
+        <!-- MODAL HEADER -->
+
         <div class="modal-header">
 
-            <h2>
-                Order Details
-            </h2>
+            <div>
 
-            <button
-                    class="close"
-                    onclick="closeModal()">
+                <span class="dashboard-label">
+                    ORDER DETAILS
+                </span>
 
-                ×
+                <h2 id="modalOrderTitle">
+                    Order Details
+                </h2>
+
+            </div>
+
+            <button class="close-btn"
+                    onclick="closeOrderModal()">
+
+                <i class="fa-solid fa-xmark"></i>
 
             </button>
 
         </div>
 
 
+        <!-- ORDER DETAILS -->
 
-        <div class="modal-body">
+        <div class="order-details">
 
 
-            <div class="detail-grid">
+            <div class="detail-row">
 
+                <strong>
+                    Order ID
+                </strong>
 
-                <!-- ORDER ID -->
+                <span id="modalOrderId">
+                    -
+                </span>
 
-                <div class="detail">
+            </div>
 
-                    <label>
-                        Order ID
-                    </label>
 
-                    <span id="modalId">
-                        -
-                    </span>
+            <div class="detail-row">
 
-                </div>
+                <strong>
+                    Customer Name
+                </strong>
 
+                <span id="modalCustomerName">
+                    -
+                </span>
 
+            </div>
 
-                <!-- CUSTOMER -->
 
-                <div class="detail">
+            <div class="detail-row">
 
-                    <label>
-                        Customer Name
-                    </label>
+                <strong>
+                    Email
+                </strong>
 
-                    <span id="modalName">
-                        -
-                    </span>
+                <span id="modalCustomerEmail">
+                    -
+                </span>
 
-                </div>
+            </div>
 
 
+            <div class="detail-row">
 
-                <!-- EMAIL -->
+                <strong>
+                    Total Amount
+                </strong>
 
-                <div class="detail full">
+                <span id="modalAmount">
+                    -
+                </span>
 
-                    <label>
-                        Customer Email
-                    </label>
+            </div>
 
-                    <span id="modalEmail">
-                        -
-                    </span>
 
-                </div>
+            <div class="detail-row">
 
+                <strong>
+                    Payment Method
+                </strong>
 
+                <span id="modalPaymentMethod">
+                    -
+                </span>
 
-                <!-- AMOUNT -->
+            </div>
 
-                <div class="detail">
 
-                    <label>
-                        Total Amount
-                    </label>
+            <div class="detail-row">
 
-                    <span id="modalAmount">
-                        -
-                    </span>
+                <strong>
+                    Payment Status
+                </strong>
 
-                </div>
+                <span id="modalPaymentStatus">
+                    -
+                </span>
 
+            </div>
 
 
-                <!-- PAYMENT METHOD -->
+            <div class="detail-row">
 
-                <div class="detail">
+                <strong>
+                    Order Status
+                </strong>
 
-                    <label>
-                        Payment Method
-                    </label>
+                <span id="modalOrderStatus">
+                    -
+                </span>
 
-                    <span id="modalMethod">
-                        -
-                    </span>
+            </div>
 
-                </div>
 
+            <div class="detail-row">
 
+                <strong>
+                    Order Date
+                </strong>
 
-                <!-- PAYMENT STATUS -->
+                <span id="modalOrderDate">
+                    -
+                </span>
 
-                <div class="detail">
+            </div>
 
-                    <label>
-                        Payment Status
-                    </label>
 
-                    <span id="modalPayment">
-                        -
-                    </span>
+            <div class="detail-row">
 
-                </div>
+                <strong>
+                    Razorpay Order ID
+                </strong>
 
+                <span id="modalRazorpayOrder">
+                    -
+                </span>
 
+            </div>
 
-                <!-- ORDER STATUS -->
 
-                <div class="detail">
+            <div class="detail-row">
 
-                    <label>
-                        Order Status
-                    </label>
+                <strong>
+                    Razorpay Payment ID
+                </strong>
 
-                    <span id="modalStatus">
-                        -
-                    </span>
-
-                </div>
-
-
-
-                <!-- ORDER DATE -->
-
-                <div class="detail full">
-
-                    <label>
-                        Order Date
-                    </label>
-
-                    <span id="modalDate">
-                        -
-                    </span>
-
-                </div>
-
-
-
-                <!-- RAZORPAY ORDER ID -->
-
-                <div class="detail full">
-
-                    <label>
-                        Razorpay Order ID
-                    </label>
-
-                    <span id="modalRpOrder">
-                        -
-                    </span>
-
-                </div>
-
-
-
-                <!-- RAZORPAY PAYMENT ID -->
-
-                <div class="detail full">
-
-                    <label>
-                        Razorpay Payment ID
-                    </label>
-
-                    <span id="modalRpPayment">
-                        -
-                    </span>
-
-                </div>
-
+                <span id="modalRazorpayPayment">
+                    -
+                </span>
 
             </div>
 
@@ -1646,35 +1076,68 @@
 </div>
 
 
-
-<!-- =========================================================
+<!-- =====================================================
      JAVASCRIPT
-     ========================================================= -->
+     ===================================================== -->
 
 <script>
 
+    /* =========================================
+       MOBILE SIDEBAR
+       ========================================= */
 
-    /* =========================================================
+    const sidebar = document.getElementById("sidebar");
+
+    const menuButton = document.getElementById("menuButton");
+
+    const closeSidebar = document.getElementById("closeSidebar");
+
+
+    if (menuButton) {
+
+        menuButton.addEventListener("click", function () {
+
+            sidebar.classList.add("show");
+
+        });
+
+    }
+
+
+    if (closeSidebar) {
+
+        closeSidebar.addEventListener("click", function () {
+
+            sidebar.classList.remove("show");
+
+        });
+
+    }
+
+
+    /* =========================================
        SEARCH ORDERS
-       ========================================================= */
+       ========================================= */
 
-    document
-        .getElementById("searchInput")
-        .addEventListener("keyup", function () {
+    const orderSearch =
+        document.getElementById("orderSearch");
+
+
+    if (orderSearch) {
+
+        orderSearch.addEventListener("input", function () {
 
             const searchValue =
-                this.value.toLowerCase();
+                this.value.toLowerCase().trim();
 
             const rows =
-                document.querySelectorAll(
-                    "#ordersTable tbody tr"
-                );
+                document.querySelectorAll("#ordersTable tbody tr");
 
 
             rows.forEach(function (row) {
 
                 const text =
-                    row.innerText.toLowerCase();
+                    row.textContent.toLowerCase();
 
                 if (text.includes(searchValue)) {
 
@@ -1690,11 +1153,12 @@
 
         });
 
+    }
 
 
-    /* =========================================================
+    /* =========================================
        VIEW ORDER
-       ========================================================= */
+       ========================================= */
 
     function viewOrder(button) {
 
@@ -1702,47 +1166,80 @@
             document.getElementById("orderModal");
 
 
-        document.getElementById("modalId").innerText =
-            "#" + (button.dataset.id || "-");
+        const id =
+            button.getAttribute("data-id");
 
+        const name =
+            button.getAttribute("data-name");
 
-        document.getElementById("modalName").innerText =
-            button.dataset.name || "-";
-
-
-        document.getElementById("modalEmail").innerText =
-            button.dataset.email || "-";
-
+        const email =
+            button.getAttribute("data-email");
 
         const amount =
-            parseFloat(button.dataset.amount || "0");
+            button.getAttribute("data-amount");
 
-        document.getElementById("modalAmount").innerText =
-            "₹" + amount.toFixed(2);
+        const payment =
+            button.getAttribute("data-payment");
 
+        const paymentStatus =
+            button.getAttribute("data-payment-status");
 
-        document.getElementById("modalMethod").innerText =
-            button.dataset.method || "RAZORPAY";
+        const status =
+            button.getAttribute("data-status");
 
+        const date =
+            button.getAttribute("data-date");
 
-        document.getElementById("modalPayment").innerText =
-            button.dataset.payment || "PENDING";
+        const razorpayOrder =
+            button.getAttribute("data-razorpay-order");
 
-
-        document.getElementById("modalStatus").innerText =
-            button.dataset.status || "PENDING";
-
-
-        document.getElementById("modalDate").innerText =
-            button.dataset.date || "-";
-
-
-        document.getElementById("modalRpOrder").innerText =
-            button.dataset.rporder || "Not applicable";
+        const razorpayPayment =
+            button.getAttribute("data-razorpay-payment");
 
 
-        document.getElementById("modalRpPayment").innerText =
-            button.dataset.rppayment || "Not applicable";
+        document.getElementById("modalOrderTitle")
+            .textContent = "Order #" + id;
+
+
+        document.getElementById("modalOrderId")
+            .textContent = "#" + id;
+
+
+        document.getElementById("modalCustomerName")
+            .textContent = name || "-";
+
+
+        document.getElementById("modalCustomerEmail")
+            .textContent = email || "-";
+
+
+        document.getElementById("modalAmount")
+            .textContent =
+            "₹" + (amount ? parseFloat(amount).toFixed(2) : "0.00");
+
+
+        document.getElementById("modalPaymentMethod")
+            .textContent = payment || "-";
+
+
+        document.getElementById("modalPaymentStatus")
+            .textContent = paymentStatus || "-";
+
+
+        document.getElementById("modalOrderStatus")
+            .textContent = status || "-";
+
+
+        document.getElementById("modalOrderDate")
+            .textContent = date || "-";
+
+
+        document.getElementById("modalRazorpayOrder")
+            .textContent = razorpayOrder || "-";
+
+
+        document.getElementById("modalRazorpayPayment")
+            .textContent = razorpayPayment || "-";
 
 
         modal.style.display = "flex";
@@ -1750,12 +1247,11 @@
     }
 
 
-
-    /* =========================================================
+    /* =========================================
        CLOSE MODAL
-       ========================================================= */
+       ========================================= */
 
-    function closeModal() {
+    function closeOrderModal() {
 
         document.getElementById("orderModal")
             .style.display = "none";
@@ -1763,27 +1259,75 @@
     }
 
 
-
-    /* =========================================================
-       CLOSE MODAL WHEN CLICKING OUTSIDE
-       ========================================================= */
+    /* =========================================
+       CLICK OUTSIDE MODAL
+       ========================================= */
 
     window.addEventListener("click", function (event) {
 
         const modal =
             document.getElementById("orderModal");
 
+
         if (event.target === modal) {
 
-            closeModal();
+            closeOrderModal();
 
         }
 
     });
 
 
-</script>
+    /* =========================================
+       ESC KEY
+       ========================================= */
 
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            closeOrderModal();
+
+        }
+
+    });
+
+
+    /* =========================================
+       DELETE ORDER
+       ========================================= */
+
+    function deleteOrder(button) {
+
+        const id =
+            button.getAttribute("data-id");
+
+
+        if (!id) {
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to delete Order #" +
+                id +
+                "?"
+            );
+
+
+        if (confirmed) {
+
+            window.location.href =
+                "/admin/orders/delete/" + id;
+
+        }
+
+    }
+
+</script>
 
 </body>
 

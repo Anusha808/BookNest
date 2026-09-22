@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
 
@@ -53,6 +55,62 @@ public class AdminBooksController {
 
         return "admin/books";
     }
+
+
+    // ==========================================================
+    // EDIT BOOK PAGE
+    // ==========================================================
+
+    @GetMapping("/admin/books/edit/{id}")
+    public String editBook(
+            @PathVariable Long id,
+            Model model) {
+
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "Book not found with ID: " + id
+                        )
+                );
+
+        model.addAttribute("book", book);
+
+        return "admin/book-edit";
+    }
+
+
+    // ==========================================================
+    // UPDATE BOOK
+    // ==========================================================
+
+    @PostMapping("/admin/books/update/{id}")
+    public String updateBook(
+            @PathVariable Long id,
+            @ModelAttribute("book") Book book) {
+
+        Book existingBook = bookRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "Book not found with ID: " + id
+                        )
+                );
+
+        // Update book details
+        existingBook.setTitle(book.getTitle());
+        existingBook.setAuthor(book.getAuthor());
+        existingBook.setIsbn(book.getIsbn());
+        existingBook.setCategory(book.getCategory());
+        existingBook.setLanguage(book.getLanguage());
+        existingBook.setDescription(book.getDescription());
+        existingBook.setPrice(book.getPrice());
+        existingBook.setStock(book.getStock());
+        existingBook.setCoverImage(book.getCoverImage());
+
+        bookRepository.save(existingBook);
+
+        return "redirect:/admin/books";
+    }
+
 
     // ==========================================================
     // DELETE BOOK
