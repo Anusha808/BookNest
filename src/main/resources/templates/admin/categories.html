@@ -9,7 +9,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Categories | BookNest Admin</title>
+    <title>BookNest | Categories</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
@@ -21,7 +21,9 @@
 
 </head>
 
+
 <body>
+
 
 <div class="dashboard-container">
 
@@ -30,27 +32,41 @@
          SIDEBAR
          ===================================================== -->
 
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar"
+           id="sidebar">
 
-        <!-- Sidebar Top -->
+
+        <!-- SIDEBAR TOP -->
+
         <div class="sidebar-top">
+
 
             <div class="admin-logo">
 
                 <div class="logo-icon">
+
                     <i class="fa-solid fa-book-open"></i>
+
                 </div>
 
+
                 <div>
-                    <h2>BookNest</h2>
-                    <span>ADMIN PANEL</span>
+
+                    <h2>
+                        BookNest
+                    </h2>
+
+                    <span>
+                        Admin Portal
+                    </span>
+
                 </div>
 
             </div>
 
+
             <button class="close-sidebar"
-                    id="closeSidebar"
-                    type="button">
+                    id="closeSidebar">
 
                 <i class="fa-solid fa-xmark"></i>
 
@@ -59,163 +75,214 @@
         </div>
 
 
-        <!-- Sidebar Navigation -->
+
+        <!-- SIDEBAR NAVIGATION -->
+
         <nav class="sidebar-nav">
 
-            <div class="nav-title">
+
+            <p class="nav-title">
                 MAIN MENU
-            </div>
+            </p>
 
 
             <!-- Dashboard -->
-            <a th:href="@{/admin/dashboard}"
+
+            <a href="/admin/dashboard"
                class="nav-link">
 
                 <i class="fa-solid fa-chart-pie"></i>
 
-                <span>Dashboard</span>
+                <span>
+                    Dashboard
+                </span>
 
             </a>
 
 
+
             <!-- Books -->
-            <a th:href="@{/admin/books}"
+
+            <a href="/admin/books"
                class="nav-link">
 
                 <i class="fa-solid fa-book"></i>
 
-                <span>Books</span>
+                <span>
+                    Books
+                </span>
 
             </a>
 
 
-            <!-- Categories -->
-            <a th:href="@{/admin/categories}"
+
+            <!-- Categories ACTIVE -->
+
+            <a href="/admin/categories"
                class="nav-link active">
 
                 <i class="fa-solid fa-layer-group"></i>
 
-                <span>Categories</span>
+                <span>
+                    Categories
+                </span>
 
             </a>
 
 
+
             <!-- Users -->
-            <a th:href="@{/admin/users}"
+
+            <a href="/admin/users"
                class="nav-link">
 
                 <i class="fa-solid fa-users"></i>
 
-                <span>Users</span>
+                <span>
+                    Users
+                </span>
 
             </a>
 
 
+
             <!-- Orders -->
-            <a th:href="@{/admin/orders}"
+
+            <a href="/admin/orders"
                class="nav-link">
 
                 <i class="fa-solid fa-cart-shopping"></i>
 
-                <span>Orders</span>
+                <span>
+                    Orders
+                </span>
 
             </a>
 
 
-            <div class="nav-title second-title">
-                MANAGEMENT
-            </div>
-
 
             <!-- Payments -->
-            <a th:href="@{/admin/payments}"
+
+            <a href="/admin/payments"
                class="nav-link">
 
                 <i class="fa-solid fa-credit-card"></i>
 
-                <span>Payments</span>
+                <span>
+                    Payments
+                </span>
 
             </a>
 
 
+
             <!-- Inventory -->
-            <a th:href="@{/admin/inventory}"
+
+            <a href="/admin/inventory"
                class="nav-link">
 
                 <i class="fa-solid fa-boxes-stacked"></i>
 
-                <span>Inventory</span>
+                <span>
+                    Inventory
+                </span>
 
             </a>
 
 
+
             <!-- Notifications -->
-            <a th:href="@{/admin/notifications}"
+
+            <a href="/admin/notifications"
                class="nav-link">
 
                 <i class="fa-solid fa-bell"></i>
 
-                <span>Notifications</span>
+                <span>
+                    Notifications
+                </span>
 
             </a>
 
 
+
+            <!-- SYSTEM -->
+
+            <p class="nav-title second-title">
+                SYSTEM
+            </p>
+
+
+
             <!-- Settings -->
-            <a th:href="@{/admin/settings}"
+
+            <a href="/admin/settings"
                class="nav-link">
 
                 <i class="fa-solid fa-gear"></i>
 
-                <span>Settings</span>
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+
+            <!-- View Store -->
+
+            <a href="/"
+               class="nav-link">
+
+                <i class="fa-solid fa-store"></i>
+
+                <span>
+                    View Store
+                </span>
 
             </a>
 
         </nav>
 
 
-        <!-- =================================================
-             SIDEBAR BOTTOM
-             ================================================= -->
+
+        <!-- SIDEBAR BOTTOM -->
 
         <div class="sidebar-bottom">
 
 
-            <!-- Admin Profile -->
             <div class="admin-mini-profile">
+
 
                 <div class="profile-avatar">
                     A
                 </div>
 
+
                 <div class="profile-info">
 
-                    <strong>Admin</strong>
+                    <strong>
+                        Administrator
+                    </strong>
 
-                    <span>admin@booknest.com</span>
+                    <span>
+                        admin@booknest.com
+                    </span>
 
                 </div>
 
             </div>
 
 
-            <!-- View Store -->
-            <a th:href="@{/}"
-               class="nav-link">
 
-                <i class="fa-solid fa-store"></i>
-
-                <span>View Store</span>
-
-            </a>
-
-
-            <!-- Logout -->
-            <a th:href="@{/admin/login}"
+            <a href="/admin/login"
                class="logout-link">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
-                <span>Logout</span>
+                <span>
+                    Logout
+                </span>
 
             </a>
 
@@ -232,21 +299,19 @@
     <main class="main-content">
 
 
-        <!-- =================================================
+
+        <!-- =====================================================
              TOPBAR
-             ================================================= -->
+             ===================================================== -->
 
-        <header class="topbar">
+        <div class="topbar">
 
 
-            <!-- Left -->
             <div class="topbar-left">
 
 
-                <!-- Mobile Menu -->
                 <button class="menu-button"
-                        id="menuButton"
-                        type="button">
+                        id="menuButton">
 
                     <i class="fa-solid fa-bars"></i>
 
@@ -255,10 +320,12 @@
 
                 <div>
 
-                    <h1>BOOK MANAGEMENT</h1>
+                    <h1>
+                        Categories
+                    </h1>
 
                     <p>
-                        Manage and organize your book categories
+                        Manage and organize bookstore categories
                     </p>
 
                 </div>
@@ -266,14 +333,14 @@
             </div>
 
 
-            <!-- Right -->
+
             <div class="topbar-right">
 
 
                 <!-- Notification -->
+
                 <button class="notification-button"
-                        type="button"
-                        title="Notifications">
+                        onclick="window.location.href='/admin/notifications'">
 
                     <i class="fa-solid fa-bell"></i>
 
@@ -282,20 +349,29 @@
                 </button>
 
 
+
                 <!-- Admin Profile -->
+
                 <div class="top-profile">
+
 
                     <div class="top-avatar">
                         A
                     </div>
 
+
                     <div class="top-profile-info">
 
-                        <strong>Admin</strong>
+                        <strong>
+                            Administrator
+                        </strong>
 
-                        <span>Administrator</span>
+                        <span>
+                            Admin
+                        </span>
 
                     </div>
+
 
                     <i class="fa-solid fa-chevron-down"></i>
 
@@ -303,83 +379,98 @@
 
             </div>
 
-        </header>
+        </div>
 
 
 
-        <!-- =================================================
+        <!-- =====================================================
              CATEGORIES CONTENT
-             ================================================= -->
+             ===================================================== -->
 
         <section class="categories-content">
 
 
-            <!-- =================================================
-                 PAGE HEADER
-                 ================================================= -->
 
-            <div class="page-header">
+            <!-- =====================================================
+                 WELCOME / PAGE INTRO
+                 ===================================================== -->
+
+            <div class="welcome-section">
 
 
-                <div class="page-header-left">
+                <div>
 
-                    <span class="page-label">
-                        BOOK ORGANIZATION
+
+                    <span class="dashboard-label">
+                        CATEGORY MANAGEMENT
                     </span>
 
+
                     <h2>
-                        Categories
+                        Book Categories
                     </h2>
 
+
                     <p>
-                        Organize your books into categories
-                        for easy discovery.
+                        Create, edit and manage categories for your bookstore.
                     </p>
 
                 </div>
 
 
-                <!-- Add Category -->
-                <button class="add-category-btn"
-                        type="button"
-                        onclick="openAddCategory()">
 
-                    <i class="fa-solid fa-plus"></i>
+                <div class="date-box">
 
-                    Add Category
+                    <i class="fa-regular fa-calendar"></i>
 
-                </button>
+                    <span th:text="${#temporals.format(#temporals.createNow(), 'dd MMM yyyy')}">
+                        23 Sep 2026
+                    </span>
+
+                </div>
 
             </div>
 
 
 
-            <!-- =================================================
-                 CATEGORY STATISTICS
-                 ================================================= -->
+            <!-- =====================================================
+                 STATISTICS
+                 ===================================================== -->
 
-            <div class="category-stats">
+            <div class="stats-grid">
 
 
-                <!-- Total Categories -->
-                <div class="category-stat-card">
 
-                    <div class="category-stat-icon">
+                <!-- TOTAL CATEGORIES -->
+
+                <div class="stat-card">
+
+
+                    <div class="stat-icon categories-icon">
 
                         <i class="fa-solid fa-layer-group"></i>
 
                     </div>
 
-                    <div class="category-stat-details">
 
-                        <span>Total Categories</span>
+                    <div class="stat-details">
 
-                        <h3 th:text="${totalCategories}">
+                        <span>
+                            Total Categories
+                        </span>
+
+
+                        <h3 th:text="${#lists.size(categories)}">
                             0
                         </h3>
 
-                        <small>
+
+                        <small class="positive">
+
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+
                             Available categories
+
                         </small>
 
                     </div>
@@ -387,77 +478,113 @@
                 </div>
 
 
-                <!-- Total Books -->
-                <div class="category-stat-card">
 
-                    <div class="category-stat-icon books">
+                <!-- ACTIVE CATEGORIES -->
 
-                        <i class="fa-solid fa-book"></i>
-
-                    </div>
-
-                    <div class="category-stat-details">
-
-                        <span>Total Books</span>
-
-                        <h3 th:text="${totalBooks}">
-                            0
-                        </h3>
-
-                        <small>
-                            Books in store
-                        </small>
-
-                    </div>
-
-                </div>
+                <div class="stat-card">
 
 
-                <!-- Most Popular -->
-                <div class="category-stat-card">
-
-                    <div class="category-stat-icon popular">
-
-                        <i class="fa-solid fa-fire"></i>
-
-                    </div>
-
-                    <div class="category-stat-details">
-
-                        <span>Most Popular</span>
-
-                        <h3 id="mostPopular">
-                            -
-                        </h3>
-
-                        <small>
-                            By number of books
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Active Categories -->
-                <div class="category-stat-card">
-
-                    <div class="category-stat-icon active">
+                    <div class="stat-icon active-icon">
 
                         <i class="fa-solid fa-circle-check"></i>
 
                     </div>
 
-                    <div class="category-stat-details">
 
-                        <span>Active Categories</span>
+                    <div class="stat-details">
 
-                        <h3 th:text="${totalCategories}">
+                        <span>
+                            Active Categories
+                        </span>
+
+
+                        <h3 th:text="${#lists.size(categories)}">
                             0
                         </h3>
 
-                        <small>
+
+                        <small class="positive">
+
+                            <i class="fa-solid fa-check"></i>
+
                             Currently active
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CATEGORY MANAGEMENT -->
+
+                <div class="stat-card">
+
+
+                    <div class="stat-icon manage-icon">
+
+                        <i class="fa-solid fa-folder-open"></i>
+
+                    </div>
+
+
+                    <div class="stat-details">
+
+                        <span>
+                            Category Management
+                        </span>
+
+
+                        <h3>
+                            BookNest
+                        </h3>
+
+
+                        <small class="processing-text">
+
+                            <i class="fa-solid fa-gear"></i>
+
+                            Organized collection
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BOOK COLLECTION -->
+
+                <div class="stat-card">
+
+
+                    <div class="stat-icon books-icon">
+
+                        <i class="fa-solid fa-book"></i>
+
+                    </div>
+
+
+                    <div class="stat-details">
+
+                        <span>
+                            Book Collection
+                        </span>
+
+
+                        <h3>
+                            Books
+                        </h3>
+
+
+                        <small class="positive">
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                            Organized by category
+
                         </small>
 
                     </div>
@@ -468,154 +595,69 @@
 
 
 
-            <!-- =================================================
-                 SEARCH + SORT TOOLBAR
-                 ================================================= -->
+            <!-- =====================================================
+                 CATEGORY TABLE CARD
+                 ===================================================== -->
 
-            <div class="category-toolbar">
-
-
-                <!-- Search -->
-                <div class="category-search">
-
-                    <i class="fa-solid fa-magnifying-glass"></i>
-
-                    <input type="text"
-                           id="categorySearch"
-                           placeholder="Search categories..."
-                           autocomplete="off">
-
-                </div>
-
-
-                <!-- Sort -->
-                <div class="category-sort">
-
-                    <label for="sortCategory">
-                        Sort by:
-                    </label>
-
-                    <select id="sortCategory">
-
-                        <option value="name">
-                            Category Name
-                        </option>
-
-                        <option value="books">
-                            Number of Books
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
+            <div class="dashboard-card categories-card">
 
 
 
-            <!-- =================================================
-                 CATEGORY GRID
-                 ================================================= -->
+                <!-- CARD HEADER -->
 
-            <div class="category-grid"
-                 id="categoryGrid">
+                <div class="card-header">
 
 
-                <!-- =============================================
-                     CATEGORY CARD
-                     ============================================= -->
+                    <div>
 
-                <div class="category-card"
-                     th:each="category : ${categories}"
-                     th:data-name="${category.name}"
-                     data-books="0">
+                        <span class="dashboard-label">
+                            CATEGORY LIST
+                        </span>
 
 
-                    <!-- Card Top -->
-                    <div class="category-card-top">
-
-
-                        <!-- Category Icon -->
-                        <div class="category-icon technology">
-
-                            <i class="fa-solid fa-layer-group"></i>
-
-                        </div>
-
-
-                        <!-- Actions -->
-                        <div class="category-actions">
-
-
-                            <!-- Edit -->
-                            <button type="button"
-                                    class="edit-btn"
-                                    title="Edit Category"
-                                    th:onclick="'editCategory(' + ${category.id} + ')'">
-
-                                <i class="fa-solid fa-pen"></i>
-
-                            </button>
-
-
-                            <!-- Delete -->
-                            <button type="button"
-                                    class="delete-btn"
-                                    title="Delete Category"
-                                    th:onclick="'deleteCategory(' + ${category.id} + ', \'' + ${category.name} + '\')'">
-
-                                <i class="fa-solid fa-trash"></i>
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- Category Details -->
-                    <div class="category-details">
-
-                        <h3 th:text="${category.name}">
-                            Category Name
+                        <h3>
+                            All Categories
                         </h3>
 
-                        <p th:text="${category.description != null and !#strings.isEmpty(category.description)
-                                     ? category.description
-                                     : 'Books available in this category.'}">
 
-                            Books available in this category.
-
+                        <p>
+                            View and manage all bookstore categories.
                         </p>
 
                     </div>
 
 
 
-                    <!-- Category Footer -->
-                    <div class="category-footer">
+                    <!-- RIGHT SIDE -->
+
+                    <div class="header-actions">
 
 
-                        <div class="category-books">
+                        <!-- SEARCH -->
 
-                            <i class="fa-solid fa-book"></i>
+                        <div class="search-box">
 
-                            <span>
-                                0 Books
-                            </span>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input type="text"
+                                   id="categorySearch"
+                                   placeholder="Search categories...">
 
                         </div>
 
 
-                        <a class="view-category"
-                           th:href="@{'/categories/' + #strings.toLowerCase(category.name)}">
 
-                            View
+                        <!-- ADD CATEGORY -->
 
-                            <i class="fa-solid fa-arrow-right"></i>
+                        <button type="button"
+                                class="add-category-btn"
+                                id="openAddCategory">
 
-                        </a>
+                            <i class="fa-solid fa-plus"></i>
+
+                            Add Category
+
+                        </button>
 
                     </div>
 
@@ -623,46 +665,243 @@
 
 
 
-                <!-- =================================================
-                     EMPTY STATE
-                     ================================================= -->
+                <!-- =====================================================
+                     TABLE
+                     ===================================================== -->
 
-                <div class="empty-category"
-                     th:if="${#lists.isEmpty(categories)}">
+                <div class="table-container">
 
-                    <i class="fa-solid fa-layer-group"></i>
 
-                    <h3>
-                        No Categories Found
-                    </h3>
+                    <table id="categoriesTable">
 
-                    <p>
-                        Start organizing your books by creating
-                        your first category.
-                    </p>
+
+                        <thead>
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                Category
+                            </th>
+
+                            <th>
+                                Description
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                        </thead>
+
+
+
+                        <tbody>
+
+
+                        <!-- =================================================
+                             CATEGORY LOOP
+                             ================================================= -->
+
+                        <tr th:each="category, stat : ${categories}">
+
+
+                            <!-- NUMBER -->
+
+                            <td>
+
+                                <strong class="category-number"
+                                        th:text="${stat.count}">
+
+                                    1
+
+                                </strong>
+
+                            </td>
+
+
+
+                            <!-- CATEGORY -->
+
+                            <td>
+
+
+                                <div class="category-cell">
+
+
+                                    <div class="category-icon">
+
+                                        <i class="fa-solid fa-bookmark"></i>
+
+                                    </div>
+
+
+                                    <div class="category-info">
+
+                                        <strong th:text="${category.name}">
+
+                                            Technology
+
+                                        </strong>
+
+                                        <span>
+                                            Book Category
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+
+                            <!-- DESCRIPTION -->
+
+                            <td>
+
+                                <span class="description-text"
+                                      th:text="${category.description != null && !category.description.isEmpty()
+                                      ? category.description
+                                      : 'No description available'}">
+
+                                    No description available
+
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- STATUS -->
+
+                            <td>
+
+                                <span class="status-badge status-active">
+
+                                    <i class="fa-solid fa-circle"></i>
+
+                                    Active
+
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- ACTIONS -->
+
+                            <td>
+
+
+                                <div class="action-buttons">
+
+
+                                    <!-- EDIT -->
+
+                                    <button type="button"
+                                            class="action-btn edit-btn"
+                                            title="Edit Category"
+
+                                            th:attr="
+                                                data-id=${category.id},
+                                                data-name=${category.name},
+                                                data-description=${category.description}
+                                            "
+
+                                            onclick="editCategory(this)">
+
+                                        <i class="fa-solid fa-pen"></i>
+
+                                    </button>
+
+
+
+                                    <!-- DELETE -->
+
+                                    <button type="button"
+                                            class="action-btn delete-btn"
+                                            title="Delete Category"
+
+                                            th:attr="
+                                                data-id=${category.id},
+                                                data-name=${category.name}
+                                            "
+
+                                            onclick="deleteCategory(this)">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- =================================================
+                             EMPTY STATE
+                             ================================================= -->
+
+                        <tr th:if="${#lists.isEmpty(categories)}">
+
+
+                            <td colspan="5">
+
+
+                                <div class="empty-state">
+
+
+                                    <div class="empty-icon">
+
+                                        <i class="fa-solid fa-layer-group"></i>
+
+                                    </div>
+
+
+                                    <h3>
+                                        No Categories Found
+                                    </h3>
+
+
+                                    <p>
+                                        You have not added any categories yet.
+                                    </p>
+
+
+                                    <button type="button"
+                                            class="add-category-btn"
+                                            onclick="openAddModal()">
+
+                                        <i class="fa-solid fa-plus"></i>
+
+                                        Add First Category
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
 
                 </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 NO SEARCH RESULTS
-                 ================================================= -->
-
-            <div class="no-results"
-                 id="noResults">
-
-                <i class="fa-solid fa-magnifying-glass"></i>
-
-                <h3>
-                    No Categories Found
-                </h3>
-
-                <p>
-                    Try searching with a different category name.
-                </p>
 
             </div>
 
@@ -674,35 +913,38 @@
 
 
 
-<!-- =========================================================
-     ADD CATEGORY MODAL
-     ========================================================= -->
+<!-- =====================================================
+     ADD / EDIT CATEGORY MODAL
+     ===================================================== -->
 
-<div class="category-modal"
+<div class="modal"
      id="categoryModal">
 
 
-    <div class="modal-box">
+    <div class="modal-content">
 
 
-        <!-- Modal Header -->
+        <!-- MODAL HEADER -->
+
         <div class="modal-header">
+
 
             <div>
 
-                <h3>
-                    Add New Category
-                </h3>
+                <span class="dashboard-label">
+                    CATEGORY MANAGEMENT
+                </span>
 
-                <p>
-                    Create a category for your books.
-                </p>
+
+                <h2 id="modalTitle">
+                    Add New Category
+                </h2>
 
             </div>
 
 
-            <button class="modal-close"
-                    type="button"
+            <button type="button"
+                    class="close-btn"
                     onclick="closeCategoryModal()">
 
                 <i class="fa-solid fa-xmark"></i>
@@ -713,41 +955,48 @@
 
 
 
-        <!-- Modal Form -->
-        <form th:action="@{/admin/categories/add}"
-              method="post">
+        <!-- FORM -->
+
+        <form id="categoryForm"
+              method="post"
+              action="/admin/categories/add">
 
 
-            <!-- Modal Body -->
-            <div class="modal-body">
+            <!-- CATEGORY ID -->
+
+            <input type="hidden"
+                   id="categoryId"
+                   name="id">
 
 
-                <!-- Category Name -->
-                <div class="form-group">
 
-                    <label for="categoryName">
-                        Category Name
-                    </label>
+            <!-- CATEGORY NAME -->
+
+            <div class="form-group">
+
+
+                <label for="categoryName">
+
+                    Category Name
+
+                    <span>
+                        *
+                    </span>
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
 
                     <input type="text"
                            id="categoryName"
                            name="name"
                            placeholder="Enter category name"
+                           maxlength="100"
                            required>
-
-                </div>
-
-
-                <!-- Description -->
-                <div class="form-group">
-
-                    <label for="categoryDescription">
-                        Description
-                    </label>
-
-                    <textarea id="categoryDescription"
-                              name="description"
-                              placeholder="Enter category description"></textarea>
 
                 </div>
 
@@ -755,8 +1004,32 @@
 
 
 
-            <!-- Modal Footer -->
-            <div class="modal-footer">
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+
+                <label for="categoryDescription">
+
+                    Description
+
+                </label>
+
+
+                <textarea id="categoryDescription"
+                          name="description"
+                          rows="5"
+                          maxlength="500"
+                          placeholder="Enter category description"></textarea>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="modal-actions">
+
 
                 <button type="button"
                         class="cancel-btn"
@@ -786,210 +1059,255 @@
 
 
 
-<!-- =========================================================
+<!-- =====================================================
+     DELETE MODAL
+     ===================================================== -->
+
+<div class="modal"
+     id="deleteModal">
+
+
+    <div class="delete-modal-content">
+
+
+        <div class="delete-icon">
+
+            <i class="fa-solid fa-trash"></i>
+
+        </div>
+
+
+        <h2>
+            Delete Category?
+        </h2>
+
+
+        <p>
+
+            Are you sure you want to delete
+
+            <strong id="deleteCategoryName">
+                this category
+            </strong>
+
+            ?
+
+        </p>
+
+
+
+        <div class="modal-actions">
+
+
+            <button type="button"
+                    class="cancel-btn"
+                    onclick="closeDeleteModal()">
+
+                Cancel
+
+            </button>
+
+
+            <button type="button"
+                    class="confirm-delete-btn"
+                    id="confirmDelete">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Delete
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
      JAVASCRIPT
-     ========================================================= -->
+     ===================================================== -->
 
 <script>
 
-    /* =====================================================
-       CATEGORY MODAL
-       ===================================================== */
-
-    function openAddCategory() {
-
-        const modal = document.getElementById("categoryModal");
-
-        if (modal) {
-
-            modal.classList.add("show");
-
-            setTimeout(function () {
-
-                const input =
-                    document.getElementById("categoryName");
-
-                if (input) {
-                    input.focus();
-                }
-
-            }, 100);
-
-        }
-
-    }
-
-
-    function closeCategoryModal() {
-
-        const modal =
-            document.getElementById("categoryModal");
-
-        if (modal) {
-
-            modal.classList.remove("show");
-
-        }
-
-    }
-
-
 
     /* =====================================================
-       CLOSE MODAL WHEN CLICKING OUTSIDE
+       MOBILE SIDEBAR
        ===================================================== */
 
-    window.addEventListener("click", function (event) {
-
-        const modal =
-            document.getElementById("categoryModal");
-
-        if (event.target === modal) {
-
-            closeCategoryModal();
-
-        }
-
-    });
+    const sidebar =
+        document.getElementById("sidebar");
 
 
-
-    /* =====================================================
-       ESC KEY CLOSE MODAL
-       ===================================================== */
-
-    document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Escape") {
-
-            closeCategoryModal();
-
-        }
-
-    });
+    const menuButton =
+        document.getElementById("menuButton");
 
 
-
-    /* =====================================================
-       CATEGORY SEARCH
-       ===================================================== */
-
-    const searchInput =
-        document.getElementById("categorySearch");
-
-    const categoryGrid =
-        document.getElementById("categoryGrid");
-
-    const noResults =
-        document.getElementById("noResults");
+    const closeSidebar =
+        document.getElementById("closeSidebar");
 
 
-    if (searchInput) {
+    if (menuButton) {
 
-        searchInput.addEventListener("input", function () {
+        menuButton.addEventListener(
+            "click",
+            function () {
 
-            const searchValue =
-                this.value.trim().toLowerCase();
-
-            const cards =
-                document.querySelectorAll(".category-card");
-
-            let visibleCount = 0;
-
-
-            cards.forEach(function (card) {
-
-                const categoryName =
-                    (card.dataset.name || "").toLowerCase();
-
-                if (categoryName.includes(searchValue)) {
-
-                    card.style.display = "flex";
-
-                    visibleCount++;
-
-                } else {
-
-                    card.style.display = "none";
-
-                }
-
-            });
-
-
-            if (noResults) {
-
-                if (visibleCount === 0 && searchValue !== "") {
-
-                    noResults.style.display = "block";
-
-                } else {
-
-                    noResults.style.display = "none";
-
-                }
+                sidebar.classList.add("show");
 
             }
+        );
 
-        });
+    }
+
+
+    if (closeSidebar) {
+
+        closeSidebar.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.remove("show");
+
+            }
+        );
 
     }
 
 
 
     /* =====================================================
-       SORT CATEGORIES
+       SEARCH CATEGORIES
        ===================================================== */
 
-    const sortCategory =
-        document.getElementById("sortCategory");
+    const categorySearch =
+        document.getElementById("categorySearch");
 
 
-    if (sortCategory && categoryGrid) {
+    if (categorySearch) {
 
-        sortCategory.addEventListener("change", function () {
+        categorySearch.addEventListener(
+            "input",
+            function () {
 
-            const sortValue = this.value;
 
-            const cards =
-                Array.from(
-                    categoryGrid.querySelectorAll(".category-card")
+                const searchValue =
+                    this.value
+                        .toLowerCase()
+                        .trim();
+
+
+                const rows =
+                    document.querySelectorAll(
+                        "#categoriesTable tbody tr"
+                    );
+
+
+                rows.forEach(
+                    function (row) {
+
+
+                        const text =
+                            row.textContent
+                                .toLowerCase();
+
+
+                        if (
+                            text.includes(searchValue)
+                        ) {
+
+                            row.style.display =
+                                "";
+
+                        } else {
+
+                            row.style.display =
+                                "none";
+
+                        }
+
+                    }
                 );
 
+            }
+        );
 
-            cards.sort(function (a, b) {
-
-                if (sortValue === "books") {
-
-                    const booksA =
-                        parseInt(a.dataset.books || "0");
-
-                    const booksB =
-                        parseInt(b.dataset.books || "0");
-
-                    return booksB - booksA;
-
-                }
+    }
 
 
-                const nameA =
-                    (a.dataset.name || "").toLowerCase();
 
-                const nameB =
-                    (b.dataset.name || "").toLowerCase();
+    /* =====================================================
+       OPEN ADD CATEGORY MODAL
+       ===================================================== */
 
-                return nameA.localeCompare(nameB);
+    const openAddCategory =
+        document.getElementById(
+            "openAddCategory"
+        );
 
-            });
+
+    if (openAddCategory) {
+
+        openAddCategory.addEventListener(
+            "click",
+            function () {
+
+                openAddModal();
+
+            }
+        );
+
+    }
 
 
-            cards.forEach(function (card) {
 
-                categoryGrid.appendChild(card);
+    function openAddModal() {
 
-            });
 
-        });
+        const modal =
+            document.getElementById(
+                "categoryModal"
+            );
+
+
+        const form =
+            document.getElementById(
+                "categoryForm"
+            );
+
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Add New Category";
+
+
+        document.getElementById(
+            "categoryId"
+        ).value =
+            "";
+
+
+        document.getElementById(
+            "categoryName"
+        ).value =
+            "";
+
+
+        document.getElementById(
+            "categoryDescription"
+        ).value =
+            "";
+
+
+        form.action =
+            "/admin/categories/add";
+
+
+        modal.style.display =
+            "flex";
 
     }
 
@@ -999,15 +1317,85 @@
        EDIT CATEGORY
        ===================================================== */
 
-    function editCategory(id) {
+    function editCategory(button) {
 
-        /*
-         * Replace this URL with your edit-category
-         * controller if you create one.
-         */
 
-        window.location.href =
-            "/admin/categories/edit/" + id;
+        const id =
+            button.getAttribute(
+                "data-id"
+            );
+
+
+        const name =
+            button.getAttribute(
+                "data-name"
+            );
+
+
+        const description =
+            button.getAttribute(
+                "data-description"
+            );
+
+
+        const modal =
+            document.getElementById(
+                "categoryModal"
+            );
+
+
+        const form =
+            document.getElementById(
+                "categoryForm"
+            );
+
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Edit Category";
+
+
+        document.getElementById(
+            "categoryId"
+        ).value =
+            id || "";
+
+
+        document.getElementById(
+            "categoryName"
+        ).value =
+            name || "";
+
+
+        document.getElementById(
+            "categoryDescription"
+        ).value =
+            description || "";
+
+
+        form.action =
+            "/admin/categories/edit";
+
+
+        modal.style.display =
+            "flex";
+
+    }
+
+
+
+    /* =====================================================
+       CLOSE CATEGORY MODAL
+       ===================================================== */
+
+    function closeCategoryModal() {
+
+
+        document.getElementById(
+            "categoryModal"
+        ).style.display =
+            "none";
 
     }
 
@@ -1017,197 +1405,165 @@
        DELETE CATEGORY
        ===================================================== */
 
-    function deleteCategory(id, name) {
+    let selectedCategoryId =
+        null;
 
-        const confirmed =
-            confirm(
-                "Are you sure you want to delete the category \"" +
-                name +
-                "\"?"
+
+    function deleteCategory(button) {
+
+
+        selectedCategoryId =
+            button.getAttribute(
+                "data-id"
             );
 
 
-        if (confirmed) {
-
-            window.location.href =
-                "/admin/categories/delete/" + id;
-
-        }
-
-    }
+        const name =
+            button.getAttribute(
+                "data-name"
+            );
 
 
-
-    /* =====================================================
-       MOBILE SIDEBAR
-       ===================================================== */
-
-    const menuButton =
-        document.getElementById("menuButton");
-
-    const closeSidebar =
-        document.getElementById("closeSidebar");
-
-    const sidebar =
-        document.getElementById("sidebar");
+        document.getElementById(
+            "deleteCategoryName"
+        ).textContent =
+            name || "this category";
 
 
-    if (menuButton && sidebar) {
-
-        menuButton.addEventListener("click", function () {
-
-            sidebar.classList.add("show");
-
-        });
-
-    }
-
-
-    if (closeSidebar && sidebar) {
-
-        closeSidebar.addEventListener("click", function () {
-
-            sidebar.classList.remove("show");
-
-        });
+        document.getElementById(
+            "deleteModal"
+        ).style.display =
+            "flex";
 
     }
 
 
 
     /* =====================================================
-       CLOSE MOBILE SIDEBAR WHEN LINK IS CLICKED
+       CLOSE DELETE MODAL
        ===================================================== */
 
-    const sidebarLinks =
-        document.querySelectorAll(".sidebar .nav-link");
+    function closeDeleteModal() {
 
 
-    sidebarLinks.forEach(function (link) {
+        document.getElementById(
+            "deleteModal"
+        ).style.display =
+            "none";
 
-        link.addEventListener("click", function () {
 
-            if (window.innerWidth <= 900) {
+        selectedCategoryId =
+            null;
 
-                sidebar.classList.remove("show");
+    }
+
+
+
+    /* =====================================================
+       CONFIRM DELETE
+       ===================================================== */
+
+    const confirmDelete =
+        document.getElementById(
+            "confirmDelete"
+        );
+
+
+    if (confirmDelete) {
+
+        confirmDelete.addEventListener(
+            "click",
+            function () {
+
+
+                if (!selectedCategoryId) {
+
+                    return;
+
+                }
+
+
+                window.location.href =
+                    "/admin/categories/delete/"
+                    +
+                    selectedCategoryId;
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       CLOSE MODAL WHEN CLICKING OUTSIDE
+       ===================================================== */
+
+    window.addEventListener(
+        "click",
+        function (event) {
+
+
+            const categoryModal =
+                document.getElementById(
+                    "categoryModal"
+                );
+
+
+            const deleteModal =
+                document.getElementById(
+                    "deleteModal"
+                );
+
+
+            if (
+                event.target ===
+                categoryModal
+            ) {
+
+                closeCategoryModal();
 
             }
 
-        });
 
-    });
+            if (
+                event.target ===
+                deleteModal
+            ) {
 
-
-
-    /* =====================================================
-       CLOSE SIDEBAR WHEN CLICKING OUTSIDE
-       ===================================================== */
-
-    document.addEventListener("click", function (event) {
-
-        if (window.innerWidth > 900) {
-            return;
-        }
-
-
-        if (!sidebar || !menuButton) {
-            return;
-        }
-
-
-        const clickedInsideSidebar =
-            sidebar.contains(event.target);
-
-        const clickedMenuButton =
-            menuButton.contains(event.target);
-
-
-        if (!clickedInsideSidebar &&
-            !clickedMenuButton) {
-
-            sidebar.classList.remove("show");
-
-        }
-
-    });
-
-
-
-    /* =====================================================
-       UPDATE MOST POPULAR CATEGORY
-       ===================================================== */
-
-    function updateMostPopular() {
-
-        const cards =
-            document.querySelectorAll(".category-card");
-
-        const mostPopular =
-            document.getElementById("mostPopular");
-
-
-        if (!mostPopular || cards.length === 0) {
-            return;
-        }
-
-
-        let popularName = "-";
-        let highestBooks = -1;
-
-
-        cards.forEach(function (card) {
-
-            const books =
-                parseInt(card.dataset.books || "0");
-
-            const name =
-                card.dataset.name || "";
-
-
-            if (books > highestBooks) {
-
-                highestBooks = books;
-
-                popularName = name;
+                closeDeleteModal();
 
             }
 
-        });
-
-
-        if (highestBooks > 0) {
-
-            mostPopular.textContent =
-                popularName;
-
-        } else {
-
-            mostPopular.textContent =
-                "-";
-
         }
-
-    }
-
-
-    updateMostPopular();
+    );
 
 
 
     /* =====================================================
-       WINDOW RESIZE
+       ESCAPE KEY
        ===================================================== */
 
-    window.addEventListener("resize", function () {
+    document.addEventListener(
+        "keydown",
+        function (event) {
 
-        if (window.innerWidth > 900 &&
-            sidebar) {
 
-            sidebar.classList.remove("show");
+            if (
+                event.key ===
+                "Escape"
+            ) {
+
+
+                closeCategoryModal();
+
+
+                closeDeleteModal();
+
+            }
 
         }
-
-    });
+    );
 
 </script>
 

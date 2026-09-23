@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders | BookNest</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Orders CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/orders.css}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <a href="/home"
+       class="logo">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <span>
+            BookNest
+        </span>
+
+    </a>
+
+
+    <div class="nav-actions">
+
+        <a href="/home"
+           class="nav-button back-button">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            <span>
+                Back to Store
+            </span>
+
+        </a>
+
+
+        <a href="/cart"
+           class="nav-button cart-button">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span>
+                Cart
+            </span>
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="orders-container">
+
+
+    <!-- PAGE HEADING -->
+
+    <div class="page-heading">
+
+        <h1>
+            My Orders
+        </h1>
+
+        <p>
+            View your BookNest order history and order details.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         EMPTY ORDERS
+    ================================================== -->
+
+    <div th:if="${orders == null || #lists.isEmpty(orders)}"
+         class="empty-state">
+
+        <div class="empty-icon">
+
+            <i class="fa-solid fa-box-open"></i>
+
+        </div>
+
+
+        <h2>
+            No Orders Yet
+        </h2>
+
+
+        <p>
+            You haven't placed any orders yet.
+            Start shopping and your orders will appear here.
+        </p>
+
+
+        <a href="/home"
+           class="shop-button">
+
+            <i class="fa-solid fa-book"></i>
+
+            Browse Books
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         ORDERS LIST
+    ================================================== -->
+
+    <div th:if="${orders != null && !#lists.isEmpty(orders)}">
+
+
+        <div class="order-card"
+             th:each="order : ${orders}">
+
+
+            <!-- =================================================
+                 ORDER HEADER
+            ================================================= -->
+
+            <div class="order-header">
+
+
+                <div>
+
+                    <div class="order-id">
+
+                        Order #
+
+                        <span th:text="${order.id}">
+                            1
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-date">
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        <span th:text="${order.orderDate}">
+                            Order Date
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="status-badge">
+
+                    <i class="fa-solid fa-circle"></i>
+
+                    <span th:text="${order.status}">
+                        PROCESSING
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ORDER BODY
+            ================================================== -->
+
+            <div class="order-body">
+
+
+                <div class="order-grid">
+
+
+                    <!-- CUSTOMER -->
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            Customer
+                        </span>
+
+                        <span class="info-value"
+                              th:text="${order.customerName}">
+                            Customer Name
+                        </span>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            Email
+                        </span>
+
+                        <span class="info-value"
+                              th:text="${order.customerEmail}">
+                            customer@email.com
+                        </span>
+
+                    </div>
+
+
+                    <!-- PAYMENT METHOD -->
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            Payment Method
+                        </span>
+
+                        <span class="info-value"
+                              th:text="${order.paymentMethod}">
+                            RAZORPAY
+                        </span>
+
+                    </div>
+
+
+                    <!-- PAYMENT STATUS -->
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            Payment Status
+                        </span>
+
+                        <span class="info-value"
+                              th:text="${order.paymentStatus}">
+                            PAID
+                        </span>
+
+                    </div>
+
+
+                    <!-- RAZORPAY ORDER ID -->
+
+                    <div class="info-box"
+                         th:if="${order.razorpayOrderId != null}">
+
+                        <span class="info-label">
+                            Razorpay Order ID
+                        </span>
+
+                        <span class="info-value"
+                              th:text="${order.razorpayOrderId}">
+                            -
+                        </span>
+
+                    </div>
+
+
+                    <!-- RAZORPAY PAYMENT ID -->
+
+                    <div class="info-box"
+                         th:if="${order.razorpayPaymentId != null}">
+
+                        <span class="info-label">
+                            Payment ID
+                        </span>
+
+                        <span class="info-value"
+                              th:text="${order.razorpayPaymentId}">
+                            -
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     TOTAL
+                ================================================== -->
+
+                <div class="order-footer">
+
+                    <span class="total-label">
+                        Total Amount
+                    </span>
+
+
+                    <span class="total-amount">
+
+                        ₹
+
+                        <span th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)}">
+                            0.00
+                        </span>
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026
+
+        <strong>
+            BookNest
+        </strong>
+
+        — Online Bookstore
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

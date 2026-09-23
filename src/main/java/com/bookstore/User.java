@@ -10,20 +10,29 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
     private String role = "USER";
+
+    private String location;
+
+
+    // =========================================================
+    // CONSTRUCTOR
+    // =========================================================
 
     public User() {
     }
+
+
+    // =========================================================
+    // ID
+    // =========================================================
 
     public Long getId() {
         return id;
@@ -33,6 +42,11 @@ public class User {
         this.id = id;
     }
 
+
+    // =========================================================
+    // NAME
+    // =========================================================
+
     public String getName() {
         return name;
     }
@@ -40,6 +54,11 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
+
+    // =========================================================
+    // EMAIL
+    // =========================================================
 
     public String getEmail() {
         return email;
@@ -49,6 +68,11 @@ public class User {
         this.email = email;
     }
 
+
+    // =========================================================
+    // PASSWORD
+    // =========================================================
+
     public String getPassword() {
         return password;
     }
@@ -57,11 +81,29 @@ public class User {
         this.password = password;
     }
 
+
+    // =========================================================
+    // ROLE
+    // =========================================================
+
     public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+
+    // =========================================================
+    // LOCATION
+    // =========================================================
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

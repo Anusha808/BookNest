@@ -1,51 +1,56 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 body {
-    font-family: "Inter", Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: #f5f7fb;
     color: #1f2937;
+    min-height: 100vh;
 }
 
 
-/* ================= NAVBAR ================= */
+a {
+    text-decoration: none;
+}
+
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
 
 .navbar {
-    width: 100%;
-    height: 70px;
+    height: 72px;
     background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 0 7%;
-
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 
 .logo {
-    text-decoration: none;
-    color: #4f46e5;
-
     display: flex;
     align-items: center;
     gap: 10px;
-
     font-size: 23px;
     font-weight: 700;
+    color: #2563eb;
 }
 
 
 .logo i {
-    font-size: 27px;
+    font-size: 25px;
 }
 
 
@@ -57,116 +62,155 @@ body {
 
 
 .nav-link {
-    text-decoration: none;
-    color: #4b5563;
-
-    padding: 10px 16px;
-
-    border-radius: 8px;
-
     display: flex;
     align-items: center;
     gap: 8px;
-
+    padding: 10px 16px;
+    color: #64748b;
+    border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
-
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 
-.nav-link:hover,
+.nav-link:hover {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+
 .nav-link.active {
-    color: #4f46e5;
-    background: #eef2ff;
+    background: #2563eb;
+    color: white;
 }
 
 
-/* ================= MAIN ================= */
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 .profile-container {
     width: 90%;
-    max-width: 1100px;
-
-    margin: 40px auto 70px;
+    max-width: 1150px;
+    margin: 45px auto 70px;
 }
 
 
-/* ================= HEADING ================= */
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
 
 .page-heading {
-    margin-bottom: 28px;
+    margin-bottom: 25px;
 }
 
 
 .page-heading h1 {
     font-size: 30px;
     color: #111827;
-
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    margin-bottom: 7px;
 }
 
 
 .page-heading h1 i {
-    color: #4f46e5;
+    color: #2563eb;
+    margin-right: 8px;
 }
 
 
 .page-heading p {
-    margin-top: 8px;
-    color: #6b7280;
+    color: #64748b;
     font-size: 15px;
 }
 
 
-/* ================= PROFILE CARD ================= */
 
-.profile-card,
-.orders-card,
-.account-actions {
-    background: #ffffff;
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
 
-    border-radius: 16px;
-
-    border: 1px solid #e5e7eb;
-
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-
-    margin-bottom: 25px;
+.success-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #047857;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 
-.profile-top {
-    padding: 30px;
+.success-message i {
+    font-size: 18px;
+}
 
+
+
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
+
+.error-message {
     display: flex;
     align-items: center;
+    gap: 10px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
 
+
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.profile-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+
+
+/* =========================================================
+   PROFILE TOP
+========================================================= */
+
+.profile-top {
+    display: flex;
+    align-items: center;
     gap: 22px;
-
+    padding-bottom: 28px;
     border-bottom: 1px solid #e5e7eb;
 }
 
 
 .profile-avatar {
-    width: 90px;
-    height: 90px;
-
+    width: 82px;
+    height: 82px;
+    min-width: 82px;
     border-radius: 50%;
-
-    background: #eef2ff;
-
-    color: #4f46e5;
-
+    background: #dbeafe;
+    color: #2563eb;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    font-size: 38px;
-
-    flex-shrink: 0;
+    font-size: 32px;
 }
 
 
@@ -177,362 +221,492 @@ body {
 
 .profile-main-info h2 {
     font-size: 24px;
+    margin-bottom: 6px;
     color: #111827;
 }
 
 
 .profile-main-info p {
-    margin-top: 6px;
-    color: #6b7280;
+    color: #64748b;
+    margin-bottom: 10px;
 }
 
 
 .user-role {
     display: inline-flex;
-
     align-items: center;
     gap: 6px;
-
-    margin-top: 10px;
-
-    padding: 5px 10px;
-
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 6px 11px;
     border-radius: 20px;
-
-    background: #eef2ff;
-
-    color: #4f46e5;
-
     font-size: 12px;
-
     font-weight: 700;
 }
 
 
+
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
+
 .profile-action button {
     border: none;
-
-    background: #4f46e5;
+    background: #2563eb;
     color: white;
-
-    padding: 11px 17px;
-
+    padding: 11px 18px;
     border-radius: 8px;
-
     cursor: pointer;
-
     font-weight: 600;
-
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 
 .profile-action button:hover {
-    background: #4338ca;
+    background: #1d4ed8;
+    transform: translateY(-1px);
 }
 
 
-/* ================= SECTION TITLE ================= */
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
 
 .section-title {
-    padding: 25px 30px 10px;
+    padding: 28px 0 20px;
 }
 
 
 .section-title h3 {
     font-size: 18px;
-
-    display: flex;
-    align-items: center;
-    gap: 9px;
+    color: #1f2937;
 }
 
 
 .section-title i {
-    color: #4f46e5;
+    color: #2563eb;
+    margin-right: 8px;
 }
 
 
-/* ================= DETAILS ================= */
+
+/* =========================================================
+   DETAILS GRID
+========================================================= */
 
 .details-grid {
-    padding: 15px 30px 30px;
-
     display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
 }
 
 
 .detail-box {
-    padding: 18px;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 12px;
-
     display: flex;
     align-items: center;
-
     gap: 15px;
-
+    padding: 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
     background: #fafafa;
 }
 
 
 .detail-icon {
-    width: 42px;
-    height: 42px;
-
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
     border-radius: 10px;
-
-    background: #eef2ff;
-
-    color: #4f46e5;
-
+    background: #eff6ff;
+    color: #2563eb;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 
-.detail-box small {
+.detail-content small {
     display: block;
-
-    color: #6b7280;
-
+    color: #94a3b8;
     font-size: 12px;
-
     margin-bottom: 5px;
 }
 
 
-.detail-box p {
-    color: #111827;
-
+.detail-content p {
+    color: #1f2937;
     font-weight: 600;
+    word-break: break-word;
+}
 
+
+
+/* =========================================================
+   EDIT PROFILE
+========================================================= */
+
+.profile-edit {
+    animation: editOpen 0.25s ease;
+}
+
+
+@keyframes editOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.edit-heading {
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 25px;
+}
+
+
+.edit-heading h2 {
+    font-size: 23px;
+    color: #111827;
+    margin-bottom: 7px;
+}
+
+
+.edit-heading h2 i {
+    color: #2563eb;
+    margin-right: 8px;
+}
+
+
+.edit-heading p {
+    color: #64748b;
     font-size: 14px;
 }
 
 
-/* ================= ORDERS ================= */
+
+/* =========================================================
+   EDIT FORM
+========================================================= */
+
+.edit-form {
+    max-width: 700px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+
+.form-group label i {
+    color: #2563eb;
+    margin-right: 6px;
+}
+
+
+.form-group input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    color: #1f2937;
+    background: white;
+    transition: 0.2s ease;
+}
+
+
+.form-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+.form-group input[readonly] {
+    background: #f3f4f6;
+    color: #64748b;
+    cursor: not-allowed;
+}
+
+
+
+/* =========================================================
+   EDIT BUTTONS
+========================================================= */
+
+.edit-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+
+.save-button,
+.cancel-button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+
+.save-button {
+    background: #2563eb;
+    color: white;
+}
+
+
+.save-button:hover {
+    background: #1d4ed8;
+}
+
+
+.cancel-button {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+
+.cancel-button:hover {
+    background: #d1d5db;
+}
+
+
+
+/* =========================================================
+   ORDERS CARD
+========================================================= */
 
 .orders-card {
-    padding: 28px;
+    margin-top: 25px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 
 .orders-heading {
     display: flex;
-
-    align-items: center;
-
     justify-content: space-between;
-
+    align-items: center;
     margin-bottom: 25px;
 }
 
 
 .orders-heading h2 {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 21px;
+    font-size: 20px;
+    margin-bottom: 6px;
 }
 
 
 .orders-heading h2 i {
-    color: #4f46e5;
+    color: #2563eb;
+    margin-right: 8px;
 }
 
 
 .orders-heading p {
-    color: #6b7280;
-
+    color: #64748b;
     font-size: 14px;
-
-    margin-top: 5px;
 }
 
 
 .view-orders {
-    text-decoration: none;
-
-    color: #4f46e5;
-
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2563eb;
+    font-weight: 700;
     font-size: 14px;
-
-    font-weight: 600;
 }
 
 
+
+/* =========================================================
+   EMPTY ORDERS
+========================================================= */
+
 .orders-empty {
-    border: 1px dashed #d1d5db;
-
-    border-radius: 12px;
-
-    padding: 45px 20px;
-
     text-align: center;
+    padding: 35px 20px;
+    border: 1px dashed #d1d5db;
+    border-radius: 12px;
+    background: #fafafa;
 }
 
 
 .empty-icon {
-    font-size: 45px;
-
-    color: #c7d2fe;
-
-    margin-bottom: 15px;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
 }
 
 
 .orders-empty h3 {
-    font-size: 18px;
-
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 }
 
 
 .orders-empty p {
-    color: #6b7280;
-
-    margin-bottom: 20px;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 18px;
 }
 
 
 .shop-button {
     display: inline-flex;
-
     align-items: center;
-
     gap: 8px;
-
-    text-decoration: none;
-
-    background: #4f46e5;
-
+    background: #2563eb;
     color: white;
-
     padding: 11px 18px;
-
     border-radius: 8px;
-
     font-weight: 600;
+    font-size: 14px;
 }
 
 
-/* ================= ACCOUNT ACTIONS ================= */
+.shop-button:hover {
+    background: #1d4ed8;
+}
+
+
+
+/* =========================================================
+   ACCOUNT ACTIONS
+========================================================= */
 
 .account-actions {
-    padding: 28px;
+    margin-top: 25px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 
 .account-actions h2 {
     font-size: 20px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
     margin-bottom: 20px;
 }
 
 
 .account-actions h2 i {
-    color: #4f46e5;
+    color: #2563eb;
+    margin-right: 8px;
 }
 
 
 .action-buttons {
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 12px;
 }
 
 
-.action-buttons a,
-.action-buttons button {
-    border: 1px solid #e5e7eb;
-
-    background: white;
-
-    color: #374151;
-
-    text-decoration: none;
-
-    padding: 11px 16px;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
+.action-buttons button,
+.action-buttons a {
     display: inline-flex;
-
     align-items: center;
-
+    justify-content: center;
     gap: 8px;
+    border: none;
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 11px 17px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 
-.action-buttons a:hover,
-.action-buttons button:hover {
-    background: #f3f4f6;
+.action-buttons button:hover,
+.action-buttons a:hover {
+    background: #dbeafe;
 }
 
 
 .action-buttons .logout-button {
+    background: #fef2f2;
     color: #dc2626;
 }
 
 
 .action-buttons .logout-button:hover {
-    background: #fef2f2;
+    background: #fee2e2;
 }
 
 
-/* ================= FOOTER ================= */
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 .footer {
-    background: #111827;
-
-    color: white;
-
     text-align: center;
-
     padding: 30px 20px;
-
-    line-height: 1.8;
+    background: #111827;
+    color: #9ca3af;
 }
 
 
-.footer strong {
+.footer-logo {
+    color: white;
     font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+.footer-logo i {
+    color: #60a5fa;
+    margin-right: 7px;
 }
 
 
 .footer p {
-    color: #9ca3af;
-
     font-size: 13px;
+    margin-top: 5px;
 }
 
 
-/* ================= RESPONSIVE ================= */
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media (max-width: 768px) {
 
@@ -540,54 +714,61 @@ body {
         padding: 0 4%;
     }
 
-    .nav-link {
-        padding: 8px;
-    }
 
     .nav-link span {
         display: none;
     }
 
+
     .profile-container {
         width: 94%;
+        margin-top: 30px;
     }
+
+
+    .profile-card,
+    .orders-card,
+    .account-actions {
+        padding: 20px;
+    }
+
 
     .profile-top {
-        flex-direction: column;
-
-        text-align: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
     }
 
-    .profile-main-info {
-        width: 100%;
-    }
-
-    .details-grid {
-        grid-template-columns: 1fr;
-
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .section-title {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
 
     .profile-action {
         width: 100%;
     }
 
+
     .profile-action button {
         width: 100%;
     }
 
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+
     .orders-heading {
-        flex-direction: column;
-
         align-items: flex-start;
-
         gap: 15px;
+        flex-direction: column;
+    }
+
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+
+    .action-buttons button,
+    .action-buttons a {
+        width: 100%;
     }
 
 }
@@ -599,17 +780,32 @@ body {
         display: none;
     }
 
+
     .page-heading h1 {
-        font-size: 24px;
+        font-size: 25px;
     }
 
-    .profile-top {
-        padding: 22px;
+
+    .profile-avatar {
+        width: 65px;
+        height: 65px;
+        min-width: 65px;
     }
 
-    .orders-card,
-    .account-actions {
-        padding: 20px;
+
+    .profile-main-info h2 {
+        font-size: 20px;
+    }
+
+
+    .edit-buttons {
+        flex-direction: column;
+    }
+
+
+    .save-button,
+    .cancel-button {
+        width: 100%;
     }
 
 }

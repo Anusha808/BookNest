@@ -11,15 +11,24 @@
 
     <title>My Profile | BookNest</title>
 
-    <!-- Font Awesome -->
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Profile CSS -->
+
+    <!-- =====================================================
+         PROFILE CSS
+    ====================================================== -->
+
     <link rel="stylesheet"
           th:href="@{/css/profile.css}">
 
 </head>
+
 
 <body>
 
@@ -30,6 +39,7 @@
 
 <nav class="navbar">
 
+
     <!-- LOGO -->
 
     <div class="nav-left">
@@ -39,43 +49,61 @@
 
             <i class="fa-solid fa-book-open"></i>
 
-            <span>BookNest</span>
+            <span>
+                BookNest
+            </span>
 
         </a>
 
     </div>
 
 
+
     <!-- NAVIGATION -->
 
     <div class="nav-right">
+
+
+        <!-- HOME -->
 
         <a href="/home"
            class="nav-link">
 
             <i class="fa-solid fa-house"></i>
 
-            <span>Home</span>
+            <span>
+                Home
+            </span>
 
         </a>
 
+
+
+        <!-- CART -->
 
         <a href="/cart"
            class="nav-link">
 
             <i class="fa-solid fa-cart-shopping"></i>
 
-            <span>Cart</span>
+            <span>
+                Cart
+            </span>
 
         </a>
 
+
+
+        <!-- PROFILE -->
 
         <a href="/profile"
            class="nav-link active">
 
             <i class="fa-solid fa-user"></i>
 
-            <span>Profile</span>
+            <span>
+                Profile
+            </span>
 
         </a>
 
@@ -106,9 +134,44 @@
 
         </h1>
 
+
         <p>
             Manage your BookNest account information
         </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SUCCESS MESSAGE
+    ====================================================== -->
+
+    <div class="success-message"
+         th:if="${param.updated}">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span>
+            Profile updated successfully!
+        </span>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ERROR MESSAGE
+    ====================================================== -->
+
+    <div class="error-message"
+         th:if="${error}">
+
+        <i class="fa-solid fa-circle-exclamation"></i>
+
+        <span th:text="${error}">
+            Something went wrong.
+        </span>
 
     </div>
 
@@ -121,67 +184,222 @@
     <section class="profile-card">
 
 
-        <!-- PROFILE TOP -->
+        <!-- =================================================
+             PROFILE VIEW
+        ================================================== -->
 
-        <div class="profile-top">
-
-
-            <!-- AVATAR -->
-
-            <div class="profile-avatar">
-
-                <i class="fa-solid fa-user"></i>
-
-            </div>
+        <div id="profileView">
 
 
+            <!-- PROFILE TOP -->
 
-            <!-- USER INFORMATION -->
-
-            <div class="profile-main-info">
-
-                <!-- ACTUAL LOGGED-IN USER NAME -->
-
-                <h2 th:text="${loggedInUserName}">
-                    Guest User
-                </h2>
+            <div class="profile-top">
 
 
-                <!-- ACTUAL LOGGED-IN USER EMAIL -->
+                <!-- AVATAR -->
 
-                <p th:text="${loggedInUserEmail}">
-                    Please login
-                </p>
+                <div class="profile-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
 
 
-                <!-- ROLE -->
 
-                <span class="user-role">
+                <!-- USER INFORMATION -->
 
-                    <i class="fa-solid fa-user-shield"></i>
+                <div class="profile-main-info">
 
-                    <span th:text="${loggedInUserRole}">
-                        USER
+
+                    <h2 th:text="${loggedInUserName}">
+                        Guest User
+                    </h2>
+
+
+                    <p th:text="${loggedInUserEmail}">
+                        Please login
+                    </p>
+
+
+                    <span class="user-role">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                        <span th:text="${loggedInUserRole}">
+                            USER
+                        </span>
+
                     </span>
 
-                </span>
+                </div>
+
+
+
+                <!-- EDIT BUTTON -->
+
+                <div class="profile-action">
+
+                    <button type="button"
+                            onclick="showEditProfile()">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Edit Profile
+
+                    </button>
+
+                </div>
 
             </div>
 
 
 
-            <!-- EDIT BUTTON -->
+            <!-- =================================================
+                 PERSONAL INFORMATION
+            ================================================== -->
 
-            <div class="profile-action">
+            <div class="section-title">
 
-                <button type="button"
-                        onclick="editProfile()">
+                <h3>
 
-                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-id-card"></i>
 
-                    Edit Profile
+                    Personal Information
 
-                </button>
+                </h3>
+
+            </div>
+
+
+
+            <div class="details-grid">
+
+
+                <!-- =================================================
+                     NAME
+                ================================================== -->
+
+                <div class="detail-box">
+
+
+                    <div class="detail-icon">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div class="detail-content">
+
+                        <small>
+                            Full Name
+                        </small>
+
+
+                        <p th:text="${loggedInUserName}">
+                            Guest User
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     EMAIL
+                ================================================== -->
+
+                <div class="detail-box">
+
+
+                    <div class="detail-icon">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                    </div>
+
+
+                    <div class="detail-content">
+
+                        <small>
+                            Email Address
+                        </small>
+
+
+                        <p th:text="${loggedInUserEmail}">
+                            Please login
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LOCATION
+                ================================================== -->
+
+                <div class="detail-box">
+
+
+                    <div class="detail-icon">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                    </div>
+
+
+                    <div class="detail-content">
+
+                        <small>
+                            Location
+                        </small>
+
+
+                        <p th:text="${loggedInUserLocation != null && !#strings.isEmpty(loggedInUserLocation)
+                                     ? loggedInUserLocation
+                                     : 'Not specified'}">
+
+                            Not specified
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACCOUNT TYPE
+                ================================================== -->
+
+                <div class="detail-box">
+
+
+                    <div class="detail-icon">
+
+                        <i class="fa-solid fa-user-tag"></i>
+
+                    </div>
+
+
+                    <div class="detail-content">
+
+                        <small>
+                            Account Type
+                        </small>
+
+
+                        <p th:text="${loggedInUserRole}">
+                            USER
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -190,108 +408,32 @@
 
 
         <!-- =================================================
-             PERSONAL INFORMATION
+             EDIT PROFILE FORM
         ================================================== -->
 
-        <div class="section-title">
-
-            <h3>
-
-                <i class="fa-solid fa-id-card"></i>
-
-                Personal Information
-
-            </h3>
-
-        </div>
+        <div id="profileEdit"
+             class="profile-edit"
+             style="display: none;">
 
 
+            <!-- EDIT HEADING -->
 
-        <div class="details-grid">
-
-
-            <!-- =================================================
-                 NAME
-            ================================================== -->
-
-            <div class="detail-box">
-
-                <div class="detail-icon">
-
-                    <i class="fa-solid fa-user"></i>
-
-                </div>
+            <div class="edit-heading">
 
 
-                <div class="detail-content">
+                <div>
 
-                    <small>
-                        Full Name
-                    </small>
+                    <h2>
 
+                        <i class="fa-solid fa-user-pen"></i>
 
-                    <p th:text="${loggedInUserName}">
-                        Guest User
-                    </p>
+                        Edit Profile
 
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 EMAIL
-            ================================================== -->
-
-            <div class="detail-box">
-
-                <div class="detail-icon">
-
-                    <i class="fa-solid fa-envelope"></i>
-
-                </div>
-
-
-                <div class="detail-content">
-
-                    <small>
-                        Email Address
-                    </small>
-
-
-                    <p th:text="${loggedInUserEmail}">
-                        Please login
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 LOCATION
-            ================================================== -->
-
-            <div class="detail-box">
-
-                <div class="detail-icon">
-
-                    <i class="fa-solid fa-location-dot"></i>
-
-                </div>
-
-
-                <div class="detail-content">
-
-                    <small>
-                        Location
-                    </small>
+                    </h2>
 
 
                     <p>
-                        Not specified
+                        Update your BookNest account information.
                     </p>
 
                 </div>
@@ -300,33 +442,163 @@
 
 
 
-            <!-- =================================================
-                 ACCOUNT TYPE
-            ================================================== -->
+            <!-- EDIT FORM -->
 
-            <div class="detail-box">
+            <form action="/profile/update"
+                  method="post"
+                  class="edit-form">
 
-                <div class="detail-icon">
 
-                    <i class="fa-solid fa-user-tag"></i>
+                <!-- =================================================
+                     USER ID
+                ================================================== -->
+
+                <input type="hidden"
+                       name="id"
+                       th:value="${user.id}">
+
+
+
+                <!-- =================================================
+                     FULL NAME
+                ================================================== -->
+
+                <div class="form-group">
+
+
+                    <label for="name">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Full Name
+
+                    </label>
+
+
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           th:value="${user.name}"
+                           placeholder="Enter your full name"
+                           required>
 
                 </div>
 
 
-                <div class="detail-content">
 
-                    <small>
+                <!-- =================================================
+                     EMAIL
+                ================================================== -->
+
+                <div class="form-group">
+
+
+                    <label for="email">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        Email Address
+
+                    </label>
+
+
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           th:value="${user.email}"
+                           placeholder="Enter your email address"
+                           required>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LOCATION
+                ================================================== -->
+
+                <div class="form-group">
+
+
+                    <label for="location">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Location
+
+                    </label>
+
+
+                    <input type="text"
+                           id="location"
+                           name="location"
+                           th:value="${user.location}"
+                           placeholder="Enter your location">
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACCOUNT TYPE
+                ================================================== -->
+
+                <div class="form-group">
+
+
+                    <label for="role">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
                         Account Type
-                    </small>
+
+                    </label>
 
 
-                    <p th:text="${loggedInUserRole}">
-                        USER
-                    </p>
+                    <input type="text"
+                           id="role"
+                           th:value="${user.role}"
+                           readonly>
 
                 </div>
 
-            </div>
+
+
+                <!-- =================================================
+                     BUTTONS
+                ================================================== -->
+
+                <div class="edit-buttons">
+
+
+                    <!-- SAVE -->
+
+                    <button type="submit"
+                            class="save-button">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Save Changes
+
+                    </button>
+
+
+
+                    <!-- CANCEL -->
+
+                    <button type="button"
+                            class="cancel-button"
+                            onclick="cancelEditProfile()">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+            </form>
 
         </div>
 
@@ -364,13 +636,6 @@
             </div>
 
 
-            <!--
-
-            If you already have an OrdersController,
-            you can keep this link.
-
-            -->
-
             <a href="/orders"
                class="view-orders">
 
@@ -384,9 +649,7 @@
 
 
 
-        <!-- =================================================
-             EMPTY ORDERS
-        ================================================== -->
+        <!-- EMPTY ORDERS -->
 
         <div class="orders-empty">
 
@@ -446,7 +709,7 @@
             <!-- EDIT PROFILE -->
 
             <button type="button"
-                    onclick="editProfile()">
+                    onclick="showEditProfile()">
 
                 <i class="fa-solid fa-user-pen"></i>
 
@@ -468,7 +731,7 @@
 
 
 
-            <!-- HOME -->
+            <!-- CONTINUE SHOPPING -->
 
             <a href="/home">
 
@@ -539,14 +802,48 @@
 
 
 /* =========================================================
-   EDIT PROFILE
+   SHOW EDIT PROFILE
 ========================================================= */
 
-function editProfile() {
+function showEditProfile() {
 
-    alert(
-        "Edit Profile feature will be added soon."
-    );
+    const profileView =
+        document.getElementById("profileView");
+
+    const profileEdit =
+        document.getElementById("profileEdit");
+
+
+    profileView.style.display = "none";
+
+    profileEdit.style.display = "block";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* =========================================================
+   CANCEL EDIT
+========================================================= */
+
+function cancelEditProfile() {
+
+    const profileView =
+        document.getElementById("profileView");
+
+    const profileEdit =
+        document.getElementById("profileEdit");
+
+
+    profileEdit.style.display = "none";
+
+    profileView.style.display = "block";
 
 }
 
@@ -558,16 +855,14 @@ function editProfile() {
 
 function logoutUser() {
 
-    /*
-       Clear cart data if required.
-    */
-
     localStorage.removeItem("booknestCart");
 
+    localStorage.removeItem("token");
 
-    /*
-       Go back to login page.
-    */
+    localStorage.removeItem("user");
+
+    localStorage.removeItem("adminToken");
+
 
     window.location.href = "/";
 
