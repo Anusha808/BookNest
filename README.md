@@ -1,23 +1,15 @@
-# 📚 BookNest – Online Bookstore Management System
+ BookNest – Online Bookstore Management System
 
 BookNest is a web-based **Online Bookstore Management System** developed using Java and Spring Boot.
 
 The system provides a platform where customers can browse books, search for books, add books to their cart, place orders, make payments, and manage their profiles.
 
 It also provides an **Admin Dashboard** to manage books, categories, users, orders, payments, inventory, notifications, and store settings.
-
----
-
-## 🎯 Project Objective
+🎯 Project Objective
 
 The main objective of BookNest is to develop a simple and user-friendly online bookstore platform that makes book purchasing easier for customers and provides administrators with an efficient system for managing bookstore operations.
-
----
-
-## ✨ Features
-
-### 👤 Customer Features
-
+✨ Features
+👤 Customer Features
 - User Registration
 - User Login
 - Browse Books
@@ -36,9 +28,7 @@ The main objective of BookNest is to develop a simple and user-friendly online b
 - Edit Profile Information
 - Manage Location
 - Order Status Tracking
-
-### 🛠️ Admin Features
-
+🛠️ Admin Features
 - Admin Dashboard
 - Book Management
 - Add New Books
@@ -56,11 +46,8 @@ The main objective of BookNest is to develop a simple and user-friendly online b
 - Revenue Statistics
 - Order Statistics
 
----
-
-## 💻 Technologies Used
-
-### Backend
+ 💻 Technologies Used
+ Backend
 
 - Java 17
 - Spring Boot
@@ -68,8 +55,7 @@ The main objective of BookNest is to develop a simple and user-friendly online b
 - Spring Data JPA
 - Hibernate
 - REST APIs
-
-### Frontend
+Frontend
 
 - HTML5
 - CSS3
@@ -77,15 +63,15 @@ The main objective of BookNest is to develop a simple and user-friendly online b
 - Thymeleaf
 - Font Awesome
 
-### Database
+ Database
 
 - MySQL 8.0
 
-### Payment Gateway
+ Payment Gateway
 
 - Razorpay Test Mode
 
-### Development Tools
+Development Tools
 
 - Visual Studio Code
 - Maven
@@ -95,7 +81,7 @@ The main objective of BookNest is to develop a simple and user-friendly online b
 
 ---
 
-## 🏗️ System Architecture
+ 🏗️ System Architecture
 
 ```text
               ┌──────────────────────┐
